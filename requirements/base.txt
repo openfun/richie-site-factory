@@ -1,0 +1,3 @@
+# FIXME install Richie a release, not the github master branch
+# richie==1.0.0b3
+git+https://github.com/openfun/richie
