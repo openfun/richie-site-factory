@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:9.6
+    env_file:
+      - env.d/development
+    ports:
+      - "5440:5432"
+
+  elasticsearch:
+    image: fundocker/openshift-elasticsearch:6.6.2
+
+  app:
+    build: .
+    image: funmooc:latest
+    env_file: env.d/development
+    # Override production container command that runs gunicorn in favor to the
+    # Django development server
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8070:8000"
+    volumes:
+      - ./src/backend:/app
+      - ./data/static:/data/static
+      - ./data/media:/data/media
+    depends_on:
+      - "db"
+      - "elasticsearch"
