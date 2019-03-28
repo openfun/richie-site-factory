@@ -7,8 +7,12 @@ COMPOSE_EXEC     = $(COMPOSE) exec
 COMPOSE_EXEC_APP = $(COMPOSE_EXEC) app
 
 # -- Django
-MANAGE = $(COMPOSE_RUN_APP) dockerize -wait tcp://db:5432 -timeout 60s \
-	python manage.py
+ifeq ($(BUILD_TARGET), production)
+	MANAGE = $(COMPOSE_RUN_APP) python manage.py
+else
+	MANAGE = $(COMPOSE_RUN_APP) dockerize -wait tcp://db:5432 -timeout 60s \
+		python manage.py
+endif
 
 # -- Rules
 default: help
@@ -38,6 +42,10 @@ stop: ## stop the development server
 .PHONY: stop
 
 # == Django tasks
+check:  ## perform django checks
+	@$(MANAGE) check
+.PHONY: check
+
 demo-site:  ## create a demo site
 	@$(MANAGE) flush
 	@$(MANAGE) create_demo_site

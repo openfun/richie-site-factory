@@ -1,0 +1,244 @@
+# Docker compose 3.4 file format requires a recent release of docker-compose
+upgrade-docker-compose: &upgrade-docker-compose
+  run:
+    name: Upgrade Docker Compose
+    command: |
+      curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" > ~/docker-compose
+      chmod +x ~/docker-compose
+      sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      docker --version
+      docker-compose --version
+
+version: 2
+jobs:
+  # Git jobs
+  # Check that the git history is clean and complies with our expectations
+  lint-git:
+    machine: true
+    working_directory: ~/fun
+    steps:
+      - checkout
+      # Make sure the changes don't add a "print" statement to the code base.
+      # We should exclude the ".circleci" folder from the search as the very command that checks
+      # the absence of "print" is including a "print(" itself.
+      - run:
+          name: enforce absence of print statements in code
+          command: |
+            ! git diff origin/master..HEAD -- . ':(exclude).circleci' | grep "print("
+      - run:
+          name: Check absence of fixup commits
+          command: |
+            ! git log | grep 'fixup!'
+      - run:
+          name: Install gitlint
+          command: |
+            pip install requests gitlint
+      - run:
+          name: lint commit messages added to master
+          command: |
+            gitlint --commits origin/master..HEAD
+
+  # Build Docker images
+  build:
+    # We use the machine executor, i.e. a VM, not a container
+    machine: true
+    working_directory: ~/fun
+    steps:
+      # Checkout repository sources
+      - checkout
+      - <<: *upgrade-docker-compose
+      # Generate a version.json file describing app release
+      - run:
+          name: Create a version.json
+          command: |
+            # Create a version.json à-la-mozilla
+            # https://github.com/mozilla-services/Dockerflow/blob/master/docs/version_object.md
+            printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n' \
+              "$CIRCLE_SHA1" \
+              "$CIRCLE_TAG" \
+              "$CIRCLE_PROJECT_USERNAME" \
+              "$CIRCLE_PROJECT_REPONAME" \
+              "$CIRCLE_BUILD_URL" > src/backend/version.json
+      # Each image is tagged with the current git commit sha1 to avoid
+      # collisions in parallel builds.
+      - run:
+          name: Build production image
+          command: BUILD_TARGET=production make build
+      - run:
+          name: Build development image
+          command: make build
+      - run:
+          name: Check built image availability
+          command: docker images "funmooc"
+      - run:
+          name: Check version.json file
+          command: docker run --rm funmooc:${CIRCLE_SHA1}production cat version.json
+      # Since we cannot rely on CircleCI's Docker layers cache (for obscure
+      # reasons some subsequent jobs will benefit from a previous job cache and
+      # some others won't), we choose to save built docker images in cached
+      # directories. This ensures that we will be able to load built docker
+      # images in subsequent jobs.
+      - run:
+          name: Store docker images in cache
+          command: |
+            mkdir -p docker/images && \
+            docker save \
+              -o docker/images/funmooc.tar \
+              funmooc:${CIRCLE_SHA1}production \
+              funmooc:${CIRCLE_SHA1}development
+      - save_cache:
+          paths:
+            - ~/fun/docker/images/
+          key: docker-images-{{ .Revision }}
+
+  check-back:
+    machine: true
+    working_directory: ~/fun
+    environment:
+      BUILD_TARGET: production
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - docker-images-{{ .Revision }}
+      - <<: *upgrade-docker-compose
+      - run:
+          name: Load images to docker engine
+          command: |
+            docker load < docker/images/funmooc.tar
+      # ElasticSearch configuration
+      #
+      # We need to increase the VM max memory size, or else, ElasticSearch (ES)
+      # service won't bootstrap.
+      #
+      # Source:
+      # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-cli-run-prod-mode
+      - run:
+          name: Increase VM max memory size for ES
+          command: |
+            sudo sysctl -w vm.max_map_count=262144
+            sudo sysctl vm.max_map_count
+      # Run back-end (Django) check
+      #
+      # Nota bene: to run the django app, we need to ensure that both PostgreSQL
+      # and ElasticSearch services are up and ready. Since `dockerize` is not
+      # installed in the production image, we must wait a bit (`sleep 10`) that
+      # both the database and elastisearch containers opened their expected tcp
+      # port (5432 and 9200 resp.) before running migrations and tests.
+      - run:
+          name: Run Django check in production image
+          command: |
+            make run
+            sleep 10
+            make migrate
+            make check
+
+  # ---- DockerHub publication job ----
+  hub:
+    machine: true
+    working_directory: ~/fun
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - docker-images-ci-{{ .Revision }}
+      # Load all built images in all flavors
+      - run:
+          name: Load images to docker engine
+          command: |
+            docker load < docker/images/funmooc.tar
+      # Login to DockerHub to Publish new images
+      #
+      # Nota bene: you'll need to define the following secrets environment vars
+      # in CircleCI interface:
+      #
+      #   - DOCKER_USER
+      #   - DOCKER_PASS
+      - run:
+          name: Login to DockerHub
+          command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+      # Set environment variables that will be used in next steps
+      - run:
+          name: Setup Environment Variables
+          command: |
+            DOCKER_TAG=$([[ -z "$CIRCLE_TAG" ]] && echo $CIRCLE_BRANCH || echo ${CIRCLE_TAG} | sed 's/^v//')
+            RELEASE_TYPE=$([[ -z "$CIRCLE_TAG" ]] && echo "branch" || echo "tag ")
+            echo 'export DOCKER_TAG="${DOCKER_TAG}"' >> $BASH_ENV
+            echo 'export RELEASE_TYPE="${RELEASE_TYPE}"' >> $BASH_ENV
+      # Tag docker images with the same pattern used in Git (Semantic Versioning)
+      #
+      # Git tag: v1.0.1
+      # Docker tag: 1.0.1(-alpine)(-ci)
+      - run:
+          name: Tag images
+          command: |
+            docker images fundocker/funmooc
+            # Display either:
+            # - DOCKER_TAG: master (Git branch)
+            # or
+            # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
+            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
+            docker tag funmooc:${CIRCLE_SHA1}production fundocker/funmooc:${DOCKER_TAG}
+            if [[ -n "$CIRCLE_TAG" ]]; then
+                docker tag funmooc:${CIRCLE_SHA1}production fundocker/funmooc:latest
+            fi
+            docker images | grep -E "^fundocker/funmooc\s*(${DOCKER_TAG}.*|latest|master)"
+      # Publish images to DockerHub
+      #
+      # Nota bene: logged user (see "Login to DockerHub" step) must have write
+      # permission for the project's repository; this also implies that the
+      # DockerHub repository already exists.
+      - run:
+          name: Publish images
+          command: |
+            # Display either:
+            # - DOCKER_TAG: master (Git branch)
+            # or
+            # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
+            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
+            docker push fundocker/funmooc:${DOCKER_TAG}
+            if [[ -n "$CIRCLE_TAG" ]]; then
+              docker push fundocker/funmooc:latest
+            fi
+
+workflows:
+  version: 2
+
+  funmooc:
+    jobs:
+      # Git jobs
+      #
+      # Check validity of git history
+      - lint-git:
+          filters:
+            tags:
+              only: /.*/
+
+      # Docker jobs
+      #
+      # Build, lint and test production and development Docker images
+      # (debian-based)
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - check-back:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+
+      # DockerHub publication.
+      #
+      # Publish docker images only if all build, lint and test jobs succeed and
+      # if the CI workflow has been triggered by a git tag starting with the
+      # letter v or by a PR merged to the master branch
+      - hub:
+          requires:
+            - check-back
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /^v.*/

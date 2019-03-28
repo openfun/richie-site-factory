@@ -1,0 +1,27 @@
+# Nota bene
+#
+# This environment file is intended to be used to test our production build in
+# the CI, not to be used in production.
+
+# Python
+PYTHONUNBUFFERED=1
+
+# Django
+DJANGO_SETTINGS_MODULE=funmooc.settings
+DJANGO_CONFIGURATION=Production
+DJANGO_SECRET_KEY=ThisIsAnExampleKeyForDevPurposeOnly
+
+# Elastic search
+ES_CLIENT=elasticsearch
+
+# PostgreSQL db container configuration
+POSTGRES_DB=funmooc
+POSTGRES_USER=fun
+POSTGRES_PASSWORD=pass
+
+# App database configuration
+DB_HOST=db
+DB_NAME=funmooc
+DB_USER=fun
+DB_PASSWORD=pass
+DB_PORT=5432
