@@ -27,7 +27,7 @@ database migrations. It's a good idea to use this command each time you are
 pulling code from the project repository to avoid dependency-related or
 migration-related issues.
 
-Once the bootstrap phase is finised, you should be able to view the site at
+Once the bootstrap phase is finished, you should be able to view the site at
 [localhost:8070](http://localhost:8070)
 
 ## Usage
