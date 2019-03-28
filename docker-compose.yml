@@ -1,10 +1,19 @@
+# We use the BUILD_TARGET environment variable to build the development or
+# production image. It defaults to the development image. To build the
+# production image, use:
+#
+# BUILD_TARGET=production UID=$(id -u) docker-compose build app
+#
+# or
+#
+# BUILD_TARGET=production make build
 version: "3.4"
 
 services:
   db:
     image: postgres:9.6
     env_file:
-      - env.d/development
+      - "env.d/${BUILD_TARGET:-development}"
     ports:
       - "5440:5432"
 
@@ -14,11 +23,15 @@ services:
   app:
     build:
       context: .
-      target: development
+      target: ${BUILD_TARGET:-development}
       args:
         UID: ${UID:-1000}
-    image: funmooc:latest
-    env_file: env.d/development
+    # We prefix our images build with the current commit sha1 in the CI to make
+    # them unique and avoid collisions in parallel builds. Since the CIRCLE_SHA1
+    # environment variable is not defined for your local tests, we should be
+    # fine.
+    image: "funmooc:${CIRCLE_SHA1}${BUILD_TARGET:-development}"
+    env_file: "env.d/${BUILD_TARGET:-development}"
     ports:
       - "8070:8000"
     volumes:
