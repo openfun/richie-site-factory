@@ -39,6 +39,7 @@ stop: ## stop the development server
 
 # == Django tasks
 demo-site:  ## create a demo site
+	@$(MANAGE) flush
 	@$(MANAGE) create_demo_site
 	@${MAKE} search-index;
 .PHONY: demo-site
