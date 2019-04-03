@@ -216,7 +216,7 @@ class Base(DRFMixin, ElasticSearchMixin, Configuration):
     )
 
     # Group to add plugin to placeholder "Content"
-    FUN_PLUGINS_GROUP = "Fun Plugins"
+    RICHIE_PLUGINS_GROUP = "Fun Plugins"
 
     LANGUAGE_CODE = "en"
 
@@ -276,10 +276,9 @@ class Base(DRFMixin, ElasticSearchMixin, Configuration):
         ("courses/cms/blogpost_detail.html", _("Blog post page")),
         ("courses/cms/person_detail.html", _("Person page")),
         ("search/search.html", _("Search")),
-        ("richie/fullwidth.html", "Fullwidth"),
         ("richie/child_pages_list.html", _("List of child pages")),
         ("richie/homepage.html", _("Homepage")),
-        ("richie/single-column.html", _("Single column")),
+        ("richie/single_column.html", _("Single column")),
     )
     CMS_PERMISSION = True
 
