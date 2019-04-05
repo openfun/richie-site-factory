@@ -133,6 +133,43 @@ jobs:
             make migrate
             make check
 
+  # ---- Front-end jobs ----
+  build-front-production:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/fun/src/frontend/
+    steps:
+      - checkout:
+          path: ~/fun
+      - restore_cache:
+          keys:
+            - v1-front-dependencies-{{ checksum "yarn.lock" }}
+            - v1-front-dependencies-
+      - run:
+          name: Install frontend dependencies (with locked dependencies)
+          command: yarn install --frozen-lockfile
+      - run:
+          name: Build application styles (production mode)
+          command: yarn sass-production
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-front-dependencies-{{ checksum "yarn.lock" }}
+
+  lint-front-prettier:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/fun/src/frontend/
+    steps:
+      - checkout:
+          path: ~/fun
+      - restore_cache:
+          keys:
+            - v1-front-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: Lint CSS/SCSS code with prettier
+          command: yarn prettier
+
   # ---- DockerHub publication job ----
   hub:
     machine: true
@@ -225,6 +262,20 @@ workflows:
       - check-back:
           requires:
             - build
+          filters:
+            tags:
+              only: /.*/
+
+      # Front-end jobs
+      #
+      # Build & lint the front-end apps
+      - build-front-production:
+          filters:
+            tags:
+              only: /.*/
+      - lint-front-prettier:
+          requires:
+            - build-front-production
           filters:
             tags:
               only: /.*/
