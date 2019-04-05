@@ -1,10 +1,21 @@
 # -- Docker
 UID              = $(shell id -u)
-COMPOSE          = docker-compose
+GID              = $(shell id -g)
+COMPOSE          = UID="$(UID):$(GID)" docker-compose
 COMPOSE_RUN      = $(COMPOSE) run --rm
 COMPOSE_RUN_APP  = $(COMPOSE_RUN) app
 COMPOSE_EXEC     = $(COMPOSE) exec
 COMPOSE_EXEC_APP = $(COMPOSE_EXEC) app
+
+# -- Node
+
+# We must run node with a /home because yarn tries to write to ~/.yarnrc. If the
+# ID of our host user (with which we run the container) does not exist in the
+# container (e.g. 1000 exists but 1009 does not exist by default), then yarn
+# will try to write to "/.yarnrc" at the root of the system and will fail with a
+# permission error.
+COMPOSE_RUN_NODE     = $(COMPOSE_RUN) -e HOME="/tmp" node
+YARN                 = $(COMPOSE_RUN_NODE) yarn
 
 # -- Django
 ifeq ($(BUILD_TARGET), production)
@@ -17,12 +28,12 @@ endif
 # -- Rules
 default: help
 
-bootstrap: data/media/.keep data/static/.keep build run migrate  ## install development dependencies
+bootstrap: data/media/.keep data/static/.keep build build-front run migrate  ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
 build: ## build the app container
-	@$(COMPOSE) build --build-arg UID=$(UID) app
+	$(COMPOSE) build app
 .PHONY: build
 
 down: ## stop & remove containers
@@ -40,6 +51,34 @@ run: ## start the development server
 stop: ## stop the development server
 	@$(COMPOSE) stop
 .PHONY: stop
+
+# == Frontend
+build-front: install-front build-sass ## build front-end application
+.PHONY: build-front
+
+build-sass: ## build Sass files to CSS
+	@$(YARN) sass
+.PHONY: build-sass
+
+install-front: ## install front-end dependencies
+	@$(YARN) install;
+.PHONY: install-front
+
+install-front-production: ## install front-end dependencies (production mode)
+	@$(YARN) install --frozen-lockfile
+.PHONY: install-front-production
+
+lint-front-prettier: ## run prettier linter over scss files
+	@$(YARN) prettier
+.PHONY: lint-front-prettier
+
+lint-front-prettier-write: ## run prettier over scss files -- beware! overwrites files
+	@$(YARN) prettier-write
+.PHONY: lint-front-prettier-write
+
+watch-sass: ## watch changes in Sass files
+	@$(YARN) watch-sass
+.PHONY: watch-sass
 
 # == Django tasks
 check:  ## perform django checks

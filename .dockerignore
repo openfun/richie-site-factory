@@ -19,6 +19,8 @@ env.d
 .circleci
 .git
 .vscode
+src/frontend/node_modules
 
 # Assets
 data
+src/backend/funmooc/static/richie/css/main.css

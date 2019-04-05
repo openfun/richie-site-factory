@@ -4,6 +4,17 @@ ARG UID=10000
 # ---- base image to inherit from ----
 FROM python:3.7-stretch as base
 
+# ---- front-end builder image ----
+FROM node:10 as front-builder
+
+# Copy frontend app sources
+COPY ./src/frontend /builder/src/frontend
+
+WORKDIR /builder/src/frontend
+
+RUN yarn install --frozen-lockfile && \
+    yarn sass-production
+
 # ---- back-end builder image ----
 FROM base as back-builder
 
@@ -33,6 +44,9 @@ COPY --from=back-builder /install /usr/local
 # Copy runtime-required files
 COPY ./src/backend /app/
 COPY ./docker/files/usr/local/bin/entrypoint /usr/local/bin/entrypoint
+
+# Copy distributed application's statics
+COPY --from=front-builder /builder/src/backend/funmooc/static/richie /app/src/backend/funmooc/static/richie
 
 WORKDIR /app
 
