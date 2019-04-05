@@ -60,8 +60,12 @@ build-sass: ## build Sass files to CSS
 	@$(YARN) sass
 .PHONY: build-sass
 
+build-sass-production: ## build Sass files to CSS (production mode)
+	@$(YARN) sass-production
+.PHONY: build-sass-production
+
 install-front: ## install front-end dependencies
-	@$(YARN) install;
+	@$(YARN) install
 .PHONY: install-front
 
 install-front-production: ## install front-end dependencies (production mode)
