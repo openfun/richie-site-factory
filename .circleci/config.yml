@@ -63,7 +63,7 @@ jobs:
       # collisions in parallel builds.
       - run:
           name: Build production image
-          command: BUILD_TARGET=production make build
+          command: make env.d/aws && BUILD_TARGET=production make build
       - run:
           name: Build development image
           command: make build

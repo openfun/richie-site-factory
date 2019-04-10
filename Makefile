@@ -28,7 +28,7 @@ endif
 # -- Rules
 default: help
 
-bootstrap: data/media/.keep data/static/.keep build-front build run migrate  ## install development dependencies
+bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -84,22 +84,26 @@ watch-sass: ## watch changes in Sass files
 	@$(YARN) watch-sass
 .PHONY: watch-sass
 
-# == Django tasks
-check:  ## perform django checks
+#== AWS/Terraform
+env.d/aws:
+	cp env.d/aws.dist env.d/aws
+
+# == Django
+check: ## perform django checks
 	@$(MANAGE) check
 .PHONY: check
 
-demo-site:  ## create a demo site
+demo-site: ## create a demo site
 	@$(MANAGE) flush
 	@$(MANAGE) create_demo_site
 	@${MAKE} search-index;
 .PHONY: demo-site
 
-migrate:  ## perform database migrations
+migrate: ## perform database migrations
 	@$(MANAGE) migrate
 .PHONY: migrate
 
-search-index:  ## (re)generate the Elasticsearch index
+search-index: ## (re)generate the Elasticsearch index
 	@$(MANAGE) bootstrap_elasticsearch
 .PHONY: search-index
 

@@ -48,3 +48,11 @@ services:
     user: "${UID:-1000}"
     volumes:
       - .:/app
+
+  terraform:
+    image: hashicorp/terraform:light
+    env_file: env.d/aws
+    user: ${UID:-1000}
+    working_dir: /app
+    volumes:
+      - ./src/aws:/app

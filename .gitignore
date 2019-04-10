@@ -1,5 +1,6 @@
 # env
 .env
+env.d/aws
 
 # virtualenv
 .venv
@@ -40,3 +41,8 @@ node_modules
 
 # logs
 yarn-error.log
+
+# Terraform
+.terraform
+*.tfstate
+*.tfstate.backup
