@@ -93,6 +93,10 @@ check: ## perform django checks
 	@$(MANAGE) check
 .PHONY: check
 
+collectstatic:  ## collect static files to /data/static
+	@$(MANAGE) collectstatic
+.PHONY: collectstatic
+
 demo-site: ## create a demo site
 	@$(MANAGE) flush
 	@$(MANAGE) create_demo_site

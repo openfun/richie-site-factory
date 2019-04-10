@@ -214,6 +214,7 @@ class Base(DRFMixin, ElasticSearchMixin, Configuration):
         "dockerflow.django",
         "parler",
         "rest_framework",
+        "storages",
     )
 
     # Group to add plugin to placeholder "Content"
@@ -610,12 +611,35 @@ class Production(Base):
 
     ALLOWED_HOSTS = values.ListValue(None)
 
+    DEFAULT_FILE_STORAGE = "funmooc.storage.MediaStorage"
+
     # For static files in production, we want to use a backend that includes a hash in
     # the filename, that is calculated from the file content, so that browsers always
     # get the updated version of each file.
-    STATICFILES_STORAGE = (
-        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+    STATICFILES_STORAGE = values.Value(
+        "funmooc.storage.ConfigurableManifestS3Boto3Storage"
     )
+
+    # The mapping between the names of the original files and the names of the files distributed
+    # by the backend is stored in a file.
+    # The best practice is to allow this manifest file's name to change for each deployment so
+    # that several versions of the app can run in parallel without interfering with each other.
+    # We make it configurable so that it can be versioned with a deployment stamp in our CI/CD:
+    STATICFILES_MANIFEST_NAME = values.Value("staticfiles.json")
+
+    AWS_ACCESS_KEY_ID = values.SecretValue()
+    AWS_SECRET_ACCESS_KEY = values.SecretValue()
+
+    AWS_S3_OBJECT_PARAMETERS = {
+        "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
+        "CacheControl": "max-age=94608000",
+    }
+    AWS_S3_REGION_NAME = values.Value("eu-west-1")
+
+    AWS_STATIC_BUCKET_NAME = values.Value("production-funmooc-static")
+    AWS_MEDIA_BUCKET_NAME = values.Value("production-funmooc-media")
+
+    AWS_CLOUDFRONT_DOMAIN = values.Value()
 
 
 class Feature(Production):
@@ -625,6 +649,9 @@ class Feature(Production):
     nota bene: it should inherit from the Production environment.
     """
 
+    AWS_STATIC_BUCKET_NAME = values.Value("feature-funmooc-static")
+    AWS_MEDIA_BUCKET_NAME = values.Value("feature-funmooc-media")
+
 
 class Staging(Production):
     """
@@ -633,6 +660,9 @@ class Staging(Production):
     nota bene: it should inherit from the Production environment.
     """
 
+    AWS_STATIC_BUCKET_NAME = values.Value("staging-funmooc-static")
+    AWS_MEDIA_BUCKET_NAME = values.Value("staging-funmooc-media")
+
 
 class PreProduction(Production):
     """
@@ -640,3 +670,6 @@ class PreProduction(Production):
 
     nota bene: it should inherit from the Production environment.
     """
+
+    AWS_STATIC_BUCKET_NAME = values.Value("preprod-funmooc-static")
+    AWS_MEDIA_BUCKET_NAME = values.Value("preprod-funmooc-media")

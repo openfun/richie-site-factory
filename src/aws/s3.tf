@@ -30,6 +30,10 @@ resource "aws_s3_bucket" "funmooc_media" {
     max_age_seconds = 3600
   }
 
+  versioning {
+    enabled = true
+  }
+
   tags {
     Name        = "funmooc-media"
     Environment = "${terraform.workspace}"
