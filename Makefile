@@ -28,7 +28,7 @@ endif
 # -- Rules
 default: help
 
-bootstrap: data/media/.keep data/static/.keep build build-front run migrate  ## install development dependencies
+bootstrap: data/media/.keep data/static/.keep build-front build run migrate  ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -44,7 +44,7 @@ logs: ## display app logs (follow mode)
 	@$(COMPOSE) logs -f app
 .PHONY: logs
 
-run: ## start the development server
+run: ## start the wsgi (production) or development server
 	@$(COMPOSE) up -d
 .PHONY: run
 
