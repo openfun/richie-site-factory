@@ -1,7 +1,7 @@
 # -- Docker
-UID              = $(shell id -u)
-GID              = $(shell id -g)
-COMPOSE          = UID="$(UID):$(GID)" docker-compose
+DOCKER_UID       = $(shell id -u)
+DOCKER_GID       = $(shell id -g)
+COMPOSE          = DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" docker-compose
 COMPOSE_RUN      = $(COMPOSE) run --rm
 COMPOSE_RUN_APP  = $(COMPOSE_RUN) app
 COMPOSE_EXEC     = $(COMPOSE) exec

@@ -1,5 +1,5 @@
 # The ID of the user running in the container
-ARG UID=10000
+ARG DOCKER_USER=10000
 
 # ---- base image to inherit from ----
 FROM python:3.7-stretch as base
@@ -60,8 +60,8 @@ COPY ./docker/files/usr/local/etc/gunicorn/funmooc.py /usr/local/etc/gunicorn/fu
 RUN chmod g=u /etc/passwd
 
 # Un-privileged user running the application
-ARG UID
-USER ${UID}
+ARG DOCKER_USER
+USER ${DOCKER_USER}
 
 # We wrap commands run in this container by the following entrypoint that
 # creates a user on-the-fly with the container user ID (see USER) and root group
@@ -90,8 +90,8 @@ RUN curl -sL \
     rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Restore the un-privileged user running the application
-ARG UID
-USER ${UID}
+ARG DOCKER_USER
+USER ${DOCKER_USER}
 
 # Run django development server (wrapped by dockerize to ensure the db is ready
 # to accept connections before running the development server)
