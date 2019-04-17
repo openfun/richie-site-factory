@@ -8,6 +8,7 @@ DJANGO_SECRET_KEY=ThisIsAnExampleKeyForDevPurposeOnly
 
 # Elastic search
 RICHIE_ES_HOST=elasticsearch
+discovery.type=single-node
 
 # PostgreSQL db container configuration
 POSTGRES_DB=funmooc

@@ -4,6 +4,7 @@ DOCKER_GID       = $(shell id -g)
 COMPOSE          = DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" docker-compose
 COMPOSE_RUN      = $(COMPOSE) run --rm
 COMPOSE_RUN_APP  = $(COMPOSE_RUN) app
+COMPOSE_RUN_CI   = $(COMPOSE_RUN) app-ci
 COMPOSE_EXEC     = $(COMPOSE) exec
 COMPOSE_EXEC_APP = $(COMPOSE_EXEC) app
 
@@ -18,12 +19,12 @@ COMPOSE_RUN_NODE     = $(COMPOSE_RUN) -e HOME="/tmp" node
 YARN                 = $(COMPOSE_RUN_NODE) yarn
 
 # -- Django
-ifeq ($(BUILD_TARGET), production)
-	MANAGE = $(COMPOSE_RUN_APP) python manage.py
-else
-	MANAGE = $(COMPOSE_RUN_APP) dockerize -wait tcp://db:5432 -timeout 60s \
+MANAGE = $(COMPOSE_RUN_APP) dockerize \
+	-wait tcp://db:5432 \
+	-wait tcp://elasticsearch:9200 \
+	-timeout 60s \
 		python manage.py
-endif
+MANAGE_CI = $(COMPOSE_RUN_CI) python manage.py
 
 # -- Rules
 default: help
@@ -45,7 +46,7 @@ logs: ## display app logs (follow mode)
 .PHONY: logs
 
 run: ## start the wsgi (production) or development server
-	@$(COMPOSE) up -d
+	@$(COMPOSE) up -d app
 .PHONY: run
 
 stop: ## stop the development server
@@ -114,6 +115,32 @@ search-index: ## (re)generate the Elasticsearch index
 superuser: ## create a DjangoCMS superuser
 	@$(MANAGE) createsuperuser
 .PHONY: superuser
+
+# == CI
+ci-build: ## build the app production container in the CI
+	$(COMPOSE) build app-ci
+.PHONY: ci-build
+
+ci-check: ## run django check management command
+	$(MANAGE_CI) check
+.PHONY: ci-check
+
+ci-migrate: ci-run ## perform database migrations in the CI
+	$(MANAGE_CI) migrate
+.PHONY: ci-migrate
+
+ci-run: ## start the wsgi server (and linked services)
+	@$(COMPOSE) up -d app-ci
+	# As we use a remote docker environment, we should explicitly use the same
+	# network to check containers status
+	@echo "Wait for services to be up..."
+	docker run --network container:fun_db_1 --rm jwilder/dockerize -wait tcp://localhost:5432 -timeout 60s
+	docker run --network container:fun_elasticsearch_1 --rm jwilder/dockerize -wait tcp://localhost:9200 -timeout 60s
+.PHONY: ci-run
+
+ci-version: ## check version file bundled in the docker image
+	$(COMPOSE_RUN) --no-deps app-ci cat version.json
+.PHONY: ci-version
 
 # == Misc
 clean: ## restore repository state as it was freshly cloned
