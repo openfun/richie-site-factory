@@ -19,11 +19,11 @@
 # or define new variables in an environment file to use with docker or
 # docker-compose:
 #
-#     # env.d/production
+#     # env.d/development
 #     USER_NAME=foo
 #     HOME=/home/foo
 #
-#     docker run --rm --env-file env.d/production funmooc:latest python manage.py migrate
+#     docker run --rm --env-file env.d/development funmooc:latest python manage.py migrate
 #
 
 echo "🐳(entrypoint) creating user running in the container..."
