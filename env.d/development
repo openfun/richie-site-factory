@@ -7,7 +7,7 @@ DJANGO_CONFIGURATION=Development
 DJANGO_SECRET_KEY=ThisIsAnExampleKeyForDevPurposeOnly
 
 # Elastic search
-ES_CLIENT=elasticsearch
+RICHIE_ES_HOST=elasticsearch
 
 # PostgreSQL db container configuration
 POSTGRES_DB=funmooc
