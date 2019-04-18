@@ -219,6 +219,10 @@ class Base(DRFMixin, ElasticSearchMixin, Configuration):
 
     # Group to add plugin to placeholder "Content"
     RICHIE_PLUGINS_GROUP = "Fun Plugins"
+    # Elasticsearch
+    RICHIE_ES_HOST = values.Value(
+        "elasticsearch", environ_name="RICHIE_ES_HOST", environ_prefix=None
+    )
 
     LANGUAGE_CODE = "en"
 

@@ -31,6 +31,6 @@
     "node-sass": "4.11.0",
     "nodemon": "1.18.10",
     "prettier": "1.16.4",
-    "richie-education": "1.0.0-beta.5"
+    "richie-education": "1.0.0-beta.6"
   }
 }

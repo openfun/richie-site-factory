@@ -10,9 +10,14 @@ PYTHONUNBUFFERED=1
 DJANGO_SETTINGS_MODULE=funmooc.settings
 DJANGO_CONFIGURATION=Production
 DJANGO_SECRET_KEY=ThisIsAnExampleKeyForDevPurposeOnly
+# staging
+DJANGO_AWS_CLOUDFRONT_DOMAIN=fake.cloudfront.net
+DJANGO_AWS_ACCESS_KEY_ID=fakekeyid
+DJANGO_AWS_SECRET_ACCESS_KEY=fakesecretkey
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
 
 # Elastic search
-ES_CLIENT=elasticsearch
+RICHIE_ES_HOST=elasticsearch
 
 # PostgreSQL db container configuration
 POSTGRES_DB=funmooc
