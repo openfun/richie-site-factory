@@ -170,8 +170,8 @@ jobs:
           command: |
             DOCKER_TAG=$([[ -z "$CIRCLE_TAG" ]] && echo $CIRCLE_BRANCH || echo ${CIRCLE_TAG} | sed 's/^v//')
             RELEASE_TYPE=$([[ -z "$CIRCLE_TAG" ]] && echo "branch" || echo "tag ")
-            echo 'export DOCKER_TAG="${DOCKER_TAG}"' >> $BASH_ENV
-            echo 'export RELEASE_TYPE="${RELEASE_TYPE}"' >> $BASH_ENV
+            echo "export DOCKER_TAG=${DOCKER_TAG}" >> $BASH_ENV
+            echo "export RELEASE_TYPE=${RELEASE_TYPE}" >> $BASH_ENV
       # Tag docker images with the same pattern used in Git (Semantic Versioning)
       #
       # Git tag: v1.0.1
