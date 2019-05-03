@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Bootstrap an Arnold's package prototype called a "tray" to deploy the project
+  to OpenShift using Arnold
+
 ## [0.1.0] - 2019-04-18
 
 ### Added

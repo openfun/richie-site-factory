@@ -1,0 +1,16 @@
+# customer: {{ customer }}
+# env_type: {{ env_type }}
+
+# postgresql
+{% set postgresql_credentials = databases.postgresql | json_query("[?release=='" ~ funmooc_postgresql_version ~ "'].databases | [0][?application=='richie'].{user: user, password: password} | [0]") %}
+
+DB_USER: {{ postgresql_credentials.user }}
+DB_PASSWORD: {{ postgresql_credentials.password }}
+
+# funmooc
+DJANGO_SECRET_KEY: {{ lookup('password', '/dev/null length=30') }}
+# Fixme: uncomment and copy/paste real values for the secret variables below
+# DJANGO_SENTRY_DSN: https://super:richie@sentry.io/foo
+# DJANGO_AWS_CLOUDFRONT_DOMAIN: xxxxxxxxxxxxx.cloudfront.net
+# DJANGO_AWS_ACCESS_KEY_ID: XXXXXXXXXXXXXXXXXXXX
+# DJANGO_AWS_SECRET_ACCESS_KEY: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: funmooc
+    service: app
+    version: "{{ funmooc_image_tag }}"
+    deployment_stamp: "{{ deployment_stamp }}"
+  name: funmooc-app-{{ deployment_stamp }}  # name of the service should be host name in nginx
+  namespace: "{{ project_name }}"
+spec:
+  ports:
+  - name: 8000-tcp
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: funmooc
+    deploymentconfig: "funmooc-app-{{ deployment_stamp }}"
+  type: ClusterIP

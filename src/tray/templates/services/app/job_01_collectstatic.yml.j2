@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "funmooc-app-collectstatic-{{ job_stamp }}"
+  namespace: "{{ project_name }}"
+  labels:
+    app: funmooc
+    service: app
+    version: "{{ funmooc_image_tag }}"
+    job_stamp: "{{ job_stamp }}"
+    # Jobs with the "pre" job type will be executed prior to deployments
+    job_type: "pre"
+    deployment_stamp: "{{ deployment_stamp }}"
+spec:
+  template:
+    metadata:
+      name: "funmooc-app-collectstatic-{{ job_stamp }}"
+      labels:
+        app: funmooc
+        service: app
+        version: "{{ funmooc_image_tag }}"
+        deployment_stamp: "{{ deployment_stamp }}"
+        job_stamp: "{{ job_stamp }}"
+    spec:
+      containers:
+        - name: funmooc-collectstatic
+          image: "{{ funmooc_image_name }}:{{ funmooc_image_tag }}"
+          imagePullPolicy: Always
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: funmooc.settings
+            - name: DJANGO_CONFIGURATION
+              value: "{{ funmooc_django_configuration }}"
+            - name: DB_ENGINE
+              value: "{{ funmooc_database_engine }}"
+            - name: DB_NAME
+              value: "{{ funmooc_database_name }}"
+            - name: DB_HOST
+              value: "funmooc-{{ funmooc_database_host }}-{{ deployment_stamp }}"
+            - name: DB_PORT
+              value: "{{ funmooc_database_port }}"
+            - name: DJANGO_ALLOWED_HOSTS
+              value: "{{ funmooc_host }}"
+          envFrom:
+            - secretRef:
+                name: "{{ funmooc_secret_name }}"
+          command:
+            - "bash"
+            - "-c"
+            - python manage.py collectstatic --noinput
+          volumeMounts:
+            - mountPath: /data/static
+              name: funmooc-v-static
+      volumes:
+        - name: funmooc-v-static
+          persistentVolumeClaim:
+            claimName: funmooc-pvc-static
+      restartPolicy: Never

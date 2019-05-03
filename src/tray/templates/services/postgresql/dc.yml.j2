@@ -1,0 +1,35 @@
+{% if env_type in trashable_env_types %}
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: funmooc
+    service: postgresql
+    version: "{{ funmooc_database_image_tag }}"
+    deployment_stamp: "{{ deployment_stamp }}"
+  name: "funmooc-postgresql-{{ deployment_stamp }}"
+  namespace: "{{ project_name }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: funmooc
+        service: postgresql
+        version: "{{ funmooc_database_image_tag }}"
+        deploymentconfig: "funmooc-postgresql-{{ deployment_stamp }}"
+        deployment_stamp: "{{ deployment_stamp }}"
+    spec:
+      containers:
+        - image: {{ funmooc_database_image_name }}:{{ funmooc_database_image_tag }}
+          name: postgresql
+          ports:
+            - containerPort: {{ funmooc_database_port }}
+              protocol: TCP
+          env:
+            - name: POSTGRESQL_DATABASE
+              value: "{{ funmooc_database_name }}"
+          envFrom:
+            - secretRef:
+                name: "{{ funmooc_database_secret_name }}"
+{% endif %}

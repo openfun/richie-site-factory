@@ -1,0 +1,39 @@
+# Application default configuration
+
+# -- route
+funmooc_host: "funmooc.{{ project_name }}.{{ domain_name }}"
+
+# -- nginx
+funmooc_nginx_image_name: "fundocker/openshift-nginx"
+funmooc_nginx_image_tag: "1.13"
+funmooc_nginx_port: 8061
+funmooc_nginx_replicas: 1
+funmooc_nginx_htpasswd_secret_name: "funmooc-htpasswd"
+
+# -- elasticsearch
+funmooc_elasticsearch_image_name: "fundocker/openshift-elasticsearch"
+funmooc_elasticsearch_image_tag: "6.2.4"
+funmooc_elasticsearch_host: "elasticsearch"
+funmooc_elasticsearch_port: 9200
+
+# -- databases (defaults to postgresql)
+funmooc_postgresql_version: "9.6"
+funmooc_database_engine: "django.db.backends.postgresql_psycopg2"
+funmooc_database_image_name: "centos/postgresql-96-centos7"
+funmooc_database_image_tag: "9.6"
+funmooc_database_host: "postgresql"
+funmooc_database_port: 5432
+funmooc_database_name: "richie"
+funmooc_database_secret_name: "funmooc-database-{{ funmooc_vault_checksum | default('undefined_funmooc_vault_checksum') }}"
+
+# -- richie
+funmooc_image_name: "fundocker/funmooc"
+funmooc_image_tag: "master"
+funmooc_django_port: 8000
+funmooc_app_replicas: 1
+funmooc_django_configuration: "Development"
+funmooc_secret_name: "funmooc-{{ funmooc_vault_checksum | default('undefined_funmooc_vault_checksum') }}"
+
+# -- volumes
+funmooc_media_volume_size: 2Gi
+funmooc_static_volume_size: 2Gi
