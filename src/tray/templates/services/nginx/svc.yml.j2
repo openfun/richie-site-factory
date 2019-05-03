@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: funmooc
+    service: nginx
+    version: "{{ funmooc_nginx_image_tag }}"
+    deployment_stamp: "{{ deployment_stamp }}"
+  name: "funmooc-nginx-{{ deployment_stamp }}"
+  namespace: "{{ project_name }}"
+spec:
+  ports:
+    - name: {{ funmooc_nginx_port }}-tcp
+      port: {{ funmooc_nginx_port }}
+      protocol: TCP
+      targetPort: {{ funmooc_nginx_port }}
+  selector:
+    app: funmooc
+    deploymentconfig: "funmooc-nginx-{{ deployment_stamp }}"
+  type: ClusterIP

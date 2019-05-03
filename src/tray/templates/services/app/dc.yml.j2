@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: richie
+    service: app
+    version: "{{ funmooc_image_tag }}"
+    deployment_stamp: "{{ deployment_stamp }}"
+  name: "funmooc-app-{{ deployment_stamp }}"
+  namespace: "{{ project_name }}"
+spec:
+  replicas: {{ funmooc_app_replicas }}
+  template:
+    metadata:
+      labels:
+        app: funmooc
+        service: app
+        version: "{{ funmooc_image_tag }}"
+        deploymentconfig: "funmooc-app-{{ deployment_stamp }}"
+        deployment_stamp: "{{ deployment_stamp }}"
+    spec:
+      # Prefer running pods on different nodes for redundancy
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: deploymentconfig
+                      operator: In
+                      values:
+                        - "funmooc-app-{{ deployment_stamp }}"
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: funmooc
+          image: "{{ funmooc_image_name }}:{{ funmooc_image_tag }}"
+          imagePullPolicy: Always
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: funmooc.settings
+            - name: DJANGO_CONFIGURATION
+              value: "{{ funmooc_django_configuration }}"
+            - name: DB_ENGINE
+              value: "{{ funmooc_database_engine }}"
+            - name: DB_NAME
+              value: "{{ funmooc_database_name }}"
+            - name: DB_HOST
+              value: "funmooc-{{ funmooc_database_host }}-{{ deployment_stamp }}"
+            - name: DB_PORT
+              value: "{{ funmooc_database_port }}"
+            - name: DJANGO_ALLOWED_HOSTS
+              value: "{{ funmooc_host | blue_green_hosts }}"
+            - name: RICHIE_ES_HOST
+              value: "funmooc-{{ funmooc_elasticsearch_host }}-{{ deployment_stamp }}"
+          envFrom:
+            - secretRef:
+                name: "{{ funmooc_secret_name }}"
+          volumeMounts:
+            - name: funmooc-v-media
+              mountPath: /data/media
+            - name: funmooc-v-static
+              mountPath: /data/static
+      volumes:
+        - name: funmooc-v-media
+          persistentVolumeClaim:
+            claimName: funmooc-pvc-media
+        - name: funmooc-v-static
+          persistentVolumeClaim:
+            claimName: funmooc-pvc-static
