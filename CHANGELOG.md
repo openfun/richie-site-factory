@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Define CDN_DOMAIN settings with cloudfront domain value.
+
 ## [0.2.0] - 2019-05-07
 
 ### Changed
