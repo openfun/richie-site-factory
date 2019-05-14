@@ -85,7 +85,7 @@ watch-sass: ## watch changes in Sass files
 	@$(YARN) watch-sass
 .PHONY: watch-sass
 
-#== AWS/Terraform
+# == AWS/Terraform
 env.d/aws:
 	cp env.d/aws.dist env.d/aws
 
@@ -149,11 +149,13 @@ clean: ## restore repository state as it was freshly cloned
 
 data/media/.keep:
 	@echo 'Preparing media volume...'
-	@mkdir -p data/media/.keep
+	@mkdir -p data/media
+	@touch data/media/.keep
 
 data/static/.keep:
 	@echo 'Preparing static volume...'
-	@mkdir -p data/media/.keep
+	@mkdir -p data/static
+	@touch data/static/.keep
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
