@@ -38,23 +38,6 @@ def get_release():
     return "NA"
 
 
-class ElasticSearchMixin:
-    """
-    Elastic Search configuration mixin
-
-    You may want to override default configuration by setting the following environment
-    variable:
-
-    * ES_CLIENT
-    """
-
-    ES_CLIENT = Elasticsearch(
-        [values.Value("localhost", environ_name="ES_CLIENT", environ_prefix=None)]
-    )
-    ES_CHUNK_SIZE = 500
-    ES_DEFAULT_PAGE_SIZE = 10
-
-
 class DRFMixin:
     """
     Django Rest Framework configuration mixin.
@@ -69,7 +52,7 @@ class DRFMixin:
     }
 
 
-class Base(DRFMixin, ElasticSearchMixin, Configuration):
+class Base(DRFMixin, Configuration):
     """
     This is the base configuration every configuration (aka environnement) should inherit from. It
     is recommended to configure third-party applications by creating a configuration mixins in
@@ -83,11 +66,12 @@ class Base(DRFMixin, ElasticSearchMixin, Configuration):
     variables:
 
     * DJANGO_SENTRY_DSN
-    * ES_CLIENT
-    * POSTGRES_DB
-    * POSTGRES_HOST
-    * POSTGRES_PASSWORD
-    * POSTGRES_USER
+    * RICHIE_ES_HOST
+    * DB_NAME
+    * DB_USER
+    * DB_PASSWORD
+    * DB_HOST
+    * DB_PORT
     """
 
     SECRET_KEY = values.Value(None)

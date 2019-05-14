@@ -22,6 +22,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - The `data/` directory and its subdirectories are now properly created while
   bootstrapping the project
+- Remove unused ElasticSearchMixin in project settings
 
 ## [0.1.0] - 2019-04-18
 
