@@ -18,6 +18,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 1.0.0-beta.8
 
+### Fixed
+
+- The `data/` directory and its subdirectories are now properly created while
+  bootstrapping the project
+
 ## [0.1.0] - 2019-04-18
 
 ### Added
