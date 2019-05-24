@@ -2116,10 +2116,10 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
 
-richie-education@1.0.0-beta.9:
-  version "1.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/richie-education/-/richie-education-1.0.0-beta.9.tgz#d1f66e6bb790952a1f8e039d8fa867021ff10d54"
-  integrity sha512-OAD2u5e0l9oYe712/VBIHYjdvcrVOxuW7oLd/cvXpNUh74wAa2GOh0VqPE7rQqFi6fYuS5wlGBxWg70NY+aylw==
+richie-education@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/richie-education/-/richie-education-1.0.0.tgz#1cfd15d50b458d05f01fca21a5b69983944f10ff"
+  integrity sha512-IaBB5qzRefD1baMAVLSrrWepBmbwzClciZNOclfDtU2kI994gHYoTm7wuu8fzqLRLmTHlgiznr4kloXtMUabSA==
   dependencies:
     bootstrap "4.3.1"
     core-js "3"

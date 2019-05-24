@@ -20,10 +20,14 @@ API_PREFIX = r"v(?P<version>[0-9]+\.[0-9]+)"
 
 admin.autodiscover()
 
-urlpatterns = [url(r"^sitemap\.xml$", sitemap, {"sitemaps": {"cmspages": CMSSitemap}})]
-urlpatterns += [url(r"^api/{}/".format(API_PREFIX), include(search_urlpatterns))]
+urlpatterns = [
+    url(r"^sitemap\.xml$", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
+    url(r"^api/{}/".format(API_PREFIX), include(search_urlpatterns)),
+    url(r"^", include("filer.server.urls")),
+]
+
 urlpatterns += i18n_patterns(
-    url(r"^admin/", admin.site.urls), url(r"^", include("cms.urls"))  # noqa
+    url(r"^admin/", admin.site.urls), url(r"^", include("cms.urls"))  # NOQA
 )
 
 # This is only needed when using runserver.

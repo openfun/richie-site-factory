@@ -14,7 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Upgrade richie to 1.0.0-beta.9
+- Upgrade richie to 1.0.0
 
 ## [0.2.0] - 2019-05-07
 
