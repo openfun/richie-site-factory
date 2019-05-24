@@ -9,8 +9,9 @@ from django.utils.translation import ugettext_lazy as _
 # pylint: disable=ungrouped-imports
 import sentry_sdk
 from configurations import Configuration, values
-from elasticsearch import Elasticsearch
 from sentry_sdk.integrations.django import DjangoIntegration
+
+from richie.apps.courses.settings.mixins import RichieCoursesConfigurationMixin
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join("/", "data")
@@ -52,7 +53,7 @@ class DRFMixin:
     }
 
 
-class Base(DRFMixin, Configuration):
+class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
     """
     This is the base configuration every configuration (aka environnement) should inherit from. It
     is recommended to configure third-party applications by creating a configuration mixins in
@@ -74,10 +75,19 @@ class Base(DRFMixin, Configuration):
     * DB_PORT
     """
 
-    SECRET_KEY = values.Value(None)
     DEBUG = False
-    ALLOWED_HOSTS = []
+
     SITE_ID = 1
+
+    # Security
+    ALLOWED_HOSTS = []
+    CSRF_COOKIE_SECURE = True
+    SECRET_KEY = values.Value(None)
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SESSION_COOKIE_SECURE = True
+    SILENCED_SYSTEM_CHECKS = values.ListValue([])
+    X_FRAME_OPTIONS = "DENY"
 
     # Application definition
     ROOT_URLCONF = "funmooc.urls"
@@ -149,6 +159,7 @@ class Base(DRFMixin, Configuration):
 
     MIDDLEWARE = (
         "cms.middleware.utils.ApphookReloadMiddleware",
+        "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.csrf.CsrfViewMiddleware",
         "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -194,6 +205,7 @@ class Base(DRFMixin, Configuration):
         "richie.plugins.large_banner",
         "richie.plugins.plain_text",
         "richie.plugins.section",
+        "richie.plugins.simple_picture",
         "richie.plugins.simple_text_ckeditor",
         # Third party apps
         "dockerflow.django",
@@ -202,32 +214,17 @@ class Base(DRFMixin, Configuration):
         "storages",
     )
 
-    # Group to add plugin to placeholder "Content"
-    RICHIE_PLUGINS_GROUP = "Fun Plugins"
-    # Elasticsearch
-    RICHIE_ES_HOST = values.Value(
-        "elasticsearch", environ_name="RICHIE_ES_HOST", environ_prefix=None
-    )
-
+    # Languages
+    # - Django
     LANGUAGE_CODE = "en"
-
-    # Django sets `LANGUAGES` by default with all supported languages. Let's save it to a
-    # different setting before overriding it with the languages active in the CMS. We can use it
-    # for example for the choice of languages on the course run which should not be limited to
-    # the few languages active in the CMS.
-    # pylint: disable=no-member
-    ALL_LANGUAGES = [(language, _(name)) for language, name in Configuration.LANGUAGES]
-    ALL_LANGUAGES_DICT = dict(ALL_LANGUAGES)
 
     # Careful! Languages should be ordered by priority, as this tuple is used to get
     # fallback/default languages throughout the app.
     # Use "en" as default as it is the language that is most likely to be spoken by any visitor
     # when their preferred language, whatever it is, is unavailable
     LANGUAGES = (("en", _("English")), ("fr", _("French")))
-    LANGUAGES_DICT = dict(LANGUAGES)
-    LANGUAGE_NAME = LANGUAGES_DICT[LANGUAGE_CODE]
 
-    # Django CMS settings
+    # - Django CMS
     CMS_LANGUAGES = {
         "default": {
             "public": True,
@@ -255,272 +252,18 @@ class Base(DRFMixin, Configuration):
         ],
     }
 
+    # - Django Parler
     PARLER_LANGUAGES = CMS_LANGUAGES
 
-    CMS_TEMPLATES = (
-        ("courses/cms/course_detail.html", _("Course page")),
-        ("courses/cms/course_run_detail.html", _("Course run page")),
-        ("courses/cms/organization_list.html", _("Organization list")),
-        ("courses/cms/organization_detail.html", _("Organization page")),
-        ("courses/cms/category_detail.html", _("Category page")),
-        ("courses/cms/blogpost_list.html", _("Blog post list")),
-        ("courses/cms/blogpost_detail.html", _("Blog post page")),
-        ("courses/cms/person_detail.html", _("Person page")),
-        ("search/search.html", _("Search")),
-        ("richie/child_pages_list.html", _("List of child pages")),
-        ("richie/homepage.html", _("Homepage")),
-        ("richie/single_column.html", _("Single column")),
-    )
+    # Permisions
+    # - Django CMS
     CMS_PERMISSION = True
 
-    CMS_PLACEHOLDER_CONF = {
-        # Homepage
-        "richie/homepage.html maincontent": {
-            "name": _("Main content"),
-            "plugins": ["LargeBannerPlugin", "SectionPlugin"],
-            "child_classes": {
-                "SectionPlugin": [
-                    "CoursePlugin",
-                    "OrganizationPlugin",
-                    "CategoryPlugin",
-                    "PersonPlugin",
-                    "LinkPlugin",
-                ]
-            },
-        },
-        # Single column page
-        "richie/single-column.html maincontent": {
-            "name": _("Main content"),
-            "excluded_plugins": ["CKEditorPlugin", "GoogleMapPlugin"],
-            "parent_classes": {
-                "BlogPostPlugin": ["SectionPlugin"],
-                "CategoryPlugin": ["SectionPlugin"],
-                "CoursePlugin": ["SectionPlugin"],
-                "OrganizationPlugin": ["SectionPlugin"],
-                "PersonPlugin": ["SectionPlugin"],
-            },
-            "child_classes": {
-                "SectionPlugin": [
-                    "BlogPostPlugin",
-                    "CategoryPlugin",
-                    "CoursePlugin",
-                    "LinkPlugin",
-                    "OrganizationPlugin",
-                    "PersonPlugin",
-                ]
-            },
-        },
-        # Course detail
-        "courses/cms/course_detail.html course_cover": {
-            "name": _("Cover"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/course_detail.html course_teaser": {
-            "name": _("Teaser"),
-            "plugins": ["VideoPlayerPlugin", "PicturePlugin"],
-            "limits": {"VideoPlayerPlugin": 1, "PicturePlugin": 1},
-        },
-        "courses/cms/course_detail.html course_syllabus": {
-            "name": _("About the course"),
-            "plugins": ["CKEditorPlugin"],
-        },
-        "courses/cms/course_detail.html course_format": {
-            "name": _("Format"),
-            "plugins": ["CKEditorPlugin"],
-        },
-        "courses/cms/course_detail.html course_prerequisites": {
-            "name": _("Prerequisites"),
-            "plugins": ["CKEditorPlugin"],
-        },
-        "courses/cms/course_detail.html course_team": {
-            "name": _("Team"),
-            "plugins": ["PersonPlugin"],
-        },
-        "courses/cms/course_detail.html course_plan": {
-            "name": _("Plan"),
-            "plugins": ["CKEditorPlugin"],
-        },
-        "courses/cms/course_detail.html course_information": {
-            "name": _("Complementary information"),
-            "plugins": ["SectionPlugin"],
-        },
-        "courses/cms/course_detail.html course_license_content": {
-            "name": _("License for the course content"),
-            "plugins": ["LicencePlugin"],
-            "limits": {"LicencePlugin": 1},
-        },
-        "courses/cms/course_detail.html course_license_participation": {
-            "name": _("License for the content created by course participants"),
-            "plugins": ["LicencePlugin"],
-            "limits": {"LicencePlugin": 1},
-        },
-        "courses/cms/course_detail.html course_categories": {
-            "name": _("Categories"),
-            "plugins": ["CategoryPlugin"],
-        },
-        "courses/cms/course_detail.html course_organizations": {
-            "name": _("Organizations"),
-            "plugins": ["OrganizationPlugin"],
-        },
-        # Organization detail
-        "courses/cms/organization_detail.html banner": {
-            "name": _("Banner"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/organization_detail.html logo": {
-            "name": _("Logo"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/organization_detail.html description": {
-            "name": _("Description"),
-            "plugins": ["CKEditorPlugin"],
-            "limits": {"CKEditorPlugin": 1},
-        },
-        # Category detail
-        "courses/cms/category_detail.html banner": {
-            "name": _("Banner"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/category_detail.html logo": {
-            "name": _("Logo"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/category_detail.html description": {
-            "name": _("Description"),
-            "plugins": ["CKEditorPlugin"],
-            "limits": {"CKEditorPlugin": 1},
-        },
-        # Person detail
-        "courses/cms/person_detail.html portrait": {
-            "name": _("Portrait"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/person_detail.html resume": {
-            "name": _("Resume"),
-            "plugins": ["CKEditorPlugin"],
-            "limits": {"CKEditorPlugin": 1},
-        },
-        # Blog page detail
-        "courses/cms/blogpost_detail.html author": {
-            "name": _("Author"),
-            "plugins": ["PersonPlugin"],
-            "limits": {"PersonPlugin": 1},
-        },
-        "courses/cms/blogpost_detail.html categories": {
-            "name": _("Categories"),
-            "plugins": ["CategoryPlugin"],
-        },
-        "courses/cms/blogpost_detail.html cover": {
-            "name": _("Cover"),
-            "plugins": ["PicturePlugin"],
-            "limits": {"PicturePlugin": 1},
-        },
-        "courses/cms/blogpost_detail.html excerpt": {
-            "name": _("Excerpt"),
-            "plugins": ["PlainTextPlugin"],
-            "limits": {"PlainTextPlugin": 1},
-        },
-        "courses/cms/blogpost_detail.html body": {
-            "name": _("Body"),
-            "excluded_plugins": ["CKEditorPlugin", "GoogleMapPlugin"],
-        },
-    }
+    # - Django Filer
+    FILER_ENABLE_PERMISSIONS = True
+    FILER_IS_PUBLIC_DEFAULT = True
 
-    # Main CKEditor configuration
-    CKEDITOR_SETTINGS = {
-        "language": "{{ language }}",
-        "skin": "moono-lisa",
-        "toolbarCanCollapse": False,
-        "contentsCss": "/static/css/ckeditor.css",
-        # Enabled showblocks as default behavior
-        "startupOutlineBlocks": True,
-        # Enable some plugins
-        # 'extraPlugins': 'codemirror',
-        # Disable element filter to enable full HTML5, also this will let
-        # append any code, even bad syntax and malicious code, so be careful
-        "removePlugins": "stylesheetparser",
-        "allowedContent": True,
-        # Image plugin options
-        "image_prefillDimensions": False,
-        # Justify text using shortand class names
-        "justifyClasses": ["text-left", "text-center", "text-right"],
-        # Default toolbar configurations for djangocms_text_ckeditor
-        "toolbar": "CMS",
-        "toolbar_CMS": [
-            ["Undo", "Redo"],
-            ["cmsplugins", "-", "ShowBlocks"],
-            ["Format", "Styles"],
-            ["RemoveFormat"],
-            ["Maximize"],
-            "/",
-            ["Bold", "Italic", "Underline", "-", "Subscript", "Superscript"],
-            ["JustifyLeft", "JustifyCenter", "JustifyRight"],
-            ["Link", "Unlink"],
-            [
-                "Image",
-                "-",
-                "NumberedList",
-                "BulletedList",
-                "-",
-                "Table",
-                "-",
-                "CreateDiv",
-                "HorizontalRule",
-            ],
-            ["Source"],
-        ],
-    }
-    # Share the same configuration for djangocms_text_ckeditor field and derived
-    # CKEditor widgets/fields
-    CKEDITOR_SETTINGS["toolbar_HTMLField"] = CKEDITOR_SETTINGS["toolbar_CMS"]
-
-    # Basic CKEditor configuration for restricted inline markup only
-    CKEDITOR_BASIC_SETTINGS = {
-        "language": "{{ language }}",
-        "skin": "moono-lisa",
-        "toolbarCanCollapse": False,
-        "contentsCss": "/static/css/ckeditor.css",
-        # Only enable following tag definitions
-        "allowedContent": ["p", "b", "i", "a[href]"],
-        # Enabled showblocks as default behavior
-        "startupOutlineBlocks": True,
-        # Default toolbar configurations for djangocms_text_ckeditor
-        "toolbar": "HTMLField",
-        "toolbar_HTMLField": [["Undo", "Redo"], ["Bold", "Italic"], ["Link", "Unlink"]],
-    }
-
-    # Additional LinkPlugin templates. Note how choice value is just a keyword
-    # instead of full template path. Value is used inside a path formatting
-    # such as "templates/djangocms_link/VALUE/link.html"
-    DJANGOCMS_LINK_TEMPLATES = [("button-caesura", _("Button caesura"))]
-
-    DJANGOCMS_VIDEO_TEMPLATES = [("full-width", _("Full width"))]
-
-    # Thumbnails settings
-    THUMBNAIL_PROCESSORS = (
-        "easy_thumbnails.processors.colorspace",
-        "easy_thumbnails.processors.autocrop",
-        "filer.thumbnail_processors.scale_and_crop_with_subject_location",
-        "easy_thumbnails.processors.filters",
-        "easy_thumbnails.processors.background",
-    )
-
-    RICHIE_SECTION_TEMPLATES = [
-        ("richie/section/section.html", _("Default")),
-        ("richie/section/highlighted_items.html", _("Highlighted items")),
-    ]
-
-    RICHIE_LARGEBANNER_TEMPLATES = [
-        ("richie/large_banner/large_banner.html", _("Default")),
-        ("richie/large_banner/hero-intro.html", _("Hero introduction")),
-    ]
-
+    # Logging
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": True,
@@ -545,6 +288,11 @@ class Base(DRFMixin, Configuration):
             }
         },
     }
+
+    # Elasticsearch
+    RICHIE_ES_HOST = values.Value(
+        "elasticsearch", environ_name="RICHIE_ES_HOST", environ_prefix=None
+    )
 
     @classmethod
     def post_setup(cls):
