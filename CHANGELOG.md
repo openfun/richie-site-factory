@@ -10,7 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Define CDN_DOMAIN settings with cloudfront domain value.
+- Define CDN_DOMAIN setting from AWS CloudFront domain value
 
 ### Changed
 

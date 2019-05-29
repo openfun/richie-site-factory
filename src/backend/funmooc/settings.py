@@ -378,7 +378,12 @@ class Production(Base):
 
     AWS_CLOUDFRONT_DOMAIN = values.Value()
 
-    CDN_DOMAIN = AWS_CLOUDFRONT_DOMAIN
+    @property
+    def CDN_DOMAIN(self):
+        """CDN_DOMAIN is used to load frontend built chunks; it should match the AWS CloudFront
+        domain used as a CDN. As other configurations will inherit from this setting, it should
+        be lazily evaluated via the @property pattern."""
+        return self.AWS_CLOUDFRONT_DOMAIN
 
 
 class Feature(Production):
