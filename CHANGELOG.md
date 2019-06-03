@@ -16,6 +16,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 1.0.0
 
+### Security
+
+- Update `fstream` to a safe version (>=1.0.12)
+
 ## [0.2.0] - 2019-05-07
 
 ### Changed
