@@ -16,6 +16,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 1.0.0
 
+### Fixed
+
+- Configure `X_FRAME_OPTIONS` to `SAMEORIGIN` to allow DjangoCMS frontend admin
+  frames display
+
 ### Security
 
 - Update `fstream` to a safe version (>=1.0.12)
