@@ -14,7 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Upgrade richie to 1.4.1
+- Upgrade richie to 1.5.0
 
 ### Fixed
 
