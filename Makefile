@@ -29,7 +29,7 @@ MANAGE_CI = $(COMPOSE_RUN_CI) python manage.py
 # -- Rules
 default: help
 
-bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate ## install development dependencies
+bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate init ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -98,11 +98,10 @@ collectstatic:  ## collect static files to /data/static
 	@$(MANAGE) collectstatic
 .PHONY: collectstatic
 
-demo-site: ## create a demo site
-	@$(MANAGE) flush
-	@$(MANAGE) create_demo_site
-	@${MAKE} search-index;
-.PHONY: demo-site
+init: ## create base site structure
+	@$(MANAGE) richie_init
+	@${MAKE} search-index
+.PHONY: init
 
 migrate: ## perform database migrations
 	@$(MANAGE) migrate
