@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.3.0] - 2019-07-04
+
 ### Added
 
 - Define CDN_DOMAIN setting from AWS CloudFront domain value
@@ -45,6 +47,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/openfun/fun-mooc/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/openfun/fun-mooc/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/openfun/fun-mooc/releases/tag/v0.1.0
