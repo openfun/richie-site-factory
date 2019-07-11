@@ -8,6 +8,14 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 1.5.1.
+
+### Security
+
+- Update `lodash` and related packages to safe versions.
+
 ## [0.3.0] - 2019-07-04
 
 ### Added
