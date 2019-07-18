@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Automate backend code assessment with a classical python toolkit (flake8,
+  isort, black, pylint, bandit)
+
 ### Changed
 
 - Upgrade richie to 1.5.1.
