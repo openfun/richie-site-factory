@@ -10,12 +10,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 
 from cms.sitemaps import CMSSitemap
-
 from richie.apps.search.urls import urlpatterns as search_urlpatterns
 
 # For now, we use URLPathVersioning to be consistent with fonzie. Fonzie uses it
-# because DRF OpenAPI only supports URLPathVersioning for now.
-# See fonzie API_PREFIX config for more information.
+# because DRF OpenAPI only supports URLPathVersioning for now. See fonzie
+# API_PREFIX config for more information.
 API_PREFIX = r"v(?P<version>[0-9]+\.[0-9]+)"
 
 admin.autodiscover()

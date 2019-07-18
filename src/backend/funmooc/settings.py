@@ -9,9 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 # pylint: disable=ungrouped-imports
 import sentry_sdk
 from configurations import Configuration, values
-from sentry_sdk.integrations.django import DjangoIntegration
-
 from richie.apps.courses.settings.mixins import RichieCoursesConfigurationMixin
+from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join("/", "data")

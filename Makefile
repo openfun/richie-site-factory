@@ -1,12 +1,14 @@
 # -- Docker
-DOCKER_UID       = $(shell id -u)
-DOCKER_GID       = $(shell id -g)
-COMPOSE          = DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" docker-compose
-COMPOSE_RUN      = $(COMPOSE) run --rm
-COMPOSE_RUN_APP  = $(COMPOSE_RUN) app
-COMPOSE_RUN_CI   = $(COMPOSE_RUN) app-ci
-COMPOSE_EXEC     = $(COMPOSE) exec
-COMPOSE_EXEC_APP = $(COMPOSE_EXEC) app
+DOCKER_UID           = $(shell id -u)
+DOCKER_GID           = $(shell id -g)
+COMPOSE              = DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" docker-compose
+COMPOSE_RUN          = $(COMPOSE) run --rm
+COMPOSE_RUN_APP      = $(COMPOSE_RUN) app
+COMPOSE_RUN_CI       = $(COMPOSE_RUN) app-ci
+COMPOSE_EXEC         = $(COMPOSE) exec
+COMPOSE_EXEC_APP     = $(COMPOSE_EXEC) app
+COMPOSE_TEST_RUN     = $(COMPOSE) run --rm -e DJANGO_CONFIGURATION=Test
+COMPOSE_TEST_RUN_APP = $(COMPOSE_TEST_RUN) app
 
 # -- Node
 
@@ -102,6 +104,41 @@ init: ## create base site structure
 	@$(MANAGE) richie_init
 	@${MAKE} search-index
 .PHONY: init
+
+# Nota bene: Black should come after isort just in case they don't agree...
+lint-back: ## lint back-end python sources
+lint-back: \
+  lint-back-isort \
+  lint-back-black \
+  lint-back-flake8 \
+  lint-back-pylint \
+  lint-back-bandit
+.PHONY: lint-back
+
+lint-back-black: ## lint back-end python sources with black
+	@echo 'lint:black started…'
+	@$(COMPOSE_TEST_RUN_APP) black .
+.PHONY: lint-back-black
+
+lint-back-flake8: ## lint back-end python sources with flake8
+	@echo 'lint:flake8 started…'
+	@$(COMPOSE_TEST_RUN_APP) flake8
+.PHONY: lint-back-flake8
+
+lint-back-isort: ## automatically re-arrange python imports in back-end code base
+	@echo 'lint:isort started…'
+	@$(COMPOSE_TEST_RUN_APP) isort --recursive --atomic .
+.PHONY: lint-back-isort
+
+lint-back-pylint: ## lint back-end python sources with pylint
+	@echo 'lint:pylint started…'
+	@$(COMPOSE_TEST_RUN_APP) pylint .
+.PHONY: lint-back-pylint
+
+lint-back-bandit: ## lint back-end python sources with bandit
+	@echo 'lint:bandit started…'
+	@$(COMPOSE_TEST_RUN_APP) bandit -qr .
+.PHONY: lint-back-bandit
 
 migrate: ## perform database migrations
 	@$(MANAGE) migrate
