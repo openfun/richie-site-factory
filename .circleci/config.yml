@@ -95,6 +95,55 @@ jobs:
           name: Run Django checks with production image
           command: make ci-check
 
+  # ---- Backend jobs ----
+  # Build backend development environment
+  build-back:
+    docker:
+      - image: circleci/python:3.7-stretch
+    working_directory: ~/fun
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-back-dependencies-{{ .Revision }}
+      - run:
+          name: Install development dependencies
+          command: >
+            pip install \
+              --user \
+              -r requirements/base.txt \
+              -r requirements/dev.txt
+      - save_cache:
+          paths:
+            - ~/.local
+          key: v1-back-dependencies-{{ .Revision }}
+
+  lint-back:
+    docker:
+      - image: circleci/python:3.7-stretch
+    working_directory: ~/fun/src/backend/
+    steps:
+      - checkout:
+          path: ~/fun
+      - restore_cache:
+          keys:
+            - v1-back-dependencies-{{ .Revision }}
+      - run:
+          name: Lint code with flake8
+          command: ~/.local/bin/flake8
+      - run:
+          name: Lint code with isort
+          command: ~/.local/bin/isort --recursive --check-only .
+      - run:
+          name: Lint code with black
+          command: ~/.local/bin/black .
+      - run:
+          name: Lint code with pylint
+          command: ~/.local/bin/pylint .
+      - run:
+          name: Lint code with bandit
+          command: ~/.local/bin/bandit -qr .
+
   # ---- Front-end jobs ----
   build-front-production:
     docker:
@@ -257,6 +306,21 @@ workflows:
             tags:
               only: /.*/
 
+      # Backend jobs
+      #
+      # Build, lint and test production and development Docker images
+      # (debian-based)
+      - build-back:
+          filters:
+            tags:
+              only: /.*/
+      - lint-back:
+          requires:
+            - build-back
+          filters:
+            tags:
+              only: /.*/
+
       # DockerHub publication.
       #
       # Publish docker images only if all build, lint and test jobs succeed and
@@ -265,6 +329,8 @@ workflows:
       - hub:
           requires:
             - build-docker
+            - lint-front
+            - lint-back
           filters:
             branches:
               only: master
