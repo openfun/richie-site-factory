@@ -1,3 +1,4 @@
+bandit==1.6.2
 black==19.3b0
 Faker==1.0.4
 factory-boy==2.11.1

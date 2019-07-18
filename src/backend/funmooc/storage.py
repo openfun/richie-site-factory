@@ -1,6 +1,6 @@
 """Customizing Django storage backends to enable blue/green deployments."""
-from collections import OrderedDict
 import re
+from collections import OrderedDict
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import ManifestFilesMixin, StaticFilesStorage
@@ -66,6 +66,7 @@ class ConfigurableManifestS3Boto3Storage(
 
 class MediaStorage(S3Boto3Storage):
     """A S3Boto3Storage backend to serve media files via CloudFront."""
+
     bucket_name = settings.AWS_MEDIA_BUCKET_NAME
     custom_domain = settings.AWS_CLOUDFRONT_DOMAIN
     file_overwrite = False
