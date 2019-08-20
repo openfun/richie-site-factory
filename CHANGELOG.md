@@ -12,6 +12,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Automate backend code assessment with a classical python toolkit (flake8,
   isort, black, pylint, bandit)
+- Add a dedicated OpenEdx oauth2 authentication backend (SSO)
 
 ### Changed
 

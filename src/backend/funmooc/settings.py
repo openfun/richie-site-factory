@@ -141,6 +141,8 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
                     "django.template.context_processors.static",
                     "cms.context_processors.cms_settings",
                     "richie.apps.core.context_processors.site_metas",
+                    "social_django.context_processors.backends",
+                    "social_django.context_processors.login_redirect",
                 ],
                 "loaders": [
                     "django.template.loaders.filesystem.Loader",
@@ -165,7 +167,25 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
         "cms.middleware.page.CurrentPageMiddleware",
         "cms.middleware.toolbar.ToolbarMiddleware",
         "cms.middleware.language.LanguageCookieMiddleware",
+        "social_django.middleware.SocialAuthExceptionMiddleware",
     )
+
+    AUTHENTICATION_BACKENDS = (
+        "funmooc.auth.backends.EdXOAuth2",
+        "django.contrib.auth.backends.ModelBackend",
+    )
+
+    # Social auth
+    SOCIAL_AUTH_EDX_OAUTH2_KEY = values.Value(environ_required=True)
+    SOCIAL_AUTH_EDX_OAUTH2_SECRET = values.Value(environ_required=True)
+    SOCIAL_AUTH_EDX_OAUTH2_ENDPOINT = values.Value(environ_required=True)
+    SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+    SESSION_COOKIE_SECURE = False
+
+    LOGIN_URL = "login"
+    LOGOUT_URL = "logout"
+    LOGIN_REDIRECT_URL = "/"
+    LOGOUT_REDIRECT_URL = "/"
 
     INSTALLED_APPS = (
         # Django
@@ -206,6 +226,9 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
         "parler",
         "rest_framework",
         "storages",
+        "social_django",
+        # Fun mooc
+        "funmooc.auth.apps.AuthConfig",
     )
 
     # Languages
@@ -317,6 +340,27 @@ class Development(Base):
 
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+                "style": "{",
+            },
+            "simple": {"format": "{levelname} {asctime} {message}", "style": "{"},
+        },
+        "filters": {"require_debug_true": {"()": "django.utils.log.RequireDebugTrue"}},
+        "handlers": {
+            "console": {
+                "level": "INFO",
+                "filters": ["require_debug_true"],
+                "class": "logging.StreamHandler",
+                "formatter": "simple",
+            }
+        },
+        "loggers": {"django": {"handlers": ["console"], "propagate": True}},
+    }
 
 
 class Test(Base):

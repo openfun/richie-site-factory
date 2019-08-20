@@ -97,6 +97,36 @@ $ make demo-site
 > will get some errors requesting you to create some required root pages. So it
 > is easier as a first approach to test the CMS with the demo site.
 
+### Working on the SSO integration with OpenEdx
+
+The project integrates OpenEdx's LMS backend (hawthorn release) to work on the
+SSO integration; the LMS is used as an oauth2 provider. It can be fired up
+using:
+
+```
+$ make lms-bootstrap
+```
+
+To handle HTTP redirections during the authentication process, you should edit
+your local hosts definitions (_e.g._ `/etc/hosts` on a \*NIX system) to add
+`lms` as a `localhost` alias:
+
+```
+# /etc/hosts
+127.0.0.1 localhost lms
+```
+
+Once this has been done, the LMS app should respond to the following URL:
+http://lms:8073
+
+You can create an LMS account and login to that account using the following
+request: http://lms:8073/auto_auth?staff=1&superuser=1
+
+Once you are logged in to the LMS, create a matching local user by following the
+"Login with edx" link at http://localhost:8080/login/
+
+You are now logged in Richie using your OpenEdx LMS account. Yay.
+
 ### Going further
 
 To see all available commands, run:

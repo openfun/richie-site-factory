@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
@@ -26,7 +27,11 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r"^admin/", admin.site.urls), url(r"^", include("cms.urls"))  # NOQA
+    url(r"^admin/", admin.site.urls),  # noqa
+    url(r"^login/", auth_views.LoginView.as_view(), name="login"),
+    url(r"^logout/", auth_views.LogoutView.as_view(), name="logout"),
+    url(r"^oauth/", include("social_django.urls", namespace="social")),
+    url(r"^", include("cms.urls")),  # noqa
 )
 
 # This is only needed when using runserver.
