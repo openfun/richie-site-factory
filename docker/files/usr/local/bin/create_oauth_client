@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import django
+
+django.setup()
+
+from oauth2_provider.models import Application
+
+client = {
+    "client_id": "fakeid",
+    "redirect_uris": "http://localhost:8080/en/oauth/complete/edx-oauth2/",
+    "client_type": "confidential",
+    "authorization_grant_type": "authorization-code",
+    "client_secret": "fakesecret",
+    "name": "Richie",
+    "skip_authorization": True,
+}
+
+Application.objects.create(**client)

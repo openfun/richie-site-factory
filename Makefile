@@ -6,6 +6,7 @@ COMPOSE_RUN          = $(COMPOSE) run --rm
 COMPOSE_EXEC         = $(COMPOSE) exec
 COMPOSE_EXEC_APP     = $(COMPOSE_EXEC) app
 COMPOSE_EXEC_CI      = $(COMPOSE_EXEC) app-ci
+COMPOSE_EXEC_LMS     = $(COMPOSE_EXEC) lms
 COMPOSE_TEST_RUN     = $(COMPOSE_RUN) -e DJANGO_CONFIGURATION=Test
 COMPOSE_TEST_RUN_APP = $(COMPOSE_TEST_RUN) app
 
@@ -22,6 +23,7 @@ YARN                 = $(COMPOSE_RUN_NODE) yarn
 # -- Django
 MANAGE = $(COMPOSE_EXEC_APP) python manage.py
 MANAGE_CI = $(COMPOSE_EXEC_CI) python manage.py
+MANAGE_LMS = $(COMPOSE_EXEC_LMS) python manage.py lms
 
 # -- Rules
 default: help
@@ -204,6 +206,47 @@ ci-version: ## check version file bundled in the docker image
 	$(COMPOSE_RUN) --no-deps app-ci cat version.json
 .PHONY: ci-version
 
+# == edxapp
+lms-bootstrap: \
+  lms-run \
+  lms-migrate \
+  lms-sso \
+  lms-collectstatic
+lms-bootstrap: ## install edxapp LMS
+.PHONY: lms-bootstrap
+
+lms-collectstatic: \
+  lms-run \
+  data/edx/static/.keep
+lms-collectstatic: ## copy static assets to LMS static root directory
+	$(COMPOSE_EXEC) collectstatic --noinput --settings=fun.docker_run_development
+.PHONY: lms-collectstatic
+
+lms-sso: \
+  lms-run \
+  lms-migrate
+lms-sso: ## generate SSO client application token
+	$(COMPOSE_EXEC_LMS) python /usr/local/bin/create_oauth_client
+.PHONY: lms-sso
+
+lms-logs: ## display lms logs (follow mode)
+	@$(COMPOSE) logs -f lms
+.PHONY: lms-logs
+
+lms-migrate: \
+  lms-run \
+  data/edx/media/.keep
+lms-migrate: ## perform LMS database migration
+	$(MANAGE_LMS) migrate
+.PHONY: lms-migrate
+
+lms-run:\
+  data/edx/data/.keep
+lms-run: ## run openedx lms (auth provider)
+	$(COMPOSE) up -d lms
+	$(COMPOSE_RUN) dockerize -wait tcp://mysql:3306 -timeout 60s
+.PHONY: lms-run
+
 # == Misc
 clean: ## restore repository state as it was freshly cloned
 	git clean -idx
@@ -218,6 +261,21 @@ data/static/.keep:
 	@echo 'Preparing static volume...'
 	@mkdir -p data/static
 	@touch data/static/.keep
+
+data/edx/data/.keep:
+	@echo 'Preparing edx data volume...'
+	@mkdir -p data/edx/data
+	@touch data/edx/data/.keep
+
+data/edx/media/.keep:
+	@echo 'Preparing edx media volume...'
+	@mkdir -p data/edx/media
+	@touch data/edx/media/.keep
+
+data/edx/static/.keep:
+	@echo 'Preparing edx static volume...'
+	@mkdir -p data/edx/static
+	@touch data/edx/static/.keep
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

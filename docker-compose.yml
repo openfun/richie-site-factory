@@ -66,5 +66,50 @@ services:
     volumes:
       - ./src/aws:/app
 
+  # Openedx stack (required for SSO testing)
+  mysql:
+    image: mysql:5.6
+    env_file: env.d/lms
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+
+  mongodb:
+    image: mongo:3.2
+    # We use WiredTiger in all environments. In development environments we use small files
+    # to conserve disk space, and disable the journal for a minor performance gain.
+    # See https://docs.mongodb.com/v3.0/reference/program/mongod/#options for complete details.
+    command: mongod --smallfiles --nojournal --storageEngine wiredTiger
+
+  memcached:
+    image: memcached:1.4
+
+  redis:
+    image: redis:4.0
+
+  mailcatcher:
+    image: sj26/mailcatcher:latest
+    ports:
+      - "1080:1080"
+
+  lms:
+    image: fundocker/edxapp:hawthorn.1-oee-2.9.1
+    env_file: env.d/lms
+    ports:
+      - "8073:8073"
+    volumes:
+      - ./data/edx/media:/edx/var/edxapp/media
+      - ./data/edx/static:/edx/app/edxapp/staticfiles
+      - ./data/edx/data:/edx/app/edxapp/data
+      - ./docker/files/config/lms/docker_run_development.py:/config/lms/docker_run_development.py
+      - ./docker/files/usr/local/bin/create_oauth_client:/usr/local/bin/create_oauth_client
+    command:
+      python manage.py lms runserver 0.0.0.0:8073 --settings=fun.docker_run_development
+    user: ${DOCKER_USER:-1000}
+    depends_on:
+      - "mailcatcher"
+      - "mysql"
+      - "mongodb"
+      - "memcached"
+      - "redis"
+
   dockerize:
     image: jwilder/dockerize
