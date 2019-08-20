@@ -25,7 +25,7 @@ jobs:
       # We should exclude the ".circleci" folder from the search as the very command that checks
       # the absence of "print" is including a "print(" itself.
       - run:
-          name: enforce absence of print statements in code
+          name: Enforce absence of print statements in code
           command: |
             ! git diff origin/master..HEAD -- . ':(exclude).circleci' | grep "print("
       - run:
@@ -37,7 +37,7 @@ jobs:
           command: |
             pip install --user gitlint
       - run:
-          name: lint commit messages added to master
+          name: Lint commit messages added to master
           command: |
             ~/.local/bin/gitlint --commits origin/master..HEAD
 
