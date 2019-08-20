@@ -3,11 +3,10 @@ DOCKER_UID           = $(shell id -u)
 DOCKER_GID           = $(shell id -g)
 COMPOSE              = DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" docker-compose
 COMPOSE_RUN          = $(COMPOSE) run --rm
-COMPOSE_RUN_APP      = $(COMPOSE_RUN) app
-COMPOSE_RUN_CI       = $(COMPOSE_RUN) app-ci
 COMPOSE_EXEC         = $(COMPOSE) exec
 COMPOSE_EXEC_APP     = $(COMPOSE_EXEC) app
-COMPOSE_TEST_RUN     = $(COMPOSE) run --rm -e DJANGO_CONFIGURATION=Test
+COMPOSE_EXEC_CI      = $(COMPOSE_EXEC) app-ci
+COMPOSE_TEST_RUN     = $(COMPOSE_RUN) -e DJANGO_CONFIGURATION=Test
 COMPOSE_TEST_RUN_APP = $(COMPOSE_TEST_RUN) app
 
 # -- Node
@@ -21,17 +20,22 @@ COMPOSE_RUN_NODE     = $(COMPOSE_RUN) -e HOME="/tmp" node
 YARN                 = $(COMPOSE_RUN_NODE) yarn
 
 # -- Django
-MANAGE = $(COMPOSE_RUN_APP) dockerize \
-	-wait tcp://db:5432 \
-	-wait tcp://elasticsearch:9200 \
-	-timeout 60s \
-		python manage.py
-MANAGE_CI = $(COMPOSE_RUN_CI) python manage.py
+MANAGE = $(COMPOSE_EXEC_APP) python manage.py
+MANAGE_CI = $(COMPOSE_EXEC_CI) python manage.py
 
 # -- Rules
 default: help
 
-bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate init ## install development dependencies
+bootstrap: \
+  env.d/aws \
+  data/media/.keep \
+  data/static/.keep \
+  build-front \
+  build \
+  run \
+  migrate \
+  init
+bootstrap: ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -49,6 +53,9 @@ logs: ## display app logs (follow mode)
 
 run: ## start the wsgi (production) or development server
 	@$(COMPOSE) up -d app
+	@echo "Wait for services to be up..."
+	$(COMPOSE_RUN) dockerize -wait tcp://postgresql:5432 -timeout 60s
+	$(COMPOSE_RUN) dockerize -wait tcp://elasticsearch:9200 -timeout 60s
 .PHONY: run
 
 stop: ## stop the development server
@@ -56,7 +63,10 @@ stop: ## stop the development server
 .PHONY: stop
 
 # == Frontend
-build-front: install-front build-sass ## build front-end application
+build-front: \
+  install-front \
+  build-sass
+build-front: ## build front-end application
 .PHONY: build-front
 
 build-sass: ## build Sass files to CSS
@@ -92,14 +102,20 @@ env.d/aws:
 	cp env.d/aws.dist env.d/aws
 
 # == Django
+check: \
+  run
 check: ## perform django checks
 	@$(MANAGE) check
 .PHONY: check
 
-collectstatic:  ## collect static files to /data/static
+collectstatic: \
+  run
+collectstatic: ## collect static files to /data/static
 	@$(MANAGE) collectstatic
 .PHONY: collectstatic
 
+init: \
+  run
 init: ## create base site structure
 	@$(MANAGE) richie_init
 	@${MAKE} search-index
@@ -140,14 +156,20 @@ lint-back-bandit: ## lint back-end python sources with bandit
 	@$(COMPOSE_TEST_RUN_APP) bandit -qr .
 .PHONY: lint-back-bandit
 
+migrate: \
+  run
 migrate: ## perform database migrations
 	@$(MANAGE) migrate
 .PHONY: migrate
 
+search-index: \
+  run
 search-index: ## (re)generate the Elasticsearch index
 	@$(MANAGE) bootstrap_elasticsearch
 .PHONY: search-index
 
+superuser: \
+  run
 superuser: ## create a DjangoCMS superuser
 	@$(MANAGE) createsuperuser
 .PHONY: superuser
@@ -157,11 +179,15 @@ ci-build: ## build the app production container in the CI
 	$(COMPOSE) build app-ci
 .PHONY: ci-build
 
+ci-check: \
+  ci-run
 ci-check: ## run django check management command
 	$(MANAGE_CI) check
 .PHONY: ci-check
 
-ci-migrate: ci-run ## perform database migrations in the CI
+ci-migrate: \
+  ci-run
+ci-migrate: ## perform database migrations in the CI
 	$(MANAGE_CI) migrate
 .PHONY: ci-migrate
 
@@ -170,8 +196,8 @@ ci-run: ## start the wsgi server (and linked services)
 	# As we use a remote docker environment, we should explicitly use the same
 	# network to check containers status
 	@echo "Wait for services to be up..."
-	docker run --network container:fun_db_1 --rm jwilder/dockerize -wait tcp://localhost:5432 -timeout 60s
-	docker run --network container:fun_elasticsearch_1 --rm jwilder/dockerize -wait tcp://localhost:9200 -timeout 60s
+	$(COMPOSE_RUN) dockerize -wait tcp://postgresql:5432 -timeout 60s
+	$(COMPOSE_RUN) dockerize -wait tcp://elasticsearch:9200 -timeout 60s
 .PHONY: ci-run
 
 ci-version: ## check version file bundled in the docker image

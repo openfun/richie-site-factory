@@ -1,7 +1,7 @@
 version: "3.4"
 
 services:
-  db:
+  postgresql:
     image: postgres:9.6
     env_file:
       - "env.d/development"
@@ -30,7 +30,7 @@ services:
       - ./data/static:/data/static
       - ./data/media:/data/media
     depends_on:
-      - "db"
+      - "postgresql"
       - "elasticsearch"
 
   app-ci:
@@ -48,7 +48,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - "db"
+      - "postgresql"
       - "elasticsearch"
 
   node:
@@ -65,3 +65,6 @@ services:
     working_dir: /app
     volumes:
       - ./src/aws:/app
+
+  dockerize:
+    image: jwilder/dockerize
