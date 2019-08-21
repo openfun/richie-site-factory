@@ -210,7 +210,7 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
 
     # Languages
     # - Django
-    LANGUAGE_CODE = "en"
+    LANGUAGE_CODE = "fr"
 
     # Careful! Languages should be ordered by priority, as this tuple is used to get
     # fallback/default languages throughout the app.
