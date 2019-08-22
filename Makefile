@@ -140,6 +140,10 @@ lint-back-bandit: ## lint back-end python sources with bandit
 	@$(COMPOSE_TEST_RUN_APP) bandit -qr .
 .PHONY: lint-back-bandit
 
+import-fixtures:  ## import fixtures
+	@$(MANAGE) import_fixtures -v3
+.PHONY: import-fixtures
+
 migrate: ## perform database migrations
 	@$(MANAGE) migrate
 .PHONY: migrate

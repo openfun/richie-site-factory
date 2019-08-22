@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add a gimporter app to automatically transfer existing content on fun-mooc.fr
 - Automate backend code assessment with a classical python toolkit (flake8,
   isort, black, pylint, bandit)
 

@@ -206,6 +206,8 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
         "parler",
         "rest_framework",
         "storages",
+        # Funmooc stuff
+        "funmooc.gimporter",
     )
 
     # Languages
@@ -287,6 +289,9 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
     RICHIE_ES_HOST = values.Value(
         "elasticsearch", environ_name="RICHIE_ES_HOST", environ_prefix=None
     )
+
+    GOOGLE_SHEET_ID = values.Value(None)
+    GOOGLE_SHEET_CREDENTIALS = values.Value(None)
 
     @classmethod
     def post_setup(cls):
