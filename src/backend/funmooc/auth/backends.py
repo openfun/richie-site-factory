@@ -7,11 +7,17 @@ This authentication backend is inspired from the official edx's auth-backends
 project:
 https://github.com/edx/auth-backends/blob/master/auth_backends/backends.py
 """
+import base64
+import datetime
+from calendar import timegm
 
 from django.core.cache import cache
 
-import jwt
+from jose import jwk, jwt
+from jose.jwt import ExpiredSignatureError, JWTClaimsError, JWTError
 from social_core.backends.oauth import BaseOAuth2
+from social_core.backends.open_id_connect import OpenIdConnectAuth
+from social_core.exceptions import AuthTokenError
 
 EDX_USER_PROFILE_TO_DJANGO = {
     "preferred_username": "username",
@@ -24,6 +30,126 @@ EDX_USER_PROFILE_TO_DJANGO = {
     "administrator": "is_staff",
     "superuser": "is_superuser",
 }
+
+
+class EdXOIDC(OpenIdConnectAuth):
+    """
+    OIDC-based backend to authenticate with OpenEdx's LMS OpenID provider.
+
+    DEPRECATED: this backend can be used with old OpenEdx releases, e.g.
+    Dogwood.
+    """
+
+    name = "edx-oidc"
+
+    DEFAULT_SCOPE = ["openid", "profile", "email"]
+    ID_KEY = "preferred_username"
+    REDIRECT_STATE = False
+
+    def endpoint(self):
+        """Get OIDC endpoint."""
+        return self.setting("ENDPOINT").strip("/")
+
+    @property
+    def ID_TOKEN_ISSUER(self):
+        """Build ID_TOKEN_ISSUER from the endpoint setting."""
+        return self.endpoint()
+
+    @property
+    def ACCESS_TOKEN_URL(self):
+        """Build ACCESS_TOKEN_URL from the endpoint setting."""
+        return f"{self.endpoint()}/access_token/"
+
+    @property
+    def AUTHORIZATION_URL(self):
+        """Build AUTHORIZATION_URL from the endpoint setting."""
+        return f"{self.endpoint()}/authorize/"
+
+    @property
+    def USERINFO_URL(self):
+        """Build USERINFO_URL from the endpoint setting."""
+        return f"{self.endpoint()}/user_info/"
+
+    def get_jwks_keys(self):
+        """Returns the keys used to decode the ID token.
+
+        Note: edX uses symmetric keys, so bypass the parent class's calls to an
+        external server and return the key from settings.
+        """
+        k = self.setting("ID_TOKEN_DECRYPTION_KEY")
+        k = base64.urlsafe_b64encode(k.encode("utf-8")).rstrip(b"=").decode("utf-8")
+        return [{"k": k, "kty": "oct", "alg": "HS256"}]
+
+    def validate_and_return_id_token(self, id_token, access_token):
+        """
+        Validates the id_token according to the steps at
+        http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation.
+        """
+        key = self.find_valid_key(id_token)
+
+        if not key:
+            raise AuthTokenError(self, "Signature verification failed")
+
+        alg = key["alg"]
+        rsa_key = jwk.construct(key)
+
+        k = {
+            "alg": rsa_key._algorithm,
+            "kty": "oct",
+            "k": base64.urlsafe_b64encode(rsa_key.prepared_key)
+            .rstrip(b"=")
+            .decode("utf-8"),
+        }
+
+        try:
+            claims = jwt.decode(
+                id_token,
+                k,
+                algorithms=[alg],
+                audience=self.setting("KEY"),
+                issuer=self.id_token_issuer(),
+                options=self.JWT_DECODE_OPTIONS,
+            )
+        except ExpiredSignatureError:
+            raise AuthTokenError(self, "Signature has expired")
+        except JWTClaimsError as error:
+            raise AuthTokenError(self, str(error))
+        except JWTError:
+            raise AuthTokenError(self, "Invalid signature")
+
+        self.validate_claims(claims)
+
+    def validate_claims(self, id_token):
+        """Validate decoded JWT token."""
+
+        if id_token["iss"] != self.id_token_issuer():
+            raise AuthTokenError(self, "Invalid issuer")
+
+        client_id = self.setting("KEY")
+
+        if isinstance(id_token["aud"], str):
+            id_token["aud"] = [id_token["aud"]]
+
+        if client_id not in id_token["aud"]:
+            raise AuthTokenError(self, "Invalid audience")
+
+        if len(id_token["aud"]) > 1 and "azp" not in id_token:
+            raise AuthTokenError(self, "Incorrect id_token: azp")
+
+        if "azp" in id_token and id_token["azp"] != client_id:
+            raise AuthTokenError(self, "Incorrect id_token: azp")
+
+        utc_timestamp = timegm(datetime.datetime.utcnow().utctimetuple())
+        if utc_timestamp > id_token["exp"]:
+            raise AuthTokenError(self, "Signature has expired")
+
+        if "nbf" in id_token and utc_timestamp < id_token["nbf"]:
+            raise AuthTokenError(self, "Incorrect id_token: nbf")
+
+        # Verify the token was issued in the last 10 minutes
+        iat_leeway = self.setting("ID_TOKEN_MAX_AGE", self.ID_TOKEN_MAX_AGE)
+        if utc_timestamp > id_token["iat"] + iat_leeway:
+            raise AuthTokenError(self, "Incorrect id_token: iat")
 
 
 class EdXOAuth2(BaseOAuth2):
@@ -91,9 +217,37 @@ class EdXOAuth2(BaseOAuth2):
         params.update({"token_type": "jwt"})
         return params
 
+    def _get_jwks_keys(self):
+        """Returns the keys used to decode the access token.
+
+        Note: edX uses symmetric keys, so bypass the parent class's calls to an
+        external server and return the key from settings.
+        """
+        k = self.setting("KEY")
+        k = base64.urlsafe_b64encode(k.encode("utf-8")).rstrip(b"=").decode("utf-8")
+        return [{"k": k, "kty": "oct", "alg": "HS256"}]
+
     def user_data(self, access_token, *args, **kwargs):
         """Get claimed user data from the JWT formatted access token."""
-        decoded_access_token = jwt.decode(access_token, verify=False)
+        decoded_access_token = jwt.decode(
+            access_token,
+            self._get_jwks_keys(),
+            # FIXME
+            # We must skip verifications as edx does [1].
+            # [1] https://github.com/edx/auth-backends/blob/6bf9d856c8e4cc4c1a72f67158468f8c94e3fca1/auth_backends/backends.py#L312 # noqa
+            options={
+                "verify_signature": False,
+                "verify_aud": False,
+                "verify_iat": False,
+                "verify_exp": False,
+                "verify_nbf": False,
+                "verify_iss": False,
+                "verify_sub": False,
+                "verify_jti": False,
+                "verify_at_hash": False,
+                "leeway": 0,
+            },
+        )
         return {
             key: decoded_access_token[key]
             for key in EDX_USER_PROFILE_TO_DJANGO

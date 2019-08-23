@@ -172,6 +172,7 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
 
     AUTHENTICATION_BACKENDS = (
         "funmooc.auth.backends.EdXOAuth2",
+        "funmooc.auth.backends.EdXOIDC",
         "django.contrib.auth.backends.ModelBackend",
     )
 
@@ -179,6 +180,10 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
     SOCIAL_AUTH_EDX_OAUTH2_KEY = values.Value(environ_required=True)
     SOCIAL_AUTH_EDX_OAUTH2_SECRET = values.Value(environ_required=True)
     SOCIAL_AUTH_EDX_OAUTH2_ENDPOINT = values.Value(environ_required=True)
+    SOCIAL_AUTH_EDX_OIDC_KEY = values.Value(environ_required=True)
+    SOCIAL_AUTH_EDX_OIDC_SECRET = values.Value(environ_required=True)
+    SOCIAL_AUTH_EDX_OIDC_ID_TOKEN_DECRYPTION_KEY = values.Value(environ_required=True)
+    SOCIAL_AUTH_EDX_OIDC_ENDPOINT = values.Value(environ_required=True)
     SOCIAL_AUTH_POSTGRES_JSONFIELD = True
     SESSION_COOKIE_SECURE = False
 
