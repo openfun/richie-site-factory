@@ -3,7 +3,7 @@
 For more information visit
 https://docs.djangoproject.com/en/dev/topics/auth/customizing/.
 
-This authentication backend is inspired from the official edx's auth-backends
+This authentication backend is inspired by the official edX auth-backends
 project:
 https://github.com/edx/auth-backends/blob/master/auth_backends/backends.py
 """
