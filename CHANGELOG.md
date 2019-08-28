@@ -17,7 +17,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Disable the "unsorted uploads" directory on Django Filer,
-- Upgrade richie to 1.5.1.
+- Upgrade richie to 1.8.0.
 
 ### Security
 
