@@ -396,6 +396,13 @@ class Production(Base):
     AWS_CLOUDFRONT_DOMAIN = values.Value()
 
     @property
+    def TEXT_CKEDITOR_BASE_PATH(self):
+        """Configure CKEditor with an absolute url as base path to point to CloudFront."""
+        return "//{:s}/static/djangocms_text_ckeditor/ckeditor/".format(
+            self.AWS_CLOUDFRONT_DOMAIN,
+        )
+
+    @property
     def CDN_DOMAIN(self):
         """CDN_DOMAIN is used to load frontend built chunks; it should match the AWS CloudFront
         domain used as a CDN. As other configurations will inherit from this setting, it should
