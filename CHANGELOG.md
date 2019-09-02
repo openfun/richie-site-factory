@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix CKeditor static files to work with a CDN,
+
 ## [0.4.0] - 2019-08-28
 
 ### Added
