@@ -11,6 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Fix CKeditor static files to work with a CDN,
+- Fix logo override by moving it to the same new location as in Richie.
 
 ## [0.4.0] - 2019-08-28
 
