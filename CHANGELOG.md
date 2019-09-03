@@ -8,9 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.1] - 2019-09-02
+
 ### Fixed
 
-- Fix CKeditor static files to work with a CDN,
+- Fix CKEditor static files to work with a CDN,
 - Fix logo override by moving it to the same new location as in Richie.
 
 ## [0.4.0] - 2019-08-28
@@ -69,7 +71,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/openfun/fun-mooc/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/openfun/fun-mooc/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/openfun/fun-mooc/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/openfun/fun-mooc/compare/v0.1.0...v0.2.0
