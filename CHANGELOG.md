@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Import course licences from Google sheet fixtures.
+
 ### Changed
 
 - Upgrade richie to 1.8.3.

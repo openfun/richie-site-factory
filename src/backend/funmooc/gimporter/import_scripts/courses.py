@@ -12,11 +12,12 @@ from djangocms_video.cms_plugins import VideoPlayerPlugin
 from pytz import timezone
 from richie.apps.courses.cms_plugins import (
     CategoryPlugin,
+    LicencePlugin,
     OrganizationPlugin,
     PersonPlugin,
 )
 from richie.apps.courses.defaults import COURSERUNS_PAGE, COURSES_PAGE
-from richie.apps.courses.models import Course, CourseRun
+from richie.apps.courses.models import Course, CourseRun, Licence
 from richie.plugins.plain_text.cms_plugins import PlainTextPlugin
 from richie.plugins.simple_picture.cms_plugins import SimplePicturePlugin
 from richie.plugins.simple_text_ckeditor.cms_plugins import CKEditorPlugin
@@ -38,6 +39,20 @@ def import_courses(sheet):
     language = settings.LANGUAGE_CODE
     root_reverse_id = COURSES_PAGE["reverse_id"]
     root_page = create_page_from_info(root_reverse_id)
+
+    # Start by importing licences
+    licences = {}
+    for licence_record in sheet.worksheet("licences").get_all_records():
+        licences[
+            licence_record["reverse_id"]
+        ], _created = Licence.objects.update_or_create(
+            url=licence_record["url"],
+            defaults={
+                "name": licence_record["name"],
+                "logo": create_image(licence_record["logo"]),
+                "content": licence_record["content"],
+            },
+        )
 
     for record in sheet.worksheet(root_reverse_id).get_all_records():
         title = record["title"].strip()
@@ -237,6 +252,32 @@ def import_courses(sheet):
             PersonPlugin.model.objects.filter(placeholder=placeholder_team).exclude(
                 page__in=page_ids
             ).delete()
+
+        # Add a plugin for the course content license
+        if record["licence_content"]:
+            placeholder_licence_content = course_page.placeholders.get(
+                slot="course_license_content"
+            )
+            create_or_update_single_plugin(
+                placeholder_licence_content,
+                LicencePlugin,
+                language=language,
+                filter_params={"licence_id": licences[record["licence_content"]].id},
+            )
+
+        # Add a plugin for the course participation license
+        if record["licence_participation"]:
+            placeholder_licence_participation = course_page.placeholders.get(
+                slot="course_license_participation"
+            )
+            create_or_update_single_plugin(
+                placeholder_licence_participation,
+                LicencePlugin,
+                language=language,
+                filter_params={
+                    "licence_id": licences[record["licence_participation"]].id
+                },
+            )
 
         # Add the course run
         run_slug = slugify(record["session"])

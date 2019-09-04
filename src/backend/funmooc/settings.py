@@ -399,7 +399,7 @@ class Production(Base):
     def TEXT_CKEDITOR_BASE_PATH(self):
         """Configure CKEditor with an absolute url as base path to point to CloudFront."""
         return "//{:s}/static/djangocms_text_ckeditor/ckeditor/".format(
-            self.AWS_CLOUDFRONT_DOMAIN,
+            self.AWS_CLOUDFRONT_DOMAIN
         )
 
     @property

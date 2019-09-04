@@ -80,7 +80,10 @@ def import_persons(sheet):
             # Add a plugin for the main content
             placeholder_maincontent = person_page.placeholders.get(slot="maincontent")
             create_or_update_single_plugin(
-                placeholder_maincontent, CKEditorPlugin, language=language, body=maincontent
+                placeholder_maincontent,
+                CKEditorPlugin,
+                language=language,
+                body=maincontent,
             )
 
         # Add a plugin for the portrait
