@@ -52,11 +52,12 @@ def import_organizations(sheet):
             title_obj.title = title
             title_obj.save()
 
-        Organization.objects.update_or_create(
+        organization, _created = Organization.objects.update_or_create(
             extended_object__reverse_id=reverse_id,
             extended_object__publisher_is_draft=True,
             defaults={"extended_object": organization_page},
         )
+        organization.create_page_role()
 
         # Add a plugin for the description
         placeholder_description = organization_page.placeholders.get(slot="description")

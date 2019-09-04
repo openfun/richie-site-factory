@@ -91,6 +91,7 @@ def import_courses(sheet):
             extended_object__publisher_is_draft=True,
             defaults={"extended_object": course_page},
         )
+        course.create_page_role()
 
         # field the effort field
         effort = record["effort"].strip()
@@ -196,26 +197,32 @@ def import_courses(sheet):
                 slot="course_organizations"
             )
             organization_reverse_ids = [o for o in organizations.split(",") if o]
-            page_ids = Page.objects.filter(
+            organization_pages = Page.objects.filter(
                 publisher_is_draft=True, reverse_id__in=organization_reverse_ids
-            ).values_list("id", flat=True)
+            )
 
-            if len(page_ids) != len(organization_reverse_ids):
+            if len(organization_pages) != len(organization_reverse_ids):
                 raise ValueError(
                     f"Some organizations for course {reverse_id:s} could not be found."
                 )
 
-            for page_id in page_ids:
+            for organization_page in organization_pages:
                 create_or_update_single_plugin(
                     placeholder_organizations,
                     OrganizationPlugin,
                     language=language,
-                    filter_params={"page_id": page_id},
+                    filter_params={"page_id": organization_page.id},
                 )
+
+                # Give permissions to this course
+                course.create_permissions_for_organization(
+                    organization_page.organization
+                )
+
             # Delete any plugin on this placeholder that does not match our filter params anymore
             OrganizationPlugin.model.objects.filter(
                 placeholder=placeholder_organizations
-            ).exclude(page__in=page_ids).delete()
+            ).exclude(page__in=organization_pages).delete()
 
         # Add a plugin for the teaser
         if record["teaser"]:
