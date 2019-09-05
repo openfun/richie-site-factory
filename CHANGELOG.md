@@ -12,6 +12,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Create roles and permissions for organizations and courses imported via the
   Google sheet importer,
+- Import blog posts from Google sheet fixtures,
 - Import course licences from Google sheet fixtures.
 
 ### Changed

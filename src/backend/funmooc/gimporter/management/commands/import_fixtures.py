@@ -8,6 +8,7 @@ from django.core.management.base import BaseCommand, CommandError
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+from ...import_scripts.blogposts import import_blogposts
 from ...import_scripts.categories import import_categories
 from ...import_scripts.courses import import_courses
 from ...import_scripts.organizations import import_organizations
@@ -73,3 +74,4 @@ class Command(BaseCommand):
         self.import_pages(sheet, import_organizations, "Importing organizations")
         self.import_pages(sheet, import_persons, "Importing persons")
         self.import_pages(sheet, import_courses, "Importing courses")
+        self.import_pages(sheet, import_blogposts, "Importing blog posts")
