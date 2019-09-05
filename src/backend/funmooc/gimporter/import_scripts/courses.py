@@ -1,6 +1,4 @@
 # Import courses from a Google Sheet
-from datetime import datetime
-
 from django.conf import settings
 from django.utils.text import slugify
 
@@ -8,7 +6,6 @@ import markdown
 from cms.api import create_page
 from cms.models import Page
 from djangocms_video.cms_plugins import VideoPlayerPlugin
-from pytz import timezone
 from richie.apps.courses.cms_plugins import (
     CategoryPlugin,
     LicencePlugin,
@@ -21,15 +18,12 @@ from richie.plugins.plain_text.cms_plugins import PlainTextPlugin
 from richie.plugins.simple_picture.cms_plugins import SimplePicturePlugin
 from richie.plugins.simple_text_ckeditor.cms_plugins import CKEditorPlugin
 
-from .helpers import create_image, create_or_update_single_plugin, create_page_from_info
-
-
-def parse_date(date_string):
-    return (
-        timezone("Europe/Paris").localize(datetime.strptime(date_string, "%d.%m.%y"))
-        if date_string
-        else None
-    )
+from .helpers import (
+    create_image,
+    create_or_update_single_plugin,
+    create_page_from_info,
+    parse_date,
+)
 
 
 def import_courses(sheet):
