@@ -3,7 +3,6 @@ from datetime import datetime
 
 from django.conf import settings
 from django.utils.text import slugify
-from django.utils.translation import ugettext_lazy as _
 
 import markdown
 from cms.api import create_page
@@ -164,7 +163,6 @@ def import_courses(sheet):
                 SimplePicturePlugin,
                 language=language,
                 picture=create_image(record["cover"]),
-                attributes={"alt": str(_("course cover"))},
             )
 
         # Add plugins for categories
