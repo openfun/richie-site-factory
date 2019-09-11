@@ -19,9 +19,9 @@ from richie.plugins.simple_picture.cms_plugins import SimplePicturePlugin
 from richie.plugins.simple_text_ckeditor.cms_plugins import CKEditorPlugin
 
 from .helpers import (
-    create_image,
     create_or_update_single_plugin,
     create_page_from_info,
+    import_file,
     parse_date,
 )
 
@@ -42,7 +42,7 @@ def import_courses(sheet):
             url=licence_record["url"],
             defaults={
                 "name": licence_record["name"],
-                "logo": create_image(licence_record["logo"]),
+                "logo": import_file(licence_record["logo"]),
                 "content": licence_record["content"],
             },
         )
@@ -156,7 +156,7 @@ def import_courses(sheet):
                 placeholder_cover,
                 SimplePicturePlugin,
                 language=language,
-                picture=create_image(record["cover"]),
+                picture=import_file(record["cover"]),
             )
 
         # Add plugins for categories

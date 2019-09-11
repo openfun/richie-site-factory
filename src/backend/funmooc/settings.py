@@ -292,6 +292,7 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
 
     GOOGLE_SHEET_ID = values.Value(None)
     GOOGLE_SHEET_CREDENTIALS = values.Value(None)
+    GIMPORTER_BASE_URL = values.Value("https://www.fun-mooc.fr")
 
     @classmethod
     def post_setup(cls):

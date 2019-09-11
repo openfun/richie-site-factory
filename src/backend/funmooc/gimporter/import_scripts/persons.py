@@ -10,7 +10,7 @@ from richie.plugins.plain_text.cms_plugins import PlainTextPlugin
 from richie.plugins.simple_picture.cms_plugins import SimplePicturePlugin
 from richie.plugins.simple_text_ckeditor.cms_plugins import CKEditorPlugin
 
-from .helpers import create_image, create_or_update_single_plugin, create_page_from_info
+from .helpers import create_or_update_single_plugin, create_page_from_info, import_file
 
 
 def import_persons(sheet):
@@ -93,7 +93,7 @@ def import_persons(sheet):
                 placeholder_portrait,
                 SimplePicturePlugin,
                 language=language,
-                picture=create_image(record["portrait"]),
+                picture=import_file(record["portrait"]),
                 attributes={"alt": ""},
             )
 

@@ -1,4 +1,6 @@
+# Helpers used by import scripts to import fixtures from Google sheet.
 import io
+import re
 import urllib
 from datetime import datetime
 
@@ -7,17 +9,39 @@ from django.core.files import File
 
 from cms.api import add_plugin, create_page
 from cms.models import Page
-from filer.models.imagemodels import Image
+from filer.models.filemodels import File as FilerFile
+from filer.models.imagemodels import Image as FilerImage
+from PIL import Image
 from pytz import timezone
 from richie.apps.courses.defaults import PAGES_INFO
 
 
-def create_image(url):
+def extract_and_replace_media(content):
+    """
+    Find relative paths targetting media files in the content, import the corresponding files
+    and replace the old paths by the new ones in the content.
+    """
+    # Find media files in the content
+    media_paths = re.findall(r'"(/media[^> ]*)"', content)
+
+    for path in media_paths:
+        try:
+            file_object = import_file(settings.GIMPORTER_BASE_URL + path)
+        except urllib.error.HTTPError:
+            # Media files that can't be found on the old fun-mooc.fr site are ignored
+            continue
+
+        # Replace the url by the url of the new file in Django filer
+        content = content.replace(path, file_object.url)
+
+    return content
+
+
+def import_file(url):
     """
     Upload an image from a url and create it in Django Filer.
     We use the image sha1 hash to make sure we only create a given image once.
     """
-
     # Clean the url and make sure it is safe (bandit wants to make sure we don't access a file
     # from the filesystem with urls starting with ftp:// and file://
     url = url.strip()
@@ -39,16 +63,25 @@ def create_image(url):
 
     filename = urllib.parse.urlparse(url).path.split("/")[-1]
 
-    # Look for an existing image object for this file to avoid duplicates
-    image = Image(file=File(in_memory_file, filename))
-    image.generate_sha1()
-    existing_image = Image.objects.filter(sha1=image.sha1).first()
-    if existing_image:
-        return existing_image
+    # Determine whether the downloaded file is an image or not
+    try:
+        Image.open(in_memory_file)
+    except IOError:
+        model_class = FilerFile
+    else:
+        model_class = FilerImage
 
-    # There is no existing image so we create a new one
-    image.save()
-    return image
+    # Look for an existing image object for this file to avoid duplicates
+    file_object = model_class(file=File(in_memory_file, filename))
+    file_object.generate_sha1()
+
+    existing_file_object = model_class.objects.filter(sha1=file_object.sha1).first()
+    if existing_file_object:
+        return existing_file_object
+
+    # Actually create a new file object
+    file_object.save()
+    return file_object
 
 
 def create_page_from_info(reverse_id):
