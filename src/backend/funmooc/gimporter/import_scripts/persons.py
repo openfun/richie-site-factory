@@ -4,6 +4,7 @@ from django.utils.text import slugify
 
 from cms.api import create_page
 from cms.models import Page
+from filer.models import Folder
 from richie.apps.courses.defaults import PERSONS_PAGE
 from richie.apps.courses.models import Person
 from richie.plugins.plain_text.cms_plugins import PlainTextPlugin
@@ -19,6 +20,9 @@ def import_persons(sheet):
     language = settings.LANGUAGE_CODE
     root_reverse_id = PERSONS_PAGE["reverse_id"]
     root_page = create_page_from_info(root_reverse_id)
+
+    # Make sure a folder exists to store persons related media
+    persons_folder, _created = Folder.objects.get_or_create(name=root_reverse_id)
 
     for record in sheet.worksheet(root_reverse_id).get_all_records():
         title = record["title"].strip()
@@ -93,7 +97,7 @@ def import_persons(sheet):
                 placeholder_portrait,
                 SimplePicturePlugin,
                 language=language,
-                picture=import_file(record["portrait"]),
+                picture=import_file(record["portrait"], folder=persons_folder),
                 attributes={"alt": ""},
             )
 

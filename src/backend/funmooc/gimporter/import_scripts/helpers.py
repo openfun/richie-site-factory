@@ -16,7 +16,7 @@ from pytz import timezone
 from richie.apps.courses.defaults import PAGES_INFO
 
 
-def extract_and_replace_media(content):
+def extract_and_replace_media(content, folder=None):
     """
     Find relative paths targetting media files in the content, import the corresponding files
     and replace the old paths by the new ones in the content.
@@ -26,7 +26,7 @@ def extract_and_replace_media(content):
 
     for path in media_paths:
         try:
-            file_object = import_file(settings.GIMPORTER_BASE_URL + path)
+            file_object = import_file(settings.GIMPORTER_BASE_URL + path, folder=folder)
         except urllib.error.HTTPError:
             # Media files that can't be found on the old fun-mooc.fr site are ignored
             continue
@@ -37,7 +37,7 @@ def extract_and_replace_media(content):
     return content
 
 
-def import_file(url):
+def import_file(url, folder=None):
     """
     Upload an image from a url and create it in Django Filer.
     We use the image sha1 hash to make sure we only create a given image once.
@@ -72,11 +72,14 @@ def import_file(url):
         model_class = FilerImage
 
     # Look for an existing image object for this file to avoid duplicates
-    file_object = model_class(file=File(in_memory_file, filename))
+    file_object = model_class(file=File(in_memory_file, filename), folder=folder)
     file_object.generate_sha1()
 
     existing_file_object = model_class.objects.filter(sha1=file_object.sha1).first()
     if existing_file_object:
+        # update its location as it may have changed
+        existing_file_object.folder = folder
+        existing_file_object.save()
         return existing_file_object
 
     # Actually create a new file object

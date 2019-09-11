@@ -6,6 +6,7 @@ import markdown
 from cms.api import create_page
 from cms.models import Page
 from djangocms_video.cms_plugins import VideoPlayerPlugin
+from filer.models import Folder
 from richie.apps.courses.cms_plugins import (
     CategoryPlugin,
     LicencePlugin,
@@ -34,6 +35,10 @@ def import_courses(sheet):
     root_page = create_page_from_info(root_reverse_id)
 
     # Start by importing licences
+
+    # Make sure a folder exists to store licence related media
+    licences_folder, _created = Folder.objects.get_or_create(name="Licences")
+
     licences = {}
     for licence_record in sheet.worksheet("licences").get_all_records():
         licences[
@@ -42,7 +47,7 @@ def import_courses(sheet):
             url=licence_record["url"],
             defaults={
                 "name": licence_record["name"],
-                "logo": import_file(licence_record["logo"]),
+                "logo": import_file(licence_record["logo"], folder=licences_folder),
                 "content": licence_record["content"],
             },
         )
@@ -84,7 +89,7 @@ def import_courses(sheet):
             extended_object__publisher_is_draft=True,
             defaults={"extended_object": course_page},
         )
-        course.create_page_role()
+        role = course.create_page_role()
 
         # field the effort field
         effort = record["effort"].strip()
@@ -156,7 +161,7 @@ def import_courses(sheet):
                 placeholder_cover,
                 SimplePicturePlugin,
                 language=language,
-                picture=import_file(record["cover"]),
+                picture=import_file(record["cover"], folder=role.folder),
             )
 
         # Add plugins for categories

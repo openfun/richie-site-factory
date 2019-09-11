@@ -57,7 +57,7 @@ def import_organizations(sheet):
             extended_object__publisher_is_draft=True,
             defaults={"extended_object": organization_page},
         )
-        organization.create_page_role()
+        role = organization.create_page_role()
 
         # Add a plugin for the description
         placeholder_description = organization_page.placeholders.get(slot="description")
@@ -76,7 +76,7 @@ def import_organizations(sheet):
                 placeholder_logo,
                 SimplePicturePlugin,
                 language=language,
-                picture=import_file(record["logo"]),
+                picture=import_file(record["logo"], folder=role.folder),
             )
 
         # Add a plugin for the banner
@@ -86,7 +86,7 @@ def import_organizations(sheet):
                 placeholder_banner,
                 SimplePicturePlugin,
                 language=language,
-                picture=import_file(record["banner"]),
+                picture=import_file(record["banner"], folder=role.folder),
                 attributes={"alt": str(_("organization banner"))},
             )
 
