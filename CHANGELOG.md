@@ -19,6 +19,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Let the Google sheet importer sort media files related to each organization
+  or course in their specific folder in Django filer,
 - Upgrade richie to 1.8.3.
 
 ### Fixed

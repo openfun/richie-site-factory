@@ -4,6 +4,7 @@ from django.utils.text import slugify
 
 from cms.api import create_page
 from cms.models import Page
+from filer.models import Folder
 from richie.apps.courses.cms_plugins import CategoryPlugin
 from richie.apps.courses.defaults import BLOGPOSTS_PAGE
 from richie.apps.courses.models import BlogPost
@@ -26,6 +27,9 @@ def import_blogposts(sheet):
     language = settings.LANGUAGE_CODE
     root_reverse_id = BLOGPOSTS_PAGE["reverse_id"]
     root_page = create_page_from_info(root_reverse_id)
+
+    # Make sure a folder exists to store blog posts related media
+    blogposts_folder, _created = Folder.objects.get_or_create(name=root_reverse_id)
 
     for record in sheet.worksheet(root_reverse_id).get_all_records():
         if not int(record["is_published"]) == 1:
@@ -63,7 +67,7 @@ def import_blogposts(sheet):
         )
         blogpost_page.refresh_from_db()
 
-        blogpost, _created = BlogPost.objects.update_or_create(
+        BlogPost.objects.update_or_create(
             extended_object__reverse_id=reverse_id,
             extended_object__publisher_is_draft=True,
             defaults={"extended_object": blogpost_page},
@@ -97,7 +101,7 @@ def import_blogposts(sheet):
                 placeholder_cover,
                 SimplePicturePlugin,
                 language=language,
-                picture=import_file(record["cover"]),
+                picture=import_file(record["cover"], folder=blogposts_folder),
             )
 
         # Add a plugin for the excerpt
