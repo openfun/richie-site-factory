@@ -25,7 +25,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Fix broken links by porting missing media files to Django filer.
+- Clean-up the content imported from the Google sheet with gimporter:
+  * fix broken links by porting missing media files to Django filer,
+  * make all urls relative (exit france-universite-numerique-mooc.fr),
+  * replace old urls by new ones computed with DjangoCMS page slugs.
 
 ## [0.4.1] - 2019-09-02
 
