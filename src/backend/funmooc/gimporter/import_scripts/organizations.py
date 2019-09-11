@@ -10,7 +10,7 @@ from richie.apps.courses.models import Organization
 from richie.plugins.simple_picture.cms_plugins import SimplePicturePlugin
 from richie.plugins.simple_text_ckeditor.cms_plugins import CKEditorPlugin
 
-from .helpers import create_image, create_or_update_single_plugin, create_page_from_info
+from .helpers import create_or_update_single_plugin, create_page_from_info, import_file
 
 
 def import_organizations(sheet):
@@ -76,8 +76,7 @@ def import_organizations(sheet):
                 placeholder_logo,
                 SimplePicturePlugin,
                 language=language,
-                picture=create_image(record["logo"]),
-                attributes={"alt": str(_("organization logo"))},
+                picture=import_file(record["logo"]),
             )
 
         # Add a plugin for the banner
@@ -87,7 +86,7 @@ def import_organizations(sheet):
                 placeholder_banner,
                 SimplePicturePlugin,
                 language=language,
-                picture=create_image(record["banner"]),
+                picture=import_file(record["banner"]),
                 attributes={"alt": str(_("organization banner"))},
             )
 

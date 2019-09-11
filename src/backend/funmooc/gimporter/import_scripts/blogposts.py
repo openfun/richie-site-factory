@@ -12,9 +12,10 @@ from richie.plugins.simple_picture.cms_plugins import SimplePicturePlugin
 from richie.plugins.simple_text_ckeditor.cms_plugins import CKEditorPlugin
 
 from .helpers import (
-    create_image,
     create_or_update_single_plugin,
     create_page_from_info,
+    extract_and_replace_media,
+    import_file,
     parse_datetime,
 )
 
@@ -96,7 +97,7 @@ def import_blogposts(sheet):
                 placeholder_cover,
                 SimplePicturePlugin,
                 language=language,
-                picture=create_image(record["cover"]),
+                picture=import_file(record["cover"]),
             )
 
         # Add a plugin for the excerpt
@@ -112,8 +113,10 @@ def import_blogposts(sheet):
         # Add a plugin for the body
         placeholder_body = blogpost_page.placeholders.get(slot="body")
         if record["body"]:
+            body = extract_and_replace_media(record["body"])
+
             create_or_update_single_plugin(
-                placeholder_body, CKEditorPlugin, language=language, body=record["body"]
+                placeholder_body, CKEditorPlugin, language=language, body=body
             )
 
         blogpost_page.publish(language)

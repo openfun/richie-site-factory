@@ -21,6 +21,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 1.8.3.
 
+### Fixed
+
+- Fix broken links by porting missing media files to Django filer.
+
 ## [0.4.1] - 2019-09-02
 
 ### Fixed
