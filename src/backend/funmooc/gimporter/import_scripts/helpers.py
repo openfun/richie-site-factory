@@ -22,8 +22,7 @@ def extract_and_replace_media(content, folder=None):
     and replace the old paths by the new ones in the content.
     """
     # Find media files in the content
-    media_paths = re.findall(r'"(/media[^> ]*)"', content)
-
+    media_paths = re.findall(r'(/(?:media|c4x)[^> ]*)"', content)
     for path in media_paths:
         try:
             file_object = import_file(settings.GIMPORTER_BASE_URL + path, folder=folder)
