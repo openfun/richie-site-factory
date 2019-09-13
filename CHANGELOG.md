@@ -8,6 +8,20 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.3] - 2019-09-12
+
+### Changed
+
+- Let the Google sheet importer sort media files related to each organization
+  or course in their specific folder in Django filer,
+
+### Fixed
+
+- Clean-up the content imported from the Google sheet with gimporter:
+  * fix broken links by porting missing media files to Django filer,
+  * make all urls relative (exit france-universite-numerique-mooc.fr),
+  * replace old urls by new ones computed with DjangoCMS page slugs.
+
 ## [0.4.2] - 2019-09-06
 
 ### Added
@@ -19,16 +33,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Let the Google sheet importer sort media files related to each organization
-  or course in their specific folder in Django filer,
 - Upgrade richie to 1.8.3.
-
-### Fixed
-
-- Clean-up the content imported from the Google sheet with gimporter:
-  * fix broken links by porting missing media files to Django filer,
-  * make all urls relative (exit france-universite-numerique-mooc.fr),
-  * replace old urls by new ones computed with DjangoCMS page slugs.
 
 ## [0.4.1] - 2019-09-02
 
@@ -93,7 +98,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.4.2...HEAD
+[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.4.3...HEAD
+[0.4.3]: https://github.com/openfun/fun-mooc/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/openfun/fun-mooc/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/openfun/fun-mooc/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/openfun/fun-mooc/compare/v0.3.0...v0.4.0
