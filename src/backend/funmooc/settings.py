@@ -207,6 +207,7 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
         "rest_framework",
         "storages",
         # Funmooc stuff
+        "funmooc.base",
         "funmooc.gimporter",
     )
 
