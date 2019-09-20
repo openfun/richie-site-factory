@@ -165,6 +165,7 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
         "cms.middleware.page.CurrentPageMiddleware",
         "cms.middleware.toolbar.ToolbarMiddleware",
         "cms.middleware.language.LanguageCookieMiddleware",
+        "dj_pagination.middleware.PaginationMiddleware",
     )
 
     INSTALLED_APPS = (
@@ -202,6 +203,7 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
         "richie.plugins.simple_picture",
         "richie.plugins.simple_text_ckeditor",
         # Third party apps
+        "dj_pagination",
         "dockerflow.django",
         "parler",
         "rest_framework",
@@ -259,6 +261,11 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
     # - Django Filer
     FILER_ENABLE_PERMISSIONS = True
     FILER_IS_PUBLIC_DEFAULT = True
+
+    # Django Pagination
+    PAGINATION_INVALID_PAGE_RAISES_404 = True
+    PAGINATION_DEFAULT_WINDOW = 2
+    PAGINATION_DEFAULT_MARGIN = 1
 
     # Logging
     LOGGING = {

@@ -8,13 +8,17 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 1.9.1,
+- Make the superuser field readonly for non superusers.
+
 ## [0.4.3] - 2019-09-12
 
 ### Changed
 
 - Let the Google sheet importer sort media files related to each organization
-  or course in their specific folder in Django filer,
-- Make the superuser field readonly for non superusers.
+  or course in their specific folder in Django filer.
 
 ### Fixed
 
