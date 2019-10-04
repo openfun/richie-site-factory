@@ -13,6 +13,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade richie to 1.9.1,
 - Make the superuser field readonly for non superusers.
 
+### Fixed
+
+- Make API calls work behind an htaccess by removing Basic Auth fallback.
+
 ## [0.4.3] - 2019-09-12
 
 ### Changed
