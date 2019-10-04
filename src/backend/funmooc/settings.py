@@ -49,6 +49,9 @@ class DRFMixin:
         "ALLOWED_VERSIONS": ("1.0",),
         "DEFAULT_VERSION": "1.0",
         "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+        "DEFAULT_AUTHENTICATION_CLASSES": (
+            "rest_framework.authentication.SessionAuthentication",
+        ),
     }
 
 
