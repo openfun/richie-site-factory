@@ -144,6 +144,46 @@ jobs:
           name: Lint code with bandit
           command: ~/.local/bin/bandit -qr .
 
+  test-back:
+    docker:
+      - image: circleci/python:3.7-stretch
+        environment:
+          DJANGO_SETTINGS_MODULE: funmooc.settings
+          PYTHONPATH: /home/circleci/fun/src/backend
+          DJANGO_CONFIGURATION: Test
+          DJANGO_SECRET_KEY: ThisIsAnExampleKeyForTestPurposeOnly
+          DB_HOST: localhost
+          DB_NAME: funmooc
+          DB_USER: funmooc_user
+          DB_PASSWORD: pass
+          DB_PORT: 5432
+      - image: circleci/postgres:9.6-alpine-ram
+        environment:
+          POSTGRES_DB: funmooc
+          POSTGRES_USER: funmooc_user
+          POSTGRES_PASSWORD: pass
+    working_directory: ~/fun/src/backend
+    steps:
+      - checkout:
+          path: ~/fun
+      - restore_cache:
+          keys:
+            - v1-back-dependencies-{{ .Revision }}
+      # Run back-end (Django) test suite
+      #
+      # Nota bene: to run the django test suite, we need to ensure that the
+      # PostgreSQL service is up and ready. To achieve this,
+      # we wrap the command execution with dockerize, a tiny tool
+      # installed in the development image. In our case, dockerize will wait
+      # up to one minute until the database container is answering on port 5432.
+      - run:
+          name: Run tests
+          command: |
+                dockerize \
+                  -wait tcp://localhost:5432 \
+                  -timeout 60s \
+                    ~/.local/bin/pytest
+
   # ---- Front-end jobs ----
   build-front-production:
     docker:
@@ -315,6 +355,12 @@ workflows:
             tags:
               only: /.*/
       - lint-back:
+          requires:
+            - build-back
+          filters:
+            tags:
+              only: /.*/
+      - test-back:
           requires:
             - build-back
           filters:

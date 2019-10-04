@@ -83,6 +83,10 @@ lint-front-prettier-write: ## run prettier over scss files -- beware! overwrites
 	@$(YARN) prettier-write
 .PHONY: lint-front-prettier-write
 
+test-back: ## run back-end tests
+	bin/pytest
+.PHONY: test-back
+
 watch-sass: ## watch changes in Sass files
 	@$(YARN) watch-sass
 .PHONY: watch-sass
