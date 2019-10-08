@@ -10,7 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Upgrade richie to 1.9.1,
+- Upgrade richie to 1.10.0,
 - Make the superuser field readonly for non superusers.
 
 ### Fixed
