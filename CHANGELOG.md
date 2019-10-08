@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.5.0] - 2019-10-08
+
 ### Changed
 
 - Upgrade richie to 1.10.0,
@@ -107,7 +109,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.4.3...HEAD
+[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/openfun/fun-mooc/compare/v0.4.3...v0.5.0
 [0.4.3]: https://github.com/openfun/fun-mooc/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/openfun/fun-mooc/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/openfun/fun-mooc/compare/v0.4.0...v0.4.1
