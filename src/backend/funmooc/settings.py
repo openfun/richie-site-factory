@@ -119,6 +119,10 @@ class Base(DRFMixin, RichieCoursesConfigurationMixin, Configuration):
     STATIC_ROOT = os.path.join(DATA_DIR, "static")
     STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
+    # Login/registration related settings
+    LOGIN_REDIRECT_URL = "/"
+    LOGOUT_REDIRECT_URL = "/"
+
     # Internationalization
     TIME_ZONE = "Europe/Paris"
     USE_I18N = True
