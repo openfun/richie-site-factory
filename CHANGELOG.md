@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Upgrade django-storages to fix static manifest storage bakend and media
+  files upload.
+
 ## [0.7.1] - 2019-11-24
 
 ### Fixed
