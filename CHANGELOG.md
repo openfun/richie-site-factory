@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 1.16.1.
+
 ### Fixed
 
 - Upgrade django-storages to fix static manifest storage bakend and media
