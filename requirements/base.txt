@@ -1,14 +1,14 @@
 boto3==1.9.96
 Django<3
-django-configurations==2.1
+django-configurations==2.2
 # Superior versions of django-storages are not compatible with
 # ManifestStaticFilesStorage
 django-storages==1.8
-dockerflow==2019.6.0
-gunicorn==19.9.0
-psycopg2-binary==2.7.7
-richie==1.16.1
-sentry-sdk==0.9.5
+dockerflow==2019.10.0
+gunicorn==20.0.4
+psycopg2-binary==2.8.5
+richie==2.0.0-beta.3
+sentry-sdk==0.14.3
 
 # Google sheet importer
 gspread==3.1.0

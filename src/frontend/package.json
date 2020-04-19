@@ -28,9 +28,9 @@
   "homepage": "https://github.com/openfun/fun-mooc#readme",
   "dependencies": {},
   "devDependencies": {
-    "node-sass": "4.11.0",
-    "nodemon": "1.18.10",
-    "prettier": "1.16.4",
-    "richie-education": "1.16.1"
+    "node-sass": "4.13.1",
+    "nodemon": "2.0.3",
+    "prettier": "2.0.4",
+    "richie-education": "2.0.0-beta.2"
   }
 }
