@@ -1,5 +1,6 @@
 """Admin overrides for the fun-mooc site."""
 from django.contrib import admin, auth
+from django.contrib.auth.admin import UserAdmin
 from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
@@ -9,7 +10,7 @@ from filer.admin.clipboardadmin import ajax_upload as filer_ajax_upload
 from filer.models.virtualitems import FolderRoot
 
 
-class CustomUserAdmin(auth.admin.UserAdmin):
+class CustomUserAdmin(UserAdmin):
     """
     Override the user admin to customize its behavior.
     The original user admin is unregistered below in order to make place for this custom admin.
