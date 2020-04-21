@@ -41,9 +41,10 @@ def import_courses(sheet):
 
     licences = {}
     for licence_record in sheet.worksheet("licences").get_all_records():
-        licences[
-            licence_record["reverse_id"]
-        ], _created = Licence.objects.update_or_create(
+        (
+            licences[licence_record["reverse_id"]],
+            _created,
+        ) = Licence.objects.update_or_create(
             url=licence_record["url"],
             defaults={
                 "name": licence_record["name"],

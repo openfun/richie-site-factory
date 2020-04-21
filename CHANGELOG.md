@@ -10,7 +10,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Upgrade richie to 2.0.0-beta.3.
+- Upgrade richie to 2.0.0-beta.4.
+- Update "main.scss" file to import richie Sass sources to be able to
+  override settings.
+- Update project settings to add styleguide and missing new settings.
+- Update project urls to add styleguide.
+- Update layout color theme and logo to fit fun-mooc mockups.
 
 ## [0.8.0] - 2019-12-15
 
