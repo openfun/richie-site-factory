@@ -48,24 +48,28 @@ class StyleguideMixin:
         # Named color palette
         "palette": [
             "black",
-            "dark-grey",
-            "charcoal",
-            "slate-grey",
+            "black-two",
+            "dark",
+            "brownish-grey",
             "battleship-grey",
+            "purplish-grey",
             "light-grey",
             "silver",
-            "azure2",
-            "smoke",
+            "pale-grey",
+            "white-three",
             "white",
-            "denim",
-            "steelblue3",
-            "blue-green",
-            "greeny-blue",
+            "navy-blue",
+            "darkish-blue",
+            "ocean-blue",
+            "turquoise-blue",
+            "robin-egg-blue",
             "mediumturquoise",
-            "firebrick6",
+            "lipstick",
+            "indianred3",
         ],
         # Available gradient background
         "gradient_colors": [
+            "robin-gradient",
             "light-gradient",
             "middle-gradient",
             "dark-gradient",
@@ -79,13 +83,15 @@ class StyleguideMixin:
             "clear",
             "light",
             "lightest",
+            "indianred3",
+            "robin-gradient",
             "light-gradient",
             "middle-gradient",
             "dark-gradient",
             "white-mask-gradient",
+            "clouds",
             "transparent-clear",
             "transparent-darkest",
-            "clouds",
         ],
     }
 
@@ -357,6 +363,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # Demo
     RICHIE_DEMO_SITE_DOMAIN = "localhost:8080"
+    RICHIE_DEMO_FIXTURES_DIR = os.path.join(BASE_DIR, "fixtures")
 
     # Elasticsearch
     RICHIE_ES_HOST = values.Value(

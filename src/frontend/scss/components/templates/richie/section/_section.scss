@@ -1,0 +1,71 @@
+@import 'richie-education/scss/components/templates/richie/section/section';
+
+.section {
+
+  // NOTE: Apply vertical space around tile list title so it act a bit like a
+  // divider
+  .section-tiles__title {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+  }
+
+  // Quinary template
+  // NOTE: Add top curve and bottom waves border images
+  &.section--quinary {
+    position: relative;
+    padding-top: 0 !important;
+    padding-bottom: calc(5vw + 1.5rem) !important;
+
+    &:before{
+      content: '';
+      display: block;
+      margin-top: 4.5rem;
+      margin-bottom: 2rem;
+      width: 100%;
+      height: 2.5vw;
+      background-image: r-theme-val(block-schemes, alt-curve);
+      background-repeat: no-repeat;
+      background-position: bottom left;
+      background-size: 100% 100%;
+    }
+
+    // Insert bottom curves
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 5vw;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: r-theme-val(block-schemes, alt-wave);
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-size: 100% 100%;
+    }
+  }
+
+  // Quaternary template
+  // NOTE: Add bottom waves borde image
+  &.section--gradient-dark {
+    position: relative;
+    padding-bottom: calc(5vw + 1.5rem) !important;
+
+    // Insert bottom curves
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 5vw;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: r-theme-val(block-schemes, alt-wave);
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-size: 100% 100%;
+    }
+  }
+}
