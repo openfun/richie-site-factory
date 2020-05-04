@@ -28,14 +28,14 @@ $palette: (
 
 // Named gradients
 // ---------
-$light-gradient: linear-gradient(
+$neutral-gradient: linear-gradient(
   to top,
   r-color('silver') 0,
   r-color('white-three') 13rem,
   r-color('white') 14rem,
   r-color('white')
 );
-$robin-gradient: linear-gradient(
+$light-gradient: linear-gradient(
   79deg,
   r-color('robin-egg-blue') 0%,
   r-color('robin-egg-blue') 10%,
@@ -160,15 +160,15 @@ $transparent-darkest-scheme: (
   hover-svg-color: r-color('lipstick'),
   hover-border-color: r-color('lipstick'),
 );
-$light-gradient-scheme: (
+$neutral-gradient-scheme: (
   font-color: r-color('black-two'),
   svg-color: r-color('black-two'),
-  background: $light-gradient,
+  background: $neutral-gradient,
 );
-$robin-gradient-scheme: (
+$light-gradient-scheme: (
   font-color: r-color('navy-blue'),
   svg-color: r-color('navy-blue'),
-  background: $robin-gradient,
+  background: $light-gradient,
 );
 $middle-gradient-scheme: (
   font-color: r-color('white'),
@@ -201,8 +201,8 @@ $r-theme: (
     light: $light-scheme,
     lightest: $lightest-scheme,
     indianred3: $indianred3-scheme,
+    neutral-gradient: $neutral-gradient-scheme,
     light-gradient: $light-gradient-scheme,
-    robin-gradient: $robin-gradient-scheme,
     middle-gradient: $middle-gradient-scheme,
     dark-gradient: $dark-gradient-scheme,
     white-mask-gradient: $white-mask-gradient-scheme,
@@ -211,8 +211,8 @@ $r-theme: (
     transparent-darkest: $transparent-darkest-scheme,
   ),
   base-gradients: (
+    neutral-gradient: $neutral-gradient,
     light-gradient: $light-gradient,
-    robin-gradient: $robin-gradient,
     middle-gradient: $middle-gradient,
     dark-gradient: $dark-gradient,
     white-mask-gradient: $white-mask-gradient,
@@ -234,6 +234,7 @@ $r-theme: (
     item-divider-border: r-color('light-grey'),
   ),
   body-content: (
+    base-color: r-color('black'),
     base-background: r-color('white'),
     insert-background-image: url('../../richie/images/components/wave-dark.svg'),
     base-link-color: r-color('lipstick'),
@@ -275,9 +276,9 @@ $r-theme: (
       clear: $light-scheme,
       light: $middle-gradient-scheme,
       lightest: $lightest-scheme,
-      gradient-light: $light-gradient-scheme,
+      gradient-neutral: $neutral-gradient-scheme,
       gradient-dark: $dark-gradient-scheme,
-      quinary: $robin-gradient-scheme,
+      quinary: $light-gradient-scheme,
     ),
     alt-arc: url('../../richie/images/components/arc-white.svg'),
     alt-curve: url('../../richie/images/components/curve-white.svg'),
@@ -300,6 +301,7 @@ $r-theme: (
   hero-intro: (
     insert-background-image: null,
     inner-background: $white-mask-gradient,
+    title-color: r-color('lipstick'),
     content-color: r-color('black'),
     search-input-background: r-color('white'),
     search-btn-background: r-color('lipstick'),
@@ -415,6 +417,7 @@ $r-theme: (
   person-glimpse: (
     card-background: r-color('white'),
     base-shadow: 0 1px 2px rgba(r-color('battleship-grey'), 0.4),
+    title-color: r-color('lipstick'),
     empty-background: r-color('white-three'),
     category: $lipstick-scheme,
     category-title: transparent,
@@ -422,16 +425,15 @@ $r-theme: (
   ),
   program-glimpse: (
     card-background: r-color('white'),
-    card-border: r-color('light-grey'),
+    card-border: null,
+    card-hover-border: null,
     content-color: r-color('brownish-grey'),
     title-color: r-color('ocean-blue'),
+    media-decoration: url('../../richie/images/components/arc-white.svg'),
     empty-background: r-color('white-three'),
-    footer-border: r-color('light-grey'),
-    date-color: r-color('brownish-grey'),
-    cta-color: r-color('white'),
-    cta-background: r-color('lipstick'),
-    cta-hover-background: r-color('lipstick'),
-    hover-border: bar,
+    footer: $indianred3-scheme,
+    base-shadow: 0 0 6px r-color('light-grey'),
+    base-hover-shadow: 0 0 6px r-color('battleship-grey'),
   ),
   program-glimpse-empty: (
     card-color: r-color('brownish-grey'),

@@ -69,7 +69,7 @@ class StyleguideMixin:
         ],
         # Available gradient background
         "gradient_colors": [
-            "robin-gradient",
+            "neutral-gradient",
             "light-gradient",
             "middle-gradient",
             "dark-gradient",
@@ -84,7 +84,7 @@ class StyleguideMixin:
             "light",
             "lightest",
             "indianred3",
-            "robin-gradient",
+            "neutral-gradient",
             "light-gradient",
             "middle-gradient",
             "dark-gradient",

@@ -10,7 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Upgrade richie to 2.0.0-beta.4.
+- Upgrade richie to 2.0.0-beta.5.
 - Update "main.scss" file to import richie Sass sources to be able to
   override settings.
 - Update project settings to add styleguide and missing new settings.
