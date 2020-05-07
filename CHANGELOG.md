@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.9.2] - 2020-05-07
+
 ### Fixed
 
 - With django storages S3 backend, `STATIC_URL` should not start with a "/"
@@ -163,7 +165,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.9.1...HEAD
+[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.9.2...HEAD
+[0.9.2]: https://github.com/openfun/fun-mooc/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/openfun/fun-mooc/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/openfun/fun-mooc/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/openfun/fun-mooc/compare/v0.7.1...v0.8.0
