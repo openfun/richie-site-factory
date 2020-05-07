@@ -478,6 +478,7 @@ class Production(Base):
     STATICFILES_STORAGE = values.Value(
         "funmooc.storage.ConfigurableManifestS3Boto3Storage"
     )
+    STATIC_URL = "static/"
 
     # The mapping between the names of the original files and the names of the files distributed
     # by the backend is stored in a file.
