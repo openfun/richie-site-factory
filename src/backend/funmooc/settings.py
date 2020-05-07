@@ -469,6 +469,7 @@ class Production(Base):
     X_FRAME_OPTIONS = "SAMEORIGIN"
 
     DEFAULT_FILE_STORAGE = "funmooc.storage.MediaStorage"
+    MEDIA_URL = "media/"
 
     # For static files in production, we want to use a backend that includes a hash in
     # the filename, that is calculated from the file content, so that browsers always
