@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- With django storages S3 backend, `STATIC_URL` should not start with a "/"
+
 ## [0.9.1] - 2020-05-07
 
 ### Changed
