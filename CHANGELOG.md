@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade to django-storages 1.9.1
+
 ### Fixed
 
 - With the django storages S3 backend, `MEDIA_URL` should not start with a "/"

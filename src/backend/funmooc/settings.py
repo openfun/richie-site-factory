@@ -469,6 +469,7 @@ class Production(Base):
     X_FRAME_OPTIONS = "SAMEORIGIN"
 
     DEFAULT_FILE_STORAGE = "funmooc.storage.MediaStorage"
+    AWS_DEFAULT_ACL = None
     MEDIA_URL = "media/"
 
     # For static files in production, we want to use a backend that includes a hash in
