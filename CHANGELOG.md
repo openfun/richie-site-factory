@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.9.1] - 2020-05-07
+
 ### Changed
 
 - Upgrade to django-storages 1.9.1
@@ -157,7 +159,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.9.0...HEAD
+[unreleased]: https://github.com/openfun/fun-mooc/compare/v0.9.1...HEAD
+[0.9.1]: https://github.com/openfun/fun-mooc/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/openfun/fun-mooc/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/openfun/fun-mooc/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/openfun/fun-mooc/compare/v0.7.0...v0.7.1
