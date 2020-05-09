@@ -1,0 +1,17 @@
+@import 'richie-education/scss/components/templates/richie/large_banner/large_banner';
+
+.hero-intro {
+  // NOTE: Adjust background size on large screens so image fit more nicely
+  background-size: cover;
+  @include media-breakpoint-up(md) {
+    background-size: auto;
+  }
+
+  &__inner {
+    // NOTE: Remove white transparent mask on large screen so image is more
+    // visible but keep it for small screen to ensure text readability
+    @include media-breakpoint-up(md) {
+      background: transparent;
+    }
+  }
+}

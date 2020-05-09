@@ -218,9 +218,9 @@ $r-theme: (
     white-mask-gradient: $white-mask-gradient,
   ),
   topbar: (
-    base-background: r-color('white'),
-    over-background: rgba(r-color('white'), 0.1),
-    over-border: r-color('light-grey'),
+    base-background: null,
+    over-background: null,
+    over-border: rgba(r-color('light-grey'), 0.5),
     hamburger-color: r-color('ocean-blue'),
     item-color: r-color('black'),
     item-hover-color: r-color('darkish-blue'),

@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Correctly adjust hero-intro background to homepage mockup.
+
 ## [0.9.2] - 2020-05-07
 
 ### Fixed
