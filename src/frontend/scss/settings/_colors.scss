@@ -341,6 +341,12 @@ $r-theme: (
     base: $lipstick-scheme,
     base-hover: $lipstick-scheme,
   ),
+  card-glimpse: (
+    base-background: r-color('white'),
+    divider-color: r-color('lipstick'),
+    title-color: r-color('black') !important,
+    content-color: r-color('brownish-grey') !important,
+  ),
   category-glimpse-badges: (
     base-border: r-color('light-grey'),
     tag: $lipstick-scheme,
@@ -438,6 +444,18 @@ $r-theme: (
   program-glimpse-empty: (
     card-color: r-color('brownish-grey'),
     hover-border: r-color('light-grey'),
+  ),
+  row_half-glimpse: (
+    base-background: r-color('white'),
+    divider-color: r-color('lipstick'),
+    title-color: r-color('black') !important,
+    content-color: r-color('brownish-grey') !important,
+  ),
+  row_full-glimpse: (
+    base-background: r-color('white'),
+    divider-color: r-color('lipstick'),
+    title-color: r-color('black') !important,
+    content-color: r-color('brownish-grey') !important,
   ),
   base-search: (
     input-background: transparent,

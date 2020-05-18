@@ -8,9 +8,15 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 2.0.0-beta.6.
+- Disable "Contact Us" CTA from course detail.
+
 ### Fixed
 
 - Correctly adjust hero-intro background to homepage mockup.
+- Use the FunMooc help center link on "Contact Us" CTA in header.
 
 ## [0.9.2] - 2020-05-07
 
