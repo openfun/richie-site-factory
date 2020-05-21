@@ -28,7 +28,7 @@ nosetests.xml
 coverage.xml
 
 # Built statics
-src/backend/funmooc/static/richie/css/main.css
+src/backend/base/static/richie/css/main.css
 
 # Site media
 data/

@@ -23,4 +23,5 @@ src/frontend/node_modules
 
 # Assets
 data
-src/backend/funmooc/static/richie/css/main.css
+src/backend/base/static/richie/css/main.css
+

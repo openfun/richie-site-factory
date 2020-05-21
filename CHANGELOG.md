@@ -15,6 +15,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Refactor project to the classical Django structure to fix static files
 - Correctly adjust hero-intro background to homepage mockup.
 - Use the FunMooc help center link on "Contact Us" CTA in header.
 
