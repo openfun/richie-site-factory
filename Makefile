@@ -104,6 +104,12 @@ collectstatic:  ## collect static files to /data/static
 	@$(MANAGE) collectstatic
 .PHONY: collectstatic
 
+demo-site: ## create a demo site
+	@$(MANAGE) flush
+	@$(MANAGE) create_demo_site
+	@${MAKE} search-index
+.PHONY: demo-site
+
 init: ## create base site structure
 	@$(MANAGE) richie_init
 	@${MAKE} search-index
