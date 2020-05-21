@@ -467,7 +467,7 @@ class Production(Base):
     # SILENCED_SYSTEM_CHECKS setting (see above).
     X_FRAME_OPTIONS = "SAMEORIGIN"
 
-    DEFAULT_FILE_STORAGE = "funmooc.storage.MediaStorage"
+    DEFAULT_FILE_STORAGE = "base.storage.MediaStorage"
     AWS_DEFAULT_ACL = None
     MEDIA_URL = "media/"
 
@@ -475,7 +475,7 @@ class Production(Base):
     # the filename, that is calculated from the file content, so that browsers always
     # get the updated version of each file.
     STATICFILES_STORAGE = values.Value(
-        "funmooc.storage.ConfigurableManifestS3Boto3Storage"
+        "base.storage.ConfigurableManifestS3Boto3Storage"
     )
     STATIC_URL = "static/"
 
