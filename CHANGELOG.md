@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add translations for strings specific to fun-mooc
+
 ### Changed
 
 - Upgrade richie to 2.0.0-beta.6.

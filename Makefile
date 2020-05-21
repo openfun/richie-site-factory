@@ -154,6 +154,10 @@ import-fixtures:  ## import fixtures
 	@$(MANAGE) import_fixtures -v3
 .PHONY: import-fixtures
 
+messages: ## create the .po files used for i18n
+	@$(MANAGE) makemessages --keep-pot
+.PHONY: messages
+
 migrate: ## perform database migrations
 	@$(MANAGE) migrate
 .PHONY: migrate
