@@ -12,7 +12,7 @@ from configurations import Configuration, values
 from richie.apps.courses.settings.mixins import RichieCoursesConfigurationMixin
 from sentry_sdk.integrations.django import DjangoIntegration
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join("/", "data")
 
 
@@ -175,7 +175,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(DATA_DIR, "media")
     STATIC_ROOT = os.path.join(DATA_DIR, "static")
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
     # Login/registration related settings
     LOGIN_REDIRECT_URL = "/"
@@ -235,8 +234,8 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     INSTALLED_APPS = (
         # Funmooc stuff
-        "funmooc.base",
-        "funmooc.gimporter",
+        "base",
+        "gimporter",
         # Richie stuff
         "richie.apps.demo",
         "richie.apps.search",

@@ -5,7 +5,7 @@
   "scripts": {
     "prettier": "prettier '**/*.+(css|scss)'",
     "prettier-write": "prettier --write '**/*.+(css|scss)'",
-    "sass": "node-sass --include-path node_modules scss/_main.scss ../backend/funmooc/static/richie/css/main.css",
+    "sass": "node-sass --include-path node_modules scss/_main.scss ../backend/base/static/richie/css/main.css",
     "sass-production": "node-sass --include-path node_modules --output-style compressed scss/_main.scss ../backend/funmooc/static/richie/css/main.css",
     "watch-sass": "nodemon -e scss -x 'yarn sass'"
   },
