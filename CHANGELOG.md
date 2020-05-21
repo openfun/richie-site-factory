@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix path to storage class following refactoring
+
 ## [0.9.3] - 2020-05-21
 
 ### Added
