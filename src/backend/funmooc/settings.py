@@ -362,7 +362,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # Demo
     RICHIE_DEMO_SITE_DOMAIN = "localhost:8080"
-    RICHIE_DEMO_FIXTURES_DIR = os.path.join(BASE_DIR, "fixtures")
+    RICHIE_DEMO_FIXTURES_DIR = os.path.join(BASE_DIR, "base", "fixtures")
 
     # Elasticsearch
     RICHIE_ES_HOST = values.Value(
