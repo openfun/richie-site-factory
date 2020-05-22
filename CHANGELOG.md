@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix copying frontend build to image
+
 ## [0.9.5] - 2020-05-22
 
 ### Added
