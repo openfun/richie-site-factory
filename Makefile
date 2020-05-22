@@ -209,7 +209,6 @@ data/media/.keep:
 data/static/.keep:
 	@echo 'Preparing static volume...'
 	@mkdir -p data/static
-	@touch data/static/.keep
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
