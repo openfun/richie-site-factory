@@ -12,6 +12,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Add nginx to the stack to test collectstatic
 
+### Changed
+
+- Upgrade to Terraform 0.12
+
 ### Fixed
 
 - Fix css build location after refactoring

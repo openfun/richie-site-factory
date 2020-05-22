@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "funmooc_static" {
     max_age_seconds = 3600
   }
 
-  tags {
+  tags = {
     Name        = "funmooc-static"
     Environment = "${terraform.workspace}"
   }
@@ -34,7 +34,7 @@ resource "aws_s3_bucket" "funmooc_media" {
     enabled = true
   }
 
-  tags {
+  tags = {
     Name        = "funmooc-media"
     Environment = "${terraform.workspace}"
   }
