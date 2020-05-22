@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "state_bucket" {
     }
   }
 
-  tags {
+  tags = {
     Name = "terraform"
   }
 }

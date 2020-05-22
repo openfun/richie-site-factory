@@ -87,7 +87,7 @@ resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
     }
   }
 
-  tags {
+  tags = {
     Environment = "${terraform.workspace}"
   }
 
