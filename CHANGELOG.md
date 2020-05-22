@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix css build location after refactoring
+
 ## [0.9.4] - 2020-05-21
 
 ### Fixed
