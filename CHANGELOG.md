@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add nginx to the stack to test collectstatic
+
 ### Fixed
 
 - Fix css build location after refactoring

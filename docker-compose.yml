@@ -32,6 +32,7 @@ services:
     depends_on:
       - "db"
       - "elasticsearch"
+    user: ${DOCKER_USER}
 
   app-ci:
     build:
@@ -50,6 +51,16 @@ services:
     depends_on:
       - "db"
       - "elasticsearch"
+
+  nginx:
+    image: nginx:1.13
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./docker/files/etc/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./data:/data:ro
+    depends_on:
+      - app
 
   node:
     image: circleci/node:10
