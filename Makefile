@@ -31,7 +31,7 @@ MANAGE_CI = $(COMPOSE_RUN_CI) python manage.py
 # -- Rules
 default: help
 
-bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate init ## install development dependencies
+bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate collectstatic init ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -48,7 +48,7 @@ logs: ## display app logs (follow mode)
 .PHONY: logs
 
 run: ## start the wsgi (production) or development server
-	@$(COMPOSE) up -d app
+	@$(COMPOSE) up -d nginx
 .PHONY: run
 
 stop: ## stop the development server
@@ -100,7 +100,7 @@ check: ## perform django checks
 	@$(MANAGE) check
 .PHONY: check
 
-collectstatic:  ## collect static files to /data/static
+collectstatic: data/static/.keep ## collect static files to /data/static
 	@$(MANAGE) collectstatic
 .PHONY: collectstatic
 
