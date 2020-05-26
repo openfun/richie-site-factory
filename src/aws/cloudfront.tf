@@ -11,13 +11,16 @@ resource "aws_cloudfront_origin_access_identity" "funmooc_oai" {
 }
 
 resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
-  # Origin for the static S3 bucket
+  # Origin pointing to static files
   origin {
-    domain_name = "${aws_s3_bucket.funmooc_static.bucket_domain_name}"
+    domain_name = "${lookup(var.app_domain, terraform.workspace)}"
     origin_id   = "${local.s3_static_origin_id}"
 
-    s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.funmooc_oai.cloudfront_access_identity_path}"
+    custom_origin_config {
+      http_port = 80
+      https_port = 443
+      origin_protocol_policy = "https-only"
+      origin_ssl_protocols = ["SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2"]
     }
   }
 
