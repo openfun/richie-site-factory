@@ -14,6 +14,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Refactor Docker Compose project to run both the development and production
   images
 
+### Fixed
+
+- Fix svg images in static files by adding alias to the CloudFront
+  distribution on the same domain as the app
+
 ## [0.9.6] - 2020-05-22
 
 ### Fixed

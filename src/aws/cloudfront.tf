@@ -1,3 +1,23 @@
+provider "aws" {
+  alias = "virginia"
+  region = "us-east-1"
+}
+
+resource "aws_acm_certificate" "certificate" {
+  domain_name       = "${lookup(var.storage_domain, terraform.workspace)}"
+  provider = "aws.virginia"
+  validation_method = "DNS"
+
+  tags = {
+    Environment = "${terraform.workspace}"
+    Customer = "fun"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 locals {
   s3_static_origin_id = "funmooc-static-origin"
   s3_media_origin_id = "funmooc-media-origin"
@@ -36,6 +56,7 @@ resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
 
   enabled         = true
   is_ipv6_enabled = true
+  aliases = ["${lookup(var.storage_domain, terraform.workspace)}"]
 
   # Allow public access by default, served by static bucket
   default_cache_behavior {
@@ -95,6 +116,7 @@ resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = "${aws_acm_certificate.certificate.arn}"
+    ssl_support_method = "sni-only"
   }
 }

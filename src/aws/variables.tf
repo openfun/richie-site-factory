@@ -12,6 +12,16 @@ variable "cloudfront_price_class" {
   }
 }
 
+variable "storage_domain" {
+  type = "map"
+
+  default = {
+    production = "storage.fun-mooc.fr"
+    preprod = "storage-preprod.fun-mooc.fr"
+    staging = "storage-staging.fun-mooc.fr"
+  }
+}
+
 variable "app_domain" {
   type = "map"
 
