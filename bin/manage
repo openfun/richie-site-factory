@@ -4,6 +4,4 @@ set -eo pipefail
 # Run Django management command using docker-compose configuration (for
 # development only)
 DOCKER_USER="$(id -u):$(id -g)" \
-    docker-compose run --rm app \
-        dockerize -wait tcp://db:5432 -timeout 60s \
-		    python manage.py "$@"
+    docker-compose run --rm app-dev python manage.py "$@"

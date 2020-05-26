@@ -140,8 +140,8 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     SITE_ID = 1
 
     # Security
-    ALLOWED_HOSTS = []
-    SECRET_KEY = values.Value(None)
+    ALLOWED_HOSTS = values.ListValue([])
+    SECRET_KEY = "ThisIsAnExampleKeyForDevPurposeOnly"  # nosec
 
     # Application definition
     ROOT_URLCONF = "funmooc.urls"
@@ -175,6 +175,11 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(DATA_DIR, "media")
     STATIC_ROOT = os.path.join(DATA_DIR, "static")
+
+    # For static files, we want to use a backend that includes a hash in
+    # the filename, that is calculated from the file content, so that browsers always
+    # get the updated version of each file.
+    STATICFILES_STORAGE = values.Value("base.storage.CDNManifestStaticFilesStorage")
 
     # Login/registration related settings
     LOGIN_REDIRECT_URL = "/"
@@ -448,7 +453,7 @@ class Production(Base):
     """
 
     # Security
-    ALLOWED_HOSTS = values.ListValue(None)
+    SECRET_KEY = values.SecretValue()
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -471,21 +476,6 @@ class Production(Base):
     AWS_DEFAULT_ACL = None
     MEDIA_URL = "media/"
 
-    # For static files in production, we want to use a backend that includes a hash in
-    # the filename, that is calculated from the file content, so that browsers always
-    # get the updated version of each file.
-    STATICFILES_STORAGE = values.Value(
-        "base.storage.ConfigurableManifestS3Boto3Storage"
-    )
-    STATIC_URL = "static/"
-
-    # The mapping between the names of the original files and the names of the files distributed
-    # by the backend is stored in a file.
-    # The best practice is to allow this manifest file's name to change for each deployment so
-    # that several versions of the app can run in parallel without interfering with each other.
-    # We make it configurable so that it can be versioned with a deployment stamp in our CI/CD:
-    STATICFILES_MANIFEST_NAME = values.Value("staticfiles.json")
-
     AWS_ACCESS_KEY_ID = values.SecretValue()
     AWS_SECRET_ACCESS_KEY = values.SecretValue()
 
@@ -493,26 +483,18 @@ class Production(Base):
         "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
         "CacheControl": "max-age=94608000",
     }
+
     AWS_S3_REGION_NAME = values.Value("eu-west-1")
 
-    AWS_STATIC_BUCKET_NAME = values.Value("production-funmooc-static")
     AWS_MEDIA_BUCKET_NAME = values.Value("production-funmooc-media")
 
-    AWS_CLOUDFRONT_DOMAIN = values.Value()
+    # CDN domain for static/media urls. It is passed to the frontend to load built chunks
+    CDN_DOMAIN = values.Value()
 
     @property
     def TEXT_CKEDITOR_BASE_PATH(self):
         """Configure CKEditor with an absolute url as base path to point to CloudFront."""
-        return "//{:s}/static/djangocms_text_ckeditor/ckeditor/".format(
-            self.AWS_CLOUDFRONT_DOMAIN
-        )
-
-    @property
-    def CDN_DOMAIN(self):
-        """CDN_DOMAIN is used to load frontend built chunks; it should match the AWS CloudFront
-        domain used as a CDN. As other configurations will inherit from this setting, it should
-        be lazily evaluated via the @property pattern."""
-        return self.AWS_CLOUDFRONT_DOMAIN
+        return "//{!s}/static/djangocms_text_ckeditor/ckeditor/".format(self.CDN_DOMAIN)
 
 
 class Feature(Production):
@@ -533,7 +515,6 @@ class Staging(Production):
     nota bene: it should inherit from the Production environment.
     """
 
-    AWS_STATIC_BUCKET_NAME = values.Value("staging-funmooc-static")
     AWS_MEDIA_BUCKET_NAME = values.Value("staging-funmooc-media")
 
 
@@ -544,5 +525,4 @@ class PreProduction(Production):
     nota bene: it should inherit from the Production environment.
     """
 
-    AWS_STATIC_BUCKET_NAME = values.Value("preprod-funmooc-static")
     AWS_MEDIA_BUCKET_NAME = values.Value("preprod-funmooc-media")

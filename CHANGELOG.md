@@ -8,6 +8,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Move static files to a custom nginx image
+- Refactor Docker Compose project to run both the development and production
+  images
+
 ## [0.9.6] - 2020-05-22
 
 ### Fixed
