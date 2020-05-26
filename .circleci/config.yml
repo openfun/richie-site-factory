@@ -80,11 +80,14 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Build production image
-          command: make env.d/aws && make ci-build
+          name: Build docker images
+          command: make env.d/aws && make build
       - run:
           name: Check built image availability
-          command: docker images "funmooc:${CIRCLE_SHA1}"
+          command: |
+            docker images "funmooc:development"
+            docker images "funmooc:production"
+            docker images "funmooc-nginx:production"
       - run:
           name: Check version.json file
           command: make ci-version
@@ -234,15 +237,24 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Build production image
+          name: Build app production image
           command: |
             docker build \
               --target production \
               -t funmooc:${CIRCLE_SHA1} \
               .
       - run:
-          name: Check built image availability
-          command: docker images "funmooc:${CIRCLE_SHA1}"
+          name: Build nginx production image
+          command: |
+            docker build \
+              --target nginx \
+              -t funmooc-nginx:${CIRCLE_SHA1} \
+              .
+      - run:
+          name: Check built images availability
+          command: |
+            docker images "funmooc:${CIRCLE_SHA1}"
+            docker images "funmooc-nginx:${CIRCLE_SHA1}"
       # Login to DockerHub to Publish new images
       #
       # Nota bene: you'll need to define the following secrets environment vars
@@ -266,7 +278,7 @@ jobs:
       # Git tag: v1.0.1
       # Docker tag: 1.0.1(-alpine)(-ci)
       - run:
-          name: Tag images
+          name: Tag app image
           command: |
             docker images fundocker/funmooc
             # Display either:
@@ -279,13 +291,23 @@ jobs:
                 docker tag funmooc:${CIRCLE_SHA1} fundocker/funmooc:latest
             fi
             docker images | grep -E "^fundocker/funmooc\s*(${DOCKER_TAG}.*|latest|master)"
+      - run:
+          name: Tag nginx image
+          command: |
+            docker images fundocker/funmooc-nginx
+            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
+            docker tag funmooc-nginx:${CIRCLE_SHA1} fundocker/funmooc-nginx:${DOCKER_TAG}
+            if [[ -n "$CIRCLE_TAG" ]]; then
+                docker tag funmooc-nginx:${CIRCLE_SHA1} fundocker/funmooc-nginx:latest
+            fi
+            docker images | grep -E "^fundocker/funmooc-nginx\s*(${DOCKER_TAG}.*|latest|master)"
       # Publish images to DockerHub
       #
       # Nota bene: logged user (see "Login to DockerHub" step) must have write
       # permission for the project's repository; this also implies that the
       # DockerHub repository already exists.
       - run:
-          name: Publish images
+          name: Publish app image
           command: |
             # Display either:
             # - DOCKER_TAG: master (Git branch)
@@ -296,7 +318,14 @@ jobs:
             if [[ -n "$CIRCLE_TAG" ]]; then
               docker push fundocker/funmooc:latest
             fi
-
+      - run:
+          name: Publish nginx image
+          command: |
+            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
+            docker push fundocker/funmooc-nginx:${DOCKER_TAG}
+            if [[ -n "$CIRCLE_TAG" ]]; then
+              docker push fundocker/funmooc-nginx:latest
+            fi
 workflows:
   version: 2
 

@@ -1,14 +1,20 @@
 # -- Docker
 DOCKER_UID           = $(shell id -u)
 DOCKER_GID           = $(shell id -g)
-COMPOSE              = DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" docker-compose
+NGINX_VERSION        = 1.18
+
+COMPOSE              = \
+  NGINX_VERSION="$(NGINX_VERSION)" \
+  DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" \
+  docker-compose
 COMPOSE_RUN          = $(COMPOSE) run --rm
-COMPOSE_RUN_APP      = $(COMPOSE_RUN) app
-COMPOSE_RUN_CI       = $(COMPOSE_RUN) app-ci
+COMPOSE_RUN_APP      = $(COMPOSE_RUN) app-dev
 COMPOSE_EXEC         = $(COMPOSE) exec
-COMPOSE_EXEC_APP     = $(COMPOSE_EXEC) app
+COMPOSE_EXEC_APP     = $(COMPOSE_EXEC) app-dev
 COMPOSE_TEST_RUN     = $(COMPOSE) run --rm -e DJANGO_CONFIGURATION=Test
-COMPOSE_TEST_RUN_APP = $(COMPOSE_TEST_RUN) app
+COMPOSE_TEST_RUN_APP = $(COMPOSE_TEST_RUN) app-dev
+WAIT_DB              = $(COMPOSE_RUN) dockerize -wait tcp://db:5432 -timeout 60s
+WAIT_ES              = $(COMPOSE_RUN) dockerize -wait tcp://elasticsearch:9200 -timeout 60s
 
 # -- Node
 
@@ -21,22 +27,19 @@ COMPOSE_RUN_NODE     = $(COMPOSE_RUN) -e HOME="/tmp" node
 YARN                 = $(COMPOSE_RUN_NODE) yarn
 
 # -- Django
-MANAGE = $(COMPOSE_RUN_APP) dockerize \
-	-wait tcp://db:5432 \
-	-wait tcp://elasticsearch:9200 \
-	-timeout 60s \
-		python manage.py
-MANAGE_CI = $(COMPOSE_RUN_CI) python manage.py
+MANAGE = $(COMPOSE_RUN_APP) python manage.py
 
 # -- Rules
 default: help
 
-bootstrap: env.d/aws data/media/.keep data/static/.keep build-front build run migrate collectstatic init ## install development dependencies
+bootstrap: env.d/aws data/media/.keep build-front build run migrate init ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
-build: ## build the app container
+build: ## build all containers
 	$(COMPOSE) build app
+	$(COMPOSE) build nginx
+	$(COMPOSE) build app-dev
 .PHONY: build
 
 down: ## stop & remove containers
@@ -44,11 +47,13 @@ down: ## stop & remove containers
 .PHONY: down
 
 logs: ## display app logs (follow mode)
-	@$(COMPOSE) logs -f app
+	@$(COMPOSE) logs -f app-dev
 .PHONY: logs
 
 run: ## start the wsgi (production) or development server
 	@$(COMPOSE) up -d nginx
+	@$(COMPOSE) up -d app-dev
+	@$(WAIT_DB)
 .PHONY: run
 
 stop: ## stop the development server
@@ -100,11 +105,9 @@ check: ## perform django checks
 	@$(MANAGE) check
 .PHONY: check
 
-collectstatic: data/static/.keep ## collect static files to /data/static
-	@$(MANAGE) collectstatic
-.PHONY: collectstatic
-
 demo-site: ## create a demo site
+	@$(COMPOSE) up -d db
+	@$(WAIT_DB)
 	@$(MANAGE) flush
 	@$(MANAGE) create_demo_site
 	@${MAKE} search-index
@@ -159,32 +162,36 @@ messages: ## create the .po files used for i18n
 .PHONY: messages
 
 migrate: ## perform database migrations
+	@$(COMPOSE) up -d db
+	@$(WAIT_DB)
 	@$(MANAGE) migrate
 .PHONY: migrate
 
 search-index: ## (re)generate the Elasticsearch index
+	@$(COMPOSE) up -d elasticsearch
+	@$(WAIT_ES)
 	@$(MANAGE) bootstrap_elasticsearch
 .PHONY: search-index
 
 superuser: ## create a DjangoCMS superuser
+	@$(COMPOSE) up -d db
+	@$(WAIT_DB)
 	@$(MANAGE) createsuperuser
 .PHONY: superuser
 
 # == CI
-ci-build: ## build the app production container in the CI
-	$(COMPOSE) build app-ci
-.PHONY: ci-build
-
-ci-check: ## run django check management command
-	$(MANAGE_CI) check
+ci-check: ## run django check management command on productin image
+	$(COMPOSE_RUN) app python manage.py check
 .PHONY: ci-check
 
-ci-migrate: ci-run ## perform database migrations in the CI
-	$(MANAGE_CI) migrate
+ci-migrate: ## run django migrate command on production image
+	@$(COMPOSE) up -d db
+	@$(WAIT_DB)
+	$(COMPOSE_RUN) app python manage.py migrate
 .PHONY: ci-migrate
 
 ci-run: ## start the wsgi server (and linked services)
-	@$(COMPOSE) up -d app-ci
+	@$(COMPOSE) up -d app
 	# As we use a remote docker environment, we should explicitly use the same
 	# network to check containers status
 	@echo "Wait for services to be up..."
@@ -193,7 +200,7 @@ ci-run: ## start the wsgi server (and linked services)
 .PHONY: ci-run
 
 ci-version: ## check version file bundled in the docker image
-	$(COMPOSE_RUN) --no-deps app-ci cat version.json
+	$(COMPOSE_RUN) --no-deps app cat version.json
 .PHONY: ci-version
 
 # == Misc
@@ -205,10 +212,6 @@ data/media/.keep:
 	@echo 'Preparing media volume...'
 	@mkdir -p data/media
 	@touch data/media/.keep
-
-data/static/.keep:
-	@echo 'Preparing static volume...'
-	@mkdir -p data/static
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

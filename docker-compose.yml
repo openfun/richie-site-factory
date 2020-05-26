@@ -15,7 +15,7 @@ services:
     ports:
       - "9220:9200"
 
-  app:
+  app-dev:
     build:
       context: .
       target: development
@@ -27,14 +27,13 @@ services:
       - "8080:8000"
     volumes:
       - ./src/backend:/app
-      - ./data/static:/data/static
       - ./data/media:/data/media
     depends_on:
       - "db"
       - "elasticsearch"
-    user: ${DOCKER_USER}
+    user: ${DOCKER_USER:-1000}
 
-  app-ci:
+  app:
     build:
       context: .
       target: production
@@ -42,25 +41,36 @@ services:
         DOCKER_USER: ${DOCKER_USER:-1000}
     # We tag our images with the current commit sha1 in the CI to make them
     # unique and avoid collisions in parallel builds.
-    image: "funmooc:${CIRCLE_SHA1:-ci}"
+    image: "funmooc:production"
     env_file:
-      - env.d/development
-      - env.d/ci
+      - env.d/production
     ports:
       - "8000:8000"
+    volumes:
+      - ./data/media:/data/media
     depends_on:
       - "db"
       - "elasticsearch"
+    user: ${DOCKER_USER:-1000}
 
   nginx:
-    image: nginx:1.13
+    build:
+      context: .
+      target: nginx
+      args:
+        DOCKER_USER: ${DOCKER_USER:-1000}
+        NGINX_VERSION: ${NGINX_VERSION:-1.18}
+    image: "funmooc-nginx:production"
     ports:
       - "8081:8081"
     volumes:
       - ./docker/files/etc/nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./data:/data:ro
+      - ./data/media:/data/media:ro
     depends_on:
       - app
+
+  dockerize:
+    image: jwilder/dockerize
 
   node:
     image: circleci/node:10
