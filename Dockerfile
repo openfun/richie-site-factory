@@ -1,4 +1,5 @@
-ARG NGINX_VERSION=1.18
+ARG NGINX_IMAGE_NAME=fundocker/openshift-nginx
+ARG NGINX_IMAGE_TAG=1.13
 ARG STATIC_ROOT=/data/static
 
 # The ID of the user running in the container
@@ -116,7 +117,7 @@ USER ${DOCKER_USER}
 CMD gunicorn -c /usr/local/etc/gunicorn/funmooc.py funmooc.wsgi:application
 
 # ---- Nginx ----
-FROM nginx:${NGINX_VERSION} as nginx
+FROM ${NGINX_IMAGE_NAME}:${NGINX_IMAGE_TAG} as nginx
 
 ARG STATIC_ROOT
 

@@ -59,7 +59,8 @@ services:
       target: nginx
       args:
         DOCKER_USER: ${DOCKER_USER:-1000}
-        NGINX_VERSION: ${NGINX_VERSION:-1.18}
+        NGINX_IMAGE_NAME: ${NGINX_IMAGE_NAME:-fundocker/openshift-nginx}
+        NGINX_IMAGE_TAG: ${NGINX_IMAGE_TAG:-1.13}
     image: "funmooc-nginx:production"
     ports:
       - "8081:8081"

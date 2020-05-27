@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Use nginx image adapted for OpenShift
+
 ## [0.10.0] - 2020-05-27
 
 ### Changed
