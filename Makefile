@@ -1,10 +1,12 @@
 # -- Docker
 DOCKER_UID           = $(shell id -u)
 DOCKER_GID           = $(shell id -g)
-NGINX_VERSION        = 1.18
+NGINX_IMAGE_NAME     = fundocker/openshift-nginx
+NGINX_IMAGE_TAG      = 1.13
 
 COMPOSE              = \
-  NGINX_VERSION="$(NGINX_VERSION)" \
+  NGINX_IMAGE_NAME="$(NGINX_IMAGE_NAME)" \
+  NGINX_IMAGE_TAG="$(NGINX_IMAGE_TAG)" \
   DOCKER_USER="$(DOCKER_UID):$(DOCKER_GID)" \
   docker-compose
 COMPOSE_RUN          = $(COMPOSE) run --rm
