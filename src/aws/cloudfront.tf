@@ -66,7 +66,7 @@ resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
 
     forwarded_values {
       query_string = false
-      headers = ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Origin"]
+      headers = ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Authorization", "Origin"]
 
       cookies {
         forward = "none"
@@ -89,7 +89,7 @@ resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
 
     forwarded_values {
       query_string = false
-      headers = ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Origin"]
+      headers = ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Authorization", "Origin"]
 
       cookies {
         forward = "none"
