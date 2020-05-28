@@ -504,7 +504,6 @@ class Feature(Production):
     nota bene: it should inherit from the Production environment.
     """
 
-    AWS_STATIC_BUCKET_NAME = values.Value("feature-funmooc-static")
     AWS_MEDIA_BUCKET_NAME = values.Value("feature-funmooc-media")
 
 
