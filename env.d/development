@@ -2,22 +2,21 @@
 PYTHONUNBUFFERED=1
 
 # Django
-DJANGO_SETTINGS_MODULE=funmooc.settings
-DJANGO_CONFIGURATION=Development
 DJANGO_SECRET_KEY=ThisIsAnExampleKeyForDevPurposeOnly
+DJANGO_ALLOWED_HOSTS=*
 
 # Elastic search
 RICHIE_ES_HOST=elasticsearch
 discovery.type=single-node
 
 # PostgreSQL db container configuration
-POSTGRES_DB=funmooc
+POSTGRES_DB=richie
 POSTGRES_USER=fun
 POSTGRES_PASSWORD=pass
 
 # App database configuration
 DB_HOST=db
-DB_NAME=funmooc
+DB_NAME=richie
 DB_USER=fun
 DB_PASSWORD=pass
 DB_PORT=5432

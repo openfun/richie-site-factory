@@ -1,413 +1,386 @@
-generate-version-file: &generate-version-file
-  run:
-    name: Create a version.json
-    command: |
-      # Create a version.json à-la-mozilla
-      # https://github.com/mozilla-services/Dockerflow/blob/master/docs/version_object.md
-      printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n' \
-        "$CIRCLE_SHA1" \
-        "$CIRCLE_TAG" \
-        "$CIRCLE_PROJECT_USERNAME" \
-        "$CIRCLE_PROJECT_REPONAME" \
-        "$CIRCLE_BUILD_URL" > src/backend/version.json
-
-version: 2
+commands:
+  generate-version-file:
+    parameters:
+      site:
+        default: funmooc
+        type: string
+    steps:
+    - run:
+        command: |
+          # Create a version.json à-la-mozilla
+          # https://github.com/mozilla-services/Dockerflow/blob/master/docs/version_object.md
+          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n' \
+          "$CIRCLE_SHA1" \
+          "$CIRCLE_TAG" \
+          "$CIRCLE_PROJECT_USERNAME" \
+          "$CIRCLE_PROJECT_REPONAME" \
+          "$CIRCLE_BUILD_URL" > sites/<< parameters.site >>/src/backend/version.json
+        name: Create a version.json
 jobs:
-  # Git jobs
-  # Check that the git history is clean and complies with our expectations
-  lint-git:
-    docker:
-      - image: circleci/python:3.7-stretch
-    working_directory: ~/fun
-    steps:
-      - checkout
-      # Make sure the changes don't add a "print" statement to the code base.
-      # We should exclude the ".circleci" folder from the search as the very command that checks
-      # the absence of "print" is including a "print(" itself.
-      - run:
-          name: enforce absence of print statements in code
-          command: |
-            ! git diff origin/master..HEAD -- . ':(exclude).circleci' | grep "print("
-      - run:
-          name: Check absence of fixup commits
-          command: |
-            ! git log | grep 'fixup!'
-      - run:
-          name: Install gitlint
-          command: |
-            pip install --user gitlint
-      - run:
-          name: lint commit messages added to master
-          command: |
-            ~/.local/bin/gitlint --commits origin/master..HEAD
-
-  # Check that the CHANGELOG has been updated in the current branch
-  check-changelog:
-    docker:
-      - image: circleci/buildpack-deps:stretch-scm
-    working_directory: ~/fun
-    steps:
-      - checkout
-      - run:
-          name: Check that the CHANGELOG has been modified in the current branch
-          command: |
-            git whatchanged --name-only --pretty="" origin..HEAD | grep CHANGELOG
-
-  # Check that the CHANGELOG max line length does not exceed 80 characters
-  lint-changelog:
-    docker:
-      - image: debian:stretch
-    working_directory: ~/fun
-    steps:
-      - checkout
-      - run:
-          name: Check CHANGELOG max line length
-          command: |
-            # Get the longuest line width (ignoring release links)
-            test $(cat CHANGELOG.md | grep -Ev "^\[.*\]: https://github.com/openfun" | wc -L) -le 80
-
-  # Build Docker images
-  build-docker:
-    docker:
-      - image: circleci/buildpack-deps:stretch
-    working_directory: ~/fun
-    steps:
-      # Checkout repository sources
-      - checkout
-      # Generate a version.json file describing app release
-      - <<: *generate-version-file
-      # Activate docker-in-docker (with layers caching enabled)
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Build docker images
-          command: make env.d/aws && make build
-      - run:
-          name: Check built image availability
-          command: |
-            docker images "funmooc:development"
-            docker images "funmooc:production"
-            docker images "funmooc-nginx:production"
-      - run:
-          name: Check version.json file
-          command: make ci-version
-      - run:
-          name: Run Django migrations
-          command: make ci-migrate
-      - run:
-          name: Run Django checks with production image
-          command: make ci-check
-
-  # ---- Backend jobs ----
-  # Build backend development environment
   build-back:
     docker:
-      - image: circleci/python:3.7-stretch
-    working_directory: ~/fun
+    - image: circleci/python:3.7-stretch
+    parameters:
+      site:
+        type: string
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-back-dependencies-{{ .Revision }}
-      - run:
-          name: Install development dependencies
-          command: >
-            pip install \
-              --user \
-              -r requirements/base.txt \
-              -r requirements/dev.txt
-      - save_cache:
-          paths:
-            - ~/.local
-          key: v1-back-dependencies-{{ .Revision }}
-
-  lint-back:
-    docker:
-      - image: circleci/python:3.7-stretch
-    working_directory: ~/fun/src/backend/
-    steps:
-      - checkout:
-          path: ~/fun
-      - restore_cache:
-          keys:
-            - v1-back-dependencies-{{ .Revision }}
-      - run:
-          name: Lint code with flake8
-          command: ~/.local/bin/flake8
-      - run:
-          name: Lint code with isort
-          command: ~/.local/bin/isort --recursive --check-only .
-      - run:
-          name: Lint code with black
-          command: ~/.local/bin/black .
-      - run:
-          name: Lint code with pylint
-          command: ~/.local/bin/pylint .
-      - run:
-          name: Lint code with bandit
-          command: ~/.local/bin/bandit -qr .
-
-  test-back:
-    docker:
-      - image: circleci/python:3.7-stretch
-        environment:
-          DJANGO_SETTINGS_MODULE: funmooc.settings
-          PYTHONPATH: /home/circleci/fun/src/backend
-          DJANGO_CONFIGURATION: Test
-          DJANGO_SECRET_KEY: ThisIsAnExampleKeyForTestPurposeOnly
-          DB_HOST: localhost
-          DB_NAME: funmooc
-          DB_USER: funmooc_user
-          DB_PASSWORD: pass
-          DB_PORT: 5432
-      - image: circleci/postgres:9.6-alpine-ram
-        environment:
-          POSTGRES_DB: funmooc
-          POSTGRES_USER: funmooc_user
-          POSTGRES_PASSWORD: pass
-    working_directory: ~/fun/src/backend
-    steps:
-      - checkout:
-          path: ~/fun
-      - restore_cache:
-          keys:
-            - v1-back-dependencies-{{ .Revision }}
-      # Run back-end (Django) test suite
-      #
-      # Nota bene: to run the django test suite, we need to ensure that the
-      # PostgreSQL service is up and ready. To achieve this,
-      # we wrap the command execution with dockerize, a tiny tool
-      # installed in the development image. In our case, dockerize will wait
-      # up to one minute until the database container is answering on port 5432.
-      - run:
-          name: Run tests
-          command: |
-                dockerize \
-                  -wait tcp://localhost:5432 \
-                  -timeout 60s \
-                    ~/.local/bin/pytest
-
-  # ---- Front-end jobs ----
+    - checkout:
+        path: ~/fun
+    - restore_cache:
+        keys:
+        - v1-back-dependencies-{{ .Revision }}
+    - run:
+        command: |
+          pip install \
+            --user \
+            -r requirements/base.txt \
+            -r requirements/dev.txt
+        name: Install development dependencies
+    - save_cache:
+        key: v1-back-dependencies-{{ .Revision }}
+        paths:
+        - ~/.local
+    working_directory: ~/fun/sites/<< parameters.site >>
   build-front-production:
     docker:
-      - image: circleci/node:10
-    working_directory: ~/fun/src/frontend/
+    - image: circleci/node:10
+    parameters:
+      site:
+        type: string
     steps:
-      - checkout:
-          path: ~/fun
-      - restore_cache:
-          keys:
-            - v1-front-dependencies-{{ checksum "yarn.lock" }}
-            - v1-front-dependencies-
-      - run:
-          name: Install frontend dependencies (with locked dependencies)
-          command: yarn install --frozen-lockfile
-      - run:
-          name: Build application styles (production mode)
-          command: yarn sass-production
-      - save_cache:
-          paths:
-            - ./node_modules
-          key: v1-front-dependencies-{{ checksum "yarn.lock" }}
-
-  lint-front:
+    - checkout:
+        path: ~/fun
+    - restore_cache:
+        keys:
+        - v2-front-dependencies-{{ checksum "yarn.lock" }}
+        - v2-front-dependencies-
+    - run:
+        command: yarn install --frozen-lockfile
+        name: Install frontend dependencies (with locked dependencies)
+    - run:
+        command: yarn sass-production
+        name: Build application styles (production mode)
+    - save_cache:
+        key: v2-front-dependencies-{{ checksum "yarn.lock" }}
+        paths:
+        - ./node_modules
+    working_directory: ~/fun/sites/<< parameters.site >>/src/frontend/
+  check-changelog:
     docker:
-      - image: circleci/node:10
-    working_directory: ~/fun/src/frontend/
+    - image: circleci/buildpack-deps:stretch-scm
+    parameters:
+      site:
+        type: string
     steps:
-      - checkout:
-          path: ~/fun
-      - restore_cache:
-          keys:
-            - v1-front-dependencies-{{ checksum "yarn.lock" }}
-      - run:
-          name: Lint CSS/SCSS code with prettier
-          command: yarn prettier
-
-  # ---- DockerHub publication job ----
+    - checkout
+    - run:
+        command: |
+          git whatchanged --name-only --pretty="" origin..HEAD | grep sites/<< parameters.site >>/CHANGELOG
+        name: Check that the CHANGELOG has been modified in the current branch
+    working_directory: ~/fun
+  check-configuration:
+    machine:
+      docker_layer_caching: true
+    steps:
+    - checkout
+    - run:
+        command: |
+          bin/ci check_configuration
+        name: Check that the ".circleci/config.yml" file has been updated in the current
+          branch
+    working_directory: ~/fun
   hub:
     docker:
-      - image: circleci/buildpack-deps:stretch
-    working_directory: ~/fun
+    - environment:
+        RICHIE_SITE: << parameters.site >>
+      image: circleci/buildpack-deps:stretch
+    parameters:
+      site:
+        type: string
     steps:
-      - checkout
-      # Generate a version.json file describing app release
-      - <<: *generate-version-file
-      # Activate docker-in-docker (with layers caching enabled)
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Build app production image
-          command: |
-            docker build \
-              --target production \
-              -t funmooc:${CIRCLE_SHA1} \
-              .
-      - run:
-          name: Build nginx production image
-          command: |
-            docker build \
-              --target nginx \
-              -t funmooc-nginx:${CIRCLE_SHA1} \
-              .
-      - run:
-          name: Check built images availability
-          command: |
-            docker images "funmooc:${CIRCLE_SHA1}"
-            docker images "funmooc-nginx:${CIRCLE_SHA1}"
-      # Login to DockerHub to Publish new images
-      #
-      # Nota bene: you'll need to define the following secrets environment vars
-      # in CircleCI interface:
-      #
-      #   - DOCKER_USER
-      #   - DOCKER_PASS
-      - run:
-          name: Login to DockerHub
-          command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-      # Set environment variables that will be used in next steps
-      - run:
-          name: Setup Environment Variables
-          command: |
-            DOCKER_TAG=$([[ -z "$CIRCLE_TAG" ]] && echo $CIRCLE_BRANCH || echo ${CIRCLE_TAG} | sed 's/^v//')
-            RELEASE_TYPE=$([[ -z "$CIRCLE_TAG" ]] && echo "branch" || echo "tag ")
-            echo "export DOCKER_TAG=${DOCKER_TAG}" >> $BASH_ENV
-            echo "export RELEASE_TYPE=${RELEASE_TYPE}" >> $BASH_ENV
-      # Tag docker images with the same pattern used in Git (Semantic Versioning)
-      #
-      # Git tag: v1.0.1
-      # Docker tag: 1.0.1(-alpine)(-ci)
-      - run:
-          name: Tag app image
-          command: |
-            docker images fundocker/funmooc
-            # Display either:
-            # - DOCKER_TAG: master (Git branch)
-            # or
-            # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
-            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
-            docker tag funmooc:${CIRCLE_SHA1} fundocker/funmooc:${DOCKER_TAG}
-            if [[ -n "$CIRCLE_TAG" ]]; then
-                docker tag funmooc:${CIRCLE_SHA1} fundocker/funmooc:latest
-            fi
-            docker images | grep -E "^fundocker/funmooc\s*(${DOCKER_TAG}.*|latest|master)"
-      - run:
-          name: Tag nginx image
-          command: |
-            docker images fundocker/funmooc-nginx
-            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
-            docker tag funmooc-nginx:${CIRCLE_SHA1} fundocker/funmooc-nginx:${DOCKER_TAG}
-            if [[ -n "$CIRCLE_TAG" ]]; then
-                docker tag funmooc-nginx:${CIRCLE_SHA1} fundocker/funmooc-nginx:latest
-            fi
-            docker images | grep -E "^fundocker/funmooc-nginx\s*(${DOCKER_TAG}.*|latest|master)"
-      # Publish images to DockerHub
-      #
-      # Nota bene: logged user (see "Login to DockerHub" step) must have write
-      # permission for the project's repository; this also implies that the
-      # DockerHub repository already exists.
-      - run:
-          name: Publish app image
-          command: |
-            # Display either:
-            # - DOCKER_TAG: master (Git branch)
-            # or
-            # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
-            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
-            docker push fundocker/funmooc:${DOCKER_TAG}
-            if [[ -n "$CIRCLE_TAG" ]]; then
-              docker push fundocker/funmooc:latest
-            fi
-      - run:
-          name: Publish nginx image
-          command: |
-            echo "DOCKER_TAG: ${DOCKER_TAG} (Git ${RELEASE_TYPE}${CIRCLE_TAG})"
-            docker push fundocker/funmooc-nginx:${DOCKER_TAG}
-            if [[ -n "$CIRCLE_TAG" ]]; then
-              docker push fundocker/funmooc-nginx:latest
-            fi
+    - checkout
+    - generate-version-file:
+        site: << parameters.site >>
+    - setup_remote_docker:
+        docker_layer_caching: true
+    - run:
+        command: make env.d/aws && make build
+        name: Build docker images
+    - run:
+        command: |
+          docker images "<< parameters.site >>:development"
+          docker images "<< parameters.site >>:production"
+          docker images "<< parameters.site >>-nginx:production"
+        name: Check built image availability
+    - run:
+        command: make ci-version
+        name: Check version.json file
+    - run:
+        command: make ci-migrate
+        name: Run Django migrations
+    - run:
+        command: make ci-check
+        name: Run Django checks with production image
+    - when:
+        condition:
+          or:
+          - << pipeline.git.tag >>
+          - equal:
+            - << pipeline.git.branch >>
+            - master
+        steps:
+        - run:
+            command: |
+              if [[ -z "$CIRCLE_TAG" ]]; then
+                  bin/ci check_tag << parameters.site >> "$CIRCLE_TAG"
+              fi
+            name: For a release, check that the tag and versions are in sync
+        - run:
+            command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            name: Login to DockerHub
+        - run:
+            command: |
+              DOCKER_TAG=$([[ -z "$CIRCLE_TAG" ]] && echo $CIRCLE_BRANCH || echo ${CIRCLE_TAG} | sed 's/^<< parameters.site >>-//')
+              echo "export DOCKER_TAG=${DOCKER_TAG}" >> $BASH_ENV
+            name: Compute Docker tag
+        - run:
+            command: |
+              docker images fundocker/<< parameters.site >>
+              # Display either:
+              # - DOCKER_TAG: master (Git branch)
+              # or
+              # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
+              echo "DOCKER_TAG: ${DOCKER_TAG}"
+              docker tag << parameters.site >>:production fundocker/<< parameters.site >>:${DOCKER_TAG}
+              if [[ -n "$CIRCLE_TAG" ]]; then
+                  docker tag << parameters.site >>:production fundocker/<< parameters.site >>:latest
+              fi
+              docker images | grep -E "^fundocker/<< parameters.site >>\s*(${DOCKER_TAG}.*|latest|master)"
+            name: Tag app image
+        - run:
+            command: |
+              docker images fundocker/<< parameters.site >>-nginx
+              echo "DOCKER_TAG: ${DOCKER_TAG}"
+              docker tag << parameters.site >>-nginx:production fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+              if [[ -n "$CIRCLE_TAG" ]]; then
+                  docker tag << parameters.site >>-nginx:production fundocker/<< parameters.site >>-nginx:latest
+              fi
+              docker images | grep -E "^fundocker/<< parameters.site >>-nginx\s*(${DOCKER_TAG}.*|latest|master)"
+            name: Tag nginx image
+        - run:
+            command: |
+              docker push fundocker/<< parameters.site >>:${DOCKER_TAG}
+              if [[ -n "$CIRCLE_TAG" ]]; then
+                docker push fundocker/<< parameters.site >>:latest
+              fi
+            name: Publish app image
+        - run:
+            command: |
+              docker push fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+              if [[ -n "$CIRCLE_TAG" ]]; then
+                docker push fundocker/<< parameters.site >>-nginx:latest
+              fi
+            name: Publish nginx image
+    working_directory: ~/fun
+  lint-back:
+    docker:
+    - image: circleci/python:3.7-stretch
+    parameters:
+      site:
+        type: string
+    steps:
+    - checkout:
+        path: ~/fun
+    - restore_cache:
+        keys:
+        - v1-back-dependencies-{{ .Revision }}
+    - run:
+        command: ~/.local/bin/flake8
+        name: Lint code with flake8
+    - run:
+        command: ~/.local/bin/isort --recursive --check-only .
+        name: Lint code with isort
+    - run:
+        command: ~/.local/bin/black .
+        name: Lint code with black
+    - run:
+        command: ~/.local/bin/pylint .
+        name: Lint code with pylint
+    - run:
+        command: ~/.local/bin/bandit -qr .
+        name: Lint code with bandit
+    working_directory: ~/fun/sites/<< parameters.site >>/src/backend/
+  lint-bash:
+    docker:
+    - image: koalaman/shellcheck-alpine:stable
+    steps:
+    - checkout
+    - run:
+        command: shellcheck bin/*
+        name: Lint bash scripts in "/bin"
+    working_directory: ~/fun
+  lint-changelog:
+    docker:
+    - image: debian:stretch
+    parameters:
+      site:
+        type: string
+    steps:
+    - checkout
+    - run:
+        command: |
+          # Get the longuest line width (ignoring release links)
+          test $(cat sites/<< parameters.site >>/CHANGELOG.md | grep -Ev "^\[.*\]: https://github.com/openfun" | wc -L) -le 80
+        name: Check CHANGELOG max line length
+    working_directory: ~/fun
+  lint-front:
+    docker:
+    - image: circleci/node:10
+    parameters:
+      site:
+        type: string
+    steps:
+    - checkout:
+        path: ~/fun
+    - restore_cache:
+        keys:
+        - v2-front-dependencies-{{ checksum "yarn.lock" }}
+        - v2-front-dependencies-
+    - run:
+        command: yarn prettier
+        name: Lint CSS/SCSS code with prettier
+    working_directory: ~/fun/sites/<< parameters.site >>/src/frontend/
+  lint-git:
+    docker:
+    - image: circleci/python:3.7-stretch
+    steps:
+    - checkout
+    - run:
+        command: |
+          ! git diff origin/master..HEAD -- . ':(exclude).circleci' | grep "print("
+        name: enforce absence of print statements in code
+    - run:
+        command: |
+          ! git log | grep 'fixup!'
+        name: Check absence of fixup commits
+    - run:
+        command: |
+          pip install --user gitlint
+        name: Install gitlint
+    - run:
+        command: |
+          ~/.local/bin/gitlint --commits origin/master..HEAD
+        name: lint commit messages added to master
+    working_directory: ~/fun
+  test-back:
+    docker:
+    - environment:
+        DB_HOST: localhost
+        DB_NAME: richie
+        DB_PASSWORD: pass
+        DB_PORT: 5432
+        DB_USER: richie_user
+        DJANGO_CONFIGURATION: Test
+        DJANGO_SECRET_KEY: ThisIsAnExampleKeyForTestPurposeOnly
+        DJANGO_SETTINGS_MODULE: << parameters.site >>.settings
+        PYTHONPATH: /home/circleci/fun/src/backend
+      image: circleci/python:3.7-stretch
+    - environment:
+        POSTGRES_DB: richie
+        POSTGRES_PASSWORD: pass
+        POSTGRES_USER: richie_user
+      image: circleci/postgres:9.6-alpine-ram
+    parameters:
+      site:
+        type: string
+    steps:
+    - checkout:
+        path: ~/fun
+    - restore_cache:
+        keys:
+        - v1-back-dependencies-{{ .Revision }}
+    - run:
+        command: |
+          dockerize \
+            -wait tcp://localhost:5432 \
+            -timeout 60s \
+              ~/.local/bin/pytest
+        name: Run tests
+    working_directory: ~/fun/sites/<< parameters.site >>/src/backend
+parameters:
+  run_funmooc:
+    default: true
+    type: boolean
+version: 2.1
 workflows:
-  version: 2
-
   funmooc:
     jobs:
-      # Git jobs
-      #
-      # Check validity of git history
-      - lint-git:
-          filters:
-            tags:
-              only: /.*/
-      # Check CHANGELOG update
-      - check-changelog:
-          filters:
-            branches:
-              ignore: master
-            tags:
-              only: /(?!^v).*/
-      - lint-changelog:
-          filters:
-            branches:
-              ignore: master
-            tags:
-              only: /.*/
+    - check-changelog:
+        filters:
+          branches:
+            ignore: master
+          tags:
+            only: /.*/
+        site: funmooc
+    - lint-changelog:
+        filters:
+          branches:
+            ignore: master
+          tags:
+            only: /.*/
+        site: funmooc
+    - build-front-production:
+        filters:
+          tags:
+            only: /.*/
+        site: funmooc
+    - lint-front:
+        filters:
+          tags:
+            only: /.*/
+        requires:
+        - build-front-production
+        site: funmooc
+    - build-back:
+        filters:
+          tags:
+            only: /.*/
+        site: funmooc
+    - lint-back:
+        filters:
+          tags:
+            only: /.*/
+        requires:
+        - build-back
+        site: funmooc
+    - test-back:
+        filters:
+          tags:
+            only: /.*/
+        requires:
+        - build-back
+        site: funmooc
+    - hub:
+        filters:
+          tags:
+            only: /^funmooc-.*/
+        requires:
+        - lint-front
+        - lint-back
+        site: funmooc
+    when: << pipeline.parameters.run_funmooc >>
+  site-factory:
+    jobs:
+    - lint-git:
+        filters:
+          tags:
+            only: /.*/
+    - check-configuration:
+        filters:
+          tags:
+            only: /.*/
+    - lint-bash:
+        filters:
+          tags:
+            only: /.*/
 
-      # Docker jobs
-      #
-      # Build, lint and test production and development Docker images
-      # (debian-based)
-      - build-docker:
-          filters:
-            tags:
-              only: /.*/
-
-      # Front-end jobs
-      #
-      # Build & lint the front-end apps
-      - build-front-production:
-          filters:
-            tags:
-              only: /.*/
-      - lint-front:
-          requires:
-            - build-front-production
-          filters:
-            tags:
-              only: /.*/
-
-      # Backend jobs
-      #
-      # Build, lint and test production and development Docker images
-      # (debian-based)
-      - build-back:
-          filters:
-            tags:
-              only: /.*/
-      - lint-back:
-          requires:
-            - build-back
-          filters:
-            tags:
-              only: /.*/
-      - test-back:
-          requires:
-            - build-back
-          filters:
-            tags:
-              only: /.*/
-
-      # DockerHub publication.
-      #
-      # Publish docker images only if all build, lint and test jobs succeed and
-      # if the CI workflow has been triggered by a git tag starting with the
-      # letter v or by a PR merged to the master branch
-      - hub:
-          requires:
-            - build-docker
-            - lint-front
-            - lint-back
-          filters:
-            branches:
-              only: master
-            tags:
-              only: /^v.*/

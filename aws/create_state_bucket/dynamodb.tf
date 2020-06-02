@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "terraform-state-locks" {
-  name           = "funmooc_terraform_state_locks"
+  name           = "${terraform.workspace}_terraform_state_locks"
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "LockID"

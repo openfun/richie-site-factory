@@ -1,0 +1,85 @@
+# Git jobs
+# Check that the git history is clean and complies with our expectations
+lint-git:
+  docker:
+    - image: circleci/python:3.7-stretch
+  working_directory: ~/fun
+  steps:
+    - checkout
+    # Make sure the changes don't add a "print" statement to the code base.
+    # We should exclude the ".circleci" folder from the search as the very command that checks
+    # the absence of "print" is including a "print(" itself.
+    - run:
+        name: enforce absence of print statements in code
+        command: |
+          ! git diff origin/master..HEAD -- . ':(exclude).circleci' | grep "print("
+    - run:
+        name: Check absence of fixup commits
+        command: |
+          ! git log | grep 'fixup!'
+    - run:
+        name: Install gitlint
+        command: |
+          pip install --user gitlint
+    - run:
+        name: lint commit messages added to master
+        command: |
+          ~/.local/bin/gitlint --commits origin/master..HEAD
+
+# Check that the ".circleci/config.yml" file has been updated in the current branch
+check-configuration:
+  machine:
+    # Cache docker layers so that we strongly speed up this job execution
+    # This cache will be available to future jobs (although because jobs run
+    # in parallel, CircleCI does not guarantee that a given job will see a
+    # specific version of the cache. See documentation for details)
+    docker_layer_caching: true
+  working_directory: ~/fun
+  steps:
+    - checkout
+    - run:
+        name: Check that the ".circleci/config.yml" file has been updated in the current branch
+        command: |
+          bin/ci check_configuration
+
+# Lint bash scripts
+lint-bash:
+  docker:
+    - image: koalaman/shellcheck-alpine:stable
+  working_directory: ~/fun
+  steps:
+    - checkout
+    - run:
+        name: Lint bash scripts in "/bin"
+        command: shellcheck bin/*
+
+# Check that the CHANGELOG has been updated in the current branch
+check-changelog:
+  parameters:
+    site:
+      type: string
+  docker:
+    - image: circleci/buildpack-deps:stretch-scm
+  working_directory: ~/fun
+  steps:
+    - checkout
+    - run:
+        name: Check that the CHANGELOG has been modified in the current branch
+        command: |
+          git whatchanged --name-only --pretty="" origin..HEAD | grep sites/<< parameters.site >>/CHANGELOG
+
+# Check that the CHANGELOG max line length does not exceed 80 characters
+lint-changelog:
+  parameters:
+    site:
+      type: string
+  docker:
+    - image: debian:stretch
+  working_directory: ~/fun
+  steps:
+    - checkout
+    - run:
+        name: Check CHANGELOG max line length
+        command: |
+          # Get the longuest line width (ignoring release links)
+          test $(cat sites/<< parameters.site >>/CHANGELOG.md | grep -Ev "^\[.*\]: https://github.com/openfun" | wc -L) -le 80

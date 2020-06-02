@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+# shellcheck source=bin/_config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/_config.sh"
+
+args=( "$@" )
+
+args+=("-var-file=/config/config.tfvars")
+
+if [[ "$1" == "init" ]] ; then
+    args+=(
+        "-backend-config=bucket=${RICHIE_SITE}-terraform"
+        "-backend-config=key=${RICHIE_SITE}.tfstate"
+        "-backend-config=dynamodb_table=${RICHIE_SITE}_terraform_state_locks"
+    )
+fi
+
 # Run Terraform commands in the Hashicorp docker container, passing our
 # environment variables
-DOCKER_USER="$(id -u):$(id -g)" \
-    docker-compose run --rm terraform "$@"
+DOCKER_USER="$(id -u):$(id -g)" docker-compose run --rm terraform "${args[@]}"

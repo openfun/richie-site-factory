@@ -19,18 +19,18 @@ resource "aws_acm_certificate" "certificate" {
 }
 
 locals {
-  s3_static_origin_id = "funmooc-static-origin"
-  s3_media_origin_id = "funmooc-media-origin"
+  s3_static_origin_id = "${var.site}-static-origin"
+  s3_media_origin_id = "${var.site}-media-origin"
 }
 
 # Create an origin access identity that will allow CloudFront to access S3
 # See bucket policies in s3.tf or documentation for more details:
 # https://www.terraform.io/docs/providers/aws/r/cloudfront_origin_access_identity.html
-resource "aws_cloudfront_origin_access_identity" "funmooc_oai" {
+resource "aws_cloudfront_origin_access_identity" "richie_oai" {
   comment = "fun-mooc origin for the ${terraform.workspace} environment"
 }
 
-resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
+resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
   # Origin pointing to static files
   origin {
     domain_name = "${lookup(var.app_domain, terraform.workspace)}"
@@ -46,11 +46,11 @@ resource "aws_cloudfront_distribution" "funmooc_cloudfront_distribution" {
 
   # Origin for the media S3 bucket
   origin {
-    domain_name = "${aws_s3_bucket.funmooc_media.bucket_domain_name}"
+    domain_name = "${aws_s3_bucket.richie_media.bucket_domain_name}"
     origin_id   = "${local.s3_media_origin_id}"
 
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.funmooc_oai.cloudfront_access_identity_path}"
+      origin_access_identity = "${aws_cloudfront_origin_access_identity.richie_oai.cloudfront_access_identity_path}"
     }
   }
 

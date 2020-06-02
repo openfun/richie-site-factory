@@ -1,10 +1,10 @@
 # Statics and media files management with AWS
 
-We use AWS S3/CloudFront to store and distribute static and media files for the
-project in various environments. Buckets, distributions and IAM users creation
+We use AWS S3/CloudFront to store and distribute static and media files for a
+site in various environments. Buckets, distributions and IAM users creation
 is fully automated using [Terraform](https://www.terraform.io/).
 
-> ✋ If you plan to develop locally on the project, you don't have to configure
+> ✋ If you plan to develop locally on a site, you don't have to configure
 > anything more. The following documentation targets operational users willing
 > to setup an AWS infrastructure to handle static and media files.
 

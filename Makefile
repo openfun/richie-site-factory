@@ -1,3 +1,7 @@
+# -- Terminal colors
+COLOR_INFO    = \033[0;36m
+COLOR_RESET   = \033[0m
+
 # -- Docker
 DOCKER_UID           = $(shell id -u)
 DOCKER_GID           = $(shell id -g)
@@ -34,7 +38,7 @@ MANAGE = $(COMPOSE_RUN_APP) python manage.py
 # -- Rules
 default: help
 
-bootstrap: env.d/aws data/media/.keep build-front build run migrate init ## install development dependencies
+bootstrap: env.d/aws reset data/media/.keep build-front build run migrate init ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -43,6 +47,12 @@ build: ## build all containers
 	$(COMPOSE) build nginx
 	$(COMPOSE) build app-dev
 .PHONY: build
+
+reset:  ## Remove database and local files
+	$(COMPOSE) stop
+	rm -Ir data/*
+	$(COMPOSE) rm db
+.PHONY: reset
 
 down: ## stop & remove containers
 	@$(COMPOSE) down
@@ -61,6 +71,10 @@ run: ## start the wsgi (production) or development server
 stop: ## stop the development server
 	@$(COMPOSE) stop
 .PHONY: stop
+
+info:  ## get activated site info
+	@echo "RICHIE_SITE: $(COLOR_INFO)$(RICHIE_SITE)$(COLOR_RESET)"
+.PHONY: info
 
 # == Frontend
 build-front: install-front build-sass ## build front-end application
