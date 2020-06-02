@@ -1,6 +1,6 @@
 # Create S3 Bucket for media files
-resource "aws_s3_bucket" "funmooc_media" {
-  bucket = "${terraform.workspace}-funmooc-media"
+resource "aws_s3_bucket" "richie_media" {
+  bucket = "${terraform.workspace}-${var.site}-media"
   acl    = "private"
   region = "${var.aws_region}"
 
@@ -16,25 +16,25 @@ resource "aws_s3_bucket" "funmooc_media" {
   }
 
   tags = {
-    Name        = "funmooc-media"
+    Name        = "${var.site}-media"
     Environment = "${terraform.workspace}"
   }
 }
 
 # Defines a user that should be able to write to the S3 bucket
-resource "aws_iam_user" "funmooc_user" {
-  name = "${terraform.workspace}-funmooc"
+resource "aws_iam_user" "richie_user" {
+  name = "${terraform.workspace}-${var.site}"
 }
 
-resource "aws_iam_access_key" "funmooc_access_key" {
-  user = "${aws_iam_user.funmooc_user.name}"
+resource "aws_iam_access_key" "richie_access_key" {
+  user = "${aws_iam_user.richie_user.name}"
 }
 
 # Grant accesses to the media bucket:
 # - full access for the user,
 # - read only access for CloudFront.
-resource "aws_s3_bucket_policy" "funmooc_media_bucket_policy" {
-  bucket = "${aws_s3_bucket.funmooc_media.id}"
+resource "aws_s3_bucket_policy" "richie_media_bucket_policy" {
+  bucket = "${aws_s3_bucket.richie_media.id}"
 
   policy = <<EOF
 {
@@ -44,22 +44,22 @@ resource "aws_s3_bucket_policy" "funmooc_media_bucket_policy" {
       "Sid": "User access",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "${aws_iam_user.funmooc_user.arn}"
+        "AWS": "${aws_iam_user.richie_user.arn}"
       },
       "Action": [ "s3:*" ],
       "Resource": [
-        "${aws_s3_bucket.funmooc_media.arn}",
-        "${aws_s3_bucket.funmooc_media.arn}/*"
+        "${aws_s3_bucket.richie_media.arn}",
+        "${aws_s3_bucket.richie_media.arn}/*"
       ]
     },
     {
       "Sid": "Cloudfront",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "${aws_cloudfront_origin_access_identity.funmooc_oai.iam_arn}"
+        "AWS": "${aws_cloudfront_origin_access_identity.richie_oai.iam_arn}"
       },
       "Action": "s3:GetObject",
-      "Resource": "${aws_s3_bucket.funmooc_media.arn}/*"
+      "Resource": "${aws_s3_bucket.richie_media.arn}/*"
     }
   ]
 }

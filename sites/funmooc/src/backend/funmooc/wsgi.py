@@ -1,5 +1,5 @@
 """
-WSGI config for richie project.
+WSGI config for the funmooc project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

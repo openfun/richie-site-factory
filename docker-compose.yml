@@ -21,13 +21,17 @@ services:
       target: development
       args:
         DOCKER_USER: ${DOCKER_USER:-1000}
-    image: "funmooc:development"
-    env_file: "env.d/development"
+        SITE: ${RICHIE_SITE:-funmooc}
+    image: "${RICHIE_SITE:-funmooc}:development"
+    environment:
+      - DJANGO_SETTINGS_MODULE=${RICHIE_SITE:-funmooc}.settings
+      - DJANGO_CONFIGURATION=Development
+    env_file: env.d/development
     ports:
       - "8080:8000"
     volumes:
-      - ./src/backend:/app
-      - ./data/media:/data/media
+      - "./sites/${RICHIE_SITE:-funmooc}/src/backend:/app"
+      - "./data/media:/data/media"
     depends_on:
       - "db"
       - "elasticsearch"
@@ -39,11 +43,14 @@ services:
       target: production
       args:
         DOCKER_USER: ${DOCKER_USER:-1000}
+        SITE: ${RICHIE_SITE:-funmooc}
     # We tag our images with the current commit sha1 in the CI to make them
     # unique and avoid collisions in parallel builds.
-    image: "funmooc:production"
-    env_file:
-      - env.d/production
+    image: "${RICHIE_SITE:-funmooc}:production"
+    environment:
+      - DJANGO_SETTINGS_MODULE=${RICHIE_SITE:-funmooc}.settings
+      - DJANGO_CONFIGURATION=ContinuousIntegration
+    env_file: env.d/development
     ports:
       - "8000:8000"
     volumes:
@@ -61,7 +68,8 @@ services:
         DOCKER_USER: ${DOCKER_USER:-1000}
         NGINX_IMAGE_NAME: ${NGINX_IMAGE_NAME:-fundocker/openshift-nginx}
         NGINX_IMAGE_TAG: ${NGINX_IMAGE_TAG:-1.13}
-    image: "funmooc-nginx:production"
+        SITE: ${RICHIE_SITE:-funmooc}
+    image: "${RICHIE_SITE:-funmooc}-nginx:production"
     ports:
       - "8081:8081"
     volumes:
@@ -78,12 +86,16 @@ services:
     working_dir: /app/src/frontend
     user: "${DOCKER_USER:-1000}"
     volumes:
-      - .:/app
+      - ./sites/${RICHIE_SITE:-funmooc}:/app
 
   terraform:
     image: hashicorp/terraform:light
+    environment:
+      - TF_VAR_SITE=${RICHIE_SITE:-funmooc}
     env_file: env.d/aws
     user: "${DOCKER_USER:-1000}"
     working_dir: /app
     volumes:
-      - ./src/aws:/app
+      - ./aws:/app
+      - ./sites/${RICHIE_SITE:-funmooc}/aws:/config
+    user: ${DOCKER_USER:-1000}

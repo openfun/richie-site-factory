@@ -1,6 +1,6 @@
 # Gunicorn-django settings
 bind = ["0.0.0.0:8000"]
-name = "funmooc"
+name = "app"
 python_path = "/app"
 
 # Run
