@@ -1,28 +1,46 @@
-# FUN-MOOC
+# Richie site factory
 
-This repository is a work-in-progress for the future fun-mooc.fr website. It is
-based on [Richie](https://github.com/openfun/richie), a CMS for Open Education.
+This repository is a workbench for France Université Numérique to develop
+themed sites based on [Richie](https://github.com/openfun/richie), the CMS
+for Open Education.
 
-## Getting started
+## Prerequisite
 
 First, make sure you have a recent version of Docker and [Docker
 Compose](https://docs.docker.com/compose/install) installed on your laptop:
 
 ```
 $ docker -v
-  Docker version 1.13.1, build 092cba3
+  Docker version 19.03.10, build 9424aeaee9
 
 $ docker-compose --version
-  docker-compose version 1.17.1, build 6d101fb
+  docker-compose version 1.25.5, build 8a1c60f6
 ```
 
-The easiest way to start working on the project is to use our `Makefile`:
+## Getting started
 
+First, you need to activate the site on which you want to work. We provide
+a script that will list existing sites and let you choose one:
+
+```bash
+$ bin/activate
+Select an available site to activate:
+[1] demo (default)
+[2] funmooc
+Your choice: 2
+
+# Check your environment with:
+$ make info
+RICHIE_SITE: funmooc
 ```
+
+Once your environment is set, start the full project by running:
+
+```bash
 $ make bootstrap
 ```
 
-This command builds the `app` container, starts the service and performs
+This command builds the containers, starts the services and performs
 database migrations. It's a good idea to use this command each time you are
 pulling code from the project repository to avoid dependency-related or
 migration-related issues.
@@ -39,14 +57,14 @@ Once the bootstrap phase is finished, you should be able to view the site at
 
 ### Managing services
 
-If you need to build or rebuild the `app` container, use:
+If you need to build or rebuild the containers, use:
 
 ```
 $ make build
 ```
 
-> Note that if the `app` service is already running, you will need to stop it
-> first and then restart it to fire up your newly build container.
+> Note that if the services are already running, you will need to stop them
+> first and then restart them to fire up your newly built containers.
 
 To start the development stack (_via_ Docker compose), use:
 

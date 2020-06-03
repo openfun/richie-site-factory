@@ -1,8 +1,9 @@
 # Statics and media files management with AWS
 
-We use AWS S3/CloudFront to store and distribute static and media files for a
-site in various environments. Buckets, distributions and IAM users creation
-is fully automated using [Terraform](https://www.terraform.io/).
+We use AWS S3 to store media files and AWS CloudFront to distribute static
+and media files for a site in various environments. Buckets, distributions
+and IAM users creation is fully automated using
+[Terraform](https://www.terraform.io/).
 
 > ✋ If you plan to develop locally on a site, you don't have to configure
 > anything more. The following documentation targets operational users willing
@@ -31,17 +32,41 @@ TF_VAR_aws_region=eu-west-1
 > i. S3 buckets, ii. KMS keys, iii. DynamoDB tables, iv. IAM users and v.
 > CloudFront distributions.
 
+## Project settings
+
+You need to configure domain names for the CDN in a setting file specific to
+your project: `sites/{{ your_site }}/aws/configtfvars`:
+
+```
+site = "demo"
+
+# Domain name used for the CDN
+storage_domain = {
+  production = "cdn.richie.education"
+  preprod = "cdn-preprod.richie.education"
+  staging = "cdn-staging.richie.education"
+}
+
+# Origin domains on which the site is hosted (the CDN will proxy static files)
+app_domain = {
+  production = "demo.richie.education"
+  preprod = "demo-preprod.richie.education"
+  staging = "demo-staging.richie.education"
+}
+```
+
 ## Setup a shared Terraform state
 
-> ✋ If the project already exists with a shared state, you can skip this section
-> and start fetching the state locally to create new workspaces.
+> ✋ If the project already exists with a shared state, you can skip this
+> section and start fetching the state locally to create new workspaces.
 
-If the project doesn't exist at all, you will need to create an S3 bucket (and a
-DynamoDB lock table) to store your Terraform state file (and its locking) by
+If the project doesn't exist at all, you will need to create an S3 bucket (and
+a DynamoDB lock table) to store your Terraform state file (and its locking) by
 typing the following commands in your terminal:
 
 ```
 $ bin/state init
+$ bin/state workspace new {{ your_site }}
 $ bin/state apply
 ```
 
@@ -50,8 +75,8 @@ project.
 
 ## Create new environments
 
-If everything went smoothly, it's time to initialize your main terraform project
-using the shared state:
+If everything went smoothly, it's time to initialize your main terraform
+project using the shared state:
 
 ```
 $ bin/terraform init
@@ -70,8 +95,8 @@ You can list existing workspaces _via_:
 $ bin/terraform workspace list
 ```
 
-By default, only the `default` workspace exists and is active. You can create a
-new one for the `staging` environment _via_:
+By default, only the `default` workspace exists and is active. You can create
+a new one for the `staging` environment _via_:
 
 ```
 $ bin/terraform workspace new staging
@@ -79,6 +104,23 @@ $ bin/terraform workspace new staging
 
 Once created and active, we will use this workspace to create `staging` S3
 buckets, IAM user and CloudFront distributions:
+
+```
+$ bin/terraform apply
+```
+
+The command will fail the first time it is run because AWS has created an SSL
+certificate but can't associate it with the CDN distribution until the
+ownership of the domain is confirmed. This depends on where your domain name
+is hosted, so we did not automate it.
+
+Go to the ACM (Certificate Manager) service in your AWS console, and look for
+the newly created certificate in the "us-east-1" (Virginia USA) region (the
+only one accepted for certificates used in CloudFront). Create DNS records as
+required to confirm ownership of the domain.
+
+Wait until the certificate is marked as "Issued" and run the terraform command
+again:
 
 ```
 $ bin/terraform apply
@@ -100,10 +142,10 @@ subcommand depending on the workspace availability.
 
 ## Configure runtime environment
 
-Once your buckets have been created for a targeted environment, you will need to
-configure your project's runtime environment with the secrets allowing your
-Django application to access to those buckets and CloudFront distributions. The
-following environment variables should be defined:
+Once your buckets have been created for a targeted environment, you will need
+to configure your project's runtime environment with the secrets allowing your
+Django application to access to those buckets and CloudFront distributions.
+The following environment variables should be defined:
 
 - `DJANGO_AWS_CLOUDFRONT_DOMAIN`
 - `DJANGO_AWS_ACCESS_KEY_ID`
