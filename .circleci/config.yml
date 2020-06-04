@@ -131,7 +131,7 @@ jobs:
         steps:
         - run:
             command: |
-              if [[ -z "$CIRCLE_TAG" ]]; then
+              if [[ -n "$CIRCLE_TAG" ]]; then
                   bin/ci check_tag << parameters.site >> "$CIRCLE_TAG"
               fi
             name: For a release, check that the tag and versions are in sync
