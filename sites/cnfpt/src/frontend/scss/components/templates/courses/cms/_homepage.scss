@@ -1,0 +1,20 @@
+@import 'richie-education/scss/components/templates/courses/cms/homepage';
+
+.homepage {
+  position: relative;
+
+  // NOTE: Add a specific bottom divider
+  @if r-theme-val(homepage, divider) {
+    &::after {
+      @include make-container-max-widths();
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      margin: 0 auto;
+      border-top: $onepixel solid lighten(r-theme-val(homepage, divider), 30%);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "cnfpt",
+  "version": "0.1.0",
+  "description": "Richie-powered CMS for mooc.cnfpt.fr",
+  "scripts": {
+    "prettier": "prettier '**/*.+(css|scss)'",
+    "prettier-write": "prettier --write '**/*.+(css|scss)'",
+    "sass": "node-sass --include-path node_modules scss/_main.scss ../backend/base/static/richie/css/main.css",
+    "sass-production": "node-sass --include-path node_modules --output-style compressed scss/_main.scss ../backend/base/static/richie/css/main.css",
+    "watch-sass": "nodemon -e scss -x 'yarn sass'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openfun/richie-site-factory.git"
+  },
+  "keywords": [
+    "MOOC",
+    "CMS"
+  ],
+  "author": {
+    "name": "Open FUN (France Université Numérique)",
+    "email": "fun.dev@fun-mooc.fr"
+  },
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/openfun/richie-site-factory/issues"
+  },
+  "homepage": "https://github.com/openfun/richie-site-factory#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "4.14.1",
+    "nodemon": "2.0.4",
+    "prettier": "2.0.5",
+    "richie-education": "2.0.0-beta.6"
+  }
+}

@@ -1,0 +1,67 @@
+@import 'richie-education/scss/components/templates/richie/glimpse/glimpse';
+
+// NOTE: Change glimpse layout for square card variant. Text is absolutely
+// positionned over the media with a tiny bottom shader
+.glimpse-card_square {
+  background: transparent;
+  border: 0;
+  border-radius: $border-radius-lg;
+
+  &__media {
+    position: relative;
+    margin-bottom: 0;
+
+    img {
+      border-top-left-radius: $border-radius-lg;
+      border-top-right-radius: $border-radius-lg;
+    }
+
+    @if r-theme-val(glimpse-plugin, media-gradient) {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2rem;
+        background: r-theme-val(glimpse-plugin, media-gradient);
+      }
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    padding: 0 2rem 0.6rem 0.5rem;
+    color: r-theme-val(glimpse-plugin, base-color);
+    text-align: right;
+    background: r-theme-val(glimpse-plugin, base-background);
+    border-bottom-left-radius: $border-radius-lg;
+    border-bottom-right-radius: $border-radius-lg;
+
+    &::after {
+      content: "→";
+      position: absolute;
+      top: 0;
+      right: 0.5rem;
+      font-size: 1.4rem;
+      font-weight: $font-weight-bold;
+      line-height: 1;
+    }
+  }
+
+  &__title {
+    margin-top: 0;
+    color: r-theme-val(glimpse-plugin, content-color);
+  }
+
+  &__content {
+    @include font-size($h5-font-size);
+    font-weight: $font-weight-bold;
+    line-height: 1.2;
+    color: r-theme-val(glimpse-plugin, content-color);
+
+    *:last-child {
+      margin: 0;
+    }
+  }
+}

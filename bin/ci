@@ -46,14 +46,17 @@ function update_sources() {
             >> ".circleci/src/workflows/@${site}.yml"
 
         # Conditions to run a site's workflow
+        should_run="false"
         if \
             check_changes "^Dockerfile$" || \
             check_changes "^${site_path}/requirements/" || \
             check_changes "^${site_path}/src/" ;
         then
-            printf "    run_%s:\n        type: boolean\n        default: true\n" "${site}" \
-                >> ".circleci/src/@parameters.yml"
+            should_run="true"
         fi
+        printf "    run_%s:\n        type: boolean\n        default: %s\n" "${site}" \
+            "${should_run}" >> ".circleci/src/@parameters.yml"
+
     done <  <(find "sites" -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
 }
 
