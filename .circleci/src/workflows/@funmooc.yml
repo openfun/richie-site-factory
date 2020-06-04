@@ -5,6 +5,7 @@ funmooc:
   jobs:
     # Check CHANGELOG update
     - check-changelog:
+        name: check-changelog-funmooc
         site: funmooc
         filters:
           branches:
@@ -12,6 +13,7 @@ funmooc:
           tags:
             only: /.*/
     - lint-changelog:
+        name: lint-changelog--funmooc
         site: funmooc
         filters:
           branches:
@@ -23,14 +25,16 @@ funmooc:
     #
     # Build & lint the front-end apps
     - build-front-production:
+        name: build-front-production-funmooc
         site: funmooc
         filters:
           tags:
             only: /.*/
     - lint-front:
+        name: lint-front-funmooc
         site: funmooc
         requires:
-          - build-front-production
+          - build-front-production-funmooc
         filters:
           tags:
             only: /.*/
@@ -40,21 +44,24 @@ funmooc:
     # Build, lint and test production and development Docker images
     # (debian-based)
     - build-back:
+        name: build-back-funmooc
         site: funmooc
         filters:
           tags:
             only: /.*/
     - lint-back:
+        name: lint-back-funmooc
         site: funmooc
         requires:
-          - build-back
+          - build-back-funmooc
         filters:
           tags:
             only: /.*/
     - test-back:
+        name: test-back-funmooc
         site: funmooc
         requires:
-          - build-back
+          - build-back-funmooc
         filters:
           tags:
             only: /.*/
@@ -65,10 +72,11 @@ funmooc:
     # if the CI workflow has been triggered by a git tag starting with the
     # letter v or by a PR merged to the master branch
     - hub:
+        name: hub-funmooc
         site: funmooc
         requires:
-          - lint-front
-          - lint-back
+          - lint-front-funmooc
+          - lint-back-funmooc
         filters:
           tags:
             only: /^funmooc-.*/
