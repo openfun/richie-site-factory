@@ -19,7 +19,8 @@ COMMAND:
 
 
 function check_changes() {
-    git whatchanged --name-only --pretty="" master | grep "${1}" &> /dev/null
+    to="${CIRCLE_SHA1:-HEAD}"
+    git whatchanged --name-only --pretty="" origin/master.."${to}" | grep "${1}" &> /dev/null
 }
 
 
