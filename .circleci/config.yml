@@ -324,6 +324,7 @@ workflows:
             ignore: master
           tags:
             only: /.*/
+        name: check-changelog-funcorporate
         site: funcorporate
     - lint-changelog:
         filters:
@@ -331,45 +332,52 @@ workflows:
             ignore: master
           tags:
             only: /.*/
+        name: lint-changelog--funcorporate
         site: funcorporate
     - build-front-production:
         filters:
           tags:
             only: /.*/
+        name: build-front-production-funcorporate
         site: funcorporate
     - lint-front:
         filters:
           tags:
             only: /.*/
+        name: lint-front-funcorporate
         requires:
-        - build-front-production
+        - build-front-production-funcorporate
         site: funcorporate
     - build-back:
         filters:
           tags:
             only: /.*/
+        name: build-back-funcorporate
         site: funcorporate
     - lint-back:
         filters:
           tags:
             only: /.*/
+        name: lint-back-funcorporate
         requires:
-        - build-back
+        - build-back-funcorporate
         site: funcorporate
     - test-back:
         filters:
           tags:
             only: /.*/
+        name: test-back-funcorporate
         requires:
-        - build-back
+        - build-back-funcorporate
         site: funcorporate
     - hub:
         filters:
           tags:
             only: /^funcorporate-.*/
+        name: hub-funcorporate
         requires:
-        - lint-front
-        - lint-back
+        - lint-front-funcorporate
+        - lint-back-funcorporate
         site: funcorporate
     when: << pipeline.parameters.run_funcorporate >>
   funmooc:
@@ -380,6 +388,7 @@ workflows:
             ignore: master
           tags:
             only: /.*/
+        name: check-changelog-funmooc
         site: funmooc
     - lint-changelog:
         filters:
@@ -387,45 +396,52 @@ workflows:
             ignore: master
           tags:
             only: /.*/
+        name: lint-changelog--funmooc
         site: funmooc
     - build-front-production:
         filters:
           tags:
             only: /.*/
+        name: build-front-production-funmooc
         site: funmooc
     - lint-front:
         filters:
           tags:
             only: /.*/
+        name: lint-front-funmooc
         requires:
-        - build-front-production
+        - build-front-production-funmooc
         site: funmooc
     - build-back:
         filters:
           tags:
             only: /.*/
+        name: build-back-funmooc
         site: funmooc
     - lint-back:
         filters:
           tags:
             only: /.*/
+        name: lint-back-funmooc
         requires:
-        - build-back
+        - build-back-funmooc
         site: funmooc
     - test-back:
         filters:
           tags:
             only: /.*/
+        name: test-back-funmooc
         requires:
-        - build-back
+        - build-back-funmooc
         site: funmooc
     - hub:
         filters:
           tags:
             only: /^funmooc-.*/
+        name: hub-funmooc
         requires:
-        - lint-front
-        - lint-back
+        - lint-front-funmooc
+        - lint-back-funmooc
         site: funmooc
     when: << pipeline.parameters.run_funmooc >>
   site-factory:
