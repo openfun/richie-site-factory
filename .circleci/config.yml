@@ -52,8 +52,8 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v2-front-dependencies-{{ checksum "yarn.lock" }}
-        - v2-front-dependencies-
+        - v3-front-dependencies-{{ checksum "yarn.lock" }}
+        - v3-front-dependencies-
     - run:
         command: yarn install --frozen-lockfile
         name: Install frontend dependencies (with locked dependencies)
@@ -61,7 +61,7 @@ jobs:
         command: yarn sass-production
         name: Build application styles (production mode)
     - save_cache:
-        key: v2-front-dependencies-{{ checksum "yarn.lock" }}
+        key: v3-front-dependencies-{{ checksum "yarn.lock" }}
         paths:
         - ./node_modules
     working_directory: ~/fun/sites/<< parameters.site >>/src/frontend/
@@ -244,8 +244,8 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v2-front-dependencies-{{ checksum "yarn.lock" }}
-        - v2-front-dependencies-
+        - v3-front-dependencies-{{ checksum "yarn.lock" }}
+        - v3-front-dependencies-
     - run:
         command: yarn prettier
         name: Lint CSS/SCSS code with prettier
@@ -308,14 +308,81 @@ jobs:
         name: Run tests
     working_directory: ~/fun/sites/<< parameters.site >>/src/backend
 parameters:
-  run_funcorporate:
+  run_cnfpt:
     default: true
     type: boolean
+  run_funcorporate:
+    default: false
+    type: boolean
   run_funmooc:
-    default: true
+    default: false
     type: boolean
 version: 2.1
 workflows:
+  cnfpt:
+    jobs:
+    - check-changelog:
+        filters:
+          branches:
+            ignore: master
+          tags:
+            only: /.*/
+        name: check-changelog-cnfpt
+        site: cnfpt
+    - lint-changelog:
+        filters:
+          branches:
+            ignore: master
+          tags:
+            only: /.*/
+        name: lint-changelog--cnfpt
+        site: cnfpt
+    - build-front-production:
+        filters:
+          tags:
+            only: /.*/
+        name: build-front-production-cnfpt
+        site: cnfpt
+    - lint-front:
+        filters:
+          tags:
+            only: /.*/
+        name: lint-front-cnfpt
+        requires:
+        - build-front-production-cnfpt
+        site: cnfpt
+    - build-back:
+        filters:
+          tags:
+            only: /.*/
+        name: build-back-cnfpt
+        site: cnfpt
+    - lint-back:
+        filters:
+          tags:
+            only: /.*/
+        name: lint-back-cnfpt
+        requires:
+        - build-back-cnfpt
+        site: cnfpt
+    - test-back:
+        filters:
+          tags:
+            only: /.*/
+        name: test-back-cnfpt
+        requires:
+        - build-back-cnfpt
+        site: cnfpt
+    - hub:
+        filters:
+          tags:
+            only: /^cnfpt-.*/
+        name: hub-cnfpt
+        requires:
+        - lint-front-cnfpt
+        - lint-back-cnfpt
+        site: cnfpt
+    when: << pipeline.parameters.run_cnfpt >>
   funcorporate:
     jobs:
     - check-changelog:

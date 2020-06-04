@@ -1,0 +1,60 @@
+@import 'richie-education/scss/components/header';
+
+// NOTE: Bring the menu closer to the brand
+.topbar__menu{
+  margin-top: 0;
+}
+
+// NOTE: Use new theme prop "item-cta-primary" to customize common buttons
+.topbar__item--cta a {
+  $scheme: r-theme-val(topbar, item-cta-primary);
+  @include r-button-colors(
+    $scheme,
+    $apply-border: true
+  );
+
+  &:hover {
+    @include r-button-colors(
+      $scheme,
+      $apply-border: true,
+      $prefix: 'hover'
+    );
+  }
+}
+
+// NOTE: Use new theme prop "item-cta-primary" to customize login related
+// buttons
+.user-login__btn--log-in,
+.user-login__btn--log-out {
+  $scheme: r-theme-val(topbar, item-cta-secondary);
+  @include r-button-colors(
+    $scheme,
+    $apply-border: true
+  );
+
+  &:hover {
+    @include r-button-colors(
+      $scheme,
+      $apply-border: true,
+      $prefix: 'hover'
+    );
+  }
+}
+
+// NOTE: Use new theme prop "item-cta-primary" to customize register related
+// buttons
+.user-login__btn--sign-up {
+  $scheme: r-theme-val(topbar, item-cta-tertiary);
+  @include r-button-colors(
+    $scheme,
+    $apply-border: true
+  );
+
+  &:hover {
+    @include r-button-colors(
+      $scheme,
+      $apply-border: true,
+      $prefix: 'hover'
+    );
+  }
+}
