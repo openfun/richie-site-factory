@@ -308,11 +308,70 @@ jobs:
         name: Run tests
     working_directory: ~/fun/sites/<< parameters.site >>/src/backend
 parameters:
+  run_funcorporate:
+    default: true
+    type: boolean
   run_funmooc:
     default: true
     type: boolean
 version: 2.1
 workflows:
+  funcorporate:
+    jobs:
+    - check-changelog:
+        filters:
+          branches:
+            ignore: master
+          tags:
+            only: /.*/
+        site: funcorporate
+    - lint-changelog:
+        filters:
+          branches:
+            ignore: master
+          tags:
+            only: /.*/
+        site: funcorporate
+    - build-front-production:
+        filters:
+          tags:
+            only: /.*/
+        site: funcorporate
+    - lint-front:
+        filters:
+          tags:
+            only: /.*/
+        requires:
+        - build-front-production
+        site: funcorporate
+    - build-back:
+        filters:
+          tags:
+            only: /.*/
+        site: funcorporate
+    - lint-back:
+        filters:
+          tags:
+            only: /.*/
+        requires:
+        - build-back
+        site: funcorporate
+    - test-back:
+        filters:
+          tags:
+            only: /.*/
+        requires:
+        - build-back
+        site: funcorporate
+    - hub:
+        filters:
+          tags:
+            only: /^funcorporate-.*/
+        requires:
+        - lint-front
+        - lint-back
+        site: funcorporate
+    when: << pipeline.parameters.run_funcorporate >>
   funmooc:
     jobs:
     - check-changelog:
