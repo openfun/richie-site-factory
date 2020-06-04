@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openfun/fun-mooc.git"
+    "url": "git+https://github.com/openfun/richie-site-factory.git"
   },
   "keywords": [
     "MOOC",
@@ -23,9 +23,9 @@
   },
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/openfun/fun-mooc/issues"
+    "url": "https://github.com/openfun/richie-site-factory/issues"
   },
-  "homepage": "https://github.com/openfun/fun-mooc#readme",
+  "homepage": "https://github.com/openfun/richie-site-factory#readme",
   "dependencies": {},
   "devDependencies": {
     "node-sass": "4.14.1",
