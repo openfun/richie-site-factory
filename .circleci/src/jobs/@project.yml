@@ -28,6 +28,8 @@ lint-git:
 
 # Check that the ".circleci/config.yml" file has been updated in the current branch
 check-configuration:
+  # Use machine because the check_configuration script runs some docker images with
+  # volume mounts which is not possible with dind
   machine:
     # Cache docker layers so that we strongly speed up this job execution
     # This cache will be available to future jobs (although because jobs run
