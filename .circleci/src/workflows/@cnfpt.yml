@@ -10,7 +10,7 @@ cnfpt:
           branches:
             ignore: master
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
     - lint-changelog:
         name: lint-changelog--cnfpt
         site: cnfpt
@@ -18,7 +18,7 @@ cnfpt:
           branches:
             ignore: master
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
 
     # Front-end jobs
     #
@@ -28,7 +28,7 @@ cnfpt:
         site: cnfpt
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
     - lint-front:
         name: lint-front-cnfpt
         site: cnfpt
@@ -36,7 +36,7 @@ cnfpt:
           - build-front-production-cnfpt
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
 
     # Backend jobs
     #
@@ -47,7 +47,7 @@ cnfpt:
         site: cnfpt
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
     - lint-back:
         name: lint-back-cnfpt
         site: cnfpt
@@ -55,7 +55,7 @@ cnfpt:
           - build-back-cnfpt
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
     - test-back:
         name: test-back-cnfpt
         site: cnfpt
@@ -63,7 +63,7 @@ cnfpt:
           - build-back-cnfpt
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
 
     # DockerHub publication.
     #
