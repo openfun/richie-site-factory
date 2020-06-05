@@ -12,7 +12,7 @@ build-back:
         path: ~/fun
     - restore_cache:
         keys:
-          - v1-back-dependencies-{{ .Revision }}
+          - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     - run:
         name: Install development dependencies
         command: >
@@ -23,7 +23,7 @@ build-back:
     - save_cache:
         paths:
           - ~/.local
-        key: v1-back-dependencies-{{ .Revision }}
+        key: v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
 
 lint-back:
   parameters:
@@ -37,7 +37,7 @@ lint-back:
         path: ~/fun
     - restore_cache:
         keys:
-          - v1-back-dependencies-{{ .Revision }}
+          - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     - run:
         name: Lint code with flake8
         command: ~/.local/bin/flake8
@@ -81,7 +81,7 @@ test-back:
         path: ~/fun
     - restore_cache:
         keys:
-          - v1-back-dependencies-{{ .Revision }}
+          - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     # Run back-end (Django) test suite
     #
     # Nota bene: to run the django test suite, we need to ensure that the

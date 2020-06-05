@@ -28,7 +28,7 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v1-back-dependencies-{{ .Revision }}
+        - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     - run:
         command: |
           pip install \
@@ -37,7 +37,7 @@ jobs:
             -r requirements/dev.txt
         name: Install development dependencies
     - save_cache:
-        key: v1-back-dependencies-{{ .Revision }}
+        key: v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
         paths:
         - ~/.local
     working_directory: ~/fun/sites/<< parameters.site >>
@@ -52,8 +52,8 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v3-front-dependencies-{{ checksum "yarn.lock" }}
-        - v3-front-dependencies-
+        - v1-front-dependencies-<< parameters.site >>-{{ checksum "yarn.lock" }}
+        - v1-front-dependencies-<< parameters.site >>-
     - run:
         command: yarn install --frozen-lockfile
         name: Install frontend dependencies (with locked dependencies)
@@ -61,7 +61,7 @@ jobs:
         command: yarn sass-production
         name: Build application styles (production mode)
     - save_cache:
-        key: v3-front-dependencies-{{ checksum "yarn.lock" }}
+        key: v1-front-dependencies-<< parameters.site >>-{{ checksum "yarn.lock" }}
         paths:
         - ./node_modules
     working_directory: ~/fun/sites/<< parameters.site >>/src/frontend/
@@ -193,7 +193,7 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v1-back-dependencies-{{ .Revision }}
+        - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     - run:
         command: ~/.local/bin/flake8
         name: Lint code with flake8
@@ -244,8 +244,8 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v3-front-dependencies-{{ checksum "yarn.lock" }}
-        - v3-front-dependencies-
+        - v1-front-dependencies-<< parameters.site >>-{{ checksum "yarn.lock" }}
+        - v1-front-dependencies-<< parameters.site >>-
     - run:
         command: yarn prettier
         name: Lint CSS/SCSS code with prettier
@@ -304,7 +304,7 @@ jobs:
         path: ~/fun
     - restore_cache:
         keys:
-        - v1-back-dependencies-{{ .Revision }}
+        - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     - run:
         command: |
           dockerize \
