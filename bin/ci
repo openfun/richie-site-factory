@@ -51,8 +51,13 @@ function update_sources() {
             template=".circleci/src/workflows/site_no_change.yml.tpl"
         fi
 
+        # Look for custom image name in site's setup.cfg file and default to the site name
+        image=$(grep "^name = " "${site_path}/src/backend/setup.cfg" | cut -c 8- || \
+            echo "${site}")
+
         # shellcheck disable=SC2016
-        sed 's|${SITE}|'"${site}"'|g' < "${template}" >> ".circleci/src/workflows/@${site}.yml"
+        sed 's|${SITE}|'"${site}"'|g; s|${IMAGE}|'"${image}"'|g' \
+            < "${template}" >> ".circleci/src/workflows/@${site}.yml"
 
     done <  <(find "sites" -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
 }

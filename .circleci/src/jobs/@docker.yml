@@ -4,6 +4,8 @@ hub:
   parameters:
     site:
       type: string
+    image_name:
+      type: string
   docker:
     - image: circleci/buildpack-deps:stretch
       environment:
@@ -23,9 +25,9 @@ hub:
     - run:
         name: Check built image availability
         command: |
-            docker images "<< parameters.site >>:development"
-            docker images "<< parameters.site >>:production"
-            docker images "<< parameters.site >>-nginx:production"
+            docker images "<< parameters.image_name >>:development"
+            docker images "<< parameters.image_name >>:production"
+            docker images "<< parameters.image_name >>-nginx:production"
     - run:
         name: Check version.json file
         command: make ci-version
@@ -76,39 +78,39 @@ hub:
           - run:
               name: Tag app image
               command: |
-                docker images fundocker/<< parameters.site >>
+                docker images fundocker/<< parameters.image_name >>
                 # Display either:
                 # - DOCKER_TAG: master (Git branch)
                 # or
                 # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
                 echo "DOCKER_TAG: ${DOCKER_TAG}"
-                docker tag << parameters.site >>:production fundocker/<< parameters.site >>:${DOCKER_TAG}
+                docker tag << parameters.image_name >>:production fundocker/<< parameters.site >>:${DOCKER_TAG}
                 if [[ -n "$CIRCLE_TAG" ]]; then
-                    docker tag << parameters.site >>:production fundocker/<< parameters.site >>:latest
+                    docker tag << parameters.image_name >>:production fundocker/<< parameters.site >>:latest
                 fi
-                docker images | grep -E "^fundocker/<< parameters.site >>\s*(${DOCKER_TAG}.*|latest|master)"
+                docker images | grep -E "^fundocker/<< parameters.image_name >>\s*(${DOCKER_TAG}.*|latest|master)"
           - run:
               name: Tag nginx image
               command: |
-                docker images fundocker/<< parameters.site >>-nginx
+                docker images fundocker/<< parameters.image_name >>-nginx
                 echo "DOCKER_TAG: ${DOCKER_TAG}"
-                docker tag << parameters.site >>-nginx:production fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+                docker tag << parameters.image_name >>-nginx:production fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
                 if [[ -n "$CIRCLE_TAG" ]]; then
-                    docker tag << parameters.site >>-nginx:production fundocker/<< parameters.site >>-nginx:latest
+                    docker tag << parameters.image_name >>-nginx:production fundocker/<< parameters.site >>-nginx:latest
                 fi
-                docker images | grep -E "^fundocker/<< parameters.site >>-nginx\s*(${DOCKER_TAG}.*|latest|master)"
+                docker images | grep -E "^fundocker/<< parameters.image_name >>-nginx\s*(${DOCKER_TAG}.*|latest|master)"
           # Publish images
           - run:
               name: Publish app image
               command: |
-                docker push fundocker/<< parameters.site >>:${DOCKER_TAG}
+                docker push fundocker/<< parameters.image_name >>:${DOCKER_TAG}
                 if [[ -n "$CIRCLE_TAG" ]]; then
-                  docker push fundocker/<< parameters.site >>:latest
+                  docker push fundocker/<< parameters.image_name >>:latest
                 fi
           - run:
               name: Publish nginx image
               command: |
-                docker push fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+                docker push fundocker/<< parameters.image_name >>-nginx:${DOCKER_TAG}
                 if [[ -n "$CIRCLE_TAG" ]]; then
-                  docker push fundocker/<< parameters.site >>-nginx:latest
+                  docker push fundocker/<< parameters.image_name >>-nginx:latest
                 fi

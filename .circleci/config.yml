@@ -95,6 +95,8 @@ jobs:
         RICHIE_SITE: << parameters.site >>
       image: circleci/buildpack-deps:stretch
     parameters:
+      image_name:
+        type: string
       site:
         type: string
     steps:
@@ -108,9 +110,9 @@ jobs:
         name: Build docker images
     - run:
         command: |
-          docker images "<< parameters.site >>:development"
-          docker images "<< parameters.site >>:production"
-          docker images "<< parameters.site >>-nginx:production"
+          docker images "<< parameters.image_name >>:development"
+          docker images "<< parameters.image_name >>:production"
+          docker images "<< parameters.image_name >>-nginx:production"
         name: Check built image availability
     - run:
         command: make ci-version
@@ -145,40 +147,40 @@ jobs:
             name: Compute Docker tag
         - run:
             command: |
-              docker images fundocker/<< parameters.site >>
+              docker images fundocker/<< parameters.image_name >>
               # Display either:
               # - DOCKER_TAG: master (Git branch)
               # or
               # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
               echo "DOCKER_TAG: ${DOCKER_TAG}"
-              docker tag << parameters.site >>:production fundocker/<< parameters.site >>:${DOCKER_TAG}
+              docker tag << parameters.image_name >>:production fundocker/<< parameters.site >>:${DOCKER_TAG}
               if [[ -n "$CIRCLE_TAG" ]]; then
-                  docker tag << parameters.site >>:production fundocker/<< parameters.site >>:latest
+                  docker tag << parameters.image_name >>:production fundocker/<< parameters.site >>:latest
               fi
-              docker images | grep -E "^fundocker/<< parameters.site >>\s*(${DOCKER_TAG}.*|latest|master)"
+              docker images | grep -E "^fundocker/<< parameters.image_name >>\s*(${DOCKER_TAG}.*|latest|master)"
             name: Tag app image
         - run:
             command: |
-              docker images fundocker/<< parameters.site >>-nginx
+              docker images fundocker/<< parameters.image_name >>-nginx
               echo "DOCKER_TAG: ${DOCKER_TAG}"
-              docker tag << parameters.site >>-nginx:production fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+              docker tag << parameters.image_name >>-nginx:production fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
               if [[ -n "$CIRCLE_TAG" ]]; then
-                  docker tag << parameters.site >>-nginx:production fundocker/<< parameters.site >>-nginx:latest
+                  docker tag << parameters.image_name >>-nginx:production fundocker/<< parameters.site >>-nginx:latest
               fi
-              docker images | grep -E "^fundocker/<< parameters.site >>-nginx\s*(${DOCKER_TAG}.*|latest|master)"
+              docker images | grep -E "^fundocker/<< parameters.image_name >>-nginx\s*(${DOCKER_TAG}.*|latest|master)"
             name: Tag nginx image
         - run:
             command: |
-              docker push fundocker/<< parameters.site >>:${DOCKER_TAG}
+              docker push fundocker/<< parameters.image_name >>:${DOCKER_TAG}
               if [[ -n "$CIRCLE_TAG" ]]; then
-                docker push fundocker/<< parameters.site >>:latest
+                docker push fundocker/<< parameters.image_name >>:latest
               fi
             name: Publish app image
         - run:
             command: |
-              docker push fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+              docker push fundocker/<< parameters.image_name >>-nginx:${DOCKER_TAG}
               if [[ -n "$CIRCLE_TAG" ]]; then
-                docker push fundocker/<< parameters.site >>-nginx:latest
+                docker push fundocker/<< parameters.image_name >>-nginx:latest
               fi
             name: Publish nginx image
     working_directory: ~/fun
@@ -380,6 +382,7 @@ workflows:
         filters:
           tags:
             only: /^demo-.*/
+        image_name: richie-demo
         name: hub-demo
         requires:
         - lint-front-demo

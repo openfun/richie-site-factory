@@ -72,6 +72,7 @@ ${SITE}:
     - hub:
         name: hub-${SITE}
         site: ${SITE}
+        image_name: ${IMAGE}
         requires:
           - lint-front-${SITE}
           - lint-back-${SITE}
