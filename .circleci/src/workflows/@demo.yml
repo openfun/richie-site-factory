@@ -73,6 +73,7 @@ demo:
     - hub:
         name: hub-demo
         site: demo
+        image_name: richie-demo
         requires:
           - lint-front-demo
           - lint-back-demo
