@@ -322,69 +322,76 @@ workflows:
           tags:
             only: /.*/
         name: no-change-cnfpt
-  funcorporate:
+  demo:
     jobs:
     - check-changelog:
         filters:
           branches:
             ignore: master
           tags:
-            only: /funcorporate-.*/
-        name: check-changelog-funcorporate
-        site: funcorporate
+            only: /demo-.*/
+        name: check-changelog-demo
+        site: demo
     - lint-changelog:
         filters:
           branches:
             ignore: master
           tags:
-            only: /funcorporate-.*/
-        name: lint-changelog--funcorporate
-        site: funcorporate
+            only: /demo-.*/
+        name: lint-changelog--demo
+        site: demo
     - build-front-production:
         filters:
           tags:
-            only: /funcorporate-.*/
-        name: build-front-production-funcorporate
-        site: funcorporate
+            only: /demo-.*/
+        name: build-front-production-demo
+        site: demo
     - lint-front:
         filters:
           tags:
-            only: /funcorporate-.*/
-        name: lint-front-funcorporate
+            only: /demo-.*/
+        name: lint-front-demo
         requires:
-        - build-front-production-funcorporate
-        site: funcorporate
+        - build-front-production-demo
+        site: demo
     - build-back:
         filters:
           tags:
-            only: /funcorporate-.*/
-        name: build-back-funcorporate
-        site: funcorporate
+            only: /demo-.*/
+        name: build-back-demo
+        site: demo
     - lint-back:
         filters:
           tags:
-            only: /funcorporate-.*/
-        name: lint-back-funcorporate
+            only: /demo-.*/
+        name: lint-back-demo
         requires:
-        - build-back-funcorporate
-        site: funcorporate
+        - build-back-demo
+        site: demo
     - test-back:
         filters:
           tags:
-            only: /funcorporate-.*/
-        name: test-back-funcorporate
+            only: /demo-.*/
+        name: test-back-demo
         requires:
-        - build-back-funcorporate
-        site: funcorporate
+        - build-back-demo
+        site: demo
     - hub:
         filters:
           tags:
-            only: /^funcorporate-.*/
-        name: hub-funcorporate
+            only: /^demo-.*/
+        name: hub-demo
         requires:
-        - lint-front-funcorporate
-        - lint-back-funcorporate
-        site: funcorporate
+        - lint-front-demo
+        - lint-back-demo
+        site: demo
+  funcorporate:
+    jobs:
+    - no-change:
+        filters:
+          tags:
+            only: /.*/
+        name: no-change-funcorporate
   funmooc:
     jobs:
     - no-change:
