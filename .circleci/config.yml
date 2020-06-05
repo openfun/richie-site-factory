@@ -322,7 +322,7 @@ workflows:
           branches:
             ignore: master
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: check-changelog-cnfpt
         site: cnfpt
     - lint-changelog:
@@ -330,19 +330,19 @@ workflows:
           branches:
             ignore: master
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: lint-changelog--cnfpt
         site: cnfpt
     - build-front-production:
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: build-front-production-cnfpt
         site: cnfpt
     - lint-front:
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: lint-front-cnfpt
         requires:
         - build-front-production-cnfpt
@@ -350,13 +350,13 @@ workflows:
     - build-back:
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: build-back-cnfpt
         site: cnfpt
     - lint-back:
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: lint-back-cnfpt
         requires:
         - build-back-cnfpt
@@ -364,7 +364,7 @@ workflows:
     - test-back:
         filters:
           tags:
-            only: /.*/
+            only: /cnfpt-.*/
         name: test-back-cnfpt
         requires:
         - build-back-cnfpt
