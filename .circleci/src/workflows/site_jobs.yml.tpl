@@ -1,6 +1,5 @@
 # Run jobs for the ${SITE} site
 ${SITE}:
-  when: << pipeline.parameters.run_${SITE} >>
   jobs:
     # Check CHANGELOG update
     - check-changelog:
@@ -10,7 +9,7 @@ ${SITE}:
           branches:
             ignore: master
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
     - lint-changelog:
         name: lint-changelog--${SITE}
         site: ${SITE}
@@ -18,7 +17,7 @@ ${SITE}:
           branches:
             ignore: master
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
 
     # Front-end jobs
     #
@@ -28,7 +27,7 @@ ${SITE}:
         site: ${SITE}
         filters:
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
     - lint-front:
         name: lint-front-${SITE}
         site: ${SITE}
@@ -36,7 +35,7 @@ ${SITE}:
           - build-front-production-${SITE}
         filters:
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
 
     # Backend jobs
     #
@@ -47,7 +46,7 @@ ${SITE}:
         site: ${SITE}
         filters:
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
     - lint-back:
         name: lint-back-${SITE}
         site: ${SITE}
@@ -55,7 +54,7 @@ ${SITE}:
           - build-back-${SITE}
         filters:
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
     - test-back:
         name: test-back-${SITE}
         site: ${SITE}
@@ -63,7 +62,7 @@ ${SITE}:
           - build-back-${SITE}
         filters:
           tags:
-            only: /.*/
+            only: /${SITE}-.*/
 
     # DockerHub publication.
     #

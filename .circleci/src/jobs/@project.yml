@@ -85,3 +85,11 @@ lint-changelog:
         command: |
           # Get the longuest line width (ignoring release links)
           test $(cat sites/<< parameters.site >>/CHANGELOG.md | grep -Ev "^\[.*\]: https://github.com/openfun" | wc -L) -le 80
+
+# Check that the CHANGELOG max line length does not exceed 80 characters
+no-change:
+  docker:
+    - image: circleci/buildpack-deps:stretch-scm
+  working_directory: ~/fun
+  steps:
+    - run: echo "Everything is up-to-date ✅"
