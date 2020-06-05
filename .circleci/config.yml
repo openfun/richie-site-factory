@@ -272,6 +272,12 @@ jobs:
           ~/.local/bin/gitlint --commits origin/master..HEAD
         name: lint commit messages added to master
     working_directory: ~/fun
+  no-change:
+    docker:
+    - image: circleci/buildpack-deps:stretch-scm
+    steps:
+    - run: echo "Everything is up-to-date ✅"
+    working_directory: ~/fun
   test-back:
     docker:
     - environment:
@@ -307,16 +313,6 @@ jobs:
               ~/.local/bin/pytest
         name: Run tests
     working_directory: ~/fun/sites/<< parameters.site >>/src/backend
-parameters:
-  run_cnfpt:
-    default: true
-    type: boolean
-  run_funcorporate:
-    default: false
-    type: boolean
-  run_funmooc:
-    default: false
-    type: boolean
 version: 2.1
 workflows:
   cnfpt:
@@ -382,135 +378,20 @@ workflows:
         - lint-front-cnfpt
         - lint-back-cnfpt
         site: cnfpt
-    when: << pipeline.parameters.run_cnfpt >>
   funcorporate:
     jobs:
-    - check-changelog:
-        filters:
-          branches:
-            ignore: master
-          tags:
-            only: /.*/
-        name: check-changelog-funcorporate
-        site: funcorporate
-    - lint-changelog:
-        filters:
-          branches:
-            ignore: master
-          tags:
-            only: /.*/
-        name: lint-changelog--funcorporate
-        site: funcorporate
-    - build-front-production:
+    - no-change:
         filters:
           tags:
             only: /.*/
-        name: build-front-production-funcorporate
-        site: funcorporate
-    - lint-front:
-        filters:
-          tags:
-            only: /.*/
-        name: lint-front-funcorporate
-        requires:
-        - build-front-production-funcorporate
-        site: funcorporate
-    - build-back:
-        filters:
-          tags:
-            only: /.*/
-        name: build-back-funcorporate
-        site: funcorporate
-    - lint-back:
-        filters:
-          tags:
-            only: /.*/
-        name: lint-back-funcorporate
-        requires:
-        - build-back-funcorporate
-        site: funcorporate
-    - test-back:
-        filters:
-          tags:
-            only: /.*/
-        name: test-back-funcorporate
-        requires:
-        - build-back-funcorporate
-        site: funcorporate
-    - hub:
-        filters:
-          tags:
-            only: /^funcorporate-.*/
-        name: hub-funcorporate
-        requires:
-        - lint-front-funcorporate
-        - lint-back-funcorporate
-        site: funcorporate
-    when: << pipeline.parameters.run_funcorporate >>
+        name: no-change-funcorporate
   funmooc:
     jobs:
-    - check-changelog:
-        filters:
-          branches:
-            ignore: master
-          tags:
-            only: /.*/
-        name: check-changelog-funmooc
-        site: funmooc
-    - lint-changelog:
-        filters:
-          branches:
-            ignore: master
-          tags:
-            only: /.*/
-        name: lint-changelog--funmooc
-        site: funmooc
-    - build-front-production:
+    - no-change:
         filters:
           tags:
             only: /.*/
-        name: build-front-production-funmooc
-        site: funmooc
-    - lint-front:
-        filters:
-          tags:
-            only: /.*/
-        name: lint-front-funmooc
-        requires:
-        - build-front-production-funmooc
-        site: funmooc
-    - build-back:
-        filters:
-          tags:
-            only: /.*/
-        name: build-back-funmooc
-        site: funmooc
-    - lint-back:
-        filters:
-          tags:
-            only: /.*/
-        name: lint-back-funmooc
-        requires:
-        - build-back-funmooc
-        site: funmooc
-    - test-back:
-        filters:
-          tags:
-            only: /.*/
-        name: test-back-funmooc
-        requires:
-        - build-back-funmooc
-        site: funmooc
-    - hub:
-        filters:
-          tags:
-            only: /^funmooc-.*/
-        name: hub-funmooc
-        requires:
-        - lint-front-funmooc
-        - lint-back-funmooc
-        site: funmooc
-    when: << pipeline.parameters.run_funmooc >>
+        name: no-change-funmooc
   site-factory:
     jobs:
     - lint-git:
