@@ -2,80 +2,8 @@
 # Run jobs for the cnfpt site
 cnfpt:
   jobs:
-    # Check CHANGELOG update
-    - check-changelog:
-        name: check-changelog-cnfpt
-        site: cnfpt
-        filters:
-          branches:
-            ignore: master
-          tags:
-            only: /cnfpt-.*/
-    - lint-changelog:
-        name: lint-changelog--cnfpt
-        site: cnfpt
-        filters:
-          branches:
-            ignore: master
-          tags:
-            only: /cnfpt-.*/
-
-    # Front-end jobs
-    #
-    # Build & lint the front-end apps
-    - build-front-production:
-        name: build-front-production-cnfpt
-        site: cnfpt
+    - no-change:
+        name: no-change-cnfpt
         filters:
           tags:
-            only: /cnfpt-.*/
-    - lint-front:
-        name: lint-front-cnfpt
-        site: cnfpt
-        requires:
-          - build-front-production-cnfpt
-        filters:
-          tags:
-            only: /cnfpt-.*/
-
-    # Backend jobs
-    #
-    # Build, lint and test production and development Docker images
-    # (debian-based)
-    - build-back:
-        name: build-back-cnfpt
-        site: cnfpt
-        filters:
-          tags:
-            only: /cnfpt-.*/
-    - lint-back:
-        name: lint-back-cnfpt
-        site: cnfpt
-        requires:
-          - build-back-cnfpt
-        filters:
-          tags:
-            only: /cnfpt-.*/
-    - test-back:
-        name: test-back-cnfpt
-        site: cnfpt
-        requires:
-          - build-back-cnfpt
-        filters:
-          tags:
-            only: /cnfpt-.*/
-
-    # DockerHub publication.
-    #
-    # Publish docker images only if all build, lint and test jobs succeed and
-    # if the CI workflow has been triggered by a git tag starting with the
-    # letter v or by a PR merged to the master branch
-    - hub:
-        name: hub-cnfpt
-        site: cnfpt
-        requires:
-          - lint-front-cnfpt
-          - lint-back-cnfpt
-        filters:
-          tags:
-            only: /^cnfpt-.*/
+            only: /.*/

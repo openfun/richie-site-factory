@@ -8,6 +8,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.2] - 2020-06-06
+
+### Changed
+
+- Upgrade to richie 2.0.0-beta.6.
+
 ## [0.2.1] - 2020-05-07
 
 ### Fixed
@@ -22,7 +28,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Disable 'runs' and 'snapshot' blocks from course detail.
 - Disable 'max-width' from '.course-detail__wrapper'.
 - Enable background and arc image for course detail primary group.
-- Upgrade to richie 2.0.0-beta.6.
 
 ### Fixed
 
@@ -41,7 +46,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/fun-corporate/compare/v0.2.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.2.2...HEAD
+[0.2.2]: https://github.com/openfun/richie-site-factory/releases/tag/funcorporate-0.2.2
+
+# Deprecated repository
 [0.2.1]: https://github.com/openfun/fun-corporate/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/openfun/fun-corporate/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/openfun/fun-corporate/releases/tag/v0.1.0
