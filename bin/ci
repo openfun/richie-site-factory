@@ -100,18 +100,30 @@ function check_configuration() {
 # Usage: check_tag SITE TAG
 function check_tag() {
     site=$1
-    src="${SITES_DIRECTORY}/${site}/src"
+    site_path="${SITES_DIRECTORY}/${site}"
     tag=$2
+
+    # Tags are of the form "demo-1.2.1" in which "1.2.1" is the version
+    version=${2//${1}-/}
 
     declare -i fail
     fail=0
-    if ! grep "__version__ = \"${tag}\"" "${src}/backend/${site}/__init__.py" &> /dev/null ; then
-      echo "Backend version does not match the current tag!"
-      fail+=1
+    if ! [[ "${tag}" =~ ${site}- ]] ; then
+      echo "Tags must be of the form \"{site}-{semver version}\"!"
+      fail=4
     fi
-    if ! grep "\"version\": \"${tag}\"" "${src}/frontend/package.json" &> /dev/null ; then
+    if ! grep "## \[${version}\] - " "${site_path}/CHANGELOG.md" &> /dev/null ; then
+      echo "Version \"${version}\" for \"${site}\" is missing from CHANGELOG!"
+      fail=4
+    fi
+    init_path="${site_path}/src/backend/${site}/__init__.py"
+    if ! grep "__version__ = \"${version}\"" "${init_path}" &> /dev/null ; then
+      echo "Backend version does not match the current tag!"
+      fail=4
+    fi
+    if ! grep "\"version\": \"${version}\"" "${site_path}/src/frontend/package.json" &> /dev/null ; then
       echo "Frontend version does not match the current tag!"
-      fail+=2
+      fail=4
     fi
     exit ${fail}
 }
