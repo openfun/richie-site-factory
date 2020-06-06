@@ -1,6 +1,6 @@
 {
   "name": "funcorporate",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The future www.fun-corporate.fr website based on https://github.com/openfun/richie",
   "scripts": {
     "prettier": "prettier '**/*.+(css|scss)'",

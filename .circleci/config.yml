@@ -317,74 +317,74 @@ version: 2.1
 workflows:
   cnfpt:
     jobs:
+    - no-change:
+        filters:
+          tags:
+            only: /.*/
+        name: no-change-cnfpt
+  funcorporate:
+    jobs:
     - check-changelog:
         filters:
           branches:
             ignore: master
           tags:
-            only: /cnfpt-.*/
-        name: check-changelog-cnfpt
-        site: cnfpt
+            only: /funcorporate-.*/
+        name: check-changelog-funcorporate
+        site: funcorporate
     - lint-changelog:
         filters:
           branches:
             ignore: master
           tags:
-            only: /cnfpt-.*/
-        name: lint-changelog--cnfpt
-        site: cnfpt
+            only: /funcorporate-.*/
+        name: lint-changelog--funcorporate
+        site: funcorporate
     - build-front-production:
         filters:
           tags:
-            only: /cnfpt-.*/
-        name: build-front-production-cnfpt
-        site: cnfpt
+            only: /funcorporate-.*/
+        name: build-front-production-funcorporate
+        site: funcorporate
     - lint-front:
         filters:
           tags:
-            only: /cnfpt-.*/
-        name: lint-front-cnfpt
+            only: /funcorporate-.*/
+        name: lint-front-funcorporate
         requires:
-        - build-front-production-cnfpt
-        site: cnfpt
+        - build-front-production-funcorporate
+        site: funcorporate
     - build-back:
         filters:
           tags:
-            only: /cnfpt-.*/
-        name: build-back-cnfpt
-        site: cnfpt
+            only: /funcorporate-.*/
+        name: build-back-funcorporate
+        site: funcorporate
     - lint-back:
         filters:
           tags:
-            only: /cnfpt-.*/
-        name: lint-back-cnfpt
+            only: /funcorporate-.*/
+        name: lint-back-funcorporate
         requires:
-        - build-back-cnfpt
-        site: cnfpt
+        - build-back-funcorporate
+        site: funcorporate
     - test-back:
         filters:
           tags:
-            only: /cnfpt-.*/
-        name: test-back-cnfpt
+            only: /funcorporate-.*/
+        name: test-back-funcorporate
         requires:
-        - build-back-cnfpt
-        site: cnfpt
+        - build-back-funcorporate
+        site: funcorporate
     - hub:
         filters:
           tags:
-            only: /^cnfpt-.*/
-        name: hub-cnfpt
+            only: /^funcorporate-.*/
+        name: hub-funcorporate
         requires:
-        - lint-front-cnfpt
-        - lint-back-cnfpt
-        site: cnfpt
-  funcorporate:
-    jobs:
-    - no-change:
-        filters:
-          tags:
-            only: /.*/
-        name: no-change-funcorporate
+        - lint-front-funcorporate
+        - lint-back-funcorporate
+        site: funcorporate
   funmooc:
     jobs:
     - no-change:
