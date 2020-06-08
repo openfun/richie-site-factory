@@ -123,6 +123,9 @@ jobs:
     - run:
         command: make ci-check
         name: Run Django checks with production image
+    - run:
+        command: bin/ci check_tag << parameters.site >> "$CIRCLE_TAG"
+        name: Check that the changelog, versions and tag are always in sync
     - when:
         condition:
           or:
@@ -131,12 +134,6 @@ jobs:
             - << pipeline.git.branch >>
             - master
         steps:
-        - run:
-            command: |
-              if [[ -n "$CIRCLE_TAG" ]]; then
-                  bin/ci check_tag << parameters.site >> "$CIRCLE_TAG"
-              fi
-            name: For a release, check that the tag and versions are in sync
         - run:
             command: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             name: Login to DockerHub

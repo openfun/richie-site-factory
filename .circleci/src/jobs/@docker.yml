@@ -37,6 +37,9 @@ hub:
     - run:
         name: Run Django checks with production image
         command: make ci-check
+    - run:
+        name: Check that the changelog, versions and tag are always in sync
+        command: bin/ci check_tag << parameters.site >> "$CIRCLE_TAG"
     # Publish images to DockerHub only for tags and the master branch:
     #   - for a v1.0.1 tag, publish Docker tags "1.0.1"  and "latest"
     #   - for the master branch, publish a "master" tag
@@ -52,12 +55,6 @@ hub:
                 - << pipeline.git.branch >>
                 - master
         steps:
-          - run:
-              name: For a release, check that the tag and versions are in sync
-              command: |
-                if [[ -n "$CIRCLE_TAG" ]]; then
-                    bin/ci check_tag << parameters.site >> "$CIRCLE_TAG"
-                fi
           # Login to DockerHub to Publish new images
           #
           # Nota bene: you'll need to define the following secrets environment vars
