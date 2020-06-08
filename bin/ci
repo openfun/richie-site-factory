@@ -105,6 +105,8 @@ function check_tag() {
 
     declare -i fail
     fail=0
+
+    # Check CHANGELOG
     if [[ -n "${tag}" ]] ; then
         # Tags should be of the form "demo-1.2.1" in which "1.2.1" is the version
         if ! [[ "${tag}" =~ ${site}- ]] ; then
@@ -122,15 +124,25 @@ function check_tag() {
       fail+=2
     fi
 
+    # Check page versions
     init_path="${site_path}/src/backend/${site}/__init__.py"
     if ! grep "__version__ = \"${version}\"" "${init_path}" &> /dev/null ; then
       echo "Backend version does not match the current tag!"
       fail+=4
     fi
 
-    if ! grep "\"version\": \"${version}\"" "${site_path}/src/frontend/package.json" &> /dev/null ; then
+    package_json="${site_path}/src/frontend/package.json"
+    if ! grep "\"version\": \"${version}\"" "${package_json}" &> /dev/null ; then
       echo "Frontend version does not match the current tag!"
       fail+=8
+    fi
+
+    # Check dependencies
+    richie_version=$(grep "richie==" "sites/funmooc/requirements/base.txt" | sed s'/richie==//')
+
+    if ! grep "\"richie-education\": \"${richie_version}\"" "${package_json}" &> /dev/null ; then
+      echo "Richie version installed in frontend does not match version installed in backend!"
+      fail+=16
     fi
 
     exit ${fail}
