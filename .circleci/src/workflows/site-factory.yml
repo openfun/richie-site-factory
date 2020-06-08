@@ -9,8 +9,8 @@ jobs:
   # Check that circleci configuration is updated
   - check-configuration:
       filters:
-        tags:
-          only: /.*/
+        branches:
+          ignore: master
   # Lint bash scripts in /bin
   - lint-bash:
       filters:
