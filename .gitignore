@@ -46,3 +46,6 @@ yarn-error.log
 .terraform
 *.tfstate
 *.tfstate.backup
+
+# CircleCI
+.circleci/src/workflows/@*.yml
