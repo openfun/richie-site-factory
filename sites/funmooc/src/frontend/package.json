@@ -1,6 +1,6 @@
 {
   "name": "funmooc",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "Richie-powered CMS for fun-mooc.fr",
   "scripts": {
     "prettier": "prettier '**/*.+(css|scss)'",
