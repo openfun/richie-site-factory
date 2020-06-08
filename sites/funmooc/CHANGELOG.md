@@ -8,6 +8,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.11.0] - 2020-06-08
+
+### Changed
+
+- Upgrade to richie 2.0.0-beta.7
+
 ## [0.10.1] - 2020-05-27
 
 ### Fixed
@@ -227,7 +233,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/v0.10.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/v0.11.0...HEAD
+[0.11.0]: https://github.com/openfun/richie-site-factory/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/openfun/richie-site-factory/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/openfun/richie-site-factory/compare/v0.9.6...v0.10.0
 [0.9.6]: https://github.com/openfun/richie-site-factory/compare/v0.9.5...v0.9.6
