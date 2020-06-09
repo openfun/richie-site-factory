@@ -8,8 +8,6 @@ ${SITE}:
         filters:
           branches:
             ignore: master
-          tags:
-            only: /${SITE}-.*/
     - lint-changelog:
         name: lint-changelog--${SITE}
         site: ${SITE}
