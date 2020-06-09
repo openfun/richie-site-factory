@@ -150,9 +150,9 @@ jobs:
               # or
               # - DOCKER_TAG: 1.1.2 (Git tag v1.1.2)
               echo "DOCKER_TAG: ${DOCKER_TAG}"
-              docker tag << parameters.image_name >>:production fundocker/<< parameters.site >>:${DOCKER_TAG}
+              docker tag << parameters.site >>:production fundocker/<< parameters.image_name >>:${DOCKER_TAG}
               if [[ -n "$CIRCLE_TAG" ]]; then
-                  docker tag << parameters.image_name >>:production fundocker/<< parameters.site >>:latest
+                  docker tag << parameters.site >>:production fundocker/<< parameters.image_name >>:latest
               fi
               docker images | grep -E "^fundocker/<< parameters.image_name >>\s*(${DOCKER_TAG}.*|latest|master)"
             name: Tag app image
@@ -160,9 +160,9 @@ jobs:
             command: |
               docker images fundocker/<< parameters.image_name >>-nginx
               echo "DOCKER_TAG: ${DOCKER_TAG}"
-              docker tag << parameters.image_name >>-nginx:production fundocker/<< parameters.site >>-nginx:${DOCKER_TAG}
+              docker tag << parameters.site >>-nginx:production fundocker/<< parameters.image_name >>-nginx:${DOCKER_TAG}
               if [[ -n "$CIRCLE_TAG" ]]; then
-                  docker tag << parameters.image_name >>-nginx:production fundocker/<< parameters.site >>-nginx:latest
+                  docker tag << parameters.site >>-nginx:production fundocker/<< parameters.image_name >>-nginx:latest
               fi
               docker images | grep -E "^fundocker/<< parameters.image_name >>-nginx\s*(${DOCKER_TAG}.*|latest|master)"
             name: Tag nginx image
