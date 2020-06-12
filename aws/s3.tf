@@ -2,7 +2,7 @@
 resource "aws_s3_bucket" "richie_media" {
   bucket = "${terraform.workspace}-${var.site}-media"
   acl    = "private"
-  region = "${var.aws_region}"
+  region = var.aws_region
 
   cors_rule {
     allowed_headers = ["*"]
@@ -27,14 +27,14 @@ resource "aws_iam_user" "richie_user" {
 }
 
 resource "aws_iam_access_key" "richie_access_key" {
-  user = "${aws_iam_user.richie_user.name}"
+  user = aws_iam_user.richie_user.name
 }
 
 # Grant accesses to the media bucket:
 # - full access for the user,
 # - read only access for CloudFront.
 resource "aws_s3_bucket_policy" "richie_media_bucket_policy" {
-  bucket = "${aws_s3_bucket.richie_media.id}"
+  bucket = aws_s3_bucket.richie_media.id
 
   policy = <<EOF
 {

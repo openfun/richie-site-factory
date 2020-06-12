@@ -89,7 +89,7 @@ services:
       - ./sites/${RICHIE_SITE:-funmooc}:/app
 
   terraform:
-    image: hashicorp/terraform:light
+    image: hashicorp/terraform
     environment:
       - TF_VAR_SITE=${RICHIE_SITE:-funmooc}
     env_file: env.d/aws
