@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-# shellcheck source=bin/_config.sh
-source "$(dirname "${BASH_SOURCE[0]}")/_config.sh"
-
 # Run Terraform commands on the create_state_bucket project in the Hashicorp
 # docker container, passing our environment variables
+
+
+docker-compose pull terraform-state
+
+# Run Terraform commands in the Hashicorp docker container via docker compose
 DOCKER_USER="$(id -u):$(id -g)" \
-    docker-compose run --rm \
-        -v "${PWD}/src/aws/create_state_bucket:/app"\
-        terraform "$@"
+    docker-compose run --rm terraform-state "$@"
