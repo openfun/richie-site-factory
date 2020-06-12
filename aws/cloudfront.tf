@@ -14,8 +14,8 @@ resource "aws_cloudfront_origin_access_identity" "richie_oai" {
 resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
   # Origin pointing to static files
   origin {
-    domain_name = "${lookup(var.app_domain, terraform.workspace)}"
-    origin_id   = "${local.s3_static_origin_id}"
+    domain_name = lookup(var.app_domain, terraform.workspace)
+    origin_id   = local.s3_static_origin_id
 
     custom_origin_config {
       http_port = 80
@@ -27,11 +27,11 @@ resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
 
   # Origin for the media S3 bucket
   origin {
-    domain_name = "${aws_s3_bucket.richie_media.bucket_domain_name}"
-    origin_id   = "${local.s3_media_origin_id}"
+    domain_name = aws_s3_bucket.richie_media.bucket_domain_name
+    origin_id   = local.s3_media_origin_id
 
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.richie_oai.cloudfront_access_identity_path}"
+      origin_access_identity = aws_cloudfront_origin_access_identity.richie_oai.cloudfront_access_identity_path
     }
   }
 
@@ -42,7 +42,7 @@ resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = "${local.s3_static_origin_id}"
+    target_origin_id = local.s3_static_origin_id
 
     forwarded_values {
       query_string = false
@@ -65,7 +65,7 @@ resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
     path_pattern     = "/media/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = "${local.s3_media_origin_id}"
+    target_origin_id = local.s3_media_origin_id
 
     forwarded_values {
       query_string = false
@@ -83,7 +83,7 @@ resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
     viewer_protocol_policy = "redirect-to-https"
   }
 
-  price_class = "${lookup(var.cloudfront_price_class, terraform.workspace, "PriceClass_100")}"
+  price_class = lookup(var.cloudfront_price_class, terraform.workspace, "PriceClass_100")
 
   restrictions {
     geo_restriction {
@@ -92,7 +92,7 @@ resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
   }
 
   tags = {
-    Environment = "${terraform.workspace}"
+    Environment = terraform.workspace
   }
 
   viewer_certificate {

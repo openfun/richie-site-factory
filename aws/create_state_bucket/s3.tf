@@ -3,9 +3,9 @@ resource "aws_kms_key" "state_key" {
 }
 
 resource "aws_s3_bucket" "state_bucket" {
-  bucket = "${terraform.workspace}-terraform"
+  bucket = "richie-site-factory-terraform"
   acl    = "private"
-  region = "${var.aws_region}"
+  region = var.aws_region
 
   versioning {
     enabled = true
@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "state_bucket" {
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
-        kms_master_key_id = "${aws_kms_key.state_key.arn}"
+        kms_master_key_id = aws_kms_key.state_key.arn
         sse_algorithm     = "aws:kms"
       }
     }

@@ -1,15 +1,15 @@
 
 variable "aws_region" {
-  type    = "string"
+  type    = string
   default = "eu-west-1"
 }
 
 variable "site" {
-  type = "string"
+  type = string
 }
 
 variable "cloudfront_price_class" {
-  type = "map"
+  type = map
 
   default = {
     production = "PriceClass_All"
@@ -17,5 +17,5 @@ variable "cloudfront_price_class" {
 }
 
 variable "app_domain" {
-  type = "map"
+  type = map
 }
