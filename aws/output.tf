@@ -9,7 +9,3 @@ output "iam_access_key" {
 output "iam_access_secret" {
   value = "${aws_iam_access_key.richie_access_key.secret}"
 }
-
-output "acm_certificate_validation" {
-  value = "${aws_acm_certificate.certificate.domain_validation_options}"
-}

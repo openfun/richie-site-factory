@@ -16,10 +16,6 @@ variable "cloudfront_price_class" {
   }
 }
 
-variable "storage_domain" {
-  type = "map"
-}
-
 variable "app_domain" {
   type = "map"
 }
