@@ -1,6 +1,6 @@
 {
   "name": "cnfpt",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Richie-powered CMS for mooc.cnfpt.fr",
   "scripts": {
     "prettier": "prettier '**/*.+(css|scss)'",
