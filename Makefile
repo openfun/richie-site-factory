@@ -62,7 +62,7 @@ build: ## build all containers
 
 reset:  ## Remove database and local files
 	$(COMPOSE) stop
-	rm -Ir data/*
+	rm -Ir data/* || exit 0
 	$(COMPOSE) rm db
 .PHONY: reset
 
