@@ -264,7 +264,7 @@ $r-theme: (
     badge-button: $transparent-berry-scheme,
   ),
   body-mentions: (
-    base-color: r-color('battleship-grey'),
+    base-color: r-color('white'),
     base-background: r-color('black'),
     poweredby-hover: r-color('white'),
   ),
@@ -318,6 +318,7 @@ $r-theme: (
     insert-background-image: null,
     inner-background: null,
     title-color: r-color('white'),
+    title-alt-color: r-color('battleship-grey'),
     content-color: r-color('white'),
     search-input-background: r-color('white'),
     search-btn-background: r-color('berry'),
@@ -467,6 +468,13 @@ $r-theme: (
     card-color: r-color('battleship-grey'),
     hover-border: r-color('light-grey'),
   ),
+  quote-glimpse: (
+    base-background: r-color('white'),
+    base-shadow: 0 0 4px r-color('light-grey'),
+    title-color: r-color('black'),
+    content-color: r-color('battleship-grey'),
+    icon-color: r-color('dark'),
+   ),
   row_half-glimpse: (
     base-background: r-color('white'),
     divider-color: r-color('berry'),
@@ -520,13 +528,15 @@ $r-theme: (
   course-detail: (
     organizations-title-color: r-color('battleship-grey'),
     aside-title-border: r-color('black-two'),
-    primary-group-title-color: r-color('berry'),
+    primary-group-title-color: r-color('black-two'),
     primary-group-background: transparent,
     primary-group-arc: null,
     run-cta: $berry-color-scheme,
     run-descriptions-divider: r-color('light-grey'),
     plan-title-color: r-color('berry'),
     license-label-color: r-color('ocean-blue'),
+    checkmark-list-decoration:
+      url('../../richie/images/components/checkmark.svg'),
   ),
   organization-detail: (
     banner-empty-background: r-color('white-three'),
@@ -543,6 +553,7 @@ $r-theme: (
   ),
   search-results: (
     overlay: r-color('black'),
+    color: r-color('light-grey'),
   ),
   search-filters: (
     base-background: r-color('white'),

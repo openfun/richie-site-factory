@@ -199,7 +199,7 @@ $r-theme: (
     item-cta-color: r-color('white'),
     item-cta-background: r-color('blue-green'),
     item-cta-border: r-color('blue-green'),
-    item-cta-hollow-color: r-color('dark-grey'),
+    item-cta-hollow-color: r-color('blue-green'),
     item-cta-hollow-background: transparent,
     item-cta-hollow-border: transparent,
     item-divider-border: r-color('light-grey'),
@@ -219,7 +219,7 @@ $r-theme: (
     badge-button: $blue-green-scheme,
   ),
   body-mentions: (
-    base-color: r-color('slate-grey'),
+    base-color: r-color('white'),
     base-background: r-color('black'),
     poweredby-hover: r-color('white'),
   ),
@@ -274,6 +274,7 @@ $r-theme: (
       url('../../richie/images/components/wave-white.svg'),
     inner-background: $white-mask-gradient,
     title-color: r-color('blue-green'),
+    title-alt-color: r-color('dark-grey'),
     content-color: r-color('slate-grey'),
     search-input-background: rgba(r-color('white'), 0.7),
     search-btn-background: r-color('blue-green'),
@@ -413,6 +414,13 @@ $r-theme: (
     card-color: r-color('slate-grey'),
     hover-border: r-color('light-grey'),
   ),
+  quote-glimpse: (
+    base-background: r-color('white'),
+    base-shadow: 0 0 4px r-color('light-grey'),
+    title-color: r-color('black'),
+    content-color: r-color('battleship-grey'),
+    icon-color: r-color('dark-grey'),
+  ),
   row_half-glimpse: (
     base-background: r-color('white'),
     divider-color: r-color('blue-green'),
@@ -463,13 +471,15 @@ $r-theme: (
   course-detail: (
     organizations-title-color: r-color('slate-grey'),
     aside-title-border: r-color('dark-grey'),
-    primary-group-title-color: r-color('blue-green'),
+    primary-group-title-color: r-color('dark-grey'),
     primary-group-background: $neutral-gradient,
     primary-group-arc: url('../../richie/images/components/arc-white.svg'),
     run-cta: $denim-scheme,
     run-descriptions-divider: r-color('light-grey'),
     plan-title-color: r-color('blue-green'),
     license-label-color: r-color('denim'),
+    checkmark-list-decoration:
+      url('../../richie/images/components/checkmark.svg'),
   ),
   organization-detail: (
     banner-empty-background: r-color('smoke'),
@@ -486,6 +496,7 @@ $r-theme: (
   ),
   search-results: (
     overlay: r-color('black'),
+    color: r-color('light-grey'),
   ),
   search-filters: (
     base-background: r-color('white'),
