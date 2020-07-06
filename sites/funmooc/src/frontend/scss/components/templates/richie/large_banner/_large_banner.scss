@@ -3,15 +3,46 @@
 .hero-intro {
   // NOTE: Adjust background size on large screens so image fit more nicely
   background-size: cover;
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
+    background-position: bottom center;
     background-size: auto;
   }
 
   &__inner {
     // NOTE: Remove white transparent mask on large screen so image is more
     // visible but keep it for small screen to ensure text readability
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       background: transparent;
+    }
+
+    // NOTE: Adjust padding so flexbox behavior push the search bar near the
+    // container bottom
+    @include media-breakpoint-up(lg) {
+      @if $r-topbar-height {
+        padding: $r-topbar-height 0 calc(3vw + 1rem);
+      } @else {
+        padding: 1rem 0 calc(3vw + 1rem);
+      }
+    }
+  }
+
+  &::after {
+    // NOTE:
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+      // NOTE: Flip vertically wave decoration and push it over the next element
+      bottom: calc(0.05rem - 5vw);
+      transform: scaleY(-1);
+      z-index: 5;
+    }
+  }
+
+  // NOTE: Adjust next element top padding to include the decoration height
+  @include media-breakpoint-up(lg) {
+    & + * {
+      padding-top: calc(5vw + 2rem) !important;
     }
   }
 }

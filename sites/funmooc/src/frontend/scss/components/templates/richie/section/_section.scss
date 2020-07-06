@@ -47,7 +47,7 @@
   }
 
   // Quaternary template
-  // NOTE: Add bottom waves borde image
+  // NOTE: Add bottom waves border image
   &.section--gradient-dark {
     position: relative;
     padding-bottom: calc(5vw + 1.5rem) !important;
@@ -66,6 +66,27 @@
       background-repeat: no-repeat;
       background-position: top left;
       background-size: 100% 100%;
+    }
+  }
+
+  // NOTE: Alternative button-caesura colors on some sections
+  &.section--light,
+  &.section--gradient-dark{
+    .button-caesura {
+      a {
+        @include r-button-colors(
+          r-theme-val(button-caesura, alternative),
+          $apply-border: true
+        );
+
+        &:hover {
+          @include r-button-colors(
+            r-theme-val(button-caesura, alternative),
+            $apply-border: true,
+            $prefix: 'hover'
+          );
+        }
+      }
     }
   }
 }

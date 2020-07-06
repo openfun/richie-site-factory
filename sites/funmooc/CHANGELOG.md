@@ -11,6 +11,13 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Upgrade richie to 2.0.0-beta.11
+- Homepage hero intro adjustments for font and background.
+- Button caesura variant alternative color for some section.
+- Adjust 'middle-gradient' to try to be more accessible.
+- Correct links on social networks badges.
+- More accessible category badges color everywhere.
+- Adapt bullet list checkmark icon color to funmooc theme.
+- Removed header bottom border.
 
 ## [0.12.0] - 2020-06-17
 

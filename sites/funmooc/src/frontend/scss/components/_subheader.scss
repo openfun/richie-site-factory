@@ -1,0 +1,12 @@
+@import 'richie-education/scss/components/subheader';
+
+.subheader {
+  .category-badge-list {
+    .category-badge {
+      @include r-button-colors(
+        r-theme-val(subheader, category-badge),
+        $apply-border: true
+      );
+    }
+  }
+}
