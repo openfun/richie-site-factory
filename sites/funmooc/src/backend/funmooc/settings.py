@@ -84,6 +84,7 @@ class StyleguideMixin:
             "light",
             "lightest",
             "indianred3",
+            "clear-red",
             "neutral-gradient",
             "light-gradient",
             "middle-gradient",

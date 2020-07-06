@@ -1,0 +1,35 @@
+@import 'richie-education/scss/components/templates/courses/cms/homepage';
+
+.homepage {
+  .hero-intro {
+    &__content {
+      // TODO: Avoid content to go over background subject
+      @include media-breakpoint-up(lg) {
+        width: 50%;
+      }
+
+      // TODO: Increase text size
+      p {
+        @include font-size($h3-font-size);
+      }
+    }
+
+    &__title {
+      // TODO: Disable original behavior since we apply width constraint on
+      // '__content'
+      @include media-breakpoint-up(lg) {
+        width: 100%;
+      }
+    }
+  }
+
+  // TODO: Increase title size on some specific sections
+  .section--light,
+  .section--gradient-dark{
+    .section__title {
+      @include media-breakpoint-up(lg) {
+        @include font-size(#{$h1-font-size * 1.25});
+      }
+    }
+  }
+}
