@@ -1,3 +1,5 @@
+RICHIE_SITE ?= funmooc
+
 # -- Terminal colors
 COLOR_INFO    = \033[0;36m
 COLOR_RESET   = \033[0m
@@ -38,7 +40,17 @@ MANAGE = $(COMPOSE_RUN_APP) python manage.py
 # -- Rules
 default: help
 
-bootstrap: env.d/aws reset data/media/.keep build-front build run migrate init ## install development dependencies
+bootstrap: \
+  env.d/aws \
+  data/media/$(RICHIE_SITE)/.keep \
+  data/db/$(RICHIE_SITE)/.keep \
+  stop \
+  build-front \
+  build \
+  run \
+  migrate \
+  init
+bootstrap:  ## install development dependencies
 .PHONY: bootstrap
 
 # == Docker
@@ -224,10 +236,15 @@ clean: ## restore repository state as it was freshly cloned
 	git clean -idx
 .PHONY: clean
 
-data/media/.keep:
+data/media/$(RICHIE_SITE)/.keep:
 	@echo 'Preparing media volume...'
-	@mkdir -p data/media
-	@touch data/media/.keep
+	@mkdir -p data/media/$(RICHIE_SITE)
+	@touch data/media/$(RICHIE_SITE)/.keep
+
+data/db/$(RICHIE_SITE)/.keep:
+	@echo 'Preparing db volume...'
+	@mkdir -p data/db/$(RICHIE_SITE)
+	@touch data/db/$(RICHIE_SITE)/.keep
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

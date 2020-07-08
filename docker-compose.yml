@@ -3,10 +3,14 @@ version: "3.4"
 services:
   db:
     image: postgres:9.6
+    environment:
+      - POSTGRES_DB=richie_${RICHIE_SITE:-funmooc}
     env_file:
       - "env.d/development"
     ports:
       - "5440:5432"
+    volumes:
+      - ./data/db/${RICHIE_SITE:-funmooc}:/var/lib/postgresql/data
 
   elasticsearch:
     image: fundocker/openshift-elasticsearch:6.6.2
@@ -24,14 +28,16 @@ services:
         SITE: ${RICHIE_SITE:-funmooc}
     image: "${RICHIE_SITE:-funmooc}:development"
     environment:
+      - DB_NAME=richie_${RICHIE_SITE:-funmooc}
       - DJANGO_SETTINGS_MODULE=${RICHIE_SITE:-funmooc}.settings
       - DJANGO_CONFIGURATION=Development
+      - RICHIE_ES_INDICES_PREFIX=richie_${RICHIE_SITE:-funmooc}
     env_file: env.d/development
     ports:
       - "8080:8000"
     volumes:
       - "./sites/${RICHIE_SITE:-funmooc}/src/backend:/app"
-      - "./data/media:/data/media"
+      - "./data/media/${RICHIE_SITE:-funmooc}:/data/media"
     depends_on:
       - "db"
       - "elasticsearch"
@@ -48,13 +54,15 @@ services:
     # unique and avoid collisions in parallel builds.
     image: "${RICHIE_SITE:-funmooc}:production"
     environment:
+      - DB_NAME=richie_${RICHIE_SITE:-funmooc}
       - DJANGO_SETTINGS_MODULE=${RICHIE_SITE:-funmooc}.settings
       - DJANGO_CONFIGURATION=ContinuousIntegration
+      - RICHIE_ES_INDICES_PREFIX=richie_${RICHIE_SITE:-funmooc}
     env_file: env.d/development
     ports:
       - "8000:8000"
     volumes:
-      - ./data/media:/data/media
+      - ./data/media/${RICHIE_SITE:-funmooc}:/data/media
     depends_on:
       - "db"
       - "elasticsearch"
@@ -74,7 +82,7 @@ services:
       - "8081:8081"
     volumes:
       - ./docker/files/etc/nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./data/media:/data/media:ro
+      - ./data/media/${RICHIE_SITE:-funmooc}:/data/media:ro
     depends_on:
       - app
 
