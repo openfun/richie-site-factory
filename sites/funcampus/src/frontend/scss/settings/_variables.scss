@@ -144,15 +144,15 @@ $r-footer-breakpoint: lg;
 // Topbar height is required to be able to preserve space in some context like
 // when the tobpar is an absolute position, so content won't be placed below.
 // You will probably need to adjust it along logo height.
-$r-topbar-height: 8.8125rem;
+$r-topbar-height: 8.75rem;
 
 // Header logo width is required for SVG logos
 $r-topbar-logo-width-sm: 15rem;
-$r-topbar-logo-width-lg: 21.25rem;
+$r-topbar-logo-width-lg: 15.8125rem;
 
 // Header logo width is required for SVG logos
-$r-footer-logo-width-sm: 13.75rem;
-$r-footer-logo-width-lg: 18.125rem;
+$r-footer-logo-width-sm: 12.125rem;
+$r-footer-logo-width-lg: 12.125rem;
 
 // Aside column width in course detail, if 'null' content and aside columns take
 // full width like common blocks. Usefull if you plan to remove course run from

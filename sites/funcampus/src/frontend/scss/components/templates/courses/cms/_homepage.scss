@@ -1,0 +1,50 @@
+@import 'richie-education/scss/components/templates/courses/cms/homepage';
+
+.homepage {
+  .hero-intro {
+    // NOTE: Adjust background size on large screens so image fit more nicely
+    background-size: cover;
+    @include media-breakpoint-up(md) {
+      background-size: auto 90%;
+      background-position: bottom center;
+    }
+
+    &__inner {
+      // NOTE: Remove white transparent mask on large screen so image is more
+      // visible but keep it for small screen to ensure text readability
+      @include media-breakpoint-up(md) {
+        background: transparent;
+      }
+    }
+
+    &__content {
+      // TODO: Avoid content to go over background subject
+      @include media-breakpoint-up(lg) {
+        width: 50%;
+      }
+
+      // TODO: Increase text size
+      p {
+        @include font-size($h3-font-size);
+      }
+    }
+
+    &__title {
+      // TODO: Disable original behavior since we apply width constraint on
+      // '__content'
+      @include media-breakpoint-up(lg) {
+        width: 100%;
+      }
+    }
+  }
+
+  // TODO: Increase title size on some specific sections
+  .section--light,
+  .section--gradient-dark{
+    .section__title {
+      @include media-breakpoint-up(lg) {
+        @include font-size(#{$h1-font-size * 1.25});
+      }
+    }
+  }
+}
