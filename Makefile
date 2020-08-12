@@ -23,6 +23,7 @@ COMPOSE_TEST_RUN     = $(COMPOSE) run --rm -e DJANGO_CONFIGURATION=Test
 COMPOSE_TEST_RUN_APP = $(COMPOSE_TEST_RUN) app-dev
 WAIT_DB              = $(COMPOSE_RUN) dockerize -wait tcp://db:5432 -timeout 60s
 WAIT_ES              = $(COMPOSE_RUN) dockerize -wait tcp://elasticsearch:9200 -timeout 60s
+WAIT_SENTINEL        = $(COMPOSE_RUN) dockerize -wait tcp://redis-sentinel:26379 -wait tcp://redis-primary:6379 -timeout 20s
 
 # -- Node
 
@@ -75,6 +76,8 @@ logs: ## display app logs (follow mode)
 .PHONY: logs
 
 run: ## start the wsgi (production) or development server
+	@$(COMPOSE) up -V -d redis-sentinel
+	@$(WAIT_SENTINEL)
 	@$(COMPOSE) up -d nginx
 	@$(COMPOSE) up -d app-dev
 	@$(WAIT_DB)

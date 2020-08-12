@@ -294,6 +294,15 @@ jobs:
                 POSTGRES_PASSWORD: pass
                 POSTGRES_USER: richie_user
               image: circleci/postgres:9.6-alpine-ram
+            - environment:
+                ALLOW_EMPTY_PASSWORD: "yes"
+                REDIS_REPLICATION_MODE: master
+              image: docker.io/bitnami/redis:6.0-debian-10
+              name: redis-primary
+            - environment:
+                REDIS_MASTER_HOST: redis-primary
+              image: docker.io/bitnami/redis-sentinel:6.0-debian-10
+              name: redis-sentinel
         parameters:
             site:
                 type: string
