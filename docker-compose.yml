@@ -41,6 +41,7 @@ services:
     depends_on:
       - "db"
       - "elasticsearch"
+      - "redis-sentinel"
     user: ${DOCKER_USER:-1000}
 
   app:
@@ -66,6 +67,7 @@ services:
     depends_on:
       - "db"
       - "elasticsearch"
+      - "redis-sentinel"
     user: ${DOCKER_USER:-1000}
 
   nginx:
@@ -117,3 +119,16 @@ services:
       - ./aws:/app
       - ./sites/${RICHIE_SITE:-funmooc}/aws:/config
     user: ${DOCKER_USER:-1000}
+
+  redis-sentinel:
+    image: docker.io/bitnami/redis-sentinel:6.0-debian-10
+    environment:
+      - REDIS_MASTER_HOST=redis-primary
+    depends_on:
+      - redis-primary
+
+  redis-primary:
+    image: docker.io/bitnami/redis:6.0-debian-10
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_REPLICATION_MODE=master

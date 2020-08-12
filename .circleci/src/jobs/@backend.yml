@@ -75,6 +75,15 @@ test-back:
         POSTGRES_DB: richie
         POSTGRES_USER: richie_user
         POSTGRES_PASSWORD: pass
+    - image: docker.io/bitnami/redis:6.0-debian-10
+      name: redis-primary
+      environment:
+        ALLOW_EMPTY_PASSWORD: yes
+        REDIS_REPLICATION_MODE: master
+    - image: docker.io/bitnami/redis-sentinel:6.0-debian-10
+      name: redis-sentinel
+      environment:
+        REDIS_MASTER_HOST: redis-primary
   working_directory: ~/fun/sites/<< parameters.site >>/src/backend
   steps:
     - checkout:
