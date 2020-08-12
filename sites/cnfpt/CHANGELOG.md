@@ -12,6 +12,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 2.0.0-beta.11
 - Enable Django CMS page cache for non-staff users
+- Enable cache for content and sessions
 
 ## [0.3.0] - 2020-06-17
 
