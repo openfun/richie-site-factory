@@ -45,7 +45,7 @@ resource "aws_cloudfront_distribution" "richie_cloudfront_distribution" {
     target_origin_id = local.s3_static_origin_id
 
     forwarded_values {
-      query_string = false
+      query_string = true
       headers = ["Access-Control-Request-Headers", "Access-Control-Request-Method", "Authorization", "Origin"]
 
       cookies {
