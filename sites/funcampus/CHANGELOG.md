@@ -13,6 +13,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade richie to 2.0.0-beta.11
 - Update theme to fit to requirements (primary and secondary color change,
   logo, favicon).
+- Enable cache for content and sessions
+- Enable Django CMS page cache for non-staff users
 
 ## [0.1.0] - 2020-07-23
 
