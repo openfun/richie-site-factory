@@ -106,7 +106,7 @@ services:
     user: ${DOCKER_USER:-1000}
 
   terraform:
-    image: hashicorp/terraform:latest
+    image: hashicorp/terraform:0.12.29
     environment:
       - TF_VAR_SITE=${RICHIE_SITE:-funmooc}
       - TF_DATA_DIR=/config
