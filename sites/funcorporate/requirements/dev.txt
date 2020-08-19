@@ -9,3 +9,4 @@ pylint-django==2.0.15
 pytest==5.4.2
 pytest-cov==2.8.1
 pytest-django==3.9.0
+raincoat==1.0.1

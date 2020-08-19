@@ -156,7 +156,8 @@ lint-back: \
   lint-back-black \
   lint-back-flake8 \
   lint-back-pylint \
-  lint-back-bandit
+  lint-back-bandit \
+  lint-back-raincoat
 .PHONY: lint-back
 
 lint-back-black: ## lint back-end python sources with black
@@ -178,6 +179,11 @@ lint-back-pylint: ## lint back-end python sources with pylint
 	@echo 'lint:pylint started…'
 	@$(COMPOSE_TEST_RUN_APP) pylint .
 .PHONY: lint-back-pylint
+
+lint-back-raincoat: ## lint back-end python sources with raincoat
+	@echo 'lint:raincoat started…'
+	@$(COMPOSE_TEST_RUN_APP) raincoat
+.PHONY: lint-back-raincoat
 
 lint-back-bandit: ## lint back-end python sources with bandit
 	@echo 'lint:bandit started…'

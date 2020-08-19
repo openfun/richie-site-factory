@@ -373,30 +373,30 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     )
 
     # Cache
-    CACHES = {
-        "default": values.DictValue({
-            "BACKEND": values.Value(
-                "django_redis.cache.RedisCache",
-                environ_name="CACHE_DEFAULT_BACKEND",
-                environ_prefix=None,
-            ),
-            "LOCATION": values.Value(
-                "mymaster/redis-sentinel:26379,redis-sentinel:26379/0",
-                environ_name="CACHE_DEFAULT_LOCATION",
-                environ_prefix=None,
-            ),
-            "OPTIONS": values.DictValue(
-                {"CLIENT_CLASS": "richie.apps.core.cache.SentinelClient"},
-                environ_name="CACHE_DEFAULT_OPTIONS",
-                environ_prefix=None,
-            ),
-            "TIMEOUT": values.IntegerValue(
-                300,
-                environ_name="CACHE_DEFAULT_TIMEOUT",
-                environ_prefix=None,
-            ),
-        })
-    }
+    CACHES = values.DictValue(
+        {
+            "default": {
+                "BACKEND": values.Value(
+                    "django_redis.cache.RedisCache",
+                    environ_name="CACHE_DEFAULT_BACKEND",
+                    environ_prefix=None,
+                ),
+                "LOCATION": values.Value(
+                    "mymaster/redis-sentinel:26379,redis-sentinel:26379/0",
+                    environ_name="CACHE_DEFAULT_LOCATION",
+                    environ_prefix=None,
+                ),
+                "OPTIONS": values.DictValue(
+                    {"CLIENT_CLASS": "richie.apps.core.cache.SentinelClient"},
+                    environ_name="CACHE_DEFAULT_OPTIONS",
+                    environ_prefix=None,
+                ),
+                "TIMEOUT": values.IntegerValue(
+                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None,
+                ),
+            }
+        }
+    )
 
     # For more details about CMS_CACHE_DURATION, see :
     # http://docs.django-cms.org/en/latest/reference/configuration.html#cms-cache-durations

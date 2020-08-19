@@ -23,6 +23,7 @@ def set_page_cache(response):
     This method redefines cms.cache.page.set_page_cache to allow
     Django CMS page cache for non-staff logged-in users
     """
+    # Raincoat: pypi package: django-cms==3.7.4 path: cms/cache/page.py element: set_page_cache
 
     from django.core.cache import cache
 
