@@ -53,6 +53,9 @@ lint-back:
     - run:
         name: Lint code with bandit
         command: ~/.local/bin/bandit -qr .
+    - run:
+        name: Lint code with raincoat
+        command: ~/.local/bin/raincoat
 
 test-back:
   parameters:
