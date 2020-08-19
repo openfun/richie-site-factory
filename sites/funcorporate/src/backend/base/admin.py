@@ -5,9 +5,12 @@ from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 
+import cms.cache.page
 from filer.admin import clipboardadmin
 from filer.admin.clipboardadmin import ajax_upload as filer_ajax_upload
 from filer.models.virtualitems import FolderRoot
+
+from .cache import set_page_cache
 
 
 class CustomUserAdmin(UserAdmin):
@@ -39,3 +42,13 @@ FolderRoot.virtual_folders = lambda o: []
 user_model = auth.get_user_model()
 admin.site.unregister(user_model)
 admin.site.register(user_model, CustomUserAdmin)
+
+# Django CMS disables page cache for authenticated users
+# (See https://github.com/divio/django-cms/blob/3.7.4/cms/cache/page.py#L38)
+#
+# In our case, since most of our users will be authenticated and be served the
+# same content, this is a problem. That's why we are monkey patching the
+# function `cms.cache.page.set_page_cache`.
+# All non-staff users will benefit from page cache.
+
+cms.cache.page.set_page_cache = set_page_cache
