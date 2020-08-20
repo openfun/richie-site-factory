@@ -390,6 +390,39 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         }
     )
 
+    # Search
+    RICHIE_FILTERS_CONFIGURATION = [
+        (
+            "richie.apps.search.filter_definitions.NestingWrapper",
+            {
+                "name": "course_runs",
+                "filters": [
+                    (
+                        "richie.apps.search.filter_definitions.AvailabilityFilterDefinition",
+                        {
+                            "human_name": _("Availability"),
+                            "is_drilldown": True,
+                            "min_doc_count": 0,
+                            "name": "availability",
+                            "position": 1,
+                        },
+                    ),
+                ],
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            {
+                "human_name": _("Subjects"),
+                "min_doc_count": 0,
+                "name": "subjects",
+                "position": 2,
+                "reverse_id": "subjects",
+                "term": "categories",
+            },
+        ),
+    ]
+
     # For more details about CMS_CACHE_DURATION, see :
     # http://docs.django-cms.org/en/latest/reference/configuration.html#cms-cache-durations
     CMS_CACHE_DURATIONS = values.DictValue(
