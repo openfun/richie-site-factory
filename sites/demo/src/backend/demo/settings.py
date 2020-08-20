@@ -220,6 +220,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     ]
 
     MIDDLEWARE = (
+        "django.middleware.cache.UpdateCacheMiddleware",
         "cms.middleware.utils.ApphookReloadMiddleware",
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
@@ -235,6 +236,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "cms.middleware.toolbar.ToolbarMiddleware",
         "cms.middleware.language.LanguageCookieMiddleware",
         "dj_pagination.middleware.PaginationMiddleware",
+        "django.middleware.cache.FetchFromCacheMiddleware",
     )
 
     INSTALLED_APPS = (
@@ -376,6 +378,41 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         default="richie", environ_name="RICHIE_ES_INDICES_PREFIX", environ_prefix=None
     )
 
+    # Cache
+    CACHES = values.DictValue(
+        {
+            "default": {
+                "BACKEND": values.Value(
+                    "django_redis.cache.RedisCache",
+                    environ_name="CACHE_DEFAULT_BACKEND",
+                    environ_prefix=None,
+                ),
+                "LOCATION": values.Value(
+                    "mymaster/redis-sentinel:26379,redis-sentinel:26379/0",
+                    environ_name="CACHE_DEFAULT_LOCATION",
+                    environ_prefix=None,
+                ),
+                "OPTIONS": values.DictValue(
+                    {"CLIENT_CLASS": "richie.apps.core.cache.SentinelClient"},
+                    environ_name="CACHE_DEFAULT_OPTIONS",
+                    environ_prefix=None,
+                ),
+                "TIMEOUT": values.IntegerValue(
+                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None,
+                ),
+            }
+        }
+    )
+
+    # For more details about CMS_CACHE_DURATION, see :
+    # http://docs.django-cms.org/en/latest/reference/configuration.html#cms-cache-durations
+    CMS_CACHE_DURATIONS = values.DictValue(
+        {"menus": 3600, "content": 86400, "permissions": 86400}
+    )
+
+    # Sessions
+    SESSION_ENGINE = values.Value("django.contrib.sessions.backends.cache")
+
     # Sentry
     SENTRY_DSN = values.Value(None, environ_name="SENTRY_DSN")
 
@@ -424,6 +461,12 @@ class Development(Base):
 
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
+
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache"
+        }
+    }
 
 
 class Test(Base):
