@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-20 12:13+0200\n"
+"POT-Creation-Date: 2020-08-20 15:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: base/admin.py:31
+#: base/admin.py:34
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: cnfpt/settings.py:290 cnfpt/settings.py:305
+#: cnfpt/settings.py:292 cnfpt/settings.py:307
 msgid "English"
 msgstr "Anglais"
 
-#: cnfpt/settings.py:290 cnfpt/settings.py:313
+#: cnfpt/settings.py:292 cnfpt/settings.py:315 cnfpt/settings.py:562
+#: cnfpt/settings.py:577
 msgid "French"
 msgstr "Français"
+
+#: cnfpt/settings.py:412
+msgid "Availability"
+msgstr "Disponibilité"
+
+#: cnfpt/settings.py:425
+msgid "Subjects"
+msgstr "Thématiques"
 
 #: templates/richie/base.html:17
 msgid "Life-changing learning!"

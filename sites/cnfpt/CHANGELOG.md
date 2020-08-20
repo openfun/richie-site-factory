@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- On the search page, keep only the Subjects and Availability filters
+
 ### Fixed
 
 - Add i18n messages compilation in the DockerFile so translations are ready
