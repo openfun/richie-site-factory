@@ -21,6 +21,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Enable Django CMS page cache for non-staff users
 - Enable cache for content and sessions
 
+### Fixed
+
+- Fix translation overrides by configuring the specific "locale" directory
+
 ## [0.12.0] - 2020-06-17
 
 ### Changed

@@ -16,6 +16,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Enable cache for content and sessions
 - Enable Django CMS page cache for non-staff users
 
+### Fixed
+
+- Fix translation overrides by configuring the specific "locale" directory
+
 ## [0.1.0] - 2020-07-23
 
 - First `funcampus` image
