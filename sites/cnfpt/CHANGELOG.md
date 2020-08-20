@@ -11,6 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Add translations for new strings
+- Deactivate english language
 - Upgrade richie to 2.0.0-beta.11
 - Enable Django CMS page cache for non-staff users
 - Enable cache for content and sessions
