@@ -18,6 +18,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - More accessible category badges color everywhere.
 - Adapt bullet list checkmark icon color to funmooc theme.
 - Removed header bottom border.
+- Enable Django CMS page cache for non-staff users
+- Enable cache for content and sessions
 
 ## [0.12.0] - 2020-06-17
 
