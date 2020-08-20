@@ -196,6 +196,8 @@ import-fixtures:  ## import fixtures
 
 i18n: ## create/update .po files and compile .mo files used for i18n
 	@$(MANAGE) makemessages --keep-pot
+	@echo 'Reactivating obsolete strings (allow overriding strings defined in dependencies)'
+	@$(COMPOSE_RUN_APP) find ./ -type f -name django.po -exec sed -i 's/#~ //g' {} \;
 	@$(MANAGE) compilemessages
 .PHONY: i18n
 
