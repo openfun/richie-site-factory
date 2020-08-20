@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0-beta.11] - 2020-08-20
+
 ### Changed
 
 - Upgrade richie to 2.0.0-beta.11
@@ -32,6 +34,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.8...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.11...HEAD
+[2.0.0-beta.11]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.8...demo-2.0.0-beta.11
 [2.0.0-beta.8]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.7...demo-2.0.0-beta.8
 [2.0.0-beta.7]: https://github.com/openfun/richie-site-factory/releases/tag/demo-2.0.0-beta.7
