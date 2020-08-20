@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Link the "help" button in menu to a page holding this "reverse id"
 - On the search page, keep only the Subjects and Availability filters
 
 ### Fixed
