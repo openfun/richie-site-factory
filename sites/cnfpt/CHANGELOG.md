@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Reinstate English in development environment to allow generating demo site
 - Add i18n messages compilation in the DockerFile so translations are ready
 
 ## [0.4.0] - 2020-08-20
