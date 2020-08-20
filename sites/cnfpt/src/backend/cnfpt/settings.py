@@ -289,7 +289,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # fallback/default languages throughout the app.
     # Use "en" as default as it is the language that is most likely to be spoken by any visitor
     # when their preferred language, whatever it is, is unavailable
-    LANGUAGES = (("fr", _("French")),)
+    LANGUAGES = (("en", _("English")), ("fr", _("French")))
 
     # - Django CMS
     CMS_LANGUAGES = {
@@ -297,14 +297,23 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             "public": True,
             "hide_untranslated": False,
             "redirect_on_fallback": True,
-            "fallbacks": ["fr"],
+            "fallbacks": ["en", "fr"],
         },
         1: [
+            {
+                "public": False,
+                "code": "en",
+                "hide_untranslated": False,
+                "name": _("English"),
+                "fallbacks": ["fr"],
+                "redirect_on_fallback": True,
+            },
             {
                 "public": True,
                 "code": "fr",
                 "hide_untranslated": False,
                 "name": _("French"),
+                "fallbacks": ["en"],
                 "redirect_on_fallback": True,
             },
         ],
@@ -384,7 +393,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     environ_prefix=None,
                 ),
                 "TIMEOUT": values.IntegerValue(
-                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None,
+                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None
                 ),
             }
         }
@@ -547,6 +556,29 @@ class Production(Base):
 
     # CDN domain for static/media urls. It is passed to the frontend to load built chunks
     CDN_DOMAIN = values.Value()
+
+    # Limit language to french only in production because the demo site in development works
+    # on 2 languages: french and english.
+    LANGUAGES = (("fr", _("French")),)
+
+    # - Django CMS
+    CMS_LANGUAGES = {
+        "default": {
+            "public": True,
+            "hide_untranslated": False,
+            "redirect_on_fallback": True,
+            "fallbacks": ["fr"],
+        },
+        1: [
+            {
+                "public": True,
+                "code": "fr",
+                "hide_untranslated": False,
+                "name": _("French"),
+                "redirect_on_fallback": True,
+            }
+        ],
+    }
 
     @property
     def TEXT_CKEDITOR_BASE_PATH(self):
