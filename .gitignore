@@ -27,6 +27,10 @@ htmlcov/
 nosetests.xml
 coverage.xml
 
+# i18n
+*.pot
+*.mo
+
 # Built statics
 **/src/backend/base/static/richie/css/main.css
 
