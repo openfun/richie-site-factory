@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Add i18n messages compilation in the DockerFile so translations are ready
+
 ## [0.13.0] - 2020-08-20
 
 ### Changed
