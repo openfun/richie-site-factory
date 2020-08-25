@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-25 18:48+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: base/admin.py:34
+msgid "Unsorted uploads are not allowed."
+msgstr "Les téléchargements non classés sont interdits"
+
+#: funcampus/settings.py:296
+msgid "Diplomas"
+msgstr "Diplômes"
+
+#: funcampus/settings.py:309
+msgid "Domains and mentions"
+msgstr "Domaines et mentions"
+
+#: funcampus/settings.py:322
+msgid "Levels"
+msgstr "Niveaux"
+
+#: funcampus/settings.py:335
+msgid "Skills"
+msgstr "Compétences"
+
+#: funcampus/settings.py:355 funcampus/settings.py:370
+msgid "English"
+msgstr "Anglais"
+
+#: funcampus/settings.py:355 funcampus/settings.py:378
+msgid "French"
+msgstr "Français"
+
+#: templates/richie/base.html:19
+msgid "Courses that enrich academic education"
+msgstr "Des formations pour enrichir les cursus"
+
+#: templates/social-networks/blogpost-badges.html:3
+#, python-format
+msgid "FUN Campus news: %(title)s"
+msgstr "Actualité FUN Campus: %(title)s"
+
+#: templates/social-networks/blogpost-badges.html:4
+#, python-format
+msgid "FUN Campus news: %(title)s %(url)s"
+msgstr "Actualité FUN Campus: %(title)s %(url)s"
+
+#: templates/social-networks/blogpost-badges.html:10
+#: templates/social-networks/course-badges.html:10
+msgid "Share on Facebook"
+msgstr "Partager sur Facebook"
+
+#: templates/social-networks/blogpost-badges.html:20
+#: templates/social-networks/course-badges.html:20
+msgid "Share on Twitter"
+msgstr "Partager sur Twitter"
+
+#: templates/social-networks/blogpost-badges.html:30
+#: templates/social-networks/course-badges.html:30
+msgid "Share on Linkedin"
+msgstr "Partager sur Linkedin"
+
+#: templates/social-networks/blogpost-badges.html:40
+#: templates/social-networks/course-badges.html:40
+msgid "Share by Email"
+msgstr "Partager par Email"
+
+#: templates/social-networks/course-badges.html:3
+msgid "Follow a course online with FUN Campus"
+msgstr "Suivre un cours en ligne avec FUN Campus"
+
+#: templates/social-networks/course-badges.html:4
+#, python-format
+msgid "I just enrolled to the course \"%(title)s\" with FUN Campus: %(url)s"
+msgstr "Je viens de m'inscrire au cours \"%(title)s\" sur FUN Campus: %(url)s"
+
+#: templates/social-networks/footer-badges.html:8
+msgid "Facebook"
+msgstr "Facebook"
+
+#: templates/social-networks/footer-badges.html:16
+msgid "Twitter page"
+msgstr "Page Twitter"
+
+#: templates/social-networks/footer-badges.html:19
+msgid "Twitter"
+msgstr "Twitter"
+
+#: templates/social-networks/footer-badges.html:27
+#: templates/social-networks/footer-badges.html:30
+msgid "Linkedin"
+msgstr "Linkedin"
