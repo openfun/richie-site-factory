@@ -288,39 +288,31 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "django.contrib.messages",
     )
 
-    # Filters
+    # Search
     RICHIE_FILTERS_CONFIGURATION = [
         (
-            "richie.apps.search.filter_definitions.NestingWrapper",
+            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
             {
-                "name": "course_runs",
-                "filters": [
-                    (
-                        "richie.apps.search.filter_definitions.LanguagesFilterDefinition",
-                        {
-                            "human_name": _("Languages"),
-                            # There are too many available languages to show them all, all the
-                            # time.
-                            # Eg. 200 languages, 190+ of which will have 0 matching courses.
-                            "min_doc_count": 1,
-                            "name": "languages",
-                            "position": 5,
-                            "sorting": "count",
-                        },
-                    ),
-                ],
+                "human_name": _("Diplomas"),
+                "is_autocompletable": True,
+                "is_searchable": True,
+                "min_doc_count": 0,
+                "name": "diplomas",
+                "position": 1,
+                "reverse_id": "diplomas",
+                "term": "categories",
             },
         ),
         (
             "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
             {
-                "human_name": _("Subjects"),
+                "human_name": _("Domains and mentions"),
                 "is_autocompletable": True,
                 "is_searchable": True,
                 "min_doc_count": 0,
-                "name": "subjects",
+                "name": "domains",
                 "position": 2,
-                "reverse_id": "subjects",
+                "reverse_id": "domains",
                 "term": "categories",
             },
         ),
@@ -340,25 +332,14 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         (
             "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
             {
-                "human_name": _("Organizations"),
+                "human_name": _("Skills"),
                 "is_autocompletable": True,
                 "is_searchable": True,
                 "min_doc_count": 0,
-                "name": "organizations",
+                "name": "skills",
                 "position": 4,
-                "reverse_id": "organizations",
-            },
-        ),
-        (
-            "richie.apps.search.filter_definitions.IndexableFilterDefinition",
-            {
-                "human_name": _("Persons"),
-                "is_autocompletable": True,
-                "is_searchable": True,
-                "min_doc_count": 0,
-                "name": "persons",
-                "position": 5,
-                "reverse_id": "persons",
+                "reverse_id": "skills",
+                "term": "categories",
             },
         ),
     ]
