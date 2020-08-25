@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Customize filters visible on the search page
 - Customize social networks links
 
 ### Fixed
