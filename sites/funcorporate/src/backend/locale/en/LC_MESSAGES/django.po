@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-25 18:58+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: base/admin.py:34
+msgid "Unsorted uploads are not allowed."
+msgstr ""
+
+#: funcorporate/settings.py:295 funcorporate/settings.py:310
+msgid "English"
+msgstr ""
+
+#: funcorporate/settings.py:295 funcorporate/settings.py:318
+msgid "French"
+msgstr ""
+
+#: funcorporate/settings.py:330
+msgid "Subjects"
+msgstr ""
+
+#: funcorporate/settings.py:343
+msgid "Organizations"
+msgstr ""
+
+#: funcorporate/settings.py:355
+msgid "Persons"
+msgstr "Teachers"
+
+#: templates/social-networks/blogpost-badges.html:3
+#, python-format
+msgid "FUN Corporate news: %(title)s"
+msgstr ""
+
+#: templates/social-networks/blogpost-badges.html:4
+#, python-format
+msgid "FUN Corporate news: %(title)s %(url)s"
+msgstr ""
+
+#: templates/social-networks/blogpost-badges.html:10
+#: templates/social-networks/course-badges.html:10
+msgid "Share on Facebook"
+msgstr ""
+
+#: templates/social-networks/blogpost-badges.html:20
+#: templates/social-networks/course-badges.html:20
+msgid "Share on Twitter"
+msgstr ""
+
+#: templates/social-networks/blogpost-badges.html:30
+#: templates/social-networks/course-badges.html:30
+msgid "Share on Linkedin"
+msgstr ""
+
+#: templates/social-networks/blogpost-badges.html:40
+#: templates/social-networks/course-badges.html:40
+msgid "Share by Email"
+msgstr ""
+
+#: templates/social-networks/course-badges.html:3
+msgid "Follow a course online with FUN Corporate"
+msgstr ""
+
+#: templates/social-networks/course-badges.html:4
+#, python-format
+msgid "I just enrolled to the course \"%(title)s\" with FUN Corporate: %(url)s"
+msgstr ""
+
+#: templates/social-networks/footer-badges.html:8
+msgid "Facebook"
+msgstr ""
+
+#: templates/social-networks/footer-badges.html:16
+msgid "Twitter page"
+msgstr ""
+
+#: templates/social-networks/footer-badges.html:19
+msgid "Twitter"
+msgstr ""
+
+#: templates/social-networks/footer-badges.html:27
+#: templates/social-networks/footer-badges.html:30
+msgid "Linkedin"
+msgstr ""
