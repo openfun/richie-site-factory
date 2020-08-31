@@ -1,0 +1,12 @@
+{% extends "courses/cms/course_detail.html" %}
+{% load i18n cms_tags extra_tags %}
+
+{% block description %}
+{{ block.super }}
+{% if current_page.publisher_is_draft or not current_page|is_empty_placeholder:"course_audience" %}
+<div class="course-detail__row course-detail__audience">
+    <h2 class="course-detail__title">{% blocktrans context "course_detail__title" %}Audience{% endblocktrans %}</h2>
+    {% placeholder "course_audience" %}
+</div>
+{% endif %}
+{% endblock description %}
