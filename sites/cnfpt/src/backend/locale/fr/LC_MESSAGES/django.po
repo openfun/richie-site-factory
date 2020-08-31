@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-20 19:16+0200\n"
+"POT-Creation-Date: 2020-08-29 18:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,22 +21,27 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: cnfpt/settings.py:292 cnfpt/settings.py:307
+#: cnfpt/settings.py:324 cnfpt/settings.py:339
 msgid "English"
 msgstr "Anglais"
 
-#: cnfpt/settings.py:292 cnfpt/settings.py:315 cnfpt/settings.py:562
-#: cnfpt/settings.py:577
+#: cnfpt/settings.py:324 cnfpt/settings.py:347 cnfpt/settings.py:601
+#: cnfpt/settings.py:616
 msgid "French"
 msgstr "Français"
 
-#: cnfpt/settings.py:412
+#: cnfpt/settings.py:442
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: cnfpt/settings.py:425
+#: cnfpt/settings.py:455
 msgid "Subjects"
 msgstr "Thématiques"
+
+#: templates/courses/cms/course_detail.html:15
+msgctxt "course_detail__title"
+msgid "Audience"
+msgstr "Public"
 
 #: templates/richie/base.html:18
 msgid "Help"
@@ -101,3 +106,11 @@ msgstr "Twitter"
 #: templates/social-networks/footer-badges.html:30
 msgid "Linkedin"
 msgstr "Linkedin"
+
+msgctxt "course_detail__title"
+msgid "What you will learn"
+msgstr "Compétences visées"
+
+msgctxt "course_detail__title"
+msgid "Organizations"
+msgstr "Organisations et partenaires"
