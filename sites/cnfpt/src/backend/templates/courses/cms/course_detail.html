@@ -1,6 +1,12 @@
 {% extends "courses/cms/course_detail.html" %}
 {% load i18n cms_tags extra_tags %}
 
+{% block main_organization %}
+{% endblock main_organization %}
+
+{% block contact %}
+{% endblock contact %}
+
 {% block description %}
 {{ block.super }}
 {% if current_page.publisher_is_draft or not current_page|is_empty_placeholder:"course_audience" %}
