@@ -27,6 +27,7 @@ urlpatterns = [
         r"^api/{}/".format(API_PREFIX),
         include([*core_urlpatterns, *search_urlpatterns]),
     ),
+    url(r"^oauth/", include("social_django.urls", namespace="social")),
     url(r"^", include("filer.server.urls")),
 ]
 
