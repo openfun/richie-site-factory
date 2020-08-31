@@ -138,7 +138,7 @@ function check_tag() {
     fi
 
     # Check dependencies
-    richie_version=$(grep "richie==" "sites/funmooc/requirements/base.txt" | sed s'/richie==//')
+    richie_version=$(grep "richie==" "${site_path}/requirements/base.txt" | sed s'/richie==//')
 
     if ! grep "\"richie-education\": \"${richie_version}\"" "${package_json}" &> /dev/null ; then
       echo "Richie version installed in frontend does not match version installed in backend!"
