@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Upgrade richie to 2.0.0-beta.13 (LMS bridge and language dropdown)
 - Link the "help" button in menu to a page holding this "reverse id"
 - On the search page, keep only the Subjects and Availability filters
 
