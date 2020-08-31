@@ -19,6 +19,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Link the "help" button in menu to a page holding this "reverse id"
 - On the search page, keep only the Subjects and Availability filters
 
+### Removed
+
+- Remove the main section and contact button on the course detail page header
+
 ### Fixed
 
 - Reinstate English in development environment to allow generating demo site
