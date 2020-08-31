@@ -246,6 +246,25 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         }
     ]
 
+    # Django CMS
+    CMS_PLACEHOLDER_CONF = {
+        **RichieCoursesConfigurationMixin.CMS_PLACEHOLDER_CONF,
+        "courses/cms/course_detail.html course_audience": {
+            "name": _("Audience"),
+            "plugins": ["CKEditorPlugin"],
+            "limits": {"CKEditorPlugin": 1},
+        },
+    }
+
+    RICHIE_SIMPLETEXT_CONFIGURATION = [
+        *RichieCoursesConfigurationMixin.RICHIE_SIMPLETEXT_CONFIGURATION,
+        {
+            "placeholders": ["course_audience"],
+            "ckeditor": "CKEDITOR_LIMITED_CONFIGURATION",
+            "max_length": 1200,
+        },
+    ]
+
     MIDDLEWARE = (
         "django.middleware.cache.UpdateCacheMiddleware",
         "cms.middleware.utils.ApphookReloadMiddleware",

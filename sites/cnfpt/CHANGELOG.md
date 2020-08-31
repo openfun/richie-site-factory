@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add a new section "Audience" to the course detail page
 - Activate SSO connection with Open edX Hawthorn
 
 ### Changed
