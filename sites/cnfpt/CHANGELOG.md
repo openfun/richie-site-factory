@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Activate SSO connection with Open edX Hawthorn
+
 ### Changed
 
 - Link the "help" button in menu to a page holding this "reverse id"

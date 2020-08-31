@@ -178,6 +178,19 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Login/registration related settings
     LOGIN_REDIRECT_URL = "/"
     LOGOUT_REDIRECT_URL = "/"
+    LOGIN_URL = "login"
+    LOGOUT_URL = "logout"
+
+    AUTHENTICATION_BACKENDS = (
+        "richie.apps.core.backends.EdXOAuth2",
+        "django.contrib.auth.backends.ModelBackend",
+    )
+
+    # Social auth
+    SOCIAL_AUTH_EDX_OAUTH2_KEY = values.Value()
+    SOCIAL_AUTH_EDX_OAUTH2_SECRET = values.Value()
+    SOCIAL_AUTH_EDX_OAUTH2_ENDPOINT = values.Value()
+    SOCIAL_AUTH_POSTGRES_JSONFIELD = False
 
     # Internationalization
     TIME_ZONE = "Europe/Paris"
@@ -256,6 +269,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "dockerflow.django",
         "parler",
         "rest_framework",
+        "social_django",
         "storages",
         # Django-cms
         "djangocms_admin_style",

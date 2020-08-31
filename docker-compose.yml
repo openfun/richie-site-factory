@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.5"
 
 services:
   db:
@@ -33,8 +33,11 @@ services:
       - DJANGO_CONFIGURATION=Development
       - RICHIE_ES_INDICES_PREFIX=richie_${RICHIE_SITE:-funmooc}
     env_file: env.d/development
+    networks:
+      - default
+      - lms_outside
     ports:
-      - "8080:8000"
+      - "8070:8000"
     volumes:
       - "./sites/${RICHIE_SITE:-funmooc}/src/backend:/app"
       - "./data/media/${RICHIE_SITE:-funmooc}:/data/media"
@@ -60,8 +63,9 @@ services:
       - DJANGO_CONFIGURATION=ContinuousIntegration
       - RICHIE_ES_INDICES_PREFIX=richie_${RICHIE_SITE:-funmooc}
     env_file: env.d/development
-    ports:
-      - "8000:8000"
+    networks:
+      - default
+      - lms_outside
     volumes:
       - ./data/media/${RICHIE_SITE:-funmooc}:/data/media
     depends_on:
@@ -132,3 +136,8 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_REPLICATION_MODE=master
+
+networks:
+  lms_outside:
+    driver: bridge
+    name: "${RICHIE_LMS_NETWORK:-edx_outside}"
