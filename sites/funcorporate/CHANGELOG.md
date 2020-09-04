@@ -8,6 +8,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+- Use the FunCorporate Zendesk link on "Contact Us" CTA in header.
+
 ### Changed
 
 - Customize filters visible on the search page
