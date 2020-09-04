@@ -185,6 +185,25 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     LOGIN_REDIRECT_URL = "/"
     LOGOUT_REDIRECT_URL = "/"
 
+    # LMS
+    LMS_BACKENDS = [
+        {
+            "BACKEND": "richie.apps.courses.lms.edx.TokenEdXLMSBackend",
+            "SELECTOR_REGEX": values.Value(
+                r".*", environ_name="EDX_SELECTOR_REGEX", environ_prefix=None
+            ),
+            "COURSE_REGEX": values.Value(
+                r"^.*/courses/(?P<course_id>.*)/info$",
+                environ_name="EDX_COURSE_REGEX",
+                environ_prefix=None,
+            ),
+            "API_TOKEN": values.Value(
+                environ_name="EDX_API_TOKEN", environ_prefix=None
+            ),
+            "BASE_URL": values.Value(environ_name="EDX_BASE_URL", environ_prefix=None),
+        }
+    ]
+
     # Internationalization
     TIME_ZONE = "Europe/Paris"
     USE_I18N = True
