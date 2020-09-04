@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Declare missing social urls.
+
 ## [2.0.0-beta.14] - 2020-09-04
 
 ### Changed
