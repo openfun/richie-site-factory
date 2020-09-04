@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0-beta.14.2] - 2020-09-04
+
 ### Fixed 
 
 - Activate SSO connection with Open edX Hawthorn
@@ -55,7 +57,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.2...HEAD
+[2.0.0-beta.14.2]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.1...demo-2.0.0-beta.14.2
 [2.0.0-beta.14.1]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14...demo-2.0.0-beta.14.1
 [2.0.0-beta.14]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.11...demo-2.0.0-beta.14
 [2.0.0-beta.11]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.8...demo-2.0.0-beta.11
