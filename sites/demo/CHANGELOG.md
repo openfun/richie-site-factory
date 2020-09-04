@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed 
+
+- Activate SSO connection with Open edX Hawthorn
+
 ## [2.0.0-beta.14.1] - 2020-09-04
 
 ### Fixed
