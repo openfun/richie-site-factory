@@ -46,4 +46,8 @@
     // width
     width: 100%;
   }
+
+  &__search-title {
+    color: r-theme-val(hero-intro, title-color);
+  }
 }
