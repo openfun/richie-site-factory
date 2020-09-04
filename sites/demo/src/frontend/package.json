@@ -1,6 +1,6 @@
 {
   "name": "richie",
-  "version": "2.0.0-beta.14.1",
+  "version": "2.0.0-beta.14.2",
   "description": "Richie demo site on https://demo.richie.education",
   "scripts": {
     "prettier": "prettier '**/*.+(css|scss)'",
