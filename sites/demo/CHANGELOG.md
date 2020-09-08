@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Define missing EDX_USER_PROFILE_TO_DJANGO setting
+
 ## [2.0.0-beta.14.4] - 2020-09-08
 
 ### Fixed
