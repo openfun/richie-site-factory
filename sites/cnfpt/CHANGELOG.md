@@ -12,6 +12,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 2.0.0-beta.14
 - Bump elliptic from 6.5.1 to 6.5.3
+- Bump lodash from 4.17.14 to 4.17.20
 
 ### Fixed
 
