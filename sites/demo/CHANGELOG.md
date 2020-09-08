@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0-beta.14.3] - 2020-09-08
+
 ### Fixed
 
 - set SOCIAL_AUTH_REDIRECT_IS_HTTPS to True in settings
@@ -61,7 +63,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.2...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.3...HEAD
+[2.0.0-beta.14.3]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.2...demo-2.0.0-beta.14.3
 [2.0.0-beta.14.2]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.1...demo-2.0.0-beta.14.2
 [2.0.0-beta.14.1]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14...demo-2.0.0-beta.14.1
 [2.0.0-beta.14]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.11...demo-2.0.0-beta.14
