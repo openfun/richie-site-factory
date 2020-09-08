@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0-beta.14.5] - 2020-09-08
+
 ### Fixed
 
 - Define missing EDX_USER_PROFILE_TO_DJANGO setting
@@ -77,7 +79,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.4...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.5...HEAD
+[2.0.0-beta.14.5]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.4...demo-2.0.0-beta.14.5
 [2.0.0-beta.14.4]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.3...demo-2.0.0-beta.14.4
 [2.0.0-beta.14.3]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.2...demo-2.0.0-beta.14.3
 [2.0.0-beta.14.2]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.1...demo-2.0.0-beta.14.2
