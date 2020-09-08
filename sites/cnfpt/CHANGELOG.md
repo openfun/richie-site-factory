@@ -16,6 +16,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Add missing courses API url pattern
 - The banner search title should be white
 
 ## [0.5.0] - 2020-08-31
