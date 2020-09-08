@@ -155,10 +155,10 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 environ_name="DB_ENGINE",
                 environ_prefix=None,
             ),
-            "NAME": values.Value(
-                "richie", environ_name="DB_NAME", environ_prefix=None
+            "NAME": values.Value("richie", environ_name="DB_NAME", environ_prefix=None),
+            "USER": values.Value(
+                "richie_user", environ_name="DB_USER", environ_prefix=None
             ),
-            "USER": values.Value("richie_user", environ_name="DB_USER", environ_prefix=None),
             "PASSWORD": values.Value(
                 "pass", environ_name="DB_PASSWORD", environ_prefix=None
             ),
@@ -223,6 +223,19 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     USE_L10N = True
     USE_TZ = True
     LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
+
+    # Mapping between edx and richie profile fields
+    EDX_USER_PROFILE_TO_DJANGO = {
+        "preferred_username": "username",
+        "email": "email",
+        "name": "full_name",
+        "given_name": "first_name",
+        "family_name": "last_name",
+        "locale": "language",
+        "user_id": "user_id",
+        "is_staff": "is_staff",
+        "is_superuser": "is_superuser",
+    }
 
     # Templates
     TEMPLATES = [
@@ -496,11 +509,7 @@ class Development(Base):
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
 
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.locmem.LocMemCache"
-        }
-    }
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
 
 
 class Test(Base):
