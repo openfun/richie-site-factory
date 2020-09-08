@@ -563,6 +563,10 @@ class Production(Base):
     # CDN domain for static/media urls. It is passed to the frontend to load built chunks
     CDN_DOMAIN = values.Value()
 
+    # Social auth
+    # Force https schema in redirect uri
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
     @property
     def TEXT_CKEDITOR_BASE_PATH(self):
         """Configure CKEditor with an absolute url as base path to point to CloudFront."""

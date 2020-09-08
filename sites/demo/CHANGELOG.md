@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- set SOCIAL_AUTH_REDIRECT_IS_HTTPS to True in settings
+
 ## [2.0.0-beta.14.2] - 2020-09-04
 
 ### Fixed 
