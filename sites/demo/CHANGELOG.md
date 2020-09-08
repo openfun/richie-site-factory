@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Add missing courses API url pattern
+
 ### Changed
 
 - Bump lodash from 4.17.14 to 4.17.20
