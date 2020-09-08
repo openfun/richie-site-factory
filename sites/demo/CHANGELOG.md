@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Bump lodash from 4.17.14 to 4.17.20
+
 ## [2.0.0-beta.14.3] - 2020-09-08
 
 ### Fixed
