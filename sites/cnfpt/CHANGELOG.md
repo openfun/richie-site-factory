@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.5.2] - 2020-09-10
+
 ### Fixed
 
 - Fix parler languages that must be in sync with CMS languages
@@ -79,7 +81,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.5.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.5.2...HEAD
+[0.5.2]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.5.1...cnfpt-0.5.2
 [0.5.1]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.5.0...cnfpt-0.5.1
 [0.5.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.4.0...cnfpt-0.5.0
 [0.4.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.3.0...cnfpt-0.4.0
