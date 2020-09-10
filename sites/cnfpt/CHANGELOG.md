@@ -16,6 +16,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Set SOCIAL_AUTH_REDIRECT_IS_HTTPS to True in settings
 - Add missing courses API url pattern
 - The banner search title should be white
 

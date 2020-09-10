@@ -609,6 +609,10 @@ class Production(Base):
     # CDN domain for static/media urls. It is passed to the frontend to load built chunks
     CDN_DOMAIN = values.Value()
 
+    # Social auth
+    # Force https schema in redirect uri
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
     # Limit language to french only in production because the demo site in development works
     # on 2 languages: french and english.
     LANGUAGES = (("fr", _("French")),)
