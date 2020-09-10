@@ -635,6 +635,7 @@ class Production(Base):
             }
         ],
     }
+    PARLER_LANGUAGES = CMS_LANGUAGES
 
     @property
     def TEXT_CKEDITOR_BASE_PATH(self):

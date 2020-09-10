@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix parler languages that must be in sync with CMS languages
+
 ## [0.5.1] - 2020-09-10
 
 ### Changed
