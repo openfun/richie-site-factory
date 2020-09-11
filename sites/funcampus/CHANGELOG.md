@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Override `course_detail` template to add a message above subheader CTA.
+
 ### Changed
 
 - Customize filters visible on the search page

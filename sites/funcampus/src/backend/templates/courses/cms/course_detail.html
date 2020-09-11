@@ -1,4 +1,10 @@
 {% extends "courses/cms/course_detail.html" %}
+{% load i18n %}
+
+{% block contact %}
+    <p class="subheader__cta-legend">{% trans "Would you like to use this course with your students?" %}</p>
+    {{ block.super }}
+{% endblock contact %}
 
 {% comment %}Disable content parts related to course runs{% endcomment %}
 {% block snapshot %}{% endblock snapshot %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-25 18:48+0200\n"
+"POT-Creation-Date: 2020-09-14 09:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,6 +44,10 @@ msgstr "Anglais"
 #: funcampus/settings.py:355 funcampus/settings.py:378
 msgid "French"
 msgstr "Français"
+
+#: templates/courses/cms/course_detail.html:5
+msgid "Would you like to use this course with your students?"
+msgstr "Vous souhaitez utiliser ce cours avec vos étudiants&nbsp;?"
 
 #: templates/richie/base.html:19
 msgid "Courses that enrich academic education"
