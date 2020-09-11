@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-04 17:40+0200\n"
+"POT-Creation-Date: 2020-09-14 09:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,6 +40,10 @@ msgstr ""
 #: funcorporate/settings.py:355
 msgid "Persons"
 msgstr "Teachers"
+
+#: templates/courses/cms/course_detail.html:5
+msgid "Would you like to offer this training to your employees?"
+msgstr ""
 
 #: templates/richie/base.html:18
 msgid "Help"

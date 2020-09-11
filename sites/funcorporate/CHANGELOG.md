@@ -9,6 +9,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Added
+
+- Override `course_detail` template to add a message above subheader CTA.
 - Use the FunCorporate Zendesk link on "Contact Us" CTA in header.
 
 ### Changed
