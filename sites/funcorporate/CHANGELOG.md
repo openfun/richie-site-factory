@@ -17,7 +17,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Customize social networks links
 
 ### Fixed
-
+- Override .subheader .category-badge styles to fit fun-corporate mockups.
 - Add i18n messages compilation in the DockerFile so translations are ready
 
 ## [0.5.0] - 2020-08-20
