@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Change aside glimpse title color accordingly to feedback
 - Customize filters visible on the search page
 - Customize social networks links
 
