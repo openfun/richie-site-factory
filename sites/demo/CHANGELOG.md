@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add step in the social auth connection pipeline to force user
+  having is_staff set to true to also have is_superuser set to true.
+
 ## [2.0.0-beta.14.5] - 2020-09-08
 
 ### Fixed
