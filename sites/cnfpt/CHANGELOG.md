@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Change aside glimpse title color accordingly to feedback
+
 ## [0.5.2] - 2020-09-10
 
 ### Fixed
