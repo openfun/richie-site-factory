@@ -6,6 +6,9 @@
 {{ block.super }}
 {% endblock contact %}
 
+{% comment %}Disable licences part. It does not make sens in FUN Corporate.{% endcomment %}
+{% block licenses %}{% endblock licenses %}
+
 {% comment %}Disable content parts related to course runs{% endcomment %}
 {% block snapshot %}{% endblock snapshot %}
 {% block runs %}{% endblock runs %}
