@@ -15,6 +15,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Hide licences block on the course detail pages
 - Customize filters visible on the search page
 - Customize social networks links
 
