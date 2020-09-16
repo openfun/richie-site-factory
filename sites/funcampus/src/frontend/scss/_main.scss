@@ -67,10 +67,13 @@
 @import 'richie-education/scss/objects/characteristics';
 @import 'richie-education/scss/objects/react-autosuggest';
 @import 'richie-education/scss/objects/search-filter-value';
+@import 'richie-education/js/components/CourseRunEnrollment/styles';
+@import 'richie-education/js/components/LanguageSelector/styles';
 @import 'richie-education/js/components/SearchFilterGroup/styles';
 @import 'richie-education/js/components/SearchFilterGroupModal/styles';
 @import 'richie-education/js/components/SearchFiltersPane/styles';
 @import 'richie-education/js/components/SearchInput/styles';
+@import 'richie-education/js/components/Spinner/styles';
 @import 'richie-education/js/components/UserLogin/styles';
 @import 'richie-education/scss/components/templates/courses/plugins/category_plugin';
 @import 'richie-education/scss/components/templates/courses/plugins/licence_plugin';
