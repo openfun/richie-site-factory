@@ -1,5 +1,5 @@
 {% extends "richie/base.html" %}
-{% load i18n static %}
+{% load i18n cms_tags static %}
 
 {% block meta_favicons %}
 <link rel="apple-touch-icon" sizes="180x180" href="{% static 'richie/favicon/apple-touch-icon.png' %}">
@@ -14,6 +14,12 @@
 {% endblock meta_favicons %}
 
 {% block userlogin %}{% endblock userlogin %}
+
+{% block topbar_contact %}
+<li class="topbar__item topbar__item--cta">
+    <a href="{% page_url 'help' %}">{% trans "Help" %}</a>
+</li>
+{% endblock topbar_contact %}
 
 {% block body_footer_title %}
     <p class="body-footer__title">{% trans "Courses that enrich academic education" %}</p>
