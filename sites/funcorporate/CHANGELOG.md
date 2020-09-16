@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.6.0] - 2020-09-16
+
 ### Added
 
 - Override `course_detail` template to add a message above subheader CTA.
@@ -86,7 +88,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.5.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.0...HEAD
+[0.6.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.5.0...funcorporate-0.6.0
 [0.5.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.4.0...funcorporate-0.5.0
 [0.4.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.3.0...funcorporate-0.4.0
 [0.3.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.2.2...funcorporate-0.3.0
