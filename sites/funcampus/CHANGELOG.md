@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.3.1] - 2020-09-17
+
 ### Fixed
 
 - Rename "help" button to "contact us" in site header
@@ -50,7 +52,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.1...HEAD
+[0.3.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.0...funcampus-0.3.1
 [0.3.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.2.0...funcampus-0.3.0
 [0.2.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.1.0...funcampus-0.2.0
 [0.1.0]: https://github.com/openfun/richie-site-factory/compare/ 185f9deff5c4dd79e21f4f42c2acd1d17c73c293...funcampus-0.1.0

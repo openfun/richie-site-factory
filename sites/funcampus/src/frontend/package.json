@@ -1,6 +1,6 @@
 {
   "name": "funcampus",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The future www.fun-campus.fr website based on https://github.com/openfun/richie",
   "scripts": {
     "prettier": "prettier '**/*.+(css|scss)'",
