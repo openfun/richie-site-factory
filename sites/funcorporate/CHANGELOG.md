@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Customize wording for "What you will learn" using translations
+
 ### Fixed
 
 - Rename contact buttons in header and course page and point to Zendesk
