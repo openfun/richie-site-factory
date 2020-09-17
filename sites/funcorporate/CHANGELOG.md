@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Rename contact buttons in header and course page and point to Zendesk
+
 ## [0.6.1] - 2020-09-16
 
 ### Fixed
