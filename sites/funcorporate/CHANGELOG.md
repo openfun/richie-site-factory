@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Filter on "training domains", not on "categories" which is the root node
 - Rename contact buttons in header and course page and point to Zendesk
 
 ## [0.6.1] - 2020-09-16
