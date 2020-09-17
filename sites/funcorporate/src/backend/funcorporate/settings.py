@@ -327,13 +327,13 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         (
             "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
             {
-                "human_name": _("Subjects"),
+                "human_name": _("Training domains"),
                 "is_autocompletable": True,
                 "is_searchable": True,
                 "min_doc_count": 0,
-                "name": "subjects",
+                "name": "domains",
                 "position": 1,
-                "reverse_id": "subjects",
+                "reverse_id": "domains",
                 "term": "categories",
             },
         ),
