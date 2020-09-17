@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-16 17:25+0200\n"
+"POT-Creation-Date: 2020-09-17 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,9 +49,9 @@ msgstr "Français"
 msgid "Would you like to use this course with your students?"
 msgstr "Vous souhaitez utiliser ce cours avec vos étudiants&nbsp;?"
 
-#: templates/richie/base.html:20
-msgid "Help"
-msgstr "Aide"
+#: templates/courses/cms/course_detail.html:6 templates/richie/base.html:20
+msgid "Contact us"
+msgstr "Nous contacter"
 
 #: templates/richie/base.html:25
 msgid "Courses that enrich academic education"
