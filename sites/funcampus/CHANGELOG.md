@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Rename "help" button to "contact us" in site header
+- Add link to contact form on the "contact us" button on the course detail page
+
 ## [0.3.0] - 2020-09-16
 
 ### Added
