@@ -48,6 +48,7 @@ bootstrap: \
   stop \
   build-front \
   build \
+  i18n \
   run \
   migrate \
   init
