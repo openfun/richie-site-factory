@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.0] - 2020-09-23
+
 ### Added
 
 - Add link to the LMS dashboard as a button in the header
@@ -56,7 +58,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.0...HEAD
+[0.4.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.1...funcampus-0.4.0
 [0.3.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.0...funcampus-0.3.1
 [0.3.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.2.0...funcampus-0.3.0
 [0.2.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.1.0...funcampus-0.2.0
