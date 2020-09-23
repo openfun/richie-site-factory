@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add link to the LMS dashboard as a button in the header
+
 ## [0.3.1] - 2020-09-17
 
 ### Fixed
