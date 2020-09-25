@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.1] - 2020-09-25
+
 ### Fixed
 
 - Hide site in the english language until it is ready
@@ -62,7 +64,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.1...HEAD
+[0.4.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.0...funcampus-0.4.1
 [0.4.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.1...funcampus-0.4.0
 [0.3.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.0...funcampus-0.3.1
 [0.3.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.2.0...funcampus-0.3.0
