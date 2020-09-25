@@ -341,66 +341,11 @@ workflows:
                 name: no-change-demo
     funcampus:
         jobs:
-            - check-changelog:
-                filters:
-                    branches:
-                        ignore: master
-                name: check-changelog-funcampus
-                site: funcampus
-            - lint-changelog:
-                filters:
-                    branches:
-                        ignore: master
-                    tags:
-                        only: /funcampus-.*/
-                name: lint-changelog--funcampus
-                site: funcampus
-            - build-front-production:
+            - no-change:
                 filters:
                     tags:
-                        only: /funcampus-.*/
-                name: build-front-production-funcampus
-                site: funcampus
-            - lint-front:
-                filters:
-                    tags:
-                        only: /funcampus-.*/
-                name: lint-front-funcampus
-                requires:
-                    - build-front-production-funcampus
-                site: funcampus
-            - build-back:
-                filters:
-                    tags:
-                        only: /funcampus-.*/
-                name: build-back-funcampus
-                site: funcampus
-            - lint-back:
-                filters:
-                    tags:
-                        only: /funcampus-.*/
-                name: lint-back-funcampus
-                requires:
-                    - build-back-funcampus
-                site: funcampus
-            - test-back:
-                filters:
-                    tags:
-                        only: /funcampus-.*/
-                name: test-back-funcampus
-                requires:
-                    - build-back-funcampus
-                site: funcampus
-            - hub:
-                filters:
-                    tags:
-                        only: /^funcampus-.*/
-                image_name: funcampus
-                name: hub-funcampus
-                requires:
-                    - lint-front-funcampus
-                    - lint-back-funcampus
-                site: funcampus
+                        only: /.*/
+                name: no-change-funcampus
     funcorporate:
         jobs:
             - no-change:
