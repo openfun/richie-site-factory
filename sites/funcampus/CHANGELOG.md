@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Removed
+
+- Remove monkey patch that enabled cms page cache for non-staff users
+
 ## [0.4.1] - 2020-09-25
 
 ### Fixed
