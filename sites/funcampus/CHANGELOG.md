@@ -11,6 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Removed
 
 - Remove monkey patch that enabled cms page cache for non-staff users
+- Remove Django cache middlewares from the settings
 
 ## [0.4.1] - 2020-09-25
 

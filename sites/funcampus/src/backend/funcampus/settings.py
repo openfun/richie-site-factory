@@ -221,7 +221,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     ]
 
     MIDDLEWARE = (
-        "django.middleware.cache.UpdateCacheMiddleware",
         "cms.middleware.utils.ApphookReloadMiddleware",
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
@@ -237,7 +236,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "cms.middleware.toolbar.ToolbarMiddleware",
         "cms.middleware.language.LanguageCookieMiddleware",
         "dj_pagination.middleware.PaginationMiddleware",
-        "django.middleware.cache.FetchFromCacheMiddleware",
     )
 
     # Django applications from the highest priority to the lowest
