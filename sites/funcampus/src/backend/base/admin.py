@@ -5,9 +5,12 @@ from django.http import JsonResponse
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 
+import cms.views
 from filer.admin import clipboardadmin
 from filer.admin.clipboardadmin import ajax_upload as filer_ajax_upload
 from filer.models.virtualitems import FolderRoot
+
+from .cache import details
 
 
 class CustomUserAdmin(UserAdmin):
@@ -39,3 +42,10 @@ FolderRoot.virtual_folders = lambda o: []
 user_model = auth.get_user_model()
 admin.site.unregister(user_model)
 admin.site.register(user_model, CustomUserAdmin)
+
+# By default, Django CMS sends cached responses with a Cache-control: max-age
+# value that reflects the server cache TTL. We want to change this behavior
+# and to be able to set a lower cache timeout value on the client side.
+# See setting CMS_MAX_BROWSER_CACHE_TTL for more information.
+
+cms.views.details = details

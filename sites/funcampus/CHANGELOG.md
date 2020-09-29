@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add monkey patch to limit the browser cache TTL
+
 ### Removed
 
 - Remove monkey patch that enabled cms page cache for non-staff users
