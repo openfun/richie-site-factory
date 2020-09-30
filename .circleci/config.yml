@@ -334,73 +334,73 @@ workflows:
                 name: no-change-cnfpt
     demo:
         jobs:
-            - no-change:
-                filters:
-                    tags:
-                        only: /.*/
-                name: no-change-demo
-    funcampus:
-        jobs:
             - check-changelog:
                 filters:
                     branches:
                         ignore: master
-                name: check-changelog-funcampus
-                site: funcampus
+                name: check-changelog-demo
+                site: demo
             - lint-changelog:
                 filters:
                     branches:
                         ignore: master
                     tags:
-                        only: /funcampus-.*/
-                name: lint-changelog--funcampus
-                site: funcampus
+                        only: /demo-.*/
+                name: lint-changelog--demo
+                site: demo
             - build-front-production:
                 filters:
                     tags:
-                        only: /funcampus-.*/
-                name: build-front-production-funcampus
-                site: funcampus
+                        only: /demo-.*/
+                name: build-front-production-demo
+                site: demo
             - lint-front:
                 filters:
                     tags:
-                        only: /funcampus-.*/
-                name: lint-front-funcampus
+                        only: /demo-.*/
+                name: lint-front-demo
                 requires:
-                    - build-front-production-funcampus
-                site: funcampus
+                    - build-front-production-demo
+                site: demo
             - build-back:
                 filters:
                     tags:
-                        only: /funcampus-.*/
-                name: build-back-funcampus
-                site: funcampus
+                        only: /demo-.*/
+                name: build-back-demo
+                site: demo
             - lint-back:
                 filters:
                     tags:
-                        only: /funcampus-.*/
-                name: lint-back-funcampus
+                        only: /demo-.*/
+                name: lint-back-demo
                 requires:
-                    - build-back-funcampus
-                site: funcampus
+                    - build-back-demo
+                site: demo
             - test-back:
                 filters:
                     tags:
-                        only: /funcampus-.*/
-                name: test-back-funcampus
+                        only: /demo-.*/
+                name: test-back-demo
                 requires:
-                    - build-back-funcampus
-                site: funcampus
+                    - build-back-demo
+                site: demo
             - hub:
                 filters:
                     tags:
-                        only: /^funcampus-.*/
-                image_name: funcampus
-                name: hub-funcampus
+                        only: /^demo-.*/
+                image_name: richie-demo
+                name: hub-demo
                 requires:
-                    - lint-front-funcampus
-                    - lint-back-funcampus
-                site: funcampus
+                    - lint-front-demo
+                    - lint-back-demo
+                site: demo
+    funcampus:
+        jobs:
+            - no-change:
+                filters:
+                    tags:
+                        only: /.*/
+                name: no-change-funcampus
     funcorporate:
         jobs:
             - no-change:
