@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Hide site in the english language until it is ready
+
 ## [0.6.2] - 2020-09-17
 
 ### Changed
