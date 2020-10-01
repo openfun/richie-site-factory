@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Customize slogan in footer
+
 ### Fixed
 
 - Hide site in the english language until it is ready

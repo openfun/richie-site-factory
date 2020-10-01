@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-18 12:48+0200\n"
+"POT-Creation-Date: 2020-10-01 09:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr "Vous souhaitez proposer cette formation à vos salariés&nbsp;?"
 #: templates/courses/cms/course_detail.html:6 templates/richie/base.html:18
 msgid "Contact us"
 msgstr "Nous contacter"
+
+#: templates/richie/base.html:25
+msgid "Learning to develop skills!"
+msgstr "Des formations pour développer des compétences !"
 
 #: templates/social-networks/blogpost-badges.html:3
 #, python-format
