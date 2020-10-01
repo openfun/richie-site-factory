@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-18 12:48+0200\n"
+"POT-Creation-Date: 2020-10-01 09:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,10 @@ msgstr ""
 
 #: templates/courses/cms/course_detail.html:6 templates/richie/base.html:18
 msgid "Contact us"
+msgstr ""
+
+#: templates/richie/base.html:25
+msgid "Learning to develop skills!"
 msgstr ""
 
 #: templates/social-networks/blogpost-badges.html:3
