@@ -10,8 +10,18 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add middleware from richie.core to limit the browser cache TTL
 - Add step in the social auth connection pipeline to force user
   having is_staff set to true to also have is_superuser set to true.
+
+### Changed
+
+- Upgrade richie to 2.0.0-beta.15
+
+### Removed
+
+- Remove monkey patch that enabled cms page cache for non-staff users
+- Remove Django cache middlewares from the settings
 
 ## [2.0.0-beta.14.5] - 2020-09-08
 
