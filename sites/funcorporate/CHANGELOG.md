@@ -8,13 +8,23 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add middleware from richie.core to limit the browser cache TTL
+
 ### Changed
 
+- Upgrade richie to 2.0.0-beta.15
 - Customize slogan in footer
 
 ### Fixed
 
 - Hide site in the english language until it is ready
+
+### Removed
+
+- Remove monkey patch that enabled cms page cache for non-staff users
+- Remove Django cache middlewares from the settings
 
 ## [0.6.2] - 2020-09-17
 
