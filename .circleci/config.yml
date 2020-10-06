@@ -451,11 +451,66 @@ workflows:
                 site: demo
     funcampus:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-funcampus
+                site: funcampus
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /funcampus-.*/
+                name: lint-changelog--funcampus
+                site: funcampus
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-funcampus
+                        only: /funcampus-.*/
+                name: build-front-production-funcampus
+                site: funcampus
+            - lint-front:
+                filters:
+                    tags:
+                        only: /funcampus-.*/
+                name: lint-front-funcampus
+                requires:
+                    - build-front-production-funcampus
+                site: funcampus
+            - build-back:
+                filters:
+                    tags:
+                        only: /funcampus-.*/
+                name: build-back-funcampus
+                site: funcampus
+            - lint-back:
+                filters:
+                    tags:
+                        only: /funcampus-.*/
+                name: lint-back-funcampus
+                requires:
+                    - build-back-funcampus
+                site: funcampus
+            - test-back:
+                filters:
+                    tags:
+                        only: /funcampus-.*/
+                name: test-back-funcampus
+                requires:
+                    - build-back-funcampus
+                site: funcampus
+            - hub:
+                filters:
+                    tags:
+                        only: /^funcampus-.*/
+                image_name: funcampus
+                name: hub-funcampus
+                requires:
+                    - lint-front-funcampus
+                    - lint-back-funcampus
+                site: funcampus
     funcorporate:
         jobs:
             - no-change:
