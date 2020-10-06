@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-29 18:15+0200\n"
+"POT-Creation-Date: 2020-10-08 07:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,28 +17,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: base/admin.py:34
+#: base/admin.py:31
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: cnfpt/settings.py:324 cnfpt/settings.py:339
+#: cnfpt/settings.py:253
+msgid "Audience"
+msgstr "Public"
+
+#: cnfpt/settings.py:343 cnfpt/settings.py:358
 msgid "English"
 msgstr "Anglais"
 
-#: cnfpt/settings.py:324 cnfpt/settings.py:347 cnfpt/settings.py:601
-#: cnfpt/settings.py:616
+#: cnfpt/settings.py:343 cnfpt/settings.py:366 cnfpt/settings.py:618
+#: cnfpt/settings.py:633
 msgid "French"
 msgstr "Français"
 
-#: cnfpt/settings.py:442
+#: cnfpt/settings.py:463
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: cnfpt/settings.py:455
+#: cnfpt/settings.py:476
 msgid "Subjects"
 msgstr "Thématiques"
 
-#: templates/courses/cms/course_detail.html:15
+#: templates/courses/cms/course_detail.html:14
 msgctxt "course_detail__title"
 msgid "Audience"
 msgstr "Public"
