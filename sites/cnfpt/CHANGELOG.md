@@ -8,9 +8,19 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add middleware from richie.core to limit the browser cache TTL
+
 ### Changed
 
+- Upgrade richie to 2.0.0-beta.15
 - Change aside glimpse title color accordingly to feedback
+
+### Removed
+
+- Remove monkey patch that enabled cms page cache for non-staff users
+- Remove Django cache middlewares from the settings
 
 ## [0.5.2] - 2020-09-10
 
