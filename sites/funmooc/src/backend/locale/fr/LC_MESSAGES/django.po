@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 19:39+0200\n"
+"POT-Creation-Date: 2020-10-07 12:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funmooc/settings.py:297 funmooc/settings.py:312
+#: funmooc/settings.py:299 funmooc/settings.py:314
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:297 funmooc/settings.py:320
+#: funmooc/settings.py:299 funmooc/settings.py:322
 msgid "French"
 msgstr "Français"
 
