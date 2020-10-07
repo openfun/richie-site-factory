@@ -222,7 +222,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     ]
 
     MIDDLEWARE = (
-        "django.middleware.cache.UpdateCacheMiddleware",
+        "richie.apps.core.cache.LimitBrowserCacheTTLHeaders",
         "cms.middleware.utils.ApphookReloadMiddleware",
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
@@ -238,7 +238,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "cms.middleware.toolbar.ToolbarMiddleware",
         "cms.middleware.language.LanguageCookieMiddleware",
         "dj_pagination.middleware.PaginationMiddleware",
-        "django.middleware.cache.FetchFromCacheMiddleware",
     )
 
     INSTALLED_APPS = (
@@ -412,6 +411,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     CMS_CACHE_DURATIONS = values.DictValue(
         {"menus": 3600, "content": 86400, "permissions": 86400}
     )
+    MAX_BROWSER_CACHE_TTL = 600
 
     # Sessions
     SESSION_ENGINE = values.Value("django.contrib.sessions.backends.cache")
