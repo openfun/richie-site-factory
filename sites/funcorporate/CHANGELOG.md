@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.7.0] - 2020-10-08
+
 ### Added
 
 - Add middleware from richie.core to limit the browser cache TTL
@@ -123,7 +125,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.2...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.7.0...HEAD
+[0.7.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.2...funcorporate-0.7.0
 [0.6.2]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.1...funcorporate-0.6.2
 [0.6.1]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.0...funcorporate-0.6.1
 [0.6.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.5.0...funcorporate-0.6.0
