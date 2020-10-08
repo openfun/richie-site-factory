@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.14.0] - 2020-10-08
+
 ### Added
 
 - Add middleware from richie.core to limit the browser cache TTL
@@ -275,7 +277,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.13.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.14.0...HEAD
+[0.14.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.13.0...funmooc-0.14.0
 [0.13.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.12.0...funmooc-0.13.0
 [0.12.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.11.0...funmooc-0.12.0
 [0.11.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.10.1...funmooc-0.11.0
