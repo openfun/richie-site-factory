@@ -60,6 +60,9 @@ jobs:
             - run:
                 command: yarn sass-production
                 name: Build application styles (production mode)
+            - run:
+                command: yarn build-production
+                name: Build application js (production mode)
             - save_cache:
                 key: v1-front-dependencies-<< parameters.site >>-{{ checksum "yarn.lock" }}
                 paths:
@@ -248,8 +251,8 @@ jobs:
                     - v1-front-dependencies-<< parameters.site >>-{{ checksum "yarn.lock" }}
                     - v1-front-dependencies-<< parameters.site >>-
             - run:
-                command: yarn prettier
-                name: Lint CSS/SCSS code with prettier
+                command: yarn lint
+                name: Lint frontend code with prettier & eslint
         working_directory: ~/fun/sites/<< parameters.site >>/src/frontend/
     lint-git:
         docker:

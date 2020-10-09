@@ -96,15 +96,15 @@ info:  ## get activated site info
 build-front: install-front build-ts build-sass ## build front-end application
 .PHONY: build-front
 
-build-sass: ## build Sass files to CSS
+build-sass: ## build Sass files to css
 	@$(YARN) sass
 .PHONY: build-sass
 
-build-sass-production: ## build Sass files to CSS (production mode)
+build-sass-production: ## build Sass files to css (production mode)
 	@$(YARN) sass-production
 .PHONY: build-sass-production
 
-build-ts: ## build ts(x) files to JS
+build-ts: ## build ts(x) files to js
 	@$(YARN) build
 .PHONY: build-ts
 
@@ -132,7 +132,7 @@ lint-front-eslint: ## run eslint over ts files
 	@$(YARN) lint
 .PHONY: lint-front-eslint
 
-lint-front: ## run all linters frontend sources
+lint-front: ## run all linters frontend on sources
 lint-front: \
 	lint-front-prettier-write \
 	lint-front-eslint
@@ -146,7 +146,7 @@ watch-sass: ## watch changes in Sass files
 	@$(YARN) watch-sass
 .PHONY: watch-sass
 
-watch-ts: ## watch changes in Js files
+watch-ts: ## watch changes in js files
 	@$(YARN) watch-ts
 .PHONY: watch-ts
 

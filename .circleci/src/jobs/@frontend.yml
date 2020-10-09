@@ -20,6 +20,9 @@ build-front-production:
     - run:
         name: Build application styles (production mode)
         command: yarn sass-production
+    - run:
+        command: yarn build-production
+        name: Build application js (production mode)
     - save_cache:
         paths:
           - ./node_modules
@@ -40,5 +43,5 @@ lint-front:
           - v1-front-dependencies-<< parameters.site >>-{{ checksum "yarn.lock" }}
           - v1-front-dependencies-<< parameters.site >>-
     - run:
-        name: Lint CSS/SCSS code with prettier
-        command: yarn prettier
+        name: Lint frontend code with prettier & eslint
+        command: yarn lint
