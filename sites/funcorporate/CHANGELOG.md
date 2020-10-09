@@ -15,6 +15,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Open contact form in a new tab
+- Display course duration in course glimpse footer
 
 ## [0.7.0] - 2020-10-08
 
@@ -68,6 +69,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Customize social networks links
 
 ### Fixed
+
 - Override .subheader .category-badge styles to fit fun-corporate mockups.
 - Add i18n messages compilation in the DockerFile so translations are ready
 
@@ -113,7 +115,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade to django-storages 1.9.1
 - Disable 'runs' and 'snapshot' blocks from course detail.
-- Disable 'max-width' from '.course-detail__wrapper'.
+- Disable 'max-width' from '.course-detail\_\_wrapper'.
 - Enable background and arc image for course detail primary group.
 
 ### Fixed
@@ -144,6 +146,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 [0.2.2]: https://github.com/openfun/richie-site-factory/releases/tag/funcorporate-0.2.2
 
 # Deprecated repository
+
 [0.2.1]: https://github.com/openfun/fun-corporate/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/openfun/fun-corporate/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/openfun/fun-corporate/releases/tag/v0.1.0
