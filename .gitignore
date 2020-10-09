@@ -33,6 +33,7 @@ coverage.xml
 
 # Built statics
 **/src/backend/base/static/richie/css/main.css
+**/src/backend/base/static/richie/js
 
 # Site media
 data/
