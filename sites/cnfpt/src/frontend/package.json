@@ -3,10 +3,14 @@
   "version": "0.6.0",
   "description": "Richie-powered CMS for mooc.cnfpt.fr",
   "scripts": {
+    "build": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --richie-dependent-build --richie-settings=overrides.json",
+    "build-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --richie-dependent-build --richie-settings=overrides.json",
+    "lint": "eslint -c node_modules/richie-education/.eslintrc.json 'js/**/*.ts?(x)' --no-error-on-unmatched-pattern",
     "prettier": "prettier '**/*.+(css|scss)'",
     "prettier-write": "prettier --write '**/*.+(css|scss)'",
     "sass": "node-sass --include-path node_modules scss/_main.scss ../backend/base/static/richie/css/main.css",
     "sass-production": "node-sass --include-path node_modules --output-style compressed scss/_main.scss ../backend/base/static/richie/css/main.css",
+    "watch-ts": "yarn build --watch",
     "watch-sass": "nodemon -e scss -x 'yarn sass'"
   },
   "repository": {
@@ -26,11 +30,13 @@
     "url": "https://github.com/openfun/richie-site-factory/issues"
   },
   "homepage": "https://github.com/openfun/richie-site-factory#readme",
-  "dependencies": {},
+  "dependencies": {
+    "richie-education": "2.0.0-beta.15"
+  },
   "devDependencies": {
+    "eslint": "7.10.0",
     "node-sass": "4.14.1",
     "nodemon": "2.0.4",
-    "prettier": "2.0.5",
-    "richie-education": "2.0.0-beta.15"
+    "prettier": "2.0.5"
   }
 }

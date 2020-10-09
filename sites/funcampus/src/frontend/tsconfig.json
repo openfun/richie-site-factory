@@ -1,0 +1,4 @@
+{
+  "extends": "./node_modules/richie-education/tsconfig.json",
+  "include": ["./**/*"]
+}
