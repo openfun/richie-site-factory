@@ -93,7 +93,7 @@ info:  ## get activated site info
 .PHONY: info
 
 # == Frontend
-build-front: install-front build-sass ## build front-end application
+build-front: install-front build-ts build-sass ## build front-end application
 .PHONY: build-front
 
 build-sass: ## build Sass files to CSS
@@ -104,6 +104,14 @@ build-sass-production: ## build Sass files to CSS (production mode)
 	@$(YARN) sass-production
 .PHONY: build-sass-production
 
+build-ts: ## build ts(x) files to JS
+	@$(YARN) build
+.PHONY: build-ts
+
+build-ts-production: ## build ts(x) files to js (production mode)
+	@$(YARN) build-production
+.PHONY: build-ts-production
+
 install-front: ## install front-end dependencies
 	@$(YARN) install
 .PHONY: install-front
@@ -112,13 +120,23 @@ install-front-production: ## install front-end dependencies (production mode)
 	@$(YARN) install --frozen-lockfile
 .PHONY: install-front-production
 
-lint-front-prettier: ## run prettier linter over scss files
+lint-front-prettier: ## run prettier linter over ts(x) & scss files
 	@$(YARN) prettier
 .PHONY: lint-front-prettier
 
-lint-front-prettier-write: ## run prettier over scss files -- beware! overwrites files
+lint-front-prettier-write: ## run prettier over ts(x) & scss files -- beware! overwrites files
 	@$(YARN) prettier-write
 .PHONY: lint-front-prettier-write
+
+lint-front-eslint: ## run eslint over ts files
+	@$(YARN) lint
+.PHONY: lint-front-eslint
+
+lint-front: ## run all linters frontend sources
+lint-front: \
+	lint-front-prettier-write \
+	lint-front-eslint
+.PHONY: lint-front
 
 test-back: ## run back-end tests
 	bin/pytest
@@ -127,6 +145,10 @@ test-back: ## run back-end tests
 watch-sass: ## watch changes in Sass files
 	@$(YARN) watch-sass
 .PHONY: watch-sass
+
+watch-ts: ## watch changes in Js files
+	@$(YARN) watch-ts
+.PHONY: watch-ts
 
 # == AWS/Terraform
 env.d/aws:
