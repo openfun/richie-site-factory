@@ -28,6 +28,10 @@ lint-git:
 
 # Check that the ".circleci/config.yml" file has been updated in the current branch
 check-configuration:
+  parameters:
+    # Use this parameter to pass options to ci update function as --ignore-changelog
+    ci_update_options:
+      type: string
   # Use machine because the check_configuration script runs some docker images with
   # volume mounts which is not possible with dind
   machine:
@@ -42,7 +46,7 @@ check-configuration:
     - run:
         name: Check that the ".circleci/config.yml" file has been updated in the current branch
         command: |
-          bin/ci check_configuration
+          bin/ci check_configuration << parameters.ci_update_options >>
 
 # Lint bash scripts
 lint-bash:
