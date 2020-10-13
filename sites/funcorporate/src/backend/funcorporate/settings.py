@@ -507,6 +507,10 @@ class Development(Base):
         }
     }
 
+    RICHIE_DEMO_NB_OBJECTS = {
+        "licences": 0
+    }
+
 
 class Test(Base):
     """Test environment settings"""
