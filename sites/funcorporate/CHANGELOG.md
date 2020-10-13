@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add a "Dashboard" button linking to the OpenEdX
+
 ## [0.7.0] - 2020-10-08
 
 ### Added
