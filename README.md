@@ -133,6 +133,63 @@ We try to raise our code quality standards and expect contributors to follow the
 recommandations from our
 [handbook](https://openfun.gitbooks.io/handbook/content).
 
+### Upgrading to a newer richie version
+
+Upgrading one or many projects to a newer version of [richie](https://github.com/openfun/richie)
+is automated.
+
+For example, to upgrade a specific site, test its build after upgrade and commit all changes:
+
+```
+bin/upgrade ademe --build --commit
+```
+
+To upgrade a list of 3 sites but without testing the build or committing the changes:
+
+```
+bin/upgrade ademe funcampus funcorporate
+```
+
+To upgrade all the sites handled in the site factory:
+
+```
+bin/upgrade --build --commit
+```
+
+### Making a release
+
+Making a release is automated. The choice between a minor or a revision type of release is
+determined by the presence of an addition, a change or a removal. A revision release is made
+if only fixes are present in the changelog, otherwise a minor release is made.
+
+For example, to release a specific site and commit all changes:
+
+```
+bin/release ademe --commit
+```
+
+If you consider that the changelog contains breaking changes, you can force a major release
+by passing the parameter `--major`.
+
+
+To release a list of 3 sites but without committing the changes:
+
+```
+bin/release ademe funcampus funcorporate --major
+```
+
+To release all the sites handled in the site factory:
+
+```
+bin/release --commit
+```
+
+After merging release commits to the master branch, you can tag them automatically by running:
+
+```
+bin/tag -c
+```
+
 ## License
 
 This work is released under the GNU Affero General Public License v3.0 (see
