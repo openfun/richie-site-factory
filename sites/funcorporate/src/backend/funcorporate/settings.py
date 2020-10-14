@@ -12,6 +12,8 @@ from configurations import Configuration, values
 from richie.apps.courses.settings.mixins import RichieCoursesConfigurationMixin
 from sentry_sdk.integrations.django import DjangoIntegration
 
+from base.utils import merge_dict
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join("/", "data")
 
@@ -321,6 +323,13 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         ],
     }
 
+    # Placeholders
+    CMS_PLACEHOLDER_CONF_OVERRIDES = {
+        "courses/cms/course_detail.html course_description": {
+            "limits": {"CKEditorPlugin": 2}
+        }
+    }
+
     # Search
     RICHIE_FILTERS_CONFIGURATION = [
         (
@@ -436,7 +445,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     environ_prefix=None,
                 ),
                 "TIMEOUT": values.IntegerValue(
-                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None,
+                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None
                 ),
             }
         }
@@ -490,6 +499,11 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             with sentry_sdk.configure_scope() as scope:
                 scope.set_extra("application", "backend")
 
+        # Customize DjangoCMS placeholders configuration
+        cls.CMS_PLACEHOLDER_CONF = merge_dict(
+            cls.CMS_PLACEHOLDER_CONF, cls.CMS_PLACEHOLDER_CONF_OVERRIDES
+        )
+
 
 class Development(Base):
     """
@@ -501,15 +515,9 @@ class Development(Base):
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
 
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        }
-    }
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
 
-    RICHIE_DEMO_NB_OBJECTS = {
-        "licences": 0
-    }
+    RICHIE_DEMO_NB_OBJECTS = {"licences": 0}
 
 
 class Test(Base):
