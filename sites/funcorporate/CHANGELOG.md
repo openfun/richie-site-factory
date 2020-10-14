@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Allow several plugins in course description to relax limit on number of char
 - Open contact form in a new tab
 - Display course duration in course glimpse footer
 
