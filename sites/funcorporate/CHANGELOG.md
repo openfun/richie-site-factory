@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.8.1] - 2020-10-16
+
 ### Fixed
 
 - Fix javascript build which was forgotten in Dockerfile and missing from image
@@ -142,7 +144,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.8.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.8.1...HEAD
+[0.8.1]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.8.0...funcorporate-0.8.1
 [0.8.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.7.0...funcorporate-0.8.0
 [0.7.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.2...funcorporate-0.7.0
 [0.6.2]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.6.1...funcorporate-0.6.2
