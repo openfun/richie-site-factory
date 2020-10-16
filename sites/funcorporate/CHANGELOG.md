@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix javascript build which was forgotten in Dockerfile and missing from image
+
 ## [0.8.0] - 2020-10-14
 
 ### Added
