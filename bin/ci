@@ -83,8 +83,12 @@ function update_sources() {
             echo "${site}")
 
         changelog_ignored_branch="master"
-        if [ "$1" = true ] ; then
-            # If --ignore-changelog is true check_changelog job will ignore all branches
+        if \
+            "$1" = true && \
+            ! check_changes "^${site_path}/CHANGELOG.md" ;
+        then
+            # If --ignore-changelog is true and site CHANGELOG has not changed
+            # check_changelog job will be ignored for this site
             changelog_ignored_branch="/.*/"
         fi
 
