@@ -42,14 +42,14 @@ function update_factory() {
     template=".circleci/src/workflows/site-factory.yml.tpl"
     
     # Add a workflow for the site from our template
-    printf "%s\n" "${disclaimer}" > ".circleci/src/workflows/site-factory.yml"
+    printf "%s\n" "${disclaimer}" > ".circleci/src/workflows/@site-factory.yml"
 
     options=""
     if [ "$1" = true ] ; then
         options="--ignore-changelog"
     fi
 
-    sed "s|\${CI-UPDATE-OPTIONS}|$options|;" < $template >> ".circleci/src/workflows/site-factory.yml"
+    sed "s|\${CI-UPDATE-OPTIONS}|$options|;" < $template >> ".circleci/src/workflows/@site-factory.yml"
 }
 
 # Utility function that updates circle configuration source files with a
