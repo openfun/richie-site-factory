@@ -58,18 +58,9 @@ function upgrade() {
 }
 
 
-declare -a sites
-declare -i n_sites
+declare -a args
 declare -i should_build=0
 declare -i should_commit=0
-declare version=$1
-
-# Version is required
-if [[ -z "${version}" ]]; then
-    usage "${0}"
-    exit 1
-fi
-shift
 
 # Parse options
 for i in "$@"
@@ -88,14 +79,23 @@ do
             shift
             ;;
         *)
-            sites+=("${1}")
+            args+=("${1}")
             shift
             ;;
     esac
 done
 
+# Release version is required as first argument
+declare version="${args[0]}"
+declare -a sites=("${args[@]:1}")
+declare -i n_sites=${#sites[@]}
+
+if [[ -z "${version}" ]]; then
+    usage "${0}"
+    exit 1
+fi
+
 # If no sites were specified, loop over all sites
-n_sites=${#sites[@]}
 if [[ ${n_sites} -eq 0 ]] ; then
     # List all sites by browsing the "sites" directory
     # and store them in the existing "sites" array
