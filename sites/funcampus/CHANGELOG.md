@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Upgrade richie to 2.0.0-beta.16
 - Display course duration in course glimpse footer
 
 ## [0.5.0] - 2020-10-08

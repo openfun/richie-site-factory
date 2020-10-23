@@ -32,7 +32,7 @@
   "homepage": "https://github.com/openfun/richie-site-factory#readme",
   "dependencies": {
     "react": "16.13.1",
-    "richie-education": "2.0.0-beta.15"
+    "richie-education": "2.0.0-beta.16"
   },
   "devDependencies": {
     "eslint": "7.10.0",
