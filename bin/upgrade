@@ -18,6 +18,90 @@ OPTIONS:
 "
 }
 
+function update_changelog() {
+    CHANGELOG_FILE=$1
+    CHANGELOG_TITLES=$(grep -n "\[.*\]" ${CHANGELOG_FILE})
+
+    # UNRELEASED is always the 2nd [.*] of the file
+    # Naturally, it ends before the 3rd [.*]
+    UNRELEASED_START=$(echo "${CHANGELOG_TITLES}" | cut -d $'\n' -f 2 | cut -d : -f 1)
+    UNRELEASED_END=$(echo "${CHANGELOG_TITLES}" | cut -d $'\n' -f 3 | cut -d : -f 1)
+
+    # Remove title at the beginning and newline at the end + blank lines
+    UNRELEASED_START=$((${UNRELEASED_START} + 2))
+    UNRELEASED_END=$((${UNRELEASED_END} - 2))
+
+    if [ $UNRELEASED_START -gt $UNRELEASED_END ]; then
+        echo "Nothing to do for ${CHANGELOG_FILE}"
+        return 0
+    else
+        echo "Updating CHANGELOG for ${CHANGELOG_FILE}"
+    fi
+
+    UNRELEASED_CONTENT=$(sed -n "${UNRELEASED_START},${UNRELEASED_END}p" ${CHANGELOG_FILE})
+
+    # Replace - with \-, \n with \n
+    UNRELEASED_CONTENT=$(sed -E 's/-/\\-/g' <<< ${UNRELEASED_CONTENT})
+    UNRELEASED_CONTENT=$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' <<< ${UNRELEASED_CONTENT})
+
+    ##### Finding the section that will be modified #####
+
+    NEW_VERSION_START=$(echo "${CHANGELOG_TITLES}" | cut -d $'\n' -f 3 | cut -d : -f 1)
+    NEW_VERSION_END=$(echo "${CHANGELOG_TITLES}" | cut -d $'\n' -f 4 | cut -d : -f 1)
+
+    # Remove title at the beginning and newlines at the end
+    NEW_VERSION_START=$((${NEW_VERSION_START} + 2))
+    NEW_VERSION_END=$((${NEW_VERSION_END} - 2))
+
+    NEW_VERSION_CONTENT=$(sed -n "${NEW_VERSION_START},${NEW_VERSION_END}p" ${CHANGELOG_FILE})
+
+    ##### Applying changes #####
+
+    # Get the lines where "Added" and "Changed" sections start
+    ADDED_START=$(echo "${NEW_VERSION_CONTENT}" | grep -n "### Added" || true)
+    CHANGED_START=$(echo "${NEW_VERSION_CONTENT}" | grep -n "### Changed" || true)
+    NEWLINE=0
+
+    # If "Changed" section already exists
+    if [ ! -z "${CHANGED_START}" ]; then
+        CHANGED_START=$(echo ${CHANGED_START} | cut -d : -f 1)
+        CHANGED_START=$((${CHANGED_START} + ${NEW_VERSION_START} - 1))
+        NEWLINE=1
+    else
+        if [ -z "$ADDED_START" ]; then
+            # None of the 2 sections exist, we create "Changed"
+            sed -i "${NEW_VERSION_START}i ### Changed\n" ${CHANGELOG_FILE}
+            CHANGED_START=$NEW_VERSION_START
+        else
+            # Go to the first element of "Added"
+            CHANGED_START=$((${NEW_VERSION_START} + 2))
+            # Go to the end of the "Added" section (terminated by a blank line)
+            while [ ! -z "$(sed -n "${CHANGED_START}p" ${CHANGELOG_FILE})" ]; do
+                CHANGED_START=$((${CHANGED_START} + 1))
+            done
+
+            # 1 Blank line between two sections
+            CHANGED_START=$((${CHANGED_START} + 1))
+
+            sed -i "${CHANGED_START}i ### Changed\n" ${CHANGELOG_FILE}
+        fi
+    fi
+
+    # From this point on, we know that the "Changed" section exists and starts at line CHANGED_START
+
+    # Ignore title and first blank line
+    CHANGED_START=$((${CHANGED_START} + 2))
+
+    if [ $NEWLINE -eq 0 ]; then
+        sed -i "${CHANGED_START}i ${UNRELEASED_CONTENT}\n" ${CHANGELOG_FILE}
+    else
+        sed -i "${CHANGED_START}i ${UNRELEASED_CONTENT}" ${CHANGELOG_FILE}
+    fi
+
+    # Delete what was written in the "Unreleased" section
+    sed -i "${UNRELEASED_START},$((${UNRELEASED_END} + 1))d" ${CHANGELOG_FILE}
+}
+
 # Bump the version of richie on a site
 #
 # Usage: upgrade VERSION SITE SHOULD_COMMIT
@@ -37,6 +121,7 @@ function upgrade() {
     # Update richie backend and frontend dependencies
     sed -i -E "s/(richie==)(.*)/\1${version}/" "${SITES_DIRECTORY}/${site}/requirements/base.txt"
     sed -i -E "s/(\"richie-education\": \")(.*)\"/\1${version}\"/" "${SITES_DIRECTORY}/${site}/src/frontend/package.json"
+    update_changelog "${SITES_DIRECTORY}/${site}/CHANGELOG.md"
 
     if [[ "${should_build}" == 1 ]]; then
         # Test build if requested
@@ -48,6 +133,7 @@ function upgrade() {
         # - Add only the modified files
         git add "${SITES_DIRECTORY}/${site}/requirements/base.txt"
         git add "${SITES_DIRECTORY}/${site}/src/frontend/package.json"
+        git add "${SITES_DIRECTORY}/${site}/CHANGELOG.md"
 
         # - Point to richie release in description
         changelog="Changelog available at:\nhttps://github.com/openfun/richie/releases/tag/v${version}"
