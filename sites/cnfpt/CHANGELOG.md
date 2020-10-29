@@ -11,6 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Upgrade richie to 2.0.0-beta.20
+- Override search labels to mention MOOC
 
 ## [0.6.0] - 2020-10-08
 

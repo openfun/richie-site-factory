@@ -1,0 +1,10 @@
+{
+  "components.SearchSuggestField.searchFieldPlaceholder": {
+    "description": "Placeholder text displayed in the search field when it is empty.",
+    "message": "Rechercher dans notre catalogue de MOOCs"
+  },
+  "components.RootSearchSuggestField.searchFieldPlaceholder": {
+  "description": "Placeholder text displayed in the search field when it is empty.",
+  "message": "Rechercher des MOOCs"
+  }
+}
