@@ -3,8 +3,8 @@
   "version": "0.6.0",
   "description": "Richie-powered CMS for mooc.cnfpt.fr",
   "scripts": {
-    "build": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --richie-dependent-build --richie-settings=overrides.json",
-    "build-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --richie-dependent-build --richie-settings=overrides.json",
+    "build": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
     "lint": "eslint -c node_modules/richie-education/.eslintrc.json 'js/**/*.ts?(x)' --no-error-on-unmatched-pattern",
     "prettier": "prettier '**/*.+(css|scss)'",
     "prettier-write": "prettier --write '**/*.+(css|scss)'",
