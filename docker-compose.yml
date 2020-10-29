@@ -96,7 +96,7 @@ services:
     image: jwilder/dockerize
 
   node:
-    image: circleci/node:10
+    image: circleci/node:14
     working_dir: /app/src/frontend
     user: "${DOCKER_USER:-1000}"
     volumes:

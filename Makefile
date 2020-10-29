@@ -217,12 +217,23 @@ import-fixtures:  ## import fixtures
 	@$(MANAGE) import_fixtures -v3
 .PHONY: import-fixtures
 
-i18n: ## create/update .po files and compile .mo files used for i18n
+i18n: ## create/update translation files then compile them for both frontend and backend
+i18n: \
+	i18n-back \
+	i18n-front
+.PHONY: i18n
+
+i18n-back: ## create/update .po files and compile .mo files used for i18n
 	@$(MANAGE) makemessages --keep-pot
 	@echo 'Reactivating obsolete strings (allow overriding strings defined in dependencies)'
 	@$(COMPOSE_RUN_APP) find ./ -type f -name django.po -exec sed -i 's/#~ //g' {} \;
 	@$(MANAGE) compilemessages
-.PHONY: i18n
+.PHONY: i18n-back
+
+i18n-front: ## Compile translation files used for react-intl
+	@$(YARN) extract-translations
+	@$(YARN) compile-translations
+.PHONY: i18n-front
 
 migrate: ## perform database migrations
 	@$(COMPOSE) up -d db

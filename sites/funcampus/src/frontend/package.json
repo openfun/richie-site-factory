@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
     "build-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
-    "lint": "eslint -c node_modules/richie-education/.eslintrc.json 'js/**/*.ts?(x)' --no-error-on-unmatched-pattern",
+    "compile-translations": "node_modules/richie-education/i18n/compile-translations.js ./i18n/overrides/*.json ./i18n/locales/*.json",
+    "extract-translations": "formatjs extract './**/*.ts*' --ignore ./node_modules --ignore './**/*.d.ts' --out-file './i18n/frontend.json' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
+    "lint": "eslint -c node_modules/richie-education/.eslintrc.json 'js/**/*.ts?(x)' --rule 'import/no-extraneous-dependencies: [error, {packageDir: ['.', './node_modules/richie-education']}]' --no-error-on-unmatched-pattern",
     "prettier": "prettier '**/*.+(css|scss)'",
     "prettier-write": "prettier --write '**/*.+(css|scss)'",
     "sass": "node-sass --include-path node_modules scss/_main.scss ../backend/base/static/richie/css/main.css",
@@ -35,6 +37,7 @@
     "richie-education": "2.0.0-beta.15"
   },
   "devDependencies": {
+    "@formatjs/cli": "^2.13.5",
     "eslint": "7.10.0",
     "node-sass": "4.14.1",
     "nodemon": "2.0.4",
