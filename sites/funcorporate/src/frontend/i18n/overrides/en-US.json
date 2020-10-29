@@ -1,0 +1,18 @@
+{
+  "components.RootSearchSuggestField.searchFieldPlaceholder": {
+    "description": "Placeholder text displayed in the search field when it is empty.",
+    "message": "Search for trainings, institutions, categories"
+  },
+  "components.SearchSuggestField.searchFieldPlaceholder": {
+    "description": "Placeholder text displayed in the search field when it is empty.",
+    "message": "Search for trainings"
+  },
+    "components.SearchFiltersPane.title": {
+    "description": "Title for the search filters pane in course search.",
+    "message": "Filter trainings"
+  },
+  "components.CourseGlimpseList.courseCount": {
+    "description": "Result count & pagination information for course search. Appears right above search results",
+    "message": "Showing {start, number} to {end, number} of {courseCount, number} {courseCount, plural, one {training} other {trainings}} matching your search"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "components.RootSearchSuggestField.searchFieldPlaceholder": {
+    "description": "Placeholder text displayed in the search field when it is empty.",
+    "message": "Recherche des formations, des organisations, des catégories"
+  },
+  "components.SearchSuggestField.searchFieldPlaceholder": {
+    "description": "Placeholder text displayed in the search field when it is empty.",
+    "message": "Rechercher des formations"
+  },
+    "components.SearchFiltersPane.title": {
+    "description": "Title for the search filters pane in course search.",
+    "message": "Filtrer les formations"
+  },
+  "components.CourseGlimpseList.courseCount": {
+    "description": "Result count & pagination information for course search. Appears right above search results",
+    "message": "Résultats {start, number} à {end, number} sur {courseCount, number} {courseCount, plural, one {formation} other {formations}} correspondant à votre recherche"
+  }
+}
