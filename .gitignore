@@ -30,6 +30,7 @@ coverage.xml
 # i18n
 *.pot
 *.mo
+frontend.json
 
 # Built statics
 **/src/backend/base/static/richie/css/main.css

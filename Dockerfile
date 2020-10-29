@@ -10,7 +10,7 @@ ARG DOCKER_USER=10000
 FROM python:3.7-stretch as base
 
 # ---- front-end builder image ----
-FROM node:10 as front-builder
+FROM node:14 as front-builder
 
 ARG SITE
 
@@ -20,6 +20,7 @@ COPY ./sites/${SITE}/src/frontend /builder/src/frontend
 WORKDIR /builder/src/frontend
 
 RUN yarn install --frozen-lockfile && \
+    yarn compile-translations && \
     yarn build-production && \
     yarn sass-production
 

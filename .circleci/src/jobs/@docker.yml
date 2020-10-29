@@ -19,6 +19,7 @@ hub:
     # Activate docker-in-docker (with layers caching enabled)
     - setup_remote_docker:
         docker_layer_caching: true
+        version: 19.03.13
     - run:
         name: Build docker images
         command: make env.d/aws && make build
