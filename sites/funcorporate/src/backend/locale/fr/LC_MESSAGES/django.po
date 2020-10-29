@@ -117,3 +117,6 @@ msgstr "Linkedin"
 msgctxt "course_detail__title"
 msgid "What you will learn"
 msgstr "Compétences visées"
+
+msgid "Search in our courses"
+msgstr "Rechercher dans notre offre de formation"

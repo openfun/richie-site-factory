@@ -116,3 +116,6 @@ msgstr ""
 msgctxt "course_detail__title"
 msgid "What you will learn"
 msgstr "Targeted skills"
+
+msgid "Search in our courses"
+msgstr "Search in our training offer"

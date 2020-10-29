@@ -11,6 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Upgrade richie to 2.0.0-beta.20
+- Override translations to replace course by training
 
 ## [0.8.1] - 2020-10-16
 
