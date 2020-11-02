@@ -21,8 +21,8 @@ WORKDIR /builder/src/frontend
 
 RUN yarn install --frozen-lockfile && \
     yarn compile-translations && \
-    yarn build-production && \
-    yarn sass-production
+    yarn build-ts-production && \
+    yarn build-sass-production
 
 # ---- back-end builder image ----
 FROM base as back-builder
