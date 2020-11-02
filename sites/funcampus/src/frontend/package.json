@@ -3,17 +3,17 @@
   "version": "0.5.0",
   "description": "The future www.fun-campus.fr website based on https://github.com/openfun/richie",
   "scripts": {
-    "build": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
-    "build-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-ts-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
     "compile-translations": "node_modules/richie-education/i18n/compile-translations.js ./i18n/overrides/*.json ./i18n/locales/*.json",
     "extract-translations": "formatjs extract './**/*.ts*' --ignore ./node_modules --ignore './**/*.d.ts' --out-file './i18n/frontend.json' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
     "lint": "eslint -c node_modules/richie-education/.eslintrc.json 'js/**/*.ts?(x)' --rule 'import/no-extraneous-dependencies: [error, {packageDir: ['.', './node_modules/richie-education']}]' --no-error-on-unmatched-pattern",
     "prettier": "prettier '**/*.+(css|scss)'",
     "prettier-write": "prettier --write '**/*.+(css|scss)'",
-    "sass": "node-sass --include-path node_modules scss/_main.scss ../backend/base/static/richie/css/main.css",
-    "sass-production": "node-sass --include-path node_modules --output-style compressed scss/_main.scss ../backend/base/static/richie/css/main.css",
-    "watch-ts": "yarn build --watch",
-    "watch-sass": "nodemon -e scss -x 'yarn sass'"
+    "build-sass": "sass scss/_main.scss ../backend/base/static/richie/css/main.css --load-path=node_modules",
+    "build-sass-production": "sass scss/_main.scss ../backend/base/static/richie/css/main.css --style=compressed --load-path=node_modules",
+    "watch-ts": "yarn build-ts --watch",
+    "watch-sass": "nodemon -e scss -x 'yarn build-sass'"
   },
   "repository": {
     "type": "git",
@@ -38,8 +38,8 @@
   "devDependencies": {
     "@formatjs/cli": "2.13.5",
     "eslint": "7.10.0",
-    "node-sass": "4.14.1",
-    "nodemon": "2.0.4",
-    "prettier": "2.0.5"
+    "nodemon": "2.0.6",
+    "prettier": "2.0.5",
+    "sass": "1.28.0"
   }
 }

@@ -19,9 +19,9 @@ build-front-production:
         command: yarn install --frozen-lockfile
     - run:
         name: Build application styles (production mode)
-        command: yarn sass-production
+        command: yarn build-sass-production
     - run:
-        command: yarn build-production
+        command: yarn build-ts-production
         name: Build application js (production mode)
     - save_cache:
         paths:

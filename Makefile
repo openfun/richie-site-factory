@@ -97,19 +97,19 @@ build-front: install-front build-ts build-sass ## build front-end application
 .PHONY: build-front
 
 build-sass: ## build Sass files to css
-	@$(YARN) sass
+	@$(YARN) build-sass
 .PHONY: build-sass
 
 build-sass-production: ## build Sass files to css (production mode)
-	@$(YARN) sass-production
+	@$(YARN) build-sass-production
 .PHONY: build-sass-production
 
 build-ts: ## build ts(x) files to js
-	@$(YARN) build
+	@$(YARN) build-ts
 .PHONY: build-ts
 
 build-ts-production: ## build ts(x) files to js (production mode)
-	@$(YARN) build-production
+	@$(YARN) build-ts-production
 .PHONY: build-ts-production
 
 install-front: ## install front-end dependencies
