@@ -12,7 +12,18 @@ resource "aws_s3_bucket" "richie_media" {
   }
 
   versioning {
-    enabled = true
+    enabled = var.media_expiration > 0 ? false : true
+  }
+
+  dynamic "lifecycle_rule" {
+    for_each = var.media_expiration > 0 ? [1] : []
+    content {
+      id      = "expiration"
+      enabled = true
+      expiration {
+        days = var.media_expiration
+      }
+    }
   }
 
   tags = {
