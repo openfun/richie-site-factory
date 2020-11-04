@@ -19,3 +19,8 @@ variable "cloudfront_price_class" {
 variable "app_domain" {
   type = map
 }
+
+variable "media_expiration" {
+  type = number
+  default = 0
+}

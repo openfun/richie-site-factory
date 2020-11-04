@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Add expiration lifecycle rule on s3 bucket for demo site
+
 ## [1.0.0] - 2020-10-08
 
 ### Added
