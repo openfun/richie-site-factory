@@ -37,6 +37,7 @@ function upgrade() {
     # Update richie backend and frontend dependencies
     sed -i -E "s/(richie==)(.*)/\1${version}/" "${SITES_DIRECTORY}/${site}/requirements/base.txt"
     sed -i -E "s/(\"richie-education\": \")(.*)\"/\1${version}\"/" "${SITES_DIRECTORY}/${site}/src/frontend/package.json"
+    (cd "${SITES_DIRECTORY}/${site}/src/frontend" && yarn)
 
     if [[ "${should_build}" == 1 ]]; then
         # Test build if requested
@@ -48,9 +49,11 @@ function upgrade() {
         # - Add only the modified files
         git add "${SITES_DIRECTORY}/${site}/requirements/base.txt"
         git add "${SITES_DIRECTORY}/${site}/src/frontend/package.json"
+        git add "${SITES_DIRECTORY}/${site}/src/frontend/yarn.lock"
 
         # - Point to richie release in description
-        changelog="Changelog available at:\nhttps://github.com/openfun/richie/releases/tag/v${version}"
+        changelog="Changelog available at:
+https://github.com/openfun/richie/releases/tag/v${version}"
 
         # - Create commit respecting gitmoji/gitlint format
         git commit -m "⬆️(${site}) upgrade richie to v${version}" -m "${changelog}"
