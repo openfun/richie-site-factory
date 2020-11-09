@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 22:23+0200\n"
+"POT-Creation-Date: 2020-11-09 18:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,37 +17,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: base/admin.py:34
+#: base/admin.py:31
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funcampus/settings.py:296
+#: funcampus/settings.py:295
 msgid "Diplomas"
 msgstr "Diplômes"
 
-#: funcampus/settings.py:309
+#: funcampus/settings.py:308
 msgid "Domains and mentions"
 msgstr "Domaines et mentions"
 
-#: funcampus/settings.py:322
+#: funcampus/settings.py:321
 msgid "Levels"
 msgstr "Niveaux"
 
-#: funcampus/settings.py:335
+#: funcampus/settings.py:334
 msgid "Skills"
 msgstr "Compétences"
 
-#: funcampus/settings.py:355 funcampus/settings.py:370
+#: funcampus/settings.py:354 funcampus/settings.py:369
 msgid "English"
 msgstr "Anglais"
 
-#: funcampus/settings.py:355 funcampus/settings.py:378
+#: funcampus/settings.py:354 funcampus/settings.py:377
 msgid "French"
 msgstr "Français"
 
 #: templates/courses/cms/course_detail.html:5
-msgid "Would you like to use this course with your students?"
-msgstr "Vous souhaitez utiliser ce cours avec vos étudiants&nbsp;?"
+msgid "Are you a teacher who would like to use this course with your students?"
+msgstr ""
+"Vous êtes enseignant et souhaitez utiliser ce cours avec vos étudiants&nbsp;?"
 
 #: templates/courses/cms/course_detail.html:6 templates/richie/base.html:23
 msgid "Contact us"
