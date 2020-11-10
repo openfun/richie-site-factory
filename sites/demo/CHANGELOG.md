@@ -12,6 +12,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Add expiration lifecycle rule on s3 bucket for demo site
 
+### Changed
+
+- Upgrade richie to 2.0.0-beta.20
+
 ## [1.0.0] - 2020-10-08
 
 ### Added

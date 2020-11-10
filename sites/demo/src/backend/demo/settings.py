@@ -4,7 +4,7 @@ Django settings for the richie demo project.
 import json
 import os
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # pylint: disable=ungrouped-imports
 import sentry_sdk
@@ -142,6 +142,19 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Security
     ALLOWED_HOSTS = values.ListValue([])
     SECRET_KEY = "ThisIsAnExampleKeyForDevPurposeOnly"  # nosec
+    # System check reference:
+    # https://docs.djangoproject.com/en/3.1/ref/checks/#security
+    SILENCED_SYSTEM_CHECKS = values.ListValue(
+        [
+            # Allow the X_FRAME_OPTIONS to be set to "SAMEORIGIN"
+            "security.W019"
+        ]
+    )
+    # The X_FRAME_OPTIONS value should be set to "SAMEORIGIN" to display
+    # DjangoCMS frontend admin frames. Dockerflow raises a system check security
+    # warning with this setting, one should add "security.W019" to the
+    # SILENCED_SYSTEM_CHECKS setting (see above).
+    X_FRAME_OPTIONS = "SAMEORIGIN"
 
     # Application definition
     ROOT_URLCONF = "demo.urls"
@@ -181,68 +194,53 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # get the updated version of each file.
     STATICFILES_STORAGE = values.Value("base.storage.CDNManifestStaticFilesStorage")
 
-    # Login/registration related settings
-    LOGIN_REDIRECT_URL = "/"
-    LOGOUT_REDIRECT_URL = "/"
-    LOGIN_URL = "login"
-    LOGOUT_URL = "logout"
-
     AUTHENTICATION_BACKENDS = (
-        "richie.apps.social.backends.EdXOAuth2",
         "django.contrib.auth.backends.ModelBackend",
     )
 
-    # Social auth
-    SOCIAL_AUTH_EDX_OAUTH2_KEY = values.Value()
-    SOCIAL_AUTH_EDX_OAUTH2_SECRET = values.Value()
-    SOCIAL_AUTH_EDX_OAUTH2_ENDPOINT = values.Value()
-    SOCIAL_AUTH_POSTGRES_JSONFIELD = False
-
-    SOCIAL_AUTH_PIPELINE = (
-        # Get the information we can about the user and return it in a simple
-        # format to create the user instance later. In some cases the details are
-        # already part of the auth response from the provider, but sometimes this
-        # could hit a provider API.
-        "social_core.pipeline.social_auth.social_details",
-        # Get the social uid from whichever service we're authing thru. The uid is
-        # the unique identifier of the given user in the provider.
-        "social_core.pipeline.social_auth.social_uid",
-        # Verifies that the current auth process is valid within the current
-        # project, this is where emails and domains whitelists are applied (if
-        # defined).
-        "social_core.pipeline.social_auth.auth_allowed",
-        # Checks if the current social-account is already associated in the site.
-        "social_core.pipeline.social_auth.social_user",
-        # Make up a username for this person, appends a random string at the end if
-        # there's any collision.
-        "social_core.pipeline.user.get_username",
-        # Create a user account if we haven't found one yet.
-        "social_core.pipeline.user.create_user",
-        # User exists, update it to superuser if needed
-        "demo.social.pipeline.user.set_super_user",
-        # Create the record that associates the social account with the user.
-        "social_core.pipeline.social_auth.associate_user",
-        # Populate the extra_data field in the social record with the values
-        # specified by settings (and the default ones like access_token, etc).
-        "social_core.pipeline.social_auth.load_extra_data",
-        # Update the user record with any changed info from the auth service.
-        "social_core.pipeline.user.user_details",
-    )
+    # AUTHENTICATION DELEGATION
+    AUTHENTICATION_DELEGATION = {
+        "BASE_URL": values.Value(
+            "", environ_name="AUTHENTICATION_BASE_URL", environ_prefix=None
+        ),
+        "BACKEND": values.Value(
+            "richie.apps.courses.lms.base.BaseLMSBackend",
+            environ_name="AUTHENTICATION_BACKEND",
+            environ_prefix=None,
+        ),
+        # PROFILE_URLS are custom links to access to Auth profile views
+        # from Richie. Link order will reflect the order of display in frontend.
+        # (i) Info - {base_url} is AUTHENTICATION_DELEGATION.BASE_URL
+        # (i) If you need to bind user data into href url, wrap the property between ()
+        # e.g: for user.username = johndoe, /u/(username) will be /u/johndoe
+        "PROFILE_URLS": values.ListValue(
+            [
+                {"label": _("Profile"), "href": "{base_url:s}/u/(username)"},
+                {"label": _("Account"), "href": "{base_url:s}/account/settings"},
+            ],
+            environ_name="AUTHENTICATION_PROFILE_URLS",
+            environ_prefix=None,
+        ),
+    }
 
     # LMS
     LMS_BACKENDS = [
         {
-            "BACKEND": "richie.apps.courses.lms.edx.TokenEdXLMSBackend",
+            "BACKEND": values.Value(
+                "richie.apps.courses.lms.base.BaseLMSBackend",
+                environ_name="EDX_BACKEND",
+                environ_prefix=None
+            ),
             "SELECTOR_REGEX": values.Value(
                 r".*", environ_name="EDX_SELECTOR_REGEX", environ_prefix=None
             ),
-            "COURSE_REGEX": values.Value(
-                r"^.*/courses/(?P<course_id>.*)/info$",
-                environ_name="EDX_COURSE_REGEX",
-                environ_prefix=None,
+            "JS_SELECTOR_REGEX": values.Value(
+                r".*", environ_name="EDX_JS_SELECTOR_REGEX", environ_prefix=None
             ),
-            "API_TOKEN": values.Value(
-                environ_name="EDX_API_TOKEN", environ_prefix=None
+            "JS_COURSE_REGEX": values.Value(
+                r"^.*/courses/(?<course_id>.*)/info$",
+                environ_name="EDX_JS_COURSE_REGEX",
+                environ_prefix=None,
             ),
             "BASE_URL": values.Value(environ_name="EDX_BASE_URL", environ_prefix=None),
         }
@@ -336,7 +334,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "dockerflow.django",
         "parler",
         "rest_framework",
-        "social_django",
         "storages",
         # Django-cms
         "djangocms_admin_style",
@@ -569,19 +566,6 @@ class Production(Base):
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SESSION_COOKIE_SECURE = True
-    # System check reference:
-    # https://docs.djangoproject.com/en/2.2/ref/checks/#security
-    SILENCED_SYSTEM_CHECKS = values.ListValue(
-        [
-            # Allow the X_FRAME_OPTIONS to be set to "SAMEORIGIN"
-            "security.W019"
-        ]
-    )
-    # The X_FRAME_OPTIONS value should be set to "SAMEORIGIN" to display
-    # DjangoCMS frontend admin frames. Dockerflow raises a system check security
-    # warning with this setting, one should add "security.W019" to the
-    # SILENCED_SYSTEM_CHECKS setting (see above).
-    X_FRAME_OPTIONS = "SAMEORIGIN"
 
     DEFAULT_FILE_STORAGE = "base.storage.MediaStorage"
     AWS_DEFAULT_ACL = None
@@ -601,10 +585,6 @@ class Production(Base):
 
     # CDN domain for static/media urls. It is passed to the frontend to load built chunks
     CDN_DOMAIN = values.Value()
-
-    # Social auth
-    # Force https schema in redirect uri
-    SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 
     @property
     def TEXT_CKEDITOR_BASE_PATH(self):
