@@ -4,7 +4,7 @@ Django settings for fun-corporate.
 import json
 import os
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # pylint: disable=ungrouped-imports
 import sentry_sdk
@@ -138,6 +138,19 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Security
     ALLOWED_HOSTS = values.ListValue([])
     SECRET_KEY = "ThisIsAnExampleKeyForDevPurposeOnly"  # nosec
+    # System check reference:
+    # https://docs.djangoproject.com/en/3.1/ref/checks/#security
+    SILENCED_SYSTEM_CHECKS = values.ListValue(
+        [
+            # Allow the X_FRAME_OPTIONS to be set to "SAMEORIGIN"
+            "security.W019"
+        ]
+    )
+    # The X_FRAME_OPTIONS value should be set to "SAMEORIGIN" to display
+    # DjangoCMS frontend admin frames. Dockerflow raises a system check security
+    # warning with this setting, one should add "security.W019" to the
+    # SILENCED_SYSTEM_CHECKS setting (see above).
+    X_FRAME_OPTIONS = "SAMEORIGIN"
 
     # Application definition
     ROOT_URLCONF = "funcorporate.urls"
@@ -547,19 +560,6 @@ class Production(Base):
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SESSION_COOKIE_SECURE = True
-    # System check reference:
-    # https://docs.djangoproject.com/en/2.2/ref/checks/#security
-    SILENCED_SYSTEM_CHECKS = values.ListValue(
-        [
-            # Allow the X_FRAME_OPTIONS to be set to "SAMEORIGIN"
-            "security.W019"
-        ]
-    )
-    # The X_FRAME_OPTIONS value should be set to "SAMEORIGIN" to display
-    # DjangoCMS frontend admin frames. Dockerflow raises a system check security
-    # warning with this setting, one should add "security.W019" to the
-    # SILENCED_SYSTEM_CHECKS setting (see above).
-    X_FRAME_OPTIONS = "SAMEORIGIN"
 
     DEFAULT_FILE_STORAGE = "base.storage.MediaStorage"
     AWS_DEFAULT_ACL = None

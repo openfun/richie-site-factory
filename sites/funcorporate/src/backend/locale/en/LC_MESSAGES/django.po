@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 11:22+0200\n"
+"POT-Creation-Date: 2020-11-10 14:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,23 +21,23 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr ""
 
-#: funcorporate/settings.py:294 funcorporate/settings.py:309
+#: funcorporate/settings.py:309 funcorporate/settings.py:324
 msgid "English"
 msgstr ""
 
-#: funcorporate/settings.py:294 funcorporate/settings.py:317
+#: funcorporate/settings.py:309 funcorporate/settings.py:332
 msgid "French"
 msgstr ""
 
-#: funcorporate/settings.py:329
+#: funcorporate/settings.py:351
 msgid "Training domains"
 msgstr ""
 
-#: funcorporate/settings.py:342
+#: funcorporate/settings.py:364
 msgid "Organizations"
 msgstr ""
 
-#: funcorporate/settings.py:354
+#: funcorporate/settings.py:376
 msgid "Persons"
 msgstr "Teachers"
 
@@ -45,7 +45,7 @@ msgstr "Teachers"
 msgid "Would you like to offer this training to your employees?"
 msgstr ""
 
-#: templates/courses/cms/course_detail.html:6 templates/richie/base.html:21
+#: templates/courses/cms/course_detail.html:6 templates/richie/base.html:22
 msgid "Contact us"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: templates/richie/base.html:28
+#: templates/richie/base.html:30
 msgid "Learning to develop skills!"
 msgstr ""
 

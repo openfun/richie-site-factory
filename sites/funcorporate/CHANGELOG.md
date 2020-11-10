@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 2.0.0-beta.20
+
 ## [0.8.1] - 2020-10-16
 
 ### Fixed

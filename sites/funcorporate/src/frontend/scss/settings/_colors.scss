@@ -285,6 +285,9 @@ $r-theme: (
     cta-color: r-color('blue-green'),
     cta-border: r-color('white'),
   ),
+  section-plugin: (
+    title-emphased-color: r-color('blue-green'),
+  ),
   licence-plugin: (
     content-color: r-color('slate-grey'),
     description-color: r-color('slate-grey'),
@@ -544,5 +547,15 @@ $r-theme: (
     grid-border-color: r-color('silver'),
     cta-sample: $denim-scheme,
     spot-sample: $blue-green-scheme,
+  ),
+  selector: (
+    base-background: r-color('white'),
+    hover-background: r-color('white'),
+    base-color: r-color('charcoal'),
+    hover-color: r-color('charcoal'),
+    base-border: r-color('light-grey'),
+  ),
+  spinner: (
+    base-color: r-color('denim'),
   )
 );
