@@ -323,6 +323,9 @@ $r-theme: (
     cta-color: r-color('white'),
     cta-border: r-color('lipstick'),
   ),
+  section-plugin: (
+    title-emphased-color: r-color('lipstick'),
+  ),
   licence-plugin: (
     content-color: r-color('brownish-grey'),
     description-color: r-color('brownish-grey'),
@@ -588,4 +591,14 @@ $r-theme: (
     cta-sample: $ocean-blue-scheme,
     spot-sample: $lipstick-scheme,
   ),
+  selector: (
+    base-background: r-color('white'),
+    hover-background: r-color('white'),
+    base-color: r-color('dark'),
+    hover-color: r-color('dark'),
+    base-border: r-color('light-grey'),
+  ),
+  spinner: (
+    base-color: r-color('ocean-blue'),
+  )
 );
