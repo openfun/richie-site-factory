@@ -24,8 +24,12 @@ DB_PORT=5432
 # Social auth
 DJANGO_SOCIAL_AUTH_EDX_OAUTH2_KEY=social-id
 DJANGO_SOCIAL_AUTH_EDX_OAUTH2_SECRET=fakesecret
-DJANGO_SOCIAL_AUTH_EDX_OAUTH2_ENDPOINT=http://edx:8073/oauth2
 
 # LMS Backend
-EDX_API_TOKEN=FakeEdXAPIKey
-EDX_BASE_URL=http://edx:8073
+EDX_BACKEND=richie.apps.courses.lms.base.BaseLMSBackend
+EDX_JS_COURSE_REGEX=^.*/courses/(?<course_id>.*)/info$
+EDX_BASE_URL=http://localhost:8073
+
+# Authentication Backend
+AUTHENTICATION_BASE_URL=http://localhost:8073
+AUTHENTICATION_BACKEND=richie.apps.courses.lms.edx.TokenEdXLMSBackend
