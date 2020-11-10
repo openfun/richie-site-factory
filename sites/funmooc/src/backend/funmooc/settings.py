@@ -4,7 +4,7 @@ Django settings for FUN-MOOC project.
 import json
 import os
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # pylint: disable=ungrouped-imports
 import sentry_sdk
@@ -143,6 +143,19 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Security
     ALLOWED_HOSTS = values.ListValue([])
     SECRET_KEY = "ThisIsAnExampleKeyForDevPurposeOnly"  # nosec
+    # System check reference:
+    # https://docs.djangoproject.com/en/3.1/ref/checks/#security
+    SILENCED_SYSTEM_CHECKS = values.ListValue(
+        [
+            # Allow the X_FRAME_OPTIONS to be set to "SAMEORIGIN"
+            "security.W019"
+        ]
+    )
+    # The X_FRAME_OPTIONS value should be set to "SAMEORIGIN" to display
+    # DjangoCMS frontend admin frames. Dockerflow raises a system check security
+    # warning with this setting, one should add "security.W019" to the
+    # SILENCED_SYSTEM_CHECKS setting (see above).
+    X_FRAME_OPTIONS = "SAMEORIGIN"
 
     # Application definition
     ROOT_URLCONF = "funmooc.urls"
@@ -185,6 +198,54 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Login/registration related settings
     LOGIN_REDIRECT_URL = "/"
     LOGOUT_REDIRECT_URL = "/"
+
+    # AUTHENTICATION
+    AUTHENTICATION_DELEGATION = {
+        "BASE_URL": values.Value(
+            "", environ_name="AUTHENTICATION_BASE_URL", environ_prefix=None
+        ),
+        "BACKEND": values.Value(
+            "richie.apps.courses.lms.base.BaseLMSBackend",
+            environ_name="AUTHENTICATION_BACKEND",
+            environ_prefix=None,
+        ),
+        # PROFILE_URLS are custom links to access to Auth profile views
+        # from Richie. Link order will reflect the order of display in frontend.
+        # (i) Info - {base_url} is AUTHENTICATION_DELEGATION.BASE_URL
+        # (i) If you need to bind user data into href url, wrap the property between ()
+        # e.g: for user.username = johndoe, /u/(username) will be /u/johndoe
+        "PROFILE_URLS": values.ListValue(
+            [
+                {"label": _("Profile"), "href": "{base_url:s}/u/(username)"},
+                {"label": _("Account"), "href": "{base_url:s}/account/settings"},
+            ],
+            environ_name="AUTHENTICATION_PROFILE_URLS",
+            environ_prefix=None,
+        ),
+    }
+
+    # LMS
+    LMS_BACKENDS = [
+        {
+            "BACKEND": values.Value(
+                "richie.apps.courses.lms.base.BaseLMSBackend",
+                environ_name="EDX_BACKEND",
+                environ_prefix=None
+            ),
+            "SELECTOR_REGEX": values.Value(
+                r".*", environ_name="EDX_SELECTOR_REGEX", environ_prefix=None
+            ),
+            "JS_SELECTOR_REGEX": values.Value(
+                r".*", environ_name="EDX_JS_SELECTOR_REGEX", environ_prefix=None
+            ),
+            "JS_COURSE_REGEX": values.Value(
+                r"^(?<course_id>.*)$",
+                environ_name="EDX_JS_COURSE_REGEX",
+                environ_prefix=None,
+            ),
+            "BASE_URL": values.Value(environ_name="EDX_BASE_URL", environ_prefix=None),
+        }
+    ]
 
     # Internationalization
     TIME_ZONE = "Europe/Paris"
@@ -409,7 +470,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # For more details about CMS_CACHE_DURATION, see :
     # http://docs.django-cms.org/en/latest/reference/configuration.html#cms-cache-durations
     CMS_CACHE_DURATIONS = values.DictValue(
-        {"menus": 3600, "content": 86400, "permissions": 86400}
+        {"menus": 0, "content": 0, "permissions": 0}
     )
     MAX_BROWSER_CACHE_TTL = 600
 
@@ -503,19 +564,6 @@ class Production(Base):
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SESSION_COOKIE_SECURE = True
-    # System check reference:
-    # https://docs.djangoproject.com/en/2.2/ref/checks/#security
-    SILENCED_SYSTEM_CHECKS = values.ListValue(
-        [
-            # Allow the X_FRAME_OPTIONS to be set to "SAMEORIGIN"
-            "security.W019"
-        ]
-    )
-    # The X_FRAME_OPTIONS value should be set to "SAMEORIGIN" to display
-    # DjangoCMS frontend admin frames. Dockerflow raises a system check security
-    # warning with this setting, one should add "security.W019" to the
-    # SILENCED_SYSTEM_CHECKS setting (see above).
-    X_FRAME_OPTIONS = "SAMEORIGIN"
 
     DEFAULT_FILE_STORAGE = "base.storage.MediaStorage"
     AWS_DEFAULT_ACL = None
