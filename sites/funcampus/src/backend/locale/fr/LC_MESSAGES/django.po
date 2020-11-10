@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-09 18:05+0100\n"
+"POT-Creation-Date: 2020-11-10 14:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funcampus/settings.py:295
+#: funcampus/settings.py:308
 msgid "Diplomas"
 msgstr "Diplômes"
 
-#: funcampus/settings.py:308
+#: funcampus/settings.py:321
 msgid "Domains and mentions"
 msgstr "Domaines et mentions"
 
-#: funcampus/settings.py:321
+#: funcampus/settings.py:334
 msgid "Levels"
 msgstr "Niveaux"
 
-#: funcampus/settings.py:334
+#: funcampus/settings.py:347
 msgid "Skills"
 msgstr "Compétences"
 
-#: funcampus/settings.py:354 funcampus/settings.py:369
+#: funcampus/settings.py:367 funcampus/settings.py:382
 msgid "English"
 msgstr "Anglais"
 
-#: funcampus/settings.py:354 funcampus/settings.py:377
+#: funcampus/settings.py:367 funcampus/settings.py:390
 msgid "French"
 msgstr "Français"
 

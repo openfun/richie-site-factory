@@ -11,6 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Clarify call-to-action on the "contact us" button
+- Upgrade richie to 2.0.0-beta.20
 - Display course duration in course glimpse footer
 
 ## [0.5.0] - 2020-10-08
