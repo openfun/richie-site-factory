@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.15.1] - 2020-11-12
+
 ### Fixed
 
 - Fix AWS media storage backend after upgrade to DjangoCMS 3.8.0
@@ -287,7 +289,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.15.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.15.1...HEAD
+[0.15.1]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.15.0...funmooc-0.15.1
 [0.15.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.14.0...funmooc-0.15.0
 [0.14.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.13.0...funmooc-0.14.0
 [0.13.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.12.0...funmooc-0.13.0
