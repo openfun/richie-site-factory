@@ -569,7 +569,7 @@ class Production(Base):
 
     DEFAULT_FILE_STORAGE = "base.storage.MediaStorage"
     AWS_DEFAULT_ACL = None
-    MEDIA_URL = "media/"
+    AWS_LOCATION = "media"
 
     AWS_ACCESS_KEY_ID = values.SecretValue()
     AWS_SECRET_ACCESS_KEY = values.SecretValue()
