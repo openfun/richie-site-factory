@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.0] - 2020-11-12
+
 ### Added
 
 - Add expiration lifecycle rule on s3 bucket for demo site
@@ -104,7 +106,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.0.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.0...HEAD
+[1.1.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.0.0...demo-1.1.0
 [1.0.0]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.5...demo-1.0.0
 [2.0.0-beta.14.5]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.4...demo-2.0.0-beta.14.5
 [2.0.0-beta.14.4]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.3...demo-2.0.0-beta.14.4
