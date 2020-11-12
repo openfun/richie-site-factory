@@ -86,7 +86,7 @@ function release() {
         git add "${SITES_DIRECTORY}/${site}/src/frontend/package.json"
 
         # - Reuse release description from CHANGELOG.md
-        changelog=$(echo "${changelog}" | head -n -1 | sed "s/### //g")
+        changelog=$(echo "${changelog}" | sed "\$d;s/### //g")
 
         # - Create commit respecting gitmoji/gitlint format
         git commit -m "🔖(${site}) bump to version ${new_version}" -m "${changelog}"
