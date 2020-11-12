@@ -58,4 +58,3 @@ class MediaStorage(S3Boto3Storage):
     bucket_name = getattr(settings, "AWS_MEDIA_BUCKET_NAME", None)
     custom_domain = getattr(settings, "CDN_DOMAIN", None)
     file_overwrite = False
-    location = settings.MEDIA_URL
