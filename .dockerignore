@@ -14,14 +14,26 @@ venv
 docker-compose.*
 env.d
 
+# Docs
+docs
+*.md
+*.log
+
 # Development/test cache & configurations
 .cache
 .circleci
 .git
 .vscode
-src/frontend/node_modules
 
 # Assets
 data
 src/backend/base/static/richie/css/main.css
 
+# Assets
+data
+**/static/richie/css
+!**/static/richie/css/ckeditor.css
+**/static/richie/js
+
+# Front-end
+**/node_modules
