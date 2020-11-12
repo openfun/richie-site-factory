@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.6.0] - 2020-11-12
+
 ### Changed
 
 - Clarify call-to-action on the "contact us" button
@@ -85,7 +87,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.5.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.6.0...HEAD
+[0.6.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.5.0...funcampus-0.6.0
 [0.5.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.1...funcampus-0.5.0
 [0.4.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.0...funcampus-0.4.1
 [0.4.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.3.1...funcampus-0.4.0
