@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Pin Django to 3.1.1 because the `/admin/cms/page` layout is broken with
+  Django>=3.1.2
+
 ## [1.0.0] - 2020-11-12
 
 ### Fixed
