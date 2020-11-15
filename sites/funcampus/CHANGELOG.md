@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-11-15
+
 ### Fixed
 
 - Pin Django to 3.1.1 because the `/admin/cms/page` layout is broken with
@@ -98,7 +100,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.0.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.0.1...HEAD
+[1.0.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.0.0...funcampus-1.0.1
 [1.0.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.6.0...funcampus-1.0.0
 [0.6.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.5.0...funcampus-0.6.0
 [0.5.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-0.4.1...funcampus-0.5.0
