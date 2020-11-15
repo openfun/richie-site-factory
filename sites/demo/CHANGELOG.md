@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.2] - 2020-11-15
+
 ### Fixed
 
 - Pin Django to 3.1.1 because the `/admin/cms/page` layout is broken with
@@ -117,7 +119,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.2...HEAD
+[1.1.2]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.1...demo-1.1.2
 [1.1.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.0...demo-1.1.1
 [1.1.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.0.0...demo-1.1.0
 [1.0.0]: https://github.com/openfun/richie-site-factory/compare/demo-2.0.0-beta.14.5...demo-1.0.0
