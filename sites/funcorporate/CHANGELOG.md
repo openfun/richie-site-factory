@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-11-15
+
 ### Fixed
 
 - Pin Django to 3.1.1 because the `/admin/cms/page` layout is broken with
@@ -162,7 +164,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.0.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.0.1...HEAD
+[1.0.1]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.0.0...funcorporate-1.0.1
 [1.0.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.9.0...funcorporate-1.0.0
 [0.9.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.8.1...funcorporate-0.9.0
 [0.8.1]: https://github.com/openfun/richie-site-factory/compare/funcorporate-0.8.0...funcorporate-0.8.1
