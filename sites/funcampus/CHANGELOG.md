@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+- Return a 403 response when user tries to upload a file in unsorted folder
+
 ## [1.0.1] - 2020-11-15
 
 ### Fixed
