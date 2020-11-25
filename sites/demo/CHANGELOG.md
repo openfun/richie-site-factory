@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Unpin Django now that django-admin-style 2.0.2 supports
+  the latest version 3.1.3
+
 ## [1.1.2] - 2020-11-15
 
 ### Fixed
