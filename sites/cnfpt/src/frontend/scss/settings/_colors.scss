@@ -367,6 +367,11 @@ $r-theme: (
     base: $azure-color-scheme,
     base-hover: $azure-two-color-scheme,
   ),
+  badge-glimpse: (
+    base-background: r-color('white'),
+    title-color: r-color('black'),
+    content-color: r-color('battleship-grey'),
+  ),
   card-glimpse: (
     base-background: r-color('white'),
     divider-color: r-color('berry'),

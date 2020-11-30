@@ -198,7 +198,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             "", environ_name="AUTHENTICATION_BASE_URL", environ_prefix=None
         ),
         "BACKEND": values.Value(
-            "richie.apps.courses.lms.base.BaseLMSBackend",
+            "base",
             environ_name="AUTHENTICATION_BACKEND",
             environ_prefix=None,
         ),
@@ -223,7 +223,12 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             "BACKEND": values.Value(
                 "richie.apps.courses.lms.base.BaseLMSBackend",
                 environ_name="EDX_BACKEND",
-                environ_prefix=None
+                environ_prefix=None,
+            ),
+            "JS_BACKEND": values.Value(
+                "base",
+                environ_name="EDX_JS_BACKEND",
+                environ_prefix=None,
             ),
             "SELECTOR_REGEX": values.Value(
                 r".*", environ_name="EDX_SELECTOR_REGEX", environ_prefix=None
