@@ -1,6 +1,6 @@
 {
   "name": "funcampus",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The future www.fun-campus.fr website based on https://github.com/openfun/richie",
   "scripts": {
     "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
