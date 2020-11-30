@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-11 00:13+0100\n"
+"POT-Creation-Date: 2020-11-30 10:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,24 +29,24 @@ msgstr "Profil"
 msgid "Account"
 msgstr "Mon compte"
 
-#: cnfpt/settings.py:282
+#: cnfpt/settings.py:287
 msgid "Audience"
 msgstr "Public"
 
-#: cnfpt/settings.py:371 cnfpt/settings.py:386
+#: cnfpt/settings.py:376 cnfpt/settings.py:391
 msgid "English"
 msgstr "Anglais"
 
-#: cnfpt/settings.py:371 cnfpt/settings.py:394 cnfpt/settings.py:629
-#: cnfpt/settings.py:644
+#: cnfpt/settings.py:376 cnfpt/settings.py:399 cnfpt/settings.py:634
+#: cnfpt/settings.py:649
 msgid "French"
 msgstr "Français"
 
-#: cnfpt/settings.py:491
+#: cnfpt/settings.py:496
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: cnfpt/settings.py:504
+#: cnfpt/settings.py:509
 msgid "Subjects"
 msgstr "Thématiques"
 
