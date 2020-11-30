@@ -366,6 +366,11 @@ $r-theme: (
     base: $orange-scheme,
     base-hover: $orange-scheme,
   ),
+  badge-glimpse: (
+    base-background: r-color('white'),
+    title-color: r-color('black'),
+    content-color: r-color('slate-grey'),
+  ),
   card-glimpse: (
     base-background: r-color('white'),
     divider-color: r-color('orange'),
