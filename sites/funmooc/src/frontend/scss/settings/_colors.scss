@@ -357,6 +357,11 @@ $r-theme: (
     alternative: $clear-red-scheme,
     base-hover: $lipstick-scheme,
   ),
+  badge-glimpse: (
+    base-background: r-color('white'),
+    title-color: r-color('black'),
+    content-color: r-color('brownish-grey'),
+  ),
   card-glimpse: (
     base-background: r-color('white'),
     divider-color: r-color('lipstick'),

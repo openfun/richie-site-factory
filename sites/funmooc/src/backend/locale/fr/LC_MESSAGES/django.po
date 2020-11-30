@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 15:53+0100\n"
+"POT-Creation-Date: 2020-11-30 09:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgstr "Profil"
 msgid "Account"
 msgstr "Compte"
 
-#: funmooc/settings.py:360 funmooc/settings.py:375
+#: funmooc/settings.py:365 funmooc/settings.py:380
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:360 funmooc/settings.py:383
+#: funmooc/settings.py:365 funmooc/settings.py:388
 msgid "French"
 msgstr "Français"
 
