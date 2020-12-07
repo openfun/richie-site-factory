@@ -309,7 +309,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     INSTALLED_APPS = (
         # Funmooc stuff
         "base",
-        "gimporter",
         # Richie stuff
         "richie.apps.demo",
         "richie.apps.search",
@@ -481,10 +480,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # Sessions
     SESSION_ENGINE = values.Value("django.contrib.sessions.backends.cache")
-
-    GOOGLE_SHEET_ID = values.Value(None)
-    GOOGLE_SHEET_CREDENTIALS = values.Value(None)
-    GIMPORTER_BASE_URL = values.Value("https://www.fun-mooc.fr")
 
     # Sentry
     SENTRY_DSN = values.Value(None, environ_name="SENTRY_DSN")
