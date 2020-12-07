@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-12-07
+
 ### Fixed
 
 - Add missing factory-boy dependency to allow generating the demo site
@@ -135,7 +137,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.2.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.3.0...HEAD
+[1.3.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.2.0...demo-1.3.0
 [1.2.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.2...demo-1.2.0
 [1.1.2]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.1...demo-1.1.2
 [1.1.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.0...demo-1.1.1
