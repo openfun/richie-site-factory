@@ -11,6 +11,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 2.0.0-beta.22
 
+### Removed
+
+- Remove gimporter app
+
 ## [0.16.0] - 2020-11-30
 
 ### Changed
