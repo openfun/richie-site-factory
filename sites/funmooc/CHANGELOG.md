@@ -7,6 +7,9 @@ and this project adheres to [Semantic
 Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+
+- Upgrade richie to 2.0.0-beta.22
 
 ## [0.16.0] - 2020-11-30
 
