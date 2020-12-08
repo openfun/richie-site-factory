@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Add missing factory-boy dependency to allow generating the demo site
+
 ### Changed
 
 - Upgrade richie to 2.0.0-beta.22
