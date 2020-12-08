@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Set default language to english (also makes generating the demo site work)
+
 ## [1.3.0] - 2020-12-07
 
 ### Fixed
