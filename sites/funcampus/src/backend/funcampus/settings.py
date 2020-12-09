@@ -503,6 +503,14 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         """
         return get_release()
 
+    # pylint: disable=invalid-name
+    @property
+    def CMS_CACHE_PREFIX(self):
+        """
+        Set cache prefix specific to release so existing cache is invalidated for new deployments.
+        """
+        return f"cms_{get_release():s}_"
+
     @classmethod
     def post_setup(cls):
         """Post setup configuration.
