@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.3.1] - 2020-12-09
+
 ### Fixed
 
 - Include version in CMS cache prefix to bust cache when deploying new version
@@ -142,7 +144,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.3.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.3.1...HEAD
+[1.3.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.3.0...demo-1.3.1
 [1.3.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.2.0...demo-1.3.0
 [1.2.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.2...demo-1.2.0
 [1.1.2]: https://github.com/openfun/richie-site-factory/compare/demo-1.1.1...demo-1.1.2
