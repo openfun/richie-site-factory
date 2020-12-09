@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.17.1] - 2020-12-09
+
 ### Fixed
 
 - Include version in CMS cache prefix to bust cache when deploying new version
@@ -319,7 +321,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.1...HEAD
+[0.17.1]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.0...funmooc-0.17.1
 [0.17.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.16.0...funmooc-0.17.0
 [0.16.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.15.2...funmooc-0.16.0
 [0.15.2]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.15.1...funmooc-0.15.2
