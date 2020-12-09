@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Include version in CMS cache prefix to bust cache when deploying new version
+
 ## [0.17.0] - 2020-12-07
 
 ### Changed
