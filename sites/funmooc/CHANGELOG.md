@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.17.2] - 2020-12-10
+
 ### Fixed
 
 - Configure cache durations to make cache effective in production
@@ -325,7 +327,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.2...HEAD
+[0.17.2]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.1...funmooc-0.17.2
 [0.17.1]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.0...funmooc-0.17.1
 [0.17.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.16.0...funmooc-0.17.0
 [0.16.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.15.2...funmooc-0.16.0
