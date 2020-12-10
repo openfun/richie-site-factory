@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Configure cache durations to make cache effective in production
+
 ## [0.17.1] - 2020-12-09
 
 ### Fixed

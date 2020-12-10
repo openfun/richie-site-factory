@@ -475,7 +475,9 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # For more details about CMS_CACHE_DURATION, see :
     # http://docs.django-cms.org/en/latest/reference/configuration.html#cms-cache-durations
-    CMS_CACHE_DURATIONS = values.DictValue({"menus": 0, "content": 0, "permissions": 0})
+    CMS_CACHE_DURATIONS = values.DictValue(
+        {"menus": 3600, "content": 86400, "permissions": 86400}
+    )
     MAX_BROWSER_CACHE_TTL = 600
 
     # Sessions
