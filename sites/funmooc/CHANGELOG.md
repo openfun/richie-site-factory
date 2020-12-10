@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix missing url patterns for the course runs API
+
 ## [0.17.2] - 2020-12-10
 
 ### Fixed
