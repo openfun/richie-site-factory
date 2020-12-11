@@ -205,9 +205,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             "", environ_name="AUTHENTICATION_BASE_URL", environ_prefix=None
         ),
         "BACKEND": values.Value(
-            "base",
-            environ_name="AUTHENTICATION_BACKEND",
-            environ_prefix=None,
+            "base", environ_name="AUTHENTICATION_BACKEND", environ_prefix=None
         ),
         # PROFILE_URLS are custom links to access to Auth profile views
         # from Richie. Link order will reflect the order of display in frontend.
@@ -233,9 +231,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 environ_prefix=None,
             ),
             "JS_BACKEND": values.Value(
-                "base",
-                environ_name="EDX_JS_BACKEND",
-                environ_prefix=None,
+                "base", environ_name="EDX_JS_BACKEND", environ_prefix=None
             ),
             "SELECTOR_REGEX": values.Value(
                 r".*", environ_name="EDX_SELECTOR_REGEX", environ_prefix=None
@@ -244,7 +240,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 r".*", environ_name="EDX_JS_SELECTOR_REGEX", environ_prefix=None
             ),
             "JS_COURSE_REGEX": values.Value(
-                r"^(?<course_id>.*)$",
+                r"^.*/courses/(?<course_id>.*)/info$",
                 environ_name="EDX_JS_COURSE_REGEX",
                 environ_prefix=None,
             ),
@@ -562,9 +558,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     environ_prefix=None,
                 ),
                 "TIMEOUT": values.IntegerValue(
-                    300,
-                    environ_name="CACHE_DEFAULT_TIMEOUT",
-                    environ_prefix=None,
+                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None
                 ),
             }
         }
@@ -637,11 +631,7 @@ class Development(Base):
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
 
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        }
-    }
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
 
 
 class Test(Base):

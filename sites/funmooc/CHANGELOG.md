@@ -12,6 +12,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Customize search filters with new categories
 
+### Fixed
+
+- Fix regex that extracts course ids for enrollments
+
 ## [0.17.3] - 2020-12-10
 
 ### Fixed
