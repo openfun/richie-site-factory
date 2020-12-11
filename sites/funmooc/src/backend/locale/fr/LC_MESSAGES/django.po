@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 09:42+0100\n"
+"POT-Creation-Date: 2020-12-11 17:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,29 +17,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: base/admin.py:31
+#: base/admin.py:32
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funmooc/settings.py:219
+#: funmooc/settings.py:217
 msgid "Profile"
 msgstr "Profil"
 
-#: funmooc/settings.py:220
+#: funmooc/settings.py:218
 msgid "Account"
 msgstr "Compte"
 
-#: funmooc/settings.py:365 funmooc/settings.py:380
+#: funmooc/settings.py:358
+msgid "New courses"
+msgstr "Nouveaux cours"
+
+#: funmooc/settings.py:362
+msgid "First session"
+msgstr "Première session"
+
+#: funmooc/settings.py:373
+msgid "Availability"
+msgstr "Disponibilité"
+
+#: funmooc/settings.py:383
+msgid "Languages"
+msgstr "Langues"
+
+#: funmooc/settings.py:398
+msgid "Subjects"
+msgstr "Thématiques"
+
+#: funmooc/settings.py:411
+msgid "Collections"
+msgstr "Collections"
+
+#: funmooc/settings.py:424
+msgid "Organizations"
+msgstr "Établissements"
+
+#: funmooc/settings.py:436
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#: funmooc/settings.py:455 funmooc/settings.py:470
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:365 funmooc/settings.py:388
+#: funmooc/settings.py:455 funmooc/settings.py:478
 msgid "French"
 msgstr "Français"
-
-#: gimporter/import_scripts/organizations.py:90
-msgid "organization banner"
-msgstr "bannière d'établissement"
 
 #: templates/richie/base.html:18
 msgid "Help"

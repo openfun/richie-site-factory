@@ -353,6 +353,103 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "django.contrib.messages",
     )
 
+    # Search
+    RICHIE_FILTERS_CONFIGURATION = [
+        (
+            "richie.apps.search.filter_definitions.StaticChoicesFilterDefinition",
+            {
+                "fragment_map": {"new": [{"term": {"is_new": True}}]},
+                "human_name": _("New courses"),
+                "min_doc_count": 0,
+                "name": "new",
+                "position": 0,
+                "values": {"new": _("First session")},
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.NestingWrapper",
+            {
+                "name": "course_runs",
+                "filters": [
+                    (
+                        "richie.apps.search.filter_definitions.AvailabilityFilterDefinition",
+                        {
+                            "human_name": _("Availability"),
+                            "is_drilldown": True,
+                            "min_doc_count": 0,
+                            "name": "availability",
+                            "position": 1,
+                        },
+                    ),
+                    (
+                        "richie.apps.search.filter_definitions.LanguagesFilterDefinition",
+                        {
+                            "human_name": _("Languages"),
+                            # There are too many available languages to show them all, all the
+                            # time. Eg. 200 languages, 190+ of which will have 0 matching courses.
+                            "min_doc_count": 1,
+                            "name": "languages",
+                            "position": 5,
+                            "sorting": "count",
+                        },
+                    ),
+                ],
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            {
+                "human_name": _("Subjects"),
+                "is_autocompletable": True,
+                "is_searchable": True,
+                "min_doc_count": 0,
+                "name": "subjects",
+                "position": 2,
+                "reverse_id": "subjects",
+                "term": "categories",
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            {
+                "human_name": _("Collections"),
+                "is_autocompletable": True,
+                "is_searchable": True,
+                "min_doc_count": 0,
+                "name": "collections",
+                "position": 3,
+                "reverse_id": "collections",
+                "term": "categories",
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            {
+                "human_name": _("Organizations"),
+                "is_autocompletable": True,
+                "is_searchable": True,
+                "min_doc_count": 0,
+                "name": "organizations",
+                "position": 4,
+                "reverse_id": "organizations",
+                "term": "organizations",
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.IndexableFilterDefinition",
+            {
+                "human_name": _("Contributors"),
+                "is_autocompletable": True,
+                "is_searchable": True,
+                "min_doc_count": 0,
+                "name": "contributors",
+                "position": 6,
+                "reverse_id": "contributors",
+                "term": "persons",
+            },
+        ),
+    ]
+
     # Languages
     # - Django
     LANGUAGE_CODE = "fr"

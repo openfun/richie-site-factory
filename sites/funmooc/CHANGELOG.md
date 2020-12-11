@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Customize search filters with new categories
+
 ## [0.17.3] - 2020-12-10
 
 ### Fixed
