@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.18.0] - 2020-12-11
+
 ### Changed
 
 - Customize search filters with new categories
@@ -341,7 +343,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.3...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.18.0...HEAD
+[0.18.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.3...funmooc-0.18.0
 [0.17.3]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.2...funmooc-0.17.3
 [0.17.2]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.1...funmooc-0.17.2
 [0.17.1]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.17.0...funmooc-0.17.1
