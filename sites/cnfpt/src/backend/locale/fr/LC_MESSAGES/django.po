@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 10:31+0100\n"
+"POT-Creation-Date: 2020-12-14 12:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,8 +37,8 @@ msgstr "Public"
 msgid "English"
 msgstr "Anglais"
 
-#: cnfpt/settings.py:376 cnfpt/settings.py:399 cnfpt/settings.py:634
-#: cnfpt/settings.py:649
+#: cnfpt/settings.py:376 cnfpt/settings.py:399 cnfpt/settings.py:642
+#: cnfpt/settings.py:657
 msgid "French"
 msgstr "Français"
 
@@ -128,4 +128,4 @@ msgid "Organizations"
 msgstr "Organisations et partenaires"
 
 msgid "Search in our courses"
-msgstr "Rechercher dans notre catalogue de MOOCs"
+msgstr "Rechercher dans notre catalogue de MOOC"
