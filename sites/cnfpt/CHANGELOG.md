@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.9.2] - 2020-12-14
+
 ### Fixed
 
 - Fix translation (MOOCs -> MOOC)
@@ -142,7 +144,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.2...HEAD
+[0.9.2]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.1...cnfpt-0.9.2
 [0.9.1]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.0...cnfpt-0.9.1
 [0.9.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.8.0...cnfpt-0.9.0
 [0.8.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.7.2...cnfpt-0.8.0
