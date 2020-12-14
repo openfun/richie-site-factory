@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix translation (MOOCs -> MOOC)
+
 ## [0.9.1] - 2020-12-09
 
 ### Fixed
