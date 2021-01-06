@@ -460,7 +460,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         {
             "default": {
                 "BACKEND": values.Value(
-                    "django_redis.cache.RedisCache",
+                    "base.cache.RedisCacheWithFallback",
                     environ_name="CACHE_DEFAULT_BACKEND",
                     environ_prefix=None,
                 ),
@@ -470,14 +470,33 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     environ_prefix=None,
                 ),
                 "OPTIONS": values.DictValue(
-                    {"CLIENT_CLASS": "richie.apps.core.cache.SentinelClient"},
+                    {
+                        "CLIENT_CLASS": "richie.apps.core.cache.SentinelClient",
+                    },
                     environ_name="CACHE_DEFAULT_OPTIONS",
                     environ_prefix=None,
                 ),
                 "TIMEOUT": values.IntegerValue(
                     300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None
                 ),
-            }
+            },
+            "fallback": {
+                "BACKEND": values.Value(
+                    "django.core.cache.backends.locmem.LocMemCache",
+                    environ_name="CACHE_FALLBACK_BACKEND",
+                    environ_prefix=None,
+                ),
+                "LOCATION": values.Value(
+                    None,
+                    environ_name="CACHE_FALLBACK_LOCATION",
+                    environ_prefix=None,
+                ),
+                "OPTIONS": values.DictValue(
+                    {},
+                    environ_name="CACHE_FALLBACK_OPTIONS",
+                    environ_prefix=None,
+                ),
+            },
         }
     )
 

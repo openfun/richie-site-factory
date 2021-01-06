@@ -16,6 +16,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Fix Sentry SDK initialization environment and release parameters
 
+### Added
+
+- Use a custom RedisCacheWithFallback cache to prevent denial of service
+  when Redis is down
+
 ## [0.18.0] - 2020-12-11
 
 ### Changed
