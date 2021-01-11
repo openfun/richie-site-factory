@@ -200,12 +200,14 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     LOGOUT_REDIRECT_URL = "/"
 
     # AUTHENTICATION
-    AUTHENTICATION_DELEGATION = {
+    RICHIE_AUTHENTICATION_DELEGATION = {
         "BASE_URL": values.Value(
             "", environ_name="AUTHENTICATION_BASE_URL", environ_prefix=None
         ),
         "BACKEND": values.Value(
-            "base", environ_name="AUTHENTICATION_BACKEND", environ_prefix=None
+            "openedx-dogwood",
+            environ_name="AUTHENTICATION_BACKEND",
+            environ_prefix=None,
         ),
         # PROFILE_URLS are custom links to access to Auth profile views
         # from Richie. Link order will reflect the order of display in frontend.
@@ -223,30 +225,32 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     }
 
     # LMS
-    LMS_BACKENDS = [
+    RICHIE_LMS_BACKENDS = [
         {
             "BACKEND": values.Value(
-                "richie.apps.courses.lms.base.BaseLMSBackend",
+                "richie.apps.courses.lms.edx.EdXLMSBackend",
                 environ_name="EDX_BACKEND",
                 environ_prefix=None,
             ),
             "JS_BACKEND": values.Value(
-                "base", environ_name="EDX_JS_BACKEND", environ_prefix=None
+                "openedx-dogwood",
+                environ_name="EDX_JS_BACKEND",
+                environ_prefix=None,
             ),
-            "SELECTOR_REGEX": values.Value(
-                r".*", environ_name="EDX_SELECTOR_REGEX", environ_prefix=None
-            ),
-            "JS_SELECTOR_REGEX": values.Value(
-                r".*", environ_name="EDX_JS_SELECTOR_REGEX", environ_prefix=None
+            "COURSE_REGEX": values.Value(
+                r"^.*/courses/(?P<course_id>.*)/info/?$",
+                environ_name="EDX_COURSE_REGEX",
+                environ_prefix=None,
             ),
             "JS_COURSE_REGEX": values.Value(
-                r"^.*/courses/(?<course_id>.*)/info$",
+                r"^.*/courses/(?<course_id>.*)/info/?$",
                 environ_name="EDX_JS_COURSE_REGEX",
                 environ_prefix=None,
             ),
             "BASE_URL": values.Value(environ_name="EDX_BASE_URL", environ_prefix=None),
         }
     ]
+    RICHIE_COURSE_RUN_SYNC_SECRETS = values.ListValue([])
 
     # Internationalization
     TIME_ZONE = "Europe/Paris"
