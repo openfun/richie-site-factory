@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix Sentry SDK initialization environment and release parameters
+
 ## [0.9.2] - 2020-12-14
 
 ### Fixed
