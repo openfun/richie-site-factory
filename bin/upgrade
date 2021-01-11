@@ -47,6 +47,7 @@ function upgrade() {
     if [[ "${should_commit}" == 1 ]]; then
         # Commit changes to git log
         # - Add only the modified files
+        git add "${SITES_DIRECTORY}/${site}/CHANGELOG.md"
         git add "${SITES_DIRECTORY}/${site}/requirements/base.txt"
         git add "${SITES_DIRECTORY}/${site}/src/frontend/package.json"
         git add "${SITES_DIRECTORY}/${site}/src/frontend/yarn.lock"
