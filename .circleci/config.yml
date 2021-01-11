@@ -334,18 +334,128 @@ version: 2.1
 workflows:
     cnfpt:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-cnfpt
+                site: cnfpt
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /cnfpt-.*/
+                name: lint-changelog--cnfpt
+                site: cnfpt
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-cnfpt
+                        only: /cnfpt-.*/
+                name: build-front-production-cnfpt
+                site: cnfpt
+            - lint-front:
+                filters:
+                    tags:
+                        only: /cnfpt-.*/
+                name: lint-front-cnfpt
+                requires:
+                    - build-front-production-cnfpt
+                site: cnfpt
+            - build-back:
+                filters:
+                    tags:
+                        only: /cnfpt-.*/
+                name: build-back-cnfpt
+                site: cnfpt
+            - lint-back:
+                filters:
+                    tags:
+                        only: /cnfpt-.*/
+                name: lint-back-cnfpt
+                requires:
+                    - build-back-cnfpt
+                site: cnfpt
+            - test-back:
+                filters:
+                    tags:
+                        only: /cnfpt-.*/
+                name: test-back-cnfpt
+                requires:
+                    - build-back-cnfpt
+                site: cnfpt
+            - hub:
+                filters:
+                    tags:
+                        only: /^cnfpt-.*/
+                image_name: cnfpt
+                name: hub-cnfpt
+                requires:
+                    - lint-front-cnfpt
+                    - lint-back-cnfpt
+                site: cnfpt
     demo:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-demo
+                site: demo
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /demo-.*/
+                name: lint-changelog--demo
+                site: demo
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-demo
+                        only: /demo-.*/
+                name: build-front-production-demo
+                site: demo
+            - lint-front:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: lint-front-demo
+                requires:
+                    - build-front-production-demo
+                site: demo
+            - build-back:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: build-back-demo
+                site: demo
+            - lint-back:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: lint-back-demo
+                requires:
+                    - build-back-demo
+                site: demo
+            - test-back:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: test-back-demo
+                requires:
+                    - build-back-demo
+                site: demo
+            - hub:
+                filters:
+                    tags:
+                        only: /^demo-.*/
+                image_name: richie-demo
+                name: hub-demo
+                requires:
+                    - lint-front-demo
+                    - lint-back-demo
+                site: demo
     funcampus:
         jobs:
             - check-changelog:
