@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 2.0.1
+
 ### Fixed
 
 - Fix Sentry SDK initialization environment and release parameters
