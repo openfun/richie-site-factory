@@ -28,7 +28,9 @@ class CustomUserAdmin(UserAdmin):
 def ajax_upload(request, folder_id=None):
     """Disallow unsorted uploads."""
     if folder_id is None:
-        return JsonResponse({"error": _("Unsorted uploads are not allowed.")}, status=403)
+        return JsonResponse(
+            {"error": _("Unsorted uploads are not allowed.")}, status=403
+        )
 
     return filer_ajax_upload(request, folder_id=folder_id)
 
