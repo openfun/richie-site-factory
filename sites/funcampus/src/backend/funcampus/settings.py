@@ -468,7 +468,9 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     environ_prefix=None,
                 ),
                 "TIMEOUT": values.IntegerValue(
-                    300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None,
+                    300,
+                    environ_name="CACHE_DEFAULT_TIMEOUT",
+                    environ_prefix=None,
                 ),
             }
         }
@@ -575,7 +577,7 @@ class Development(Base):
                     "in_navigation": False,
                     "template": "richie/single_column.html",
                 },
-            }
+            },
         }
     }
 

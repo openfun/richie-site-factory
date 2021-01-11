@@ -1,12 +1,12 @@
-bandit==1.6.2
+bandit==1.7.0
 black==20.8b1
 Faker==1.0.4
-factory-boy==3.1.0
+factory-boy==3.2.0
 flake8==3.8.4
-isort==5.6.4
+isort==5.7.0
 pylint==2.6.0
 pylint-django==2.3.0
-pytest==6.1.2
+pytest==6.2.1
 pytest-cov==2.10.1
 pytest-django==4.1.0
 raincoat==1.0.1
