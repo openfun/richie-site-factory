@@ -195,7 +195,7 @@ lint-back-flake8: ## lint back-end python sources with flake8
 
 lint-back-isort: ## automatically re-arrange python imports in back-end code base
 	@echo 'lint:isort started…'
-	@$(COMPOSE_TEST_RUN_APP) isort --recursive --atomic .
+	@$(COMPOSE_TEST_RUN_APP) isort --atomic .
 .PHONY: lint-back-isort
 
 lint-back-pylint: ## lint back-end python sources with pylint
