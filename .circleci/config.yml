@@ -203,7 +203,7 @@ jobs:
                 command: ~/.local/bin/flake8
                 name: Lint code with flake8
             - run:
-                command: ~/.local/bin/isort --recursive --check-only .
+                command: ~/.local/bin/isort --check-only .
                 name: Lint code with isort
             - run:
                 command: ~/.local/bin/black .
