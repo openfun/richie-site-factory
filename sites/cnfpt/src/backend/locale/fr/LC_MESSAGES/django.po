@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-14 12:18+0100\n"
+"POT-Creation-Date: 2021-01-14 18:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,36 +17,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: base/admin.py:31
+#: base/admin.py:32
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: cnfpt/settings.py:212
+#: cnfpt/settings.py:210
 msgid "Profile"
 msgstr "Profil"
 
-#: cnfpt/settings.py:213
+#: cnfpt/settings.py:211
 msgid "Account"
 msgstr "Mon compte"
 
-#: cnfpt/settings.py:287
+#: cnfpt/settings.py:285
 msgid "Audience"
 msgstr "Public"
 
-#: cnfpt/settings.py:376 cnfpt/settings.py:391
+#: cnfpt/settings.py:374 cnfpt/settings.py:389
 msgid "English"
 msgstr "Anglais"
 
-#: cnfpt/settings.py:376 cnfpt/settings.py:399 cnfpt/settings.py:642
-#: cnfpt/settings.py:657
+#: cnfpt/settings.py:374 cnfpt/settings.py:397 cnfpt/settings.py:659
+#: cnfpt/settings.py:674
 msgid "French"
 msgstr "Français"
 
-#: cnfpt/settings.py:496
+#: cnfpt/settings.py:513
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: cnfpt/settings.py:509
+#: cnfpt/settings.py:526
 msgid "Subjects"
 msgstr "Thématiques"
 
