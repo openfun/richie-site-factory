@@ -20,3 +20,69 @@
 {% endblock topbar_contact %}
 
 {% block body_footer_title %}{% endblock body_footer_title %}
+
+{% block body_js %}
+{{ block.super }}
+<script type="text/javascript" src="//tag.aticdn.net/602676/smarttag.js"></script>
+<script>
+
+    function getTag(){
+
+        var tag = new ATInternet.Tracker.Tag({ site: 602676, secure: true});
+
+        var url = new URL(window.location.href)
+        var path = url.pathname.split("/").filter(x => x.length > 0)
+        var lang = path[0].slice(-2).toUpperCase()
+
+        tag.customVars.set({'site': {1: "[" + lang + "]"}})
+
+        var level2s = ["accueil", "actualites", "categories", "cours", "etablissements", "parcours", "personnes", "search_engine"]
+
+        if (url.search.length > 0)
+        {
+            var search = url.search.split("&").find(s => s.startsWith("query="))
+            if (search)
+            {
+                keyword = search.substring("query=".length)
+                tag.page.set({'name': "search_engine", 'level2': level2s.indexOf("search_engine")})
+                tag.internalSearch.set({"keyword": keyword})
+                return tag
+            }
+        }
+
+        var level2_name;
+        if (path.length == 1)
+            level2_name = "accueil"
+        else
+            level2_name = path[1]
+
+        var level2 = level2s.indexOf(level2_name)
+
+        // "cours" ignored because its case is handled somewhere else, but not yet
+        if (level2 == -1 || level2_name == "cours")
+            return null
+
+        var parameters = {
+            'name': level2_name,
+            'level2': level2
+        }
+
+        if (path.length >= 3)
+            parameters["chapter1"] = path[2]
+        if (path.length >= 4)
+            parameters["chapter2"] = path[3]
+
+        tag.page.set(parameters)
+
+        return tag
+    }
+
+    var tag = getTag()
+    if (tag)
+    {
+        window.tag = tag
+        window.tag.dispatch()
+    }
+
+</script>
+{% endblock body_js %}

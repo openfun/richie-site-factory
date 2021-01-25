@@ -3,6 +3,7 @@
         href="https://www.facebook.com/france.universite.numerique/"
         class="body-footer__badge"
         target="_blank"
+        onclick="return sendTag('Facebook');"
     >
         <svg role="img">
             <title>{% trans "Facebook" %}</title>
@@ -14,6 +15,7 @@
         class="body-footer__badge"
         target="_blank"
         title="{% trans "Twitter page" %}"
+        onclick="return sendTag('Twitter');"
     >
         <svg role="img">
             <title>{% trans "Twitter" %}</title>
@@ -25,10 +27,27 @@
         class="body-footer__badge"
         target="_blank"
         title="{% trans "Linkedin" %}"
+        onclick="return sendTag('LinkedIn');"
     >
         <svg role="img">
             <title>{% trans "Linkedin" %}</title>
             <use xlink:href="#icon-linkedin" />
         </svg>
     </a>
+
+    <script type="text/javascript">
+        function sendTag (media) {
+            console.log(window.tag)
+            // window.tag does not exist even though it was created in base.html
+            window.tag.click.send({
+                elem: this,
+                name: 'partage-' + media,
+                chapter1: 'menu',
+                chapitre2: '#nom_article_consulte#',
+                level2: '2',
+                type: 'exit'
+            });
+            return true
+        }
+    </script>
 {% endspaceless %}
