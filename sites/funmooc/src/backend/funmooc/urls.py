@@ -28,6 +28,7 @@ urlpatterns = [
         r"api/{}/".format(API_PREFIX),
         include([*courses_urlpatterns, *search_urlpatterns]),
     ),
+    path(r"", include("base.urls")),
     path(r"", include("filer.server.urls")),
 ]
 
