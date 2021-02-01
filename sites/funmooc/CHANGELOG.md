@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Redirect old OpenEdX course urls to new richie course pages
+
 ## [0.19.0] - 2021-01-14
 
 ### Changed
