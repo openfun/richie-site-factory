@@ -190,11 +190,6 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     MEDIA_ROOT = os.path.join(DATA_DIR, "media")
     STATIC_ROOT = os.path.join(DATA_DIR, "static")
 
-    # For static files, we want to use a backend that includes a hash in
-    # the filename, that is calculated from the file content, so that browsers always
-    # get the updated version of each file.
-    STATICFILES_STORAGE = values.Value("base.storage.CDNManifestStaticFilesStorage")
-
     # Login/registration related settings
     LOGIN_REDIRECT_URL = "/"
     LOGOUT_REDIRECT_URL = "/"
@@ -661,14 +656,6 @@ class Test(Base):
     """Test environment settings"""
 
 
-class ContinuousIntegration(Test):
-    """
-    Continous Integration environment settings
-
-    nota bene: it should inherit from the Test environment.
-    """
-
-
 class Production(Base):
     """Production environment settings
 
@@ -684,6 +671,11 @@ class Production(Base):
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SESSION_COOKIE_SECURE = True
+
+    # For static files, we want to use a backend that includes a hash in
+    # the filename, that is calculated from the file content, so that browsers always
+    # get the updated version of each file.
+    STATICFILES_STORAGE = values.Value("base.storage.CDNManifestStaticFilesStorage")
 
     DEFAULT_FILE_STORAGE = "base.storage.MediaStorage"
     AWS_DEFAULT_ACL = None
@@ -708,6 +700,12 @@ class Production(Base):
     def TEXT_CKEDITOR_BASE_PATH(self):
         """Configure CKEditor with an absolute url as base path to point to CloudFront."""
         return "//{!s}/static/djangocms_text_ckeditor/ckeditor/".format(self.CDN_DOMAIN)
+
+
+class ContinuousIntegration(Production):
+    """
+    Continous Integration environment settings
+    """
 
 
 class Feature(Production):
