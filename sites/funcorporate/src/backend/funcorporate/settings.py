@@ -496,6 +496,12 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Sentry
     SENTRY_DSN = values.Value(None, environ_name="SENTRY_DSN")
 
+    # Admin
+    # - Django CMS
+    # Maximum children nodes to allow a parent to be unfoldable
+    # in the page tree admin view
+    CMS_PAGETREE_DESCENDANTS_LIMIT = 80
+
     # pylint: disable=invalid-name
     @property
     def ENVIRONMENT(self):
