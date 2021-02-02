@@ -665,6 +665,7 @@ class Development(Base):
 
 class Test(Base):
     """Test environment settings"""
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 class ContinuousIntegration(Test):
