@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Set `CMS_PAGETREE_DESCENDANTS_LIMIT` setting to control pagetree search node
+  foldability according to its child node count
+  
 ## [0.19.0] - 2021-01-14
 
 ### Changed
