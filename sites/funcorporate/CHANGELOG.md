@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.4.0] - 2021-02-05
+
 ### Changed
 
 - Upgrade richie to 2.1.0
@@ -206,7 +208,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.3.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.4.0...HEAD
+[1.4.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.3.0...funcorporate-1.4.0
 [1.3.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.2.1...funcorporate-1.3.0
 [1.2.1]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.2.0...funcorporate-1.2.1
 [1.2.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.1.0...funcorporate-1.2.0
