@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Upgrade richie to 2.1.0
 - Set `CMS_PAGETREE_DESCENDANTS_LIMIT` setting to control pagetree search node
   foldability according to its child node count
 
