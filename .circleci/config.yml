@@ -337,7 +337,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-cnfpt
                 site: cnfpt
             - lint-changelog:
@@ -399,7 +399,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-demo
                 site: demo
             - lint-changelog:
@@ -461,7 +461,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-funcampus
                 site: funcampus
             - lint-changelog:
@@ -523,7 +523,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-funcorporate
                 site: funcorporate
             - lint-changelog:
@@ -649,7 +649,7 @@ workflows:
                     tags:
                         only: /.*/
             - check-configuration:
-                ci_update_options: --ignore-changelog
+                ci_update_options: ""
                 filters:
                     branches:
                         ignore: master

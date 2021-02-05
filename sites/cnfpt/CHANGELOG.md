@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.0] - 2021-02-05
+
 ### Changed
 
 - Upgrade richie to 2.1.0
@@ -165,7 +167,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.10.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.0.0...HEAD
+[1.0.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.10.0...cnfpt-1.0.0
 [0.10.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.2...cnfpt-0.10.0
 [0.9.2]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.1...cnfpt-0.9.2
 [0.9.1]: https://github.com/openfun/richie-site-factory/compare/cnfpt-0.9.0...cnfpt-0.9.1
