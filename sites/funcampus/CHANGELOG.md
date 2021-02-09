@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Use custom views to handle errors (400, 403, 404, 500)
+
+
 ## [1.4.0] - 2021-02-05
 
 ### Changed
