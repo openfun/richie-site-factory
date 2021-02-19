@@ -409,12 +409,25 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         (
             "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
             {
+                "human_name": _("Types"),
+                "is_autocompletable": True,
+                "is_searchable": True,
+                "min_doc_count": 0,
+                "name": "types",
+                "position": 2,
+                "reverse_id": "types",
+                "term": "categories",
+            },
+        ),
+        (
+            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            {
                 "human_name": _("Subjects"),
                 "is_autocompletable": True,
                 "is_searchable": True,
                 "min_doc_count": 0,
                 "name": "subjects",
-                "position": 2,
+                "position": 3,
                 "reverse_id": "subjects",
                 "term": "categories",
             },
@@ -427,7 +440,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 "is_searchable": True,
                 "min_doc_count": 0,
                 "name": "collections",
-                "position": 3,
+                "position": 4,
                 "reverse_id": "collections",
                 "term": "categories",
             },
@@ -440,7 +453,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 "is_searchable": True,
                 "min_doc_count": 0,
                 "name": "organizations",
-                "position": 4,
+                "position": 5,
                 "reverse_id": "organizations",
                 "term": "organizations",
             },
@@ -675,7 +688,8 @@ class Development(Base):
 
 class Test(Base):
     """Test environment settings"""
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 
 class ContinuousIntegration(Test):

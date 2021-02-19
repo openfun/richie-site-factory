@@ -10,8 +10,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add "Types" category as search filter
 - Use custom views to handle errors (400, 403, 404, 500)
-
 
 ## [1.0.0] - 2021-02-05
 
