@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-14 19:01+0100\n"
+"POT-Creation-Date: 2021-03-05 16:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,51 +21,71 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funmooc/settings.py:219
+#: funmooc/settings.py:220
+msgid "Dashboard"
+msgstr ""
+
+#: funmooc/settings.py:221
+msgid "{base_url:s}/dashboard"
+msgstr ""
+
+#: funmooc/settings.py:224
 msgid "Profile"
 msgstr "Profil"
 
-#: funmooc/settings.py:220
+#: funmooc/settings.py:225
+msgid "{base_url:s}/u/(username)"
+msgstr ""
+
+#: funmooc/settings.py:228
 msgid "Account"
 msgstr "Compte"
 
-#: funmooc/settings.py:362
+#: funmooc/settings.py:229
+msgid "{base_url:s}/account/settings"
+msgstr ""
+
+#: funmooc/settings.py:372
 msgid "New courses"
 msgstr "Nouveaux cours"
 
-#: funmooc/settings.py:366
+#: funmooc/settings.py:376
 msgid "First session"
 msgstr "Première session"
 
-#: funmooc/settings.py:377
+#: funmooc/settings.py:387
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: funmooc/settings.py:387
+#: funmooc/settings.py:397
 msgid "Languages"
 msgstr "Langues"
 
-#: funmooc/settings.py:402
+#: funmooc/settings.py:412
+msgid "Types"
+msgstr ""
+
+#: funmooc/settings.py:425
 msgid "Subjects"
 msgstr "Thématiques"
 
-#: funmooc/settings.py:415
+#: funmooc/settings.py:438
 msgid "Collections"
 msgstr "Collections"
 
-#: funmooc/settings.py:428
+#: funmooc/settings.py:451
 msgid "Organizations"
 msgstr "Établissements"
 
-#: funmooc/settings.py:441
+#: funmooc/settings.py:464
 msgid "Contributors"
 msgstr "Contributeurs"
 
-#: funmooc/settings.py:461 funmooc/settings.py:476
+#: funmooc/settings.py:484 funmooc/settings.py:499
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:461 funmooc/settings.py:484
+#: funmooc/settings.py:484 funmooc/settings.py:507
 msgid "French"
 msgstr "Français"
 
