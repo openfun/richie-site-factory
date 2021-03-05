@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-14 19:00+0100\n"
+"POT-Creation-Date: 2021-03-05 17:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,15 +29,19 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: funcorporate/settings.py:351
+#: funcorporate/settings.py:342
+msgid "Teaser"
+msgstr ""
+
+#: funcorporate/settings.py:356
 msgid "Training domains"
 msgstr ""
 
-#: funcorporate/settings.py:364
+#: funcorporate/settings.py:369
 msgid "Organizations"
 msgstr ""
 
-#: funcorporate/settings.py:376
+#: funcorporate/settings.py:381
 msgid "Persons"
 msgstr "Teachers"
 
