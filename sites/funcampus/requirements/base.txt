@@ -6,7 +6,7 @@ django-storages==1.11.1
 dockerflow==2020.10.0
 gunicorn==20.0.4
 psycopg2-binary==2.8.6
-richie==2.1.0
+richie==2.2.0
 sentry-sdk==0.19.5
 
 # Google sheet importer
