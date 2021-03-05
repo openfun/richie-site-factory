@@ -79,6 +79,14 @@ $orange-scheme: (
   hover-font-color: r-color('white'),
   hover-background: adjust-color(r-color('orange'), $lightness: -10%),
 );
+$firebrick6-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('light-grey'),
+  svg-color: r-color('white'),
+  background: r-color('firebrick6'),
+  hover-font-color: r-color('white'),
+  hover-background: adjust-color(r-color('firebrick6'), $lightness: -10%),
+);
 $dodgerblue4-color-scheme: (
   font-color: r-color('white'),
   link-color: r-color('mediumturquoise'),
@@ -217,6 +225,13 @@ $white-mask-gradient-scheme: (
 // Theme schemes
 $r-theme: (
   // Used from styleguide to build available scheme to demonstrate, used to create button variant
+  banner:
+    (
+      error: $firebrick6-scheme,
+      warning: $orange-scheme,
+      success: $azure2,
+      info: $mediumturquoise-scheme,
+    ),
   base-schemes: (
     primary: $orange-scheme,
     secondary: $denim-scheme,
