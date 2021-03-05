@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.0] - 2021-03-05
+
 ### Added
 
 - Use custom views to handle errors (400, 403, 404, 500)
@@ -149,7 +151,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.4.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.5.0...HEAD
+[1.5.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.4.0...funcampus-1.5.0
 [1.4.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.3.0...funcampus-1.4.0
 [1.3.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.2.1...funcampus-1.3.0
 [1.2.1]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.2.0...funcampus-1.2.1
