@@ -16,6 +16,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Prevent course run languages update when synchronization hook is triggered
+- Set english language as public
 
 ## [1.0.0] - 2021-02-05
 
