@@ -338,9 +338,14 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # Placeholders
     CMS_PLACEHOLDER_CONF_OVERRIDES = {
+        "courses/cms/course_detail.html course_teaser": {
+            "name": _("Teaser"),
+            "plugins": ["LTIConsumerPlugin"],
+            "limits": {"LTIConsumerPlugin": 1},
+        },
         "courses/cms/course_detail.html course_description": {
             "limits": {"CKEditorPlugin": 2}
-        }
+        },
     }
 
     # Search
@@ -438,6 +443,31 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         default="richie", environ_name="RICHIE_ES_INDICES_PREFIX", environ_prefix=None
     )
     RICHIE_ES_STATE_WEIGHTS = values.ListValue(None)
+
+    # LTI Content
+    RICHIE_LTI_PROVIDERS = {
+        "marsha": {
+            "oauth_consumer_key": values.Value(
+                "InsecureOauthConsumerKey",
+                environ_name="LTI_TEST_OAUTH_CONSUMER_KEY",
+                environ_prefix=None,
+            ),
+            "shared_secret": values.Value(
+                "InsecureSharedSecret",
+                environ_name="LTI_TEST_SHARED_SECRET",
+                environ_prefix=None,
+            ),
+            "base_url": values.Value(
+                "https://marsha\.education/lti/videos/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",  # noqa
+                environ_name="LTI_TEST_BASE_URL",
+                environ_prefix=None,
+            ),
+            "display_name": "Marsha Video",
+            "is_base_url_regex": True,
+            "automatic_resizing": True,
+            "inline_ratio": 0.5625,
+        }
+    }
 
     # Cache
     CACHES = values.DictValue(

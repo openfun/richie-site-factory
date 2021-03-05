@@ -11,7 +11,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Use custom views to handle errors (400, 403, 404, 500)
-
+- Enable LTIConsumerPlugin on `course_teaser` placeholder
 
 ## [1.4.0] - 2021-02-05
 
