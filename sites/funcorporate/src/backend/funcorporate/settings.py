@@ -437,6 +437,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     RICHIE_ES_INDICES_PREFIX = values.Value(
         default="richie", environ_name="RICHIE_ES_INDICES_PREFIX", environ_prefix=None
     )
+    RICHIE_ES_STATE_WEIGHTS = values.ListValue(None)
 
     # Cache
     CACHES = values.DictValue(
@@ -568,7 +569,8 @@ class Development(Base):
 
 class Test(Base):
     """Test environment settings"""
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 
 class ContinuousIntegration(Test):

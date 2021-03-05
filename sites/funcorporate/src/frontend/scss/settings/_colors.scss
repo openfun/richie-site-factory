@@ -69,6 +69,14 @@ $blue-green-scheme: (
   hover-font-color: r-color('white'),
   hover-background: r-color('mediumturquoise'),
 );
+$firebrick6-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('light-grey'),
+  svg-color: r-color('white'),
+  background: r-color('firebrick6'),
+  hover-font-color: r-color('white'),
+  hover-background: adjust-color(r-color("firebrick6"), $lightness: -10%),
+);
 $denim-scheme: (
   font-color: r-color('white'),
   link-color: r-color('mediumturquoise'),
@@ -168,6 +176,13 @@ $white-mask-gradient-scheme: (
 // Theme schemes
 $r-theme: (
   // Used from styleguide to build available scheme to demonstrate, used to create button variant
+  banner:
+    (
+      error: $firebrick6-scheme,
+      warning: $blue-green-scheme,
+      success: $azure2,
+      info: $light-grey-scheme,
+    ),
   base-schemes: (
     primary: $blue-green-scheme,
     secondary: $denim-scheme,
