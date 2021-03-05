@@ -202,6 +202,13 @@ $clear-red-scheme: (
 
 // Theme schemes
 $r-theme: (
+  banner:
+    (
+      error: $lipstick-scheme,
+      warning: $indianred3-scheme,
+      success: $lightest-scheme,
+      info: $light-scheme,
+    ),
   base-schemes: (
     primary: $lipstick-scheme,
     secondary: $ocean-blue-scheme,
