@@ -495,7 +495,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         },
         1: [
             {
-                "public": False,
+                "public": True,
                 "code": "en",
                 "hide_untranslated": False,
                 "name": _("English"),
