@@ -198,6 +198,17 @@ $dark-gradient-scheme: (
   background: $dark-gradient,
   hover-font-color: r-color('white'),
 );
+$twilight-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('twilight'),
+  border-color: r-color('twilight'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('twilight'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('twilight'), $lightness: -10%),
+);
 $white-mask-gradient-scheme: (
   font-color: r-color('dark'),
   h1-color: r-color('dark'),
@@ -209,6 +220,13 @@ $white-mask-gradient-scheme: (
 
 // Theme schemes
 $r-theme: (
+  banner:
+    (
+      error: $berry-color-scheme,
+      warning: $twilight-color-scheme,
+      success: $azure-two-color-scheme,
+      info: $duck-egg-blue-color-scheme,
+    ),
   base-schemes: (
     primary: $berry-color-scheme,
     secondary: $azure-color-scheme,
