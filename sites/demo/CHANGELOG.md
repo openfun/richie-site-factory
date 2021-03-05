@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.6.0] - 2021-03-05
+
 ### Added
 
 - Use custom views to handle errors (400, 403, 404, 500)
@@ -172,7 +174,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.5.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.6.0...HEAD
+[1.6.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.5.0...demo-1.6.0
 [1.5.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.4.0...demo-1.5.0
 [1.4.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.3.1...demo-1.4.0
 [1.3.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.3.0...demo-1.3.1
