@@ -12,6 +12,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade richie to 2.3.0
 
+### Added
+
+- Enable Xiti traffic analytics
+
 ## [1.1.0] - 2021-03-05
 
 ### Added
