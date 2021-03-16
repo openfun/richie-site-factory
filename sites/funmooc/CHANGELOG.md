@@ -15,6 +15,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Enable Xiti traffic analytics
+- Add Cookies consent using [tarteaucitron](https://tarteaucitron.io)
 
 ## [1.1.0] - 2021-03-05
 

@@ -234,6 +234,14 @@ $r-theme: (
     dark-gradient: $dark-gradient,
     white-mask-gradient: $white-mask-gradient,
   ),
+  cookie-consent:
+  (
+    base-background: r-color('darkish-blue'),
+    cta-allow: r-color('ocean-blue'),
+    cta-deny: r-color('indianred3'),
+    light-color: r-color('white'),
+    dark-color: r-color('dark'),
+  ),
   topbar: (
     base-background: null,
     over-background: null,
