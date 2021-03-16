@@ -106,5 +106,8 @@
 @import 'richie-education/scss/components/templates/courses/cms/program_list';
 @import 'richie-education/scss/components/templates/courses/cms/program_detail';
 
+// Libs
+@import './components/libs/tarteaucitron';
+
 // IE11 patchs
 @import 'richie-education/scss/trumps/ie11-fixes';

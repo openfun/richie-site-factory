@@ -7,6 +7,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.translation import get_language_from_request
 
+from cms.models import Page
 from richie.apps.courses.models import Organization
 
 
@@ -39,7 +40,31 @@ def site_metas(request):
             .values_list("code", flat=True)
         )
 
+    def get_privacy_policy_uri():
+        """
+        Check if a privacy policy page is published in the request language
+        then return its url.
+        """
+        try:
+            page = Page.objects.get(
+                publisher_is_draft=False,
+                reverse_id="annex__privacy",
+            )
+            if page.is_published(language) is False:
+                raise ValueError
+        except (Page.DoesNotExist, ValueError):
+            return None
+        else:
+            return page.get_public_url(language=language)
+
     context = {
+        "PRIVACY_CONTEXT": json.dumps(
+            {
+                "tarteaucitron": {
+                    "privacyUrl": get_privacy_policy_uri(),
+                },
+            }
+        ),
         "MARKETING_CONTEXT": json.dumps(
             {
                 "xiti": {
@@ -52,7 +77,7 @@ def site_metas(request):
                 and page.publisher_is_draft is False
                 else {},
             }
-        )
+        ),
     }
 
     return context

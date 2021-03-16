@@ -7939,6 +7939,11 @@ tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.0.tgz#5c373d281d9c672848213d0e037d1c4165ab426b"
   integrity sha512-FBk4IesMV1rBxX2tfiK8RAmogtWn53puLOQlvO8XuwlgxcYbP4mVPS9Ph4aeamSyyVjOl24aYWAuc8U5kCVwMw==
 
+tarteaucitronjs@1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/tarteaucitronjs/-/tarteaucitronjs-1.8.5.tgz#71303da7860550c799bed90c07710c1f670e6648"
+  integrity sha512-K0odmDKZuuBwzFcwAA60dsI5nbn0/ktVL4s+PRnhNmJ3QgFgr8ont8Xv43TklNSGkAz2jEhc6s6/BcfjxCWhxA==
+
 term-size@^2.1.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-2.2.1.tgz#2a6a54840432c2fb6320fea0f415531e90189f54"
