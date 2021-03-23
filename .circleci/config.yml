@@ -323,6 +323,12 @@ jobs:
                 keys:
                     - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
             - run:
+                command: sudo apt-get install -y gettext
+                name: Install gettext (required to compile messages)
+            - run:
+                command: python manage.py compilemessages
+                name: Compile translations
+            - run:
                 command: |
                     dockerize \
                       -wait tcp://localhost:5432 \

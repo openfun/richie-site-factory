@@ -230,7 +230,7 @@ i18n-back: ## create/update .po files and compile .mo files used for i18n
 	@$(MANAGE) compilemessages
 .PHONY: i18n-back
 
-i18n-front: ## Compile translation files used for react-intl
+i18n-front: ## Extract and compile translation files used for react-intl
 	@$(YARN) extract-translations
 	@$(YARN) compile-translations
 .PHONY: i18n-front

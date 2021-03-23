@@ -94,6 +94,12 @@ test-back:
     - restore_cache:
         keys:
           - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
+    - run:
+        name: Install gettext (required to compile messages)
+        command: sudo apt-get install -y gettext
+    - run:
+        name: Compile translations
+        command: python manage.py compilemessages
     # Run back-end (Django) test suite
     #
     # Nota bene: to run the django test suite, we need to ensure that the
