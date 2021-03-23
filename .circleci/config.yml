@@ -347,11 +347,66 @@ workflows:
                 name: no-change-cnfpt
     demo:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-demo
+                site: demo
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /demo-.*/
+                name: lint-changelog--demo
+                site: demo
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-demo
+                        only: /demo-.*/
+                name: build-front-production-demo
+                site: demo
+            - lint-front:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: lint-front-demo
+                requires:
+                    - build-front-production-demo
+                site: demo
+            - build-back:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: build-back-demo
+                site: demo
+            - lint-back:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: lint-back-demo
+                requires:
+                    - build-back-demo
+                site: demo
+            - test-back:
+                filters:
+                    tags:
+                        only: /demo-.*/
+                name: test-back-demo
+                requires:
+                    - build-back-demo
+                site: demo
+            - hub:
+                filters:
+                    tags:
+                        only: /^demo-.*/
+                image_name: richie-demo
+                name: hub-demo
+                requires:
+                    - lint-front-demo
+                    - lint-back-demo
+                site: demo
     funcampus:
         jobs:
             - no-change:
@@ -368,66 +423,11 @@ workflows:
                 name: no-change-funcorporate
     funmooc:
         jobs:
-            - check-changelog:
-                filters:
-                    branches:
-                        ignore: master
-                name: check-changelog-funmooc
-                site: funmooc
-            - lint-changelog:
-                filters:
-                    branches:
-                        ignore: master
-                    tags:
-                        only: /funmooc-.*/
-                name: lint-changelog--funmooc
-                site: funmooc
-            - build-front-production:
+            - no-change:
                 filters:
                     tags:
-                        only: /funmooc-.*/
-                name: build-front-production-funmooc
-                site: funmooc
-            - lint-front:
-                filters:
-                    tags:
-                        only: /funmooc-.*/
-                name: lint-front-funmooc
-                requires:
-                    - build-front-production-funmooc
-                site: funmooc
-            - build-back:
-                filters:
-                    tags:
-                        only: /funmooc-.*/
-                name: build-back-funmooc
-                site: funmooc
-            - lint-back:
-                filters:
-                    tags:
-                        only: /funmooc-.*/
-                name: lint-back-funmooc
-                requires:
-                    - build-back-funmooc
-                site: funmooc
-            - test-back:
-                filters:
-                    tags:
-                        only: /funmooc-.*/
-                name: test-back-funmooc
-                requires:
-                    - build-back-funmooc
-                site: funmooc
-            - hub:
-                filters:
-                    tags:
-                        only: /^funmooc-.*/
-                image_name: funmooc
-                name: hub-funmooc
-                requires:
-                    - lint-front-funmooc
-                    - lint-back-funmooc
-                site: funmooc
+                        only: /.*/
+                name: no-change-funmooc
     site-factory:
         jobs:
             - lint-git:
