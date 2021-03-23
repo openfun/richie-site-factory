@@ -99,7 +99,7 @@ test-back:
         command: sudo apt-get install -y gettext
     - run:
         name: Compile translations
-        command: python manage.py compilemessages
+        command: python manage.py compilemessages || true
     # Run back-end (Django) test suite
     #
     # Nota bene: to run the django test suite, we need to ensure that the
