@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-03-23
+
 ### Changed
 
 - Display the first open course run in the header of the course detail page
@@ -393,7 +395,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.1.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.2.0...HEAD
+[1.2.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.1.0...funmooc-1.2.0
 [1.1.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.0.0...funmooc-1.1.0
 [1.0.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.19.0...funmooc-1.0.0
 [0.19.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-0.18.0...funmooc-0.19.0

@@ -478,11 +478,66 @@ workflows:
                 name: no-change-funcorporate
     funmooc:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-funmooc
+                site: funmooc
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /funmooc-.*/
+                name: lint-changelog--funmooc
+                site: funmooc
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-funmooc
+                        only: /funmooc-.*/
+                name: build-front-production-funmooc
+                site: funmooc
+            - lint-front:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: lint-front-funmooc
+                requires:
+                    - build-front-production-funmooc
+                site: funmooc
+            - build-back:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: build-back-funmooc
+                site: funmooc
+            - lint-back:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: lint-back-funmooc
+                requires:
+                    - build-back-funmooc
+                site: funmooc
+            - test-back:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: test-back-funmooc
+                requires:
+                    - build-back-funmooc
+                site: funmooc
+            - hub:
+                filters:
+                    tags:
+                        only: /^funmooc-.*/
+                image_name: funmooc
+                name: hub-funmooc
+                requires:
+                    - lint-front-funmooc
+                    - lint-back-funmooc
+                site: funmooc
     site-factory:
         jobs:
             - lint-git:
