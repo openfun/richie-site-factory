@@ -10,3 +10,7 @@ pytest==6.2.1
 pytest-cov==2.10.1
 pytest-django==4.1.0
 raincoat==1.0.1
+
+# Testing html
+lxml==4.6.3
+cssselect==1.1.0

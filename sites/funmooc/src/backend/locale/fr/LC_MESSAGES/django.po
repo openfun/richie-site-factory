@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-05 16:57+0100\n"
+"POT-Creation-Date: 2021-03-23 20:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,49 +45,66 @@ msgstr "Compte"
 msgid "{base_url:s}/account/settings"
 msgstr ""
 
-#: funmooc/settings.py:307
+#: funmooc/settings.py:308
 msgid "Teaser"
 msgstr "Accroche"
 
-#: funmooc/settings.py:386
+#: funmooc/settings.py:387
 msgid "New courses"
 msgstr "Nouveaux cours"
 
-#: funmooc/settings.py:390
+#: funmooc/settings.py:391
 msgid "First session"
 msgstr "Première session"
 
-#: funmooc/settings.py:401
+#: funmooc/settings.py:402
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: funmooc/settings.py:411
+#: funmooc/settings.py:412
 msgid "Languages"
 msgstr "Langues"
 
-#: funmooc/settings.py:426
+#: funmooc/settings.py:427
+msgid "Types"
+msgstr ""
+
+#: funmooc/settings.py:440
 msgid "Subjects"
 msgstr "Thématiques"
 
-#: funmooc/settings.py:439
+#: funmooc/settings.py:453
 msgid "Collections"
 msgstr "Collections"
 
-#: funmooc/settings.py:452
+#: funmooc/settings.py:466
 msgid "Organizations"
 msgstr "Établissements"
 
-#: funmooc/settings.py:465
+#: funmooc/settings.py:479
 msgid "Contributors"
 msgstr "Contributeurs"
 
-#: funmooc/settings.py:485 funmooc/settings.py:500
+#: funmooc/settings.py:499 funmooc/settings.py:514
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:485 funmooc/settings.py:508
+#: funmooc/settings.py:499 funmooc/settings.py:522
 msgid "French"
 msgstr "Français"
+
+#: templates/courses/cms/course_detail.html:17
+msgctxt "course_detail__title"
+msgid "Other course runs"
+msgstr "Autres sessions"
+
+#: templates/courses/cms/course_detail.html:26
+msgid "No other open course runs"
+msgstr "Aucune autre session ouverte"
+
+#: templates/courses/cms/course_detail.html:30
+msgid "No open course runs"
+msgstr "Aucune session ouverte"
 
 #: templates/richie/base.html:18
 msgid "Help"

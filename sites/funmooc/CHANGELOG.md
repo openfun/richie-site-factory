@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Display the first open course run in the header of the course detail page
 - Upgrade richie to 2.3.0
 
 ### Added
