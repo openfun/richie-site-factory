@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Add missing stylesheet for the LTI consumer plugin
+
 ## [1.7.0] - 2021-03-23
 
 ### Changed
