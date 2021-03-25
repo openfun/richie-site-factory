@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Rename filter "First session" to "New course" following user feedback
+
 ### Fixed
 
 - Add missing stylesheet for the LTI consumer plugin

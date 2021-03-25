@@ -388,7 +388,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 "min_doc_count": 0,
                 "name": "new",
                 "position": 0,
-                "values": {"new": _("First session")},
+                "values": {"new": _("New course")},
             },
         ),
         (
