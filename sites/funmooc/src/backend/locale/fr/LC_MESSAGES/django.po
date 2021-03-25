@@ -54,8 +54,8 @@ msgid "New courses"
 msgstr "Nouveaux cours"
 
 #: funmooc/settings.py:391
-msgid "First session"
-msgstr "Première session"
+msgid "New course"
+msgstr "Nouveau cours"
 
 #: funmooc/settings.py:402
 msgid "Availability"
