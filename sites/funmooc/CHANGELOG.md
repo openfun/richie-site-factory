@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Upgrade richie to 2.3.3
 - Rename filter "First session" to "New course" following user feedback
 
 ### Fixed
