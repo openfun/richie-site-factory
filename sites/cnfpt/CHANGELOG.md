@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade richie to 2.3.3
+
 ### Fixed
 
 - Add missing stylesheet for the LTI consumer plugin
