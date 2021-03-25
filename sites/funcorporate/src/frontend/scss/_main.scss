@@ -107,5 +107,7 @@
 @import 'richie-education/scss/components/templates/courses/cms/program_list';
 @import 'richie-education/scss/components/templates/courses/cms/program_detail';
 
+// CMS patchs
+@import 'richie-education/scss/trumps/cms';
 // IE11 patchs
 @import 'richie-education/scss/trumps/ie11-fixes';

@@ -15,6 +15,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Add missing stylesheet to patch CMS
 - Add missing stylesheet for the LTI consumer plugin
 
 ## [1.2.0] - 2021-03-23
