@@ -528,7 +528,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     300, environ_name="CACHE_DEFAULT_TIMEOUT", environ_prefix=None
                 ),
             },
-            "fallback": {
+            "memory_cache": {
                 "BACKEND": values.Value(
                     "django.core.cache.backends.locmem.LocMemCache",
                     environ_name="CACHE_FALLBACK_BACKEND",

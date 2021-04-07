@@ -513,7 +513,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                     environ_prefix=None,
                 ),
             },
-            "fallback": {
+            "memory_cache": {
                 "BACKEND": values.Value(
                     "django.core.cache.backends.locmem.LocMemCache",
                     environ_name="CACHE_FALLBACK_BACKEND",
