@@ -13,6 +13,7 @@ from django.views.static import serve
 from cms.sitemaps import CMSSitemap
 from richie.apps.courses.urls import urlpatterns as courses_urlpatterns
 from richie.apps.search.urls import urlpatterns as search_urlpatterns
+from richie.plugins.urls import urlpatterns as plugins_urlpatterns
 
 # For now, we use URLPathVersioning to be consistent with fonzie. Fonzie uses it
 # because DRF OpenAPI only supports URLPathVersioning for now. See fonzie
@@ -26,7 +27,7 @@ urlpatterns = [
     path(r"sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
     re_path(
         r"api/{}/".format(API_PREFIX),
-        include([*courses_urlpatterns, *search_urlpatterns]),
+        include([*courses_urlpatterns, *search_urlpatterns, *plugins_urlpatterns]),
     ),
     path(r"", include("base.urls")),
     path(r"", include("filer.server.urls")),
