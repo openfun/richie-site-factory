@@ -412,7 +412,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 "hide_untranslated": False,
                 "name": _("English"),
                 "fallbacks": ["fr"],
-                "redirect_on_fallback": True,
+                "redirect_on_fallback": False,
             },
             {
                 "public": True,
@@ -420,7 +420,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 "hide_untranslated": False,
                 "name": _("French"),
                 "fallbacks": ["en"],
-                "redirect_on_fallback": True,
+                "redirect_on_fallback": False,
             },
         ],
     }
