@@ -36,7 +36,7 @@ class RedisCacheWithFallback(BaseCache):
         """
         super().__init__(params)
         self._redis_cache = RedisCache(server, params)
-        self._fallback_cache = caches["fallback"]
+        self._fallback_cache = caches["memory_cache"]
 
     def _call_with_fallback(self, method, *args, **kwargs):
         """

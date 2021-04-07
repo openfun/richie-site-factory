@@ -28,7 +28,7 @@ class RedisCacheWithFallbackTestCase(TestCase):
                     "CLIENT_CLASS": "richie.apps.core.cache.SentinelClient",
                 },
             },
-            "fallback": {
+            "memory_cache": {
                 "BACKEND": "django.core.cache.backends.dummy.DummyCache",
             },
         }
@@ -84,7 +84,7 @@ class RedisCacheWithFallbackTestCase(TestCase):
                     "CLIENT_CLASS": "richie.apps.core.cache.SentinelClient",
                 },
             },
-            "fallback": {
+            "memory_cache": {
                 "BACKEND": "django.core.cache.backends.dummy.DummyCache",
             },
         }
