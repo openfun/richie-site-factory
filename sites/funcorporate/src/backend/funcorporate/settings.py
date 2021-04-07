@@ -262,6 +262,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "richie.plugins.glimpse",
         "richie.plugins.html_sitemap",
         "richie.plugins.large_banner",
+        "richie.plugins.lti_consumer",
         "richie.plugins.nesteditem",
         "richie.plugins.plain_text",
         "richie.plugins.section",
