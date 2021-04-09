@@ -26,6 +26,24 @@ class CoursesEdxRedirectViewsTestCase(TestCase):
             fetch_redirect_response=True,
         )
 
+    def test_views_redirect_edx_courses_success_with_old_course_uri(self):
+        """OpenEdX course urls are redirected to the corresponding page in richie."""
+        course = CourseFactory(
+            code="abc", page_title="Physique 101", should_publish=True
+        )
+        TitleFactory(page=course.extended_object, language="en", title="Physics 101")
+        course.extended_object.publish("en")
+
+        response = self.client.get("/courses/sorbonne/abc/001/about/")
+
+        self.assertRedirects(
+            response,
+            "/fr/physique-101/",
+            status_code=301,
+            target_status_code=200,
+            fetch_redirect_response=True,
+        )
+
     def test_views_redirect_edx_courses_fallback_organization(self):
         """
         OpenEdX course urls are redirected to the organization page if the course page
