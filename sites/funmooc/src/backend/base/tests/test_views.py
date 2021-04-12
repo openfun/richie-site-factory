@@ -5,8 +5,8 @@ from richie.apps.core.factories import PageFactory, TitleFactory
 from richie.apps.courses.factories import CourseFactory, OrganizationFactory
 
 
-class CoursesEdxRedirectViewsTestCase(TestCase):
-    """Test the "redirect_edx_courses" view."""
+class ResourcesEdxRedirectViewsTestCase(TestCase):
+    """Test the "redirect_edx_resources" view."""
 
     def test_views_redirect_edx_courses_success(self):
         """OpenEdX course urls are redirected to the corresponding page in richie."""
@@ -27,7 +27,7 @@ class CoursesEdxRedirectViewsTestCase(TestCase):
         )
 
     def test_views_redirect_edx_courses_success_with_old_course_uri(self):
-        """OpenEdX course urls are redirected to the corresponding page in richie."""
+        """Old OpenEdX course urls are redirected to the corresponding page in richie."""
         course = CourseFactory(
             code="abc", page_title="Physique 101", should_publish=True
         )
@@ -44,12 +44,36 @@ class CoursesEdxRedirectViewsTestCase(TestCase):
             fetch_redirect_response=True,
         )
 
+    def test_views_redirect_edx_organization_success(self):
+        """OpenEdX organization urls are redirected to the corresponding page in richie."""
+        organization = OrganizationFactory(
+            code="sorbonne",
+            page_title="Sorbonne",
+            should_publish=True,
+        )
+        TitleFactory(
+            page=organization.extended_object,
+            language="en",
+            title="Sorbonne",
+        )
+        organization.extended_object.publish("en")
+
+        response = self.client.get("/universities/sorbonne")
+
+        self.assertRedirects(
+            response,
+            "/fr/sorbonne/",
+            status_code=301,
+            target_status_code=200,
+            fetch_redirect_response=True,
+        )
+
     def test_views_redirect_edx_courses_fallback_organization(self):
         """
         OpenEdX course urls are redirected to the organization page if the course page
         can not be found.
         """
-        OrganizationFactory(code="sorbonne", page_title="Sorbonne", should_publish=True)
+        OrganizationFactory(page_title="Sorbonne", code="sorbonne", should_publish=True)
 
         response = self.client.get("/courses/course-v1:sorbonne+abc+001/about/")
 
@@ -67,7 +91,7 @@ class CoursesEdxRedirectViewsTestCase(TestCase):
         nor the organization page can be found.
         """
         PageFactory(
-            reverse_id="search",
+            reverse_id="courses",
             template="search/search.html",
             title__title="Recherche",
             title__language="fr",
