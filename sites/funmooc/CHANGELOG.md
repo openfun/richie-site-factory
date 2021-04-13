@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.5.0] - 2021-04-13
+
 ### Added
 
 - Redirect OpenEdX university urls to richie university pages
@@ -422,7 +424,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.4.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.5.0...HEAD
+[1.5.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.4.0...funmooc-1.5.0
 [1.4.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.3.0...funmooc-1.4.0
 [1.3.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.2.0...funmooc-1.3.0
 [1.2.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.1.0...funmooc-1.2.0
