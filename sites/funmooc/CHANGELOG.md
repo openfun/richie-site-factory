@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Send xiti hits unless visitor explicity refuses
+
 ## [1.5.0] - 2021-04-13
 
 ### Added
