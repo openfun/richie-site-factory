@@ -143,8 +143,8 @@
     }
   }
 
-  // Ensure that Xiti is configured and user allowed Xiti cookies
-  if (!!window.__funmooc_context__.marketing.xiti.site_id && tarteaucitron.cookie.read().includes('xiti=true')) {
+  // Ensure that Xiti is configured and user does not rejected Xiti cookies
+  if (!!window.__funmooc_context__.marketing.xiti.site_id && !tarteaucitron.cookie.read().includes('xiti=false')) {
     var smartTag = new SmartTag(__funmooc_context__.marketing.xiti);
     smartTag.init();
   }
