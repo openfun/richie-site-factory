@@ -257,7 +257,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             # Synchronization
             "COURSE_RUN_SYNC_NO_UPDATE_FIELDS": ["languages"],
             "JS_COURSE_REGEX": values.Value(
-                r"^.*/courses/(?<course_id>.*)/info/?$",
+                r"^.*/courses/(.*)/info/?$",
                 environ_name="EDX_JS_COURSE_REGEX",
                 environ_prefix=None,
             ),
