@@ -5,8 +5,8 @@
   "scripts": {
     "build-sass-production": "sass scss/_main.scss ../backend/base/static/richie/css/main.css --style=compressed --load-path=node_modules",
     "build-sass": "sass scss/_main.scss ../backend/base/static/richie/css/main.css --load-path=node_modules",
-    "build-ts-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
-    "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-ts-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
     "compile-translations": "node_modules/richie-education/i18n/compile-translations.js ./i18n/overrides/*.json ./i18n/locales/*.json",
     "extract-translations": "formatjs extract './**/*.ts*' --ignore ./node_modules --ignore './**/*.d.ts' --out-file './i18n/frontend.json' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
     "install-tarteaucitron": "mkdir -p ../backend/base/static/richie/js && cp -R node_modules/tarteaucitronjs ../backend/base/static/richie/js",
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/openfun/richie-site-factory#readme",
   "dependencies": {
-    "richie-education": "2.4.0",
+    "richie-education": "2.5.0",
     "tarteaucitronjs": "1.8.5"
   },
   "devDependencies": {

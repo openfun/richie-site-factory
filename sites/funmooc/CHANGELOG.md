@@ -12,6 +12,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Send xiti hits unless visitor explicity refuses
 
+### Changed
+
+- Upgrade richie to 2.5.0
+
 ## [1.5.0] - 2021-04-13
 
 ### Added
