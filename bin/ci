@@ -84,7 +84,7 @@ function update_sources() {
 
         changelog_ignored_branch="master"
         if \
-            "$1" = true && \
+            [ "$1" = true ] && \
             ! check_changes "^${site_path}/CHANGELOG.md" ;
         then
             # If --ignore-changelog is true and site CHANGELOG has not changed
