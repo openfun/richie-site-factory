@@ -252,7 +252,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
                 environ_prefix=None,
             ),
             "JS_COURSE_REGEX": values.Value(
-                r"^.*/courses/(?<course_id>.*)/course/?$",
+                r"^.*/courses/(.*)/course/?$",
                 environ_name="EDX_JS_COURSE_REGEX",
                 environ_prefix=None,
             ),
