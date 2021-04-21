@@ -3,8 +3,8 @@
   "version": "1.8.0",
   "description": "The future www.fun-corporate.fr website based on https://github.com/openfun/richie",
   "scripts": {
-    "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
-    "build-ts-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
+    "build-ts-production": "webpack --mode=production --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
     "compile-translations": "node_modules/richie-education/i18n/compile-translations.js ./i18n/overrides/*.json ./i18n/locales/*.json",
     "extract-translations": "formatjs extract './**/*.ts*' --ignore ./node_modules --ignore './**/*.d.ts' --out-file './i18n/frontend.json' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format crowdin",
     "lint": "eslint -c node_modules/richie-education/.eslintrc.json 'js/**/*.ts?(x)' --rule 'import/no-extraneous-dependencies: [error, {packageDir: ['.', './node_modules/richie-education']}]' --no-error-on-unmatched-pattern",
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/openfun/richie-site-factory#readme",
   "dependencies": {
-    "richie-education": "2.4.0"
+    "richie-education": "2.5.0"
   },
   "devDependencies": {
     "@formatjs/cli": "2.13.5",
