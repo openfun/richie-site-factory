@@ -1,6 +1,6 @@
 {
   "name": "richie",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "Richie demo site on https://demo.richie.education",
   "scripts": {
     "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
