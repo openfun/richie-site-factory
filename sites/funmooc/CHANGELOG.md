@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix contributors filter by overriding only its human name
+- Rename "New course" option to "New courses" for coherence with filter name
+
 ## [1.6.0] - 2021-04-22
 
 ### Fixed

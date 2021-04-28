@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 20:47+0100\n"
+"POT-Creation-Date: 2021-04-28 12:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,13 +49,9 @@ msgstr ""
 msgid "Teaser"
 msgstr "Accroche"
 
-#: funmooc/settings.py:387
+#: funmooc/settings.py:387 funmooc/settings.py:391
 msgid "New courses"
 msgstr "Nouveaux cours"
-
-#: funmooc/settings.py:391
-msgid "New course"
-msgstr "Nouveau cours"
 
 #: funmooc/settings.py:402
 msgid "Availability"
