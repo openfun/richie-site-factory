@@ -46,7 +46,7 @@ pulling code from the project repository to avoid dependency-related or
 migration-related issues.
 
 Once the bootstrap phase is finished, you should be able to view the site at
-[localhost:8080](http://localhost:8080)
+[localhost:8070](http://localhost:8070)
 
 > If you've just bootstrapped this project, you are probably planning to use AWS
 > to store and distribute your media and static files. Luckily for you, we've
