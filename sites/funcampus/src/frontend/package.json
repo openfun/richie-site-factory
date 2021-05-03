@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/openfun/richie-site-factory#readme",
   "dependencies": {
-    "richie-education": "2.5.0"
+    "richie-education": "2.6.0"
   },
   "devDependencies": {
     "@formatjs/cli": "2.13.5",
