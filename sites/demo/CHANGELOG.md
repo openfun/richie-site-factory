@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Allow setting demo site domain otherwise so it is not set to localhost:8080
+
 ## [1.11.0] - 2021-05-03
 
 ### Changed
