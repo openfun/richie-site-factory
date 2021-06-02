@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.11.1] - 2021-06-02
+
 ### Fixed
 
 - Allow setting demo site domain otherwise so it is not set to localhost:8080
@@ -214,7 +216,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.11.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.11.1...HEAD
+[1.11.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.11.0...demo-1.11.1
 [1.11.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.10.0...demo-1.11.0
 [1.10.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.9.0...demo-1.10.0
 [1.9.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.8.0...demo-1.9.0
