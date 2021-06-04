@@ -471,18 +471,128 @@ workflows:
                 site: funcampus
     funcorporate:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-funcorporate
+                site: funcorporate
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /funcorporate-.*/
+                name: lint-changelog--funcorporate
+                site: funcorporate
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-funcorporate
+                        only: /funcorporate-.*/
+                name: build-front-production-funcorporate
+                site: funcorporate
+            - lint-front:
+                filters:
+                    tags:
+                        only: /funcorporate-.*/
+                name: lint-front-funcorporate
+                requires:
+                    - build-front-production-funcorporate
+                site: funcorporate
+            - build-back:
+                filters:
+                    tags:
+                        only: /funcorporate-.*/
+                name: build-back-funcorporate
+                site: funcorporate
+            - lint-back:
+                filters:
+                    tags:
+                        only: /funcorporate-.*/
+                name: lint-back-funcorporate
+                requires:
+                    - build-back-funcorporate
+                site: funcorporate
+            - test-back:
+                filters:
+                    tags:
+                        only: /funcorporate-.*/
+                name: test-back-funcorporate
+                requires:
+                    - build-back-funcorporate
+                site: funcorporate
+            - hub:
+                filters:
+                    tags:
+                        only: /^funcorporate-.*/
+                image_name: funcorporate
+                name: hub-funcorporate
+                requires:
+                    - lint-front-funcorporate
+                    - lint-back-funcorporate
+                site: funcorporate
     funmooc:
         jobs:
-            - no-change:
+            - check-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                name: check-changelog-funmooc
+                site: funmooc
+            - lint-changelog:
+                filters:
+                    branches:
+                        ignore: master
+                    tags:
+                        only: /funmooc-.*/
+                name: lint-changelog--funmooc
+                site: funmooc
+            - build-front-production:
                 filters:
                     tags:
-                        only: /.*/
-                name: no-change-funmooc
+                        only: /funmooc-.*/
+                name: build-front-production-funmooc
+                site: funmooc
+            - lint-front:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: lint-front-funmooc
+                requires:
+                    - build-front-production-funmooc
+                site: funmooc
+            - build-back:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: build-back-funmooc
+                site: funmooc
+            - lint-back:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: lint-back-funmooc
+                requires:
+                    - build-back-funmooc
+                site: funmooc
+            - test-back:
+                filters:
+                    tags:
+                        only: /funmooc-.*/
+                name: test-back-funmooc
+                requires:
+                    - build-back-funmooc
+                site: funmooc
+            - hub:
+                filters:
+                    tags:
+                        only: /^funmooc-.*/
+                image_name: funmooc
+                name: hub-funmooc
+                requires:
+                    - lint-front-funmooc
+                    - lint-back-funmooc
+                site: funmooc
     site-factory:
         jobs:
             - lint-git:
