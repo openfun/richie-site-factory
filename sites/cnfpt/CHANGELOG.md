@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.7.1] - 2021-06-08
+
 ### Fixed
 
 - Upgrade richie to 2.7.1 to fix LTI consumer when logged-in OpenEdX
@@ -220,7 +222,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.7.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.7.1...HEAD
+[1.7.1]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.7.0...cnfpt-1.7.1
 [1.7.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.6.0...cnfpt-1.7.0
 [1.6.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.5.0...cnfpt-1.6.0
 [1.5.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.4.0...cnfpt-1.5.0
