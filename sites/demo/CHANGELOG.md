@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.12.1] - 2021-06-08
+
 ### Fixed
 
 - Upgrade richie to 2.7.1 to fix LTI consumer when logged-in OpenEdX
@@ -226,7 +228,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.12.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.12.1...HEAD
+[1.12.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.12.0...demo-1.12.1
 [1.12.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.11.1...demo-1.12.0
 [1.11.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.11.0...demo-1.11.1
 [1.11.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.10.0...demo-1.11.0
