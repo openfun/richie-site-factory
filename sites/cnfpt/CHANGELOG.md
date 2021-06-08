@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Upgrade richie to 2.7.1 to fix LTI consumer when logged-in OpenEdX
+
 ## [1.7.0] - 2021-06-04
 
 ### Changed
