@@ -1,0 +1,11 @@
+{% extends "richie/base.html" %}
+{% load static i18n %}
+
+{% block body_footer_title %}{% endblock body_footer_title %}
+
+{% block body_mentions %}
+<div class="body-mentions__poweredby--credits">
+    <p>Fun Mooc 2021 © All Rights Reserved.</p>
+</div>
+{{ block.super }}
+{% endblock body_mentions %}

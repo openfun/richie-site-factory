@@ -1,0 +1,74 @@
+@import 'richie-education/scss/components/templates/richie/section/section';
+
+.section {
+  // NOTE: Enforce title colour by default
+  &__title {
+      color: r-color('burnt-orange');
+  }
+
+  // NOTE: Fix bottom padding according to space required by some tricks like the top
+  // wave from "septenary" variant
+  &:not(&--unpadded) {
+    padding: 5vw 0;
+
+    @include media-breakpoint-up(lg) {
+      padding: 5vw 0;
+    }
+  }
+
+  // Septenary template
+  // NOTE: Add top waves border image
+  &.section--septenary {
+    position: relative;
+
+    &:before{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 5vw;
+      position: absolute;
+      top: -5vw;
+      left: 0;
+      right: 0;
+      background-image: url('../../richie/images/components/wave-septenary.svg');
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-size: 100% 100%;
+    }
+
+    // NOTE: Specific light colors for caesura in this section
+    .button-caesura {
+      a {
+        @include r-button-colors(
+          r-theme-val(button-caesura, alternative),
+          $apply-border: true
+        );
+
+        &:hover {
+          @include r-button-colors(
+            r-theme-val(button-caesura, alternative),
+            $apply-border: true,
+            $prefix: 'hover'
+          );
+        }
+      }
+    }
+  }
+
+  // NOTE: Clouds background need more vertical space to fit correctly
+  &.section--clouds {
+    padding: 12vw 0;
+  }
+}
+
+
+.section-tiles {
+    // NOTE: Enforce title level 3 colour by default (to follow the same previous
+    // ".section" override) but only for direct child to avoid breaking sub plugins
+    // layout
+    &__items {
+      & > h3 {
+        color: r-color('pumpkin-orange');
+      }
+    }
+}

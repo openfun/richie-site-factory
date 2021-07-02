@@ -1,0 +1,651 @@
+///
+/// Color palette and schemes
+///
+
+/**
+ * NOTE:
+ *      Cloned from CNFPT theme and mixed with some funmooc customs.
+ *
+ * TODO:
+ *      At the end, everything from theme must use a "" property. When it's done,
+ *      all properties (without "") will be removed and all "" ones renamed
+ *      without the "" suffix. (Beware some overriden components may include
+ *      targets to the "" vars)
+ */
+
+// Named colors
+// ---------
+/**
+ * Include new palette for new ongoing Ademe theme
+ */
+$palette: (
+  // IDENTICAL as old theme
+  'black': #000000,
+  'white': #ffffff,
+  'battleship-grey': #686f7a,
+  'dark': #29303b,
+
+  // SAME name than old theme but different
+  'black-two': #2d2d2d,
+
+  // NEW for new theme only
+  'black-three': #121212,
+  'dark-aquamarine': #007171,
+  'turquoise-blue': #08c1c7,
+  'topaz': #14a5a5,
+  'black-four': #181818,
+  'tealish': #21c7c7,
+  'dark-two': #22232b,
+  'warm-grey': #747474,
+  'warm-grey-two': #979797,
+  'light-teal': #a8e8e8,
+  'burnt-orange': #bc5500,
+  'pale-grey-two': #eceff1,
+  'pale-grey': #f2f4f5,
+  'pumpkin-orange': #ff7400,
+  'silver': #d5dbe0,
+  // DUPLICATED from old theme
+  'white-three': #fdfdfd,
+);
+
+// Named gradients
+// ---------
+$neutral-gradient: linear-gradient(
+  to top,
+  r-color('silver') 0,
+  r-color('white-three') 13rem,
+  r-color('white') 14rem,
+  r-color('white')
+);
+$light-gradient: linear-gradient(
+  to top,
+  r-color('light-teal'),
+  r-color('white') 14rem,
+  r-color('white')
+);
+$middle-gradient: linear-gradient(
+  272deg,
+  r-color('dark-aquamarine') 0%,
+  r-color('dark-aquamarine') 99%
+); // seems unused, so fake it
+$dark-gradient: linear-gradient(
+  273deg,
+  r-color('topaz') 1%,
+  r-color('dark-aquamarine') 99%
+);
+$tealish-gradient: linear-gradient(
+  to left,
+  r-color('tealish'),
+  r-color('light-teal'),
+);
+
+// Basic color schemes
+$dark-aquamarine-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('dark-aquamarine'),
+  hover-font-color: r-color('white'),
+);
+$burnt-orange-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('burnt-orange'),
+  border-color: r-color('burnt-orange'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('burnt-orange'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('burnt-orange'), $lightness: -10%),
+);
+$pumpkin-orange-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('pumpkin-orange'),
+  border-color: r-color('pumpkin-orange'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('pumpkin-orange'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('pumpkin-orange'), $lightness: -10%),
+);
+$white-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('dark'),
+  h2-color: r-color('dark'),
+  svg-color: r-color('dark'),
+  background: r-color('white'),
+  hover-font-color: r-color('pumpkin-orange'),
+  hover-background: darken(r-color('white'), 8%),
+);
+$topaz-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('topaz'),
+  border-color: r-color('topaz'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('topaz'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('topaz'), $lightness: -10%),
+);
+$light-teal-scheme: (
+  font-color: r-color('dark-aquamarine'),
+  link-color: r-color('dark-aquamarine'),
+  svg-color: r-color('dark-aquamarine'),
+  background: r-color('light-teal'),
+  border-color: r-color('light-teal'),
+  hover-font-color: r-color('dark-aquamarine'),
+  hover-svg-color: r-color('dark-aquamarine'),
+  hover-background: scale-color(r-color('light-teal'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('light-teal'), $lightness: -10%),
+);
+$tealish-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('tealish'),
+  border-color: r-color('tealish'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-border-color: r-color('white'),
+);
+$peppermint-scheme: (
+  font-color: r-color('dark-aquamarine'),
+  h1-color: r-color('dark-aquamarine'),
+  h2-color: r-color('dark-aquamarine'),
+  svg-color: r-color('dark-aquamarine'),
+  background: r-color('white'),
+  hover-font-color: r-color('tealish'),
+  hover-background: darken(r-color('white'), 8%),
+);
+$transparent-clear-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: transparent,
+  border-color: r-color('white'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: rgba(r-color('white'), 0.3),
+);
+$light-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('black-two'),
+  h2-color: r-color('black-two'),
+  svg-color: r-color('dark'),
+  background: r-color('silver'),
+  hover-font-color: r-color('dark-aquamarine'),
+  hover-background: r-color('battleship-grey'),
+);
+$lightest-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('black-two'),
+  h2-color: r-color('black-two'),
+  svg-color: r-color('dark'),
+  background: r-color('pale-grey'),
+  hover-font-color: r-color('topaz'),
+  hover-background: r-color('battleship-grey'),
+);
+$clouds-scheme: (
+  background: bottom center / 100% 100% no-repeat r-color('white')
+    url('../../richie/images/components/clouds.png'),
+);
+$neutral-gradient-scheme: (
+  font-color: r-color('black-two'),
+  svg-color: r-color('black-two'),
+  background: $neutral-gradient,
+);
+$light-gradient-scheme: (
+  font-color: r-color('dark'),
+  svg-color: r-color('dark'),
+  background: $light-gradient,
+  hover-font-color: r-color('dark'),
+);
+$middle-gradient-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $middle-gradient,
+  hover-font-color: r-color('white'),
+);
+$tealish-gradient-scheme: (
+  h1-color: r-color('white'),
+  h2-color: r-color('white'),
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $tealish-gradient,
+  hover-font-color: r-color('white'),
+);
+$dark-gradient-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $dark-gradient,
+  hover-font-color: r-color('white'),
+);
+
+
+// Theme schemes
+$r-theme: (
+  banner:
+    (
+      error: $burnt-orange-scheme,
+      warning: $pumpkin-orange-scheme,
+      success: $tealish-scheme,
+      info: $light-teal-scheme,
+    ),
+  base-schemes: (
+    primary: $pumpkin-orange-scheme,
+    secondary: $topaz-scheme,
+    tertiary: $light-teal-scheme,
+    clear: $white-scheme,
+    light: $light-scheme,
+    lightest: $lightest-scheme,
+
+    dark-aquamarine: $dark-aquamarine-scheme,
+    topaz: $topaz-scheme,
+    light-teal: $light-teal-scheme,
+    tealish: $tealish-scheme,
+    peppermint: $peppermint-scheme,
+    pumpkin-orange: $pumpkin-orange-scheme,
+    clouds: $clouds-scheme,
+    neutral-gradient: $neutral-gradient-scheme,
+    light-gradient: $light-gradient-scheme,
+    middle-gradient: $middle-gradient-scheme,
+    dark-gradient: $dark-gradient-scheme,
+    tealish-gradient: $tealish-gradient-scheme,
+  ),
+  base-gradients: (
+    neutral-gradient: $neutral-gradient,
+    light-gradient: $light-gradient,
+    middle-gradient: $middle-gradient,
+    dark-gradient: $dark-gradient,
+    tealish-gradient: $tealish-gradient,
+  ),
+  topbar: (
+    base-background: r-color('white'),
+    over-background: rgba(r-color('white'), 0.6),
+    over-border: rgba(r-color('black-three'), 0.1),
+    hamburger-color: r-color('topaz'),
+    item-color: r-color('dark'),
+    item-hover-color: r-color('dark-aquamarine'),
+    item-active-color: r-color('tealish'),
+    item-cta-color: r-color('white'),
+    item-cta-background: r-color('tealish'),
+    item-cta-border: r-color('tealish'),
+    item-cta-hollow-color: r-color('tealish'),
+    item-cta-hollow-background: r-color('white'),
+    item-cta-hollow-border: r-color('white'),
+    item-cta-primary: $tealish-scheme,
+    item-cta-secondary: $topaz-scheme,
+    item-cta-tertiary: $light-teal-scheme,
+    item-divider-border: r-color('silver'),
+  ),
+  body-content: (
+    base-color: r-color('dark'),
+    base-background: r-color('white'),
+    insert-background-image: url('../../richie/images/components/wave-aquamarine.svg'),
+    base-link-color: r-color('pumpkin-orange'),
+  ),
+  body-footer: (
+    base-color: r-color('white'),
+    base-background: r-color('dark-aquamarine'),
+    lang-color: r-color('white'),
+    section-hover: r-color('white'),
+    subtitle-color: r-color('white'),
+    badge-button: $tealish-scheme,
+  ),
+  body-mentions: (
+    base-color: r-color('white'),
+    base-background: r-color('tealish'),
+    poweredby-hover: r-color('white'),
+  ),
+  subheader: (
+    base: $middle-gradient-scheme,
+    container: $dark-gradient-scheme,
+    cta: $tealish-scheme,
+    media-background: r-color('white'),
+    teaser-border: rgba(r-color('white'), 0.3),
+    search-input-color: r-color('white'),
+    search-input-background: transparent,
+    search-input-border: r-color('white'),
+    search-input-placeholder: r-color('white'),
+    social-network-badges: $transparent-clear-scheme,
+    category-badge: $peppermint-scheme,
+  ),
+  subheader-alt: (
+    container-background: $dark-gradient,
+    container-border: null,
+    background-image: url('../../richie/images/components/wave-white.svg'),
+  ),
+  block-schemes: (
+    empty-color: r-color('battleship-grey'),
+    divider: r-color('pale-grey'),
+    variants: (
+      clear: $peppermint-scheme,
+      light: $middle-gradient-scheme,
+      lightest: $peppermint-scheme,
+      gradient-neutral: $light-gradient-scheme,
+      gradient-dark: $dark-gradient-scheme,
+      septenary: $tealish-gradient-scheme,
+      clouds: $clouds-scheme,
+    ),
+    alt-arc: url('../../richie/images/components/arc-white.svg'),
+    alt-curve: url('../../richie/images/components/curve-white.svg'),
+    alt-waves: url('../../richie/images/components/wave-white.svg'),
+  ),
+  accordion-plan: (
+    item-dot-color: r-color('black'),
+    title-color: r-color('pumpkin-orange'),
+    content-color: r-color('battleship-grey'),
+    border-color: r-color('silver'),
+    background-color: null,
+    dot-closed: url('../../richie/images/components/add-outline.svg'),
+    dot-opened: url('../../richie/images/components/minus-outline.svg'),
+  ),
+  large-banner: (
+    base-background-color: r-color('black-two'),
+    base-color: r-color('white'),
+    base-shadow: r-color('black-two'),
+  ),
+  hero-intro: (
+    insert-background-image: null,
+    inner-background: rgba(r-color('white'), 0.89),
+    title-color: r-color('tealish'),
+    title-alt-color: r-color('dark'),
+    content-color: r-color('dark-aquamarine'),
+    search-input-background: r-color('white'),
+    search-btn-background: r-color('tealish'),
+    search-icon-fill: r-color('white'),
+    cta-variant-from: r-color('tealish'),
+    cta-variant-to: scale-color(r-color('tealish'), $lightness: -10%),
+    cta-color: r-color('white'),
+    cta-border: r-color('tealish'),
+  ),
+  section-plugin: (
+    title-emphased-color: r-color('burnt-orange'),
+  ),
+  licence-plugin: (
+    content-color: r-color('battleship-grey'),
+    description-color: r-color('battleship-grey'),
+  ),
+  glimpse-plugin: (
+    base-color: r-color('white'),
+    base-background: r-color('turquoise-blue'),
+    media-gradient: $light-gradient,
+    content-color: inherit !important,
+  ),
+  blogpost-glimpse: (
+    card-background: r-color('white'),
+    title-color: r-color('black'),
+    title-hover-color: r-color('pumpkin-orange'),
+    theme-border: r-color('tealish'),
+    content-color: r-color('battleship-grey'),
+    content-hover-color: r-color('black'),
+    media-background: r-color('silver'),
+    date-color: r-color('battleship-grey'),
+    date-hover-color: r-color('pumpkin-orange'),
+    empty-color: r-color('battleship-grey'),
+  ),
+  blogpost-glimpse-mini: (
+    border: r-color('silver'),
+  ),
+  blogpost-glimpse-favorite: (
+    content-color: inherit,
+    title-color: inherit,
+    excerpt-color: r-color('battleship-grey'),
+    cta: $pumpkin-orange-scheme,
+    cta-hover: $pumpkin-orange-scheme,
+  ),
+  button-caesura: (
+    base: $tealish-scheme,
+    alternative: $peppermint-scheme,
+    base-hover: $tealish-scheme,
+  ),
+  badge-glimpse: (
+    base-background: r-color('white'),
+    title-color: r-color('black'),
+    content-color: r-color('battleship-grey'),
+  ),
+  card-glimpse: (
+    base-background: r-color('white'),
+    divider-color: r-color('pumpkin-orange'),
+    title-color: r-color('black') !important,
+    content-color: r-color('battleship-grey') !important,
+  ),
+  category-glimpse-badges: (
+    base-border: r-color('silver'),
+    tag: $pumpkin-orange-scheme,
+  ),
+  category-glimpse: (
+    base-border: rgba(r-color('black'), 0.125),
+    base-hover-border: r-color('pumpkin-orange'),
+    base-hover-color: r-color('pumpkin-orange'),
+    base-background: r-color('white'),
+    body-color: r-color('black'),
+    title-color: inherit,
+    title-hover-color: r-color('burnt-orange'),
+    logo-empty-background: r-color('white-three'),
+  ),
+  course-glimpse-list: (
+    count-color: r-color('battleship-grey'),
+  ),
+  course-glimpse: (
+    card-background: r-color('white'),
+    base-shadow: 0 0 6px r-color('silver'),
+    base-hover-shadow: 0 0 6px r-color('battleship-grey'),
+    cta-background: r-color('dark-aquamarine'),
+    empty-color: r-color('battleship-grey'),
+    icon-shadow: (
+      0 10px 50px 0 rgba(r-color('black'), 0.05),
+      0 12px 34px 0 rgba(r-color('black'), 0.15),
+    ),
+    icon: $tealish-scheme,
+    content-color: r-color('battleship-grey'),
+    title-color: r-color('dark'),
+    organization-color: r-color('tealish'),
+    organization-media-empty-background: r-color('white-three'),
+    svg-icon-fill: r-color('white'),
+    footer: $dark-aquamarine-scheme,
+  ),
+  category-badges: (
+    primary-item: $pumpkin-orange-scheme,
+    secondary-item: $topaz-scheme,
+    tertiary-item: $peppermint-scheme,
+  ),
+  category-tags: (
+    primary-item: $pumpkin-orange-scheme,
+    secondary-item: $topaz-scheme,
+    tertiary-item: $peppermint-scheme,
+  ),
+  characteristics: (
+    primary-item: $tealish-scheme,
+    secondary-item: $topaz-scheme,
+    tertiary-item: $peppermint-scheme,
+  ),
+  organization-glimpse-list: (
+    empty-color: r-color('battleship-grey'),
+    empty-background: transparent,
+  ),
+  organization-glimpse: (
+    base-background: transparent,
+    base-border: transparent,
+    logo-empty-background: r-color('white-three'),
+    link-border: r-color('pumpkin-orange'),
+  ),
+  organization-glimpse-row: (
+    base-background: r-color('white'),
+    divider: r-color('silver'),
+    hover-background: darken(r-color('white'), 2%),
+    hover-title-color: r-color('pumpkin-orange'),
+  ),
+  pagination: (
+    item-color: r-color('dark'),
+    item-background: r-color('white'),
+    item-border: r-color('silver'),
+    current-color: r-color('white'),
+    current-background: r-color('dark-two'),
+  ),
+  person-glimpse: (
+    card-background: r-color('white'),
+    base-shadow: 0 1px 2px rgba(r-color('battleship-grey'), 0.4),
+    title-color: r-color('dark'),
+    empty-background: r-color('white-three'),
+    category: $tealish-scheme,
+    category-title: transparent,
+    bio-color: r-color('battleship-grey'),
+  ),
+  program-glimpse: (
+    card-background: r-color('white'),
+    card-border: null,
+    card-hover-border: null,
+    content-color: r-color('battleship-grey'),
+    title-color: r-color('pumpkin-orange'),
+    media-decoration: url('../../richie/images/components/arc-white.svg'),
+    empty-background: r-color('white-three'),
+    footer: $dark-aquamarine-scheme,
+    base-shadow: 0 0 6px r-color('silver'),
+    base-hover-shadow: 0 0 6px r-color('battleship-grey'),
+  ),
+  program-glimpse-empty: (
+    card-color: r-color('battleship-grey'),
+    hover-border: r-color('silver'),
+  ),
+  quote-glimpse: (
+    base-background: r-color('white'),
+    base-shadow: 0 0 4px r-color('silver'),
+    title-color: r-color('black'),
+    content-color: r-color('dark'),
+    icon-color: r-color('dark'),
+   ),
+  row_half-glimpse: (
+    base-background: r-color('white'),
+    divider-color: r-color('pumpkin-orange'),
+    title-color: r-color('black') !important,
+    content-color: r-color('battleship-grey') !important,
+  ),
+  row_full-glimpse: (
+    base-background: r-color('white'),
+    divider-color: r-color('pumpkin-orange'),
+    title-color: r-color('black') !important,
+    content-color: r-color('battleship-grey') !important,
+  ),
+  base-search: (
+    input-background: transparent,
+    icon-fill: r-color('battleship-grey'),
+    input-border: r-color('silver'),
+  ),
+  social-network-badges: (
+    base: $pumpkin-orange-scheme,
+  ),
+  homepage: (
+    divider: r-color('battleship-grey'),
+  ),
+  blogpost-detail: (
+    aside-glimpse-title-color: r-color('tealish'),
+    aside-glimpse-title-background: r-color('white'),
+    aside-glimpse-title-border: r-color('tealish'),
+    categories: $pumpkin-orange-scheme,
+    categories-tag-background: transparent,
+    top-border: r-color('silver'),
+    theme-border: r-color('tealish'),
+    pubdate-border: r-color('tealish'),
+    authors-border: r-color('tealish'),
+    cover-empty-background: r-color('white-three'),
+    body-color: r-color('dark'),
+    headline-color: r-color('battleship-grey'),
+    headline-border: r-color('black-two'),
+    headline-title-color: r-color('black-two'),
+    social-network-badges: $tealish-scheme,
+  ),
+  category-detail: (
+    empty-background: r-color('white-three'),
+    insert-background-image:
+      url('../../richie/images/components/wave-white.svg'),
+    logo-background: r-color('white'),
+    logo-border: r-color('silver'),
+    logo-shadow: 0 0.25rem 1.5625rem r-color('battleship-grey'),
+    intro-title-color: r-color('burnt-orange'),
+    description-color: r-color('battleship-grey'),
+  ),
+  course-detail: (
+    organizations-title-color: r-color('battleship-grey'),
+    aside-title-border: r-color('black-two'),
+    primary-group-title-color: r-color('black-two'),
+    primary-group-background: transparent,
+    primary-group-arc: null,
+    run-cta: $tealish-scheme,
+    run-descriptions-divider: r-color('silver'),
+    plan-title-color: r-color('pumpkin-orange'),
+    license-label-color: r-color('topaz'),
+    checkmark-list-decoration:
+      url('../../richie/images/components/checkmark.svg'),
+  ),
+  organization-detail: (
+    banner-empty-background: r-color('white-three'),
+    insert-background-image:
+      url('../../richie/images/components/wave-white.svg'),
+    logo-border: r-color('silver'),
+    logo-shadow: 0 0.25rem 1.5625rem r-color('battleship-grey'),
+    intro-title: r-color('burnt-orange'),
+    categories: $pumpkin-orange-scheme,
+    description-color: r-color('battleship-grey'),
+  ),
+  program-detail: (
+    cover-empty-background: r-color('white-three'),
+  ),
+  search-results: (
+    overlay: r-color('black'),
+    color: r-color('silver'),
+  ),
+  search-filters: (
+    base-background: r-color('white'),
+    toggler-background: r-color('pale-grey'),
+    toggler-shadow: 0 0 0.2rem r-color('battleship-grey'),
+    toggler-fill: r-color('battleship-grey'),
+  ),
+  search-filters-pane: (
+    title-color: r-color('black'),
+    clearer-hover-color: r-color('tealish'),
+  ),
+  search-filters-group: (
+    title-color: r-color('battleship-grey'),
+    modal-overlay-background: r-color('white'),
+  ),
+  search-filters-group-modal: (
+    base-color: r-color('battleship-grey'),
+    base-background: r-color('white'),
+    base-border: r-color('battleship-grey'),
+    input-color: r-color('black'),
+    input-background: r-color('silver'),
+    item-border: r-color('silver'),
+    close-color: r-color('black'),
+    close-border: r-color('silver'),
+    close-background: r-color('white'),
+    button-color: r-color('dark-aquamarine'),
+    button-background: r-color('white'),
+    overlay-background: r-color('white'),
+  ),
+  search-filters-value: (
+    base-color: r-color('battleship-grey'),
+    base-border: r-color('silver'),
+    hover-color: r-color('tealish'),
+    hover-border: r-color('silver'),
+    active-color: r-color('black'),
+    count-color: r-color('battleship-grey'),
+    count-background: r-color('white'),
+  ),
+  search-filters-value-parent: (
+    unfold-color: r-color('black'),
+  ),
+  styleguide: (
+    grid-line-color: lighten(r-color('pale-grey-two'), 5%),
+    grid-border-color: r-color('pale-grey-two'),
+    cta-sample: $tealish-scheme,
+    spot-sample: $pumpkin-orange-scheme,
+  ),
+  selector: (
+    base-background: r-color('white'),
+    hover-background: r-color('white'),
+    base-color: r-color('dark'),
+    hover-color: r-color('dark'),
+    base-border: r-color('silver'),
+  ),
+  spinner: (
+    base-color: r-color('turquoise-blue'),
+  )
+);

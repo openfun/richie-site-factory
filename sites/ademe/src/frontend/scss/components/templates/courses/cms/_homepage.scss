@@ -1,0 +1,39 @@
+@import 'richie-education/scss/components/templates/courses/cms/homepage';
+
+// Homepage customize
+//
+
+// NOTE: Adjust background size, spacing and position with hero content
+.homepage {
+  .hero-intro {
+    @include media-breakpoint-up(md) {
+      display: flex;
+      max-width: rem-calc(1400px);
+      margin: 0 auto;
+      padding: $r-topbar-height 3rem 0;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: center;
+      background-size: 100% auto;
+      background-position: bottom center;
+
+      &__inner {
+        @include sv-flex(0, 0, auto);
+        width: 60%;
+        min-height: auto;
+        padding: 0;
+        border-radius: 2rem;
+      }
+
+      &__title {
+        width: 100%;
+      }
+    }
+    @include media-breakpoint-up(lg) {
+      height: 85vh;
+      background-size: auto 100%;
+      background-position: bottom center;
+    }
+  }
+}
