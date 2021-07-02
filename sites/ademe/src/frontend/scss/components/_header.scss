@@ -1,0 +1,34 @@
+@import 'richie-education/scss/components/header';
+
+.topbar {
+  $topbar-selector: &;
+  padding: 0; // NOTE: Remove useless padding
+
+  @include media-breakpoint-up($r-topbar-breakpoint) {
+
+    &--over {
+      padding: 0; // NOTE: Remove useless padding
+    }
+  }
+
+  &__menu {
+    margin-top: 0; // NOTE: Remove useless top margin
+  }
+
+  &__item {
+    & > a {
+      @include media-breakpoint-up($r-topbar-breakpoint) {
+        padding: 0.75rem 0.9rem; // NOTE: Adjust padding
+      }
+    }
+  }
+
+  // NOTE: A trick to move language selector under the header CTAs and aside the main
+  // menu without changing DOM structure and override template
+  .richie-react--language-selector {
+    @include media-breakpoint-up($r-topbar-breakpoint) {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

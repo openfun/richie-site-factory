@@ -1,0 +1,39 @@
+@import 'richie-education/scss/components/footer';
+
+// NOTE: Adjust spacing to look less empty
+.body-footer {
+  &__container {
+    align-items: flex-start;
+  }
+
+  &__brand {
+    img,
+    svg {
+      margin: 0;
+    }
+  }
+
+  &__insert {
+    .richie-react--language-selector {
+      margin-top: 0;
+    }
+  }
+}
+
+
+// Legal mentions
+.body-mentions {
+  &__poweredby {
+    // NOTE: Add variant for additional credits text
+    &--credits {
+      @include font-size($h5-font-size);
+      @include media-breakpoint-up($r-footer-breakpoint) {
+        text-align: left;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

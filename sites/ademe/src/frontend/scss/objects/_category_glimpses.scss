@@ -1,0 +1,21 @@
+@import 'richie-education/scss/objects/category_glimpses';
+
+.category-glimpse {
+  // NOTE: Hide default border but dont nullify it to keep ':hover' event behavior
+  border-color: transparent;
+
+  &__logo {
+    // NOTE: Dont expand logo container so its items are aligned likely "flex-start"
+    flex-grow: 0;
+
+    img {
+      // NOTE: Enforce image size like the mockup described it
+      max-width: rem-calc(66px);
+    }
+  }
+}
+
+.category-glimpse-list {
+  // NOTE: List container takes all available width
+  flex-grow: 1;
+}

@@ -1,0 +1,62 @@
+$font-path: "../../richie/fonts/" !default;
+
+// WARNING: Customer failed to supply real WEB font sets, only the TrueType (which is
+//          more of a desktop format).
+
+// Definitions for DIN font.
+@font-face {
+    font-family: DIN;
+    src: local(DIN-Medium),
+        //url($font-path + "DIN-Medium.woff2") format("woff2"),
+        //url($font-path + "DIN-Medium.woff") format("woff"),
+        url($font-path + "DIN-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: DIN;
+    src: local(DIN-Bold),
+        //url($font-path + "DIN-Bold.woff2") format("woff2"),
+        //url($font-path + "DIN-Bold.woff") format("woff"),
+        url($font-path + "DIN-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+// Definitions for Gotham font.
+@font-face {
+    font-family: Gotham;
+    src: local(GothamMedium),
+        //url($font-path + "GothamMedium.woff2") format("woff2"),
+        //url($font-path + "GothamMedium.woff") format("woff"),
+        url($font-path + "GothamMedium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: Gotham;
+    src: local(GothamBold),
+        //url($font-path + "GothamBold.woff2") format("woff2"),
+        //url($font-path + "GothamBold.woff") format("woff"),
+        url($font-path + "GothamBold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+
+// Aliases
+// NOTE: We do not want to use another variable name since there are used directly
+//       in some components/objects and would lead to override too many things
+$r-font-family-montserrat: 'Gotham', sans-serif;
+$r-font-family-hind: 'DIN', sans-serif;
+
+$r-fonts: (
+  hind: $r-font-family-hind,
+  montserrat: $r-font-family-montserrat,
+);
