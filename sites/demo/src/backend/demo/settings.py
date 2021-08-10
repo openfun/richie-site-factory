@@ -370,6 +370,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "djangocms_picture",
         "djangocms_text_ckeditor",
         "djangocms_video",
+        "django_check_seo",
         "cms",
         "menus",
         "sekizai",
@@ -469,7 +470,9 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # Demo
     RICHIE_DEMO_SITE_DOMAIN = values.Value(
-        default="localhost:8080", environ_name="RICHIE_DEMO_SITE_DOMAIN", environ_prefix=None
+        default="localhost:8000",
+        environ_name="RICHIE_DEMO_SITE_DOMAIN",
+        environ_prefix=None,
     )
     RICHIE_DEMO_FIXTURES_DIR = os.path.join(BASE_DIR, "base", "fixtures")
 
@@ -569,6 +572,12 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # in the page tree admin view
     CMS_PAGETREE_DESCENDANTS_LIMIT = 80
 
+    # - Django CMS Check SEO
+    # Excludes all elements that are not related to the page content
+    DJANGO_CHECK_SEO_EXCLUDE_CONTENT = (
+        "body > svg, #main-menu, .body-footer, .body-mentions"
+    )
+
     # pylint: disable=invalid-name
     @property
     def ENVIRONMENT(self):
@@ -629,6 +638,9 @@ class Development(Base):
     ALLOWED_HOSTS = ["*"]
 
     CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
+
+    # Django Check SEO
+    DJANGO_CHECK_SEO_FORCE_HTTP = True
 
 
 class Test(Base):
