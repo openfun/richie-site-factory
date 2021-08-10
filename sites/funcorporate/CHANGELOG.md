@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Set Django Check SEO up
+
 ## [1.11.0] - 2021-06-04
 
 ### Changed

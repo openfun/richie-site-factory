@@ -1,4 +1,5 @@
 boto3==1.16.53
+django-check-seo==0.4.0
 django-configurations==2.2
 # Superior versions of django-storages are not compatible with
 # ManifestStaticFilesStorage

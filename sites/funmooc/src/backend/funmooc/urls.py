@@ -31,6 +31,7 @@ urlpatterns = [
     ),
     path(r"", include("base.urls")),
     path(r"", include("filer.server.urls")),
+    path(r"django-check-seo/", include("django_check_seo.urls")),
 ]
 
 urlpatterns += i18n_patterns(

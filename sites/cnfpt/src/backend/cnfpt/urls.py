@@ -30,6 +30,7 @@ urlpatterns = [
         include([*courses_urlpatterns, *search_urlpatterns, *plugins_urlpatterns]),
     ),
     path(r"", include("filer.server.urls")),
+    path(r"django-check-seo/", include("django_check_seo.urls")),
 ]
 
 urlpatterns += i18n_patterns(
