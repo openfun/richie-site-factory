@@ -106,17 +106,29 @@ class TemplatesTestCase(TestCase):
         html = lxml.html.fromstring(response.content)
 
         # Check syllabus intro
-        header = str(etree.tostring(html.cssselect(".subheader__intro")[0]))
+        header = str(
+            etree.tostring(
+                html.cssselect(".subheader__intro")[0],
+                encoding="iso8859-1",
+                method="html",
+            ).decode("utf-8")
+        )
         self.assertEqual(header.count("course-detail__runs--open"), 1)
-        self.assertIn("S&#226;&#128;&#153;inscrire maintenant", header)
+        self.assertIn("S’inscrire maintenant", header)
         date_string = formats.date_format(min(start1, start2))
         with translation.override("fr"):
             self.assertIn(f"Du {date_string}", header)
 
         # Check syllabus aside column
-        aside = str(etree.tostring(html.cssselect(".course-detail__aside")[0]))
-        self.assertEqual(header.count("course-detail__runs--open"), 1)
-        self.assertIn("S&#226;&#128;&#153;inscrire maintenant", aside)
+        aside = str(
+            etree.tostring(
+                html.cssselect(".course-detail__aside")[0],
+                encoding="iso8859-1",
+                method="html",
+            ).decode("utf-8")
+        )
+        self.assertEqual(aside.count("course-detail__runs--open"), 1)
+        self.assertIn("S’inscrire maintenant", aside)
         date_string = formats.date_format(max(start1, start2))
         with translation.override("fr"):
             self.assertIn(f"Du {date_string}", aside)
