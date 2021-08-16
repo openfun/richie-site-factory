@@ -343,7 +343,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: master
+                        ignore: /.*/
                 name: check-changelog-ademe
                 site: ademe
             - lint-changelog:
@@ -442,7 +442,7 @@ workflows:
                     tags:
                         only: /.*/
             - check-configuration:
-                ci_update_options: ""
+                ci_update_options: --ignore-changelog
                 filters:
                     branches:
                         ignore: master
