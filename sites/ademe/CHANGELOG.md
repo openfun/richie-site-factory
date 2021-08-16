@@ -8,4 +8,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+
+## [0.1.0] - 2021-08-16
+
+### Added
+
 - First `ademe` image
+
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/ademe-0.1.0...HEAD
+[0.1.0]: https://github.com/openfun/richie-site-factory/releases/tag/ademe-0.1.0
