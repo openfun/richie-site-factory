@@ -467,17 +467,17 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "marsha": {
             "oauth_consumer_key": values.Value(
                 "InsecureOauthConsumerKey",
-                environ_name="LTI_TEST_OAUTH_CONSUMER_KEY",
+                environ_name="LTI_OAUTH_CONSUMER_KEY",
                 environ_prefix=None,
             ),
             "shared_secret": values.Value(
                 "InsecureSharedSecret",
-                environ_name="LTI_TEST_SHARED_SECRET",
+                environ_name="LTI_SHARED_SECRET",
                 environ_prefix=None,
             ),
             "base_url": values.Value(
                 "https://marsha\.education/lti/videos/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",  # noqa
-                environ_name="LTI_TEST_BASE_URL",
+                environ_name="LTI_BASE_URL",
                 environ_prefix=None,
             ),
             "display_name": "Marsha Video",

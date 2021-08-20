@@ -12,6 +12,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Set Django Check SEO up
 
+### Changed
+
+- Rename `LTI_TEST_*` settings to `LTI_*` as "TEST" does not make sense here
+
 ## [1.11.0] - 2021-06-04
 
 ### Changed
