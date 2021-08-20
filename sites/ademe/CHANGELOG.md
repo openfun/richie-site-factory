@@ -8,6 +8,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Rename `LTI_TEST_*` settings to `LTI_*` as "TEST" does not make sense here
 
 ## [0.1.0] - 2021-08-16
 

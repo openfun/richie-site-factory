@@ -481,17 +481,17 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "lti_provider_demo": {
             "oauth_consumer_key": values.Value(
                 "jisc.ac.uk",
-                environ_name="LTI_TEST_OAUTH_CONSUMER_KEY",
+                environ_name="LTI_OAUTH_CONSUMER_KEY",
                 environ_prefix=None,
             ),
             "shared_secret": values.Value(
                 "secret",
-                environ_name="LTI_TEST_SHARED_SECRET",
+                environ_name="LTI_SHARED_SECRET",
                 environ_prefix=None,
             ),
             "base_url": values.Value(
                 "https://lti.tools/saltire/tp",
-                environ_name="LTI_TEST_BASE_URL",
+                environ_name="LTI_BASE_URL",
                 environ_prefix=None,
             ),
             "display_name": "basic-lti-launch-request",
