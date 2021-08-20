@@ -478,24 +478,26 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
 
     # LTI Content
     RICHIE_LTI_PROVIDERS = {
-        "lti_provider_demo": {
+        "marsha": {
             "oauth_consumer_key": values.Value(
-                "jisc.ac.uk",
+                "InsecureOauthConsumerKey",
                 environ_name="LTI_OAUTH_CONSUMER_KEY",
                 environ_prefix=None,
             ),
             "shared_secret": values.Value(
-                "secret",
+                "InsecureSharedSecret",
                 environ_name="LTI_SHARED_SECRET",
                 environ_prefix=None,
             ),
             "base_url": values.Value(
-                "https://lti.tools/saltire/tp",
+                "https://marsha\.education/lti/videos/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",  # noqa
                 environ_name="LTI_BASE_URL",
                 environ_prefix=None,
             ),
-            "display_name": "basic-lti-launch-request",
-            "inline_ratio": 0.75,
+            "display_name": "Marsha Video",
+            "is_base_url_regex": True,
+            "automatic_resizing": True,
+            "inline_ratio": 0.5625,
         }
     }
 
