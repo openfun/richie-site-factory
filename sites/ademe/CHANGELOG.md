@@ -16,6 +16,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Fix staging and preprod domains for CloudFront proxying
+- Changed dummy "Contact Us" button to a "Help" button pointing to Fun help
+  center
 
 ## [0.1.0] - 2021-08-16
 
