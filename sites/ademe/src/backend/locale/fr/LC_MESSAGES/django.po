@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 14:13+0200\n"
+"POT-Creation-Date: 2021-09-02 00:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,43 +16,45 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ademe/settings.py:222
+#: ademe/settings.py:223
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: ademe/settings.py:223
+#: ademe/settings.py:224
 msgid "{base_url:s}/dashboard"
 msgstr ""
 
-#: ademe/settings.py:226
+#: ademe/settings.py:227
 msgid "Profile"
 msgstr "Profil"
 
-#: ademe/settings.py:227
+#: ademe/settings.py:228
 msgid "{base_url:s}/u/(username)"
 msgstr ""
 
-#: ademe/settings.py:230
+#: ademe/settings.py:231
 msgid "Account"
 msgstr "Compte"
 
-#: ademe/settings.py:231
+#: ademe/settings.py:232
 msgid "{base_url:s}/account/settings"
 msgstr ""
 
-#: ademe/settings.py:305
+#: ademe/settings.py:306
 msgid "Teaser"
 msgstr "Accroche"
 
-#: ademe/settings.py:390 ademe/settings.py:413
+#: ademe/settings.py:391 ademe/settings.py:414
 msgid "French"
 msgstr "Français"
 
-#: ademe/settings.py:390 ademe/settings.py:405
+#: ademe/settings.py:391 ademe/settings.py:406
 msgid "English"
 msgstr "Anglais"
 
 #: templates/richie/base.html:8
+msgid "Contact us"
+msgstr "Nous contacter"
+
 msgid "Help"
 msgstr "Aide"
-

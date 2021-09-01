@@ -45,8 +45,9 @@ class StyleguideMixin:
     """
 
     STYLEGUIDE = {
-        # Available font family names
-        "fonts": ["hind", "montserrat"],
+        # Available font family names (do not expose montserrat and hind since they
+        # are not the real font names
+        "fonts": ["din2014", "gotham"],
         # Named color palette
         "palette": [
             "black",
@@ -92,6 +93,7 @@ class StyleguideMixin:
             "tealish",
             "light-teal",
             "peppermint",
+            "burnt-orange",
             "pumpkin-orange",
             "clouds",
             "neutral-gradient",
@@ -399,7 +401,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         },
         1: [
             {
-                "public": True,
+                "public": False,
                 "code": "en",
                 "hide_untranslated": False,
                 "name": _("English"),

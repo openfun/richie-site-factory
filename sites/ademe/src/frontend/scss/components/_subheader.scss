@@ -10,4 +10,11 @@
       );
     }
   }
+
+  .course-detail__row {
+    // NOTE: Add a little space divider
+    margin-top: 2rem;
+    // NOTE: Left alignment is prefered for run sessions
+    text-align: left;
+  }
 }

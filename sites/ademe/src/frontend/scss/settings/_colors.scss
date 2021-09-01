@@ -2,33 +2,17 @@
 /// Color palette and schemes
 ///
 
-/**
- * NOTE:
- *      Cloned from CNFPT theme and mixed with some funmooc customs.
- *
- * TODO:
- *      At the end, everything from theme must use a "" property. When it's done,
- *      all properties (without "") will be removed and all "" ones renamed
- *      without the "" suffix. (Beware some overriden components may include
- *      targets to the "" vars)
- */
-
 // Named colors
 // ---------
 /**
  * Include new palette for new ongoing Ademe theme
  */
 $palette: (
-  // IDENTICAL as old theme
   'black': #000000,
   'white': #ffffff,
   'battleship-grey': #686f7a,
   'dark': #29303b,
-
-  // SAME name than old theme but different
   'black-two': #2d2d2d,
-
-  // NEW for new theme only
   'black-three': #121212,
   'dark-aquamarine': #007171,
   'turquoise-blue': #08c1c7,
@@ -44,7 +28,6 @@ $palette: (
   'pale-grey': #f2f4f5,
   'pumpkin-orange': #ff7400,
   'silver': #d5dbe0,
-  // DUPLICATED from old theme
   'white-three': #fdfdfd,
 );
 
@@ -112,7 +95,7 @@ $white-scheme: (
   h2-color: r-color('dark'),
   svg-color: r-color('dark'),
   background: r-color('white'),
-  hover-font-color: r-color('pumpkin-orange'),
+  hover-font-color: r-color('burnt-orange'),
   hover-background: darken(r-color('white'), 8%),
 );
 $topaz-scheme: (
@@ -229,7 +212,7 @@ $r-theme: (
       info: $light-teal-scheme,
     ),
   base-schemes: (
-    primary: $pumpkin-orange-scheme,
+    primary: $burnt-orange-scheme,
     secondary: $topaz-scheme,
     tertiary: $light-teal-scheme,
     clear: $white-scheme,
@@ -242,6 +225,7 @@ $r-theme: (
     tealish: $tealish-scheme,
     peppermint: $peppermint-scheme,
     pumpkin-orange: $pumpkin-orange-scheme,
+    burnt-orange: $burnt-orange-scheme,
     clouds: $clouds-scheme,
     neutral-gradient: $neutral-gradient-scheme,
     light-gradient: $light-gradient-scheme,
@@ -279,7 +263,7 @@ $r-theme: (
     base-color: r-color('dark'),
     base-background: r-color('white'),
     insert-background-image: url('../../richie/images/components/wave-aquamarine.svg'),
-    base-link-color: r-color('pumpkin-orange'),
+    base-link-color: r-color('burnt-orange'),
   ),
   body-footer: (
     base-color: r-color('white'),
@@ -330,7 +314,7 @@ $r-theme: (
   ),
   accordion-plan: (
     item-dot-color: r-color('black'),
-    title-color: r-color('pumpkin-orange'),
+    title-color: r-color('burnt-orange'),
     content-color: r-color('battleship-grey'),
     border-color: r-color('silver'),
     background-color: null,
@@ -372,13 +356,13 @@ $r-theme: (
   blogpost-glimpse: (
     card-background: r-color('white'),
     title-color: r-color('black'),
-    title-hover-color: r-color('pumpkin-orange'),
+    title-hover-color: r-color('burnt-orange'),
     theme-border: r-color('tealish'),
     content-color: r-color('battleship-grey'),
     content-hover-color: r-color('black'),
     media-background: r-color('silver'),
     date-color: r-color('battleship-grey'),
-    date-hover-color: r-color('pumpkin-orange'),
+    date-hover-color: r-color('burnt-orange'),
     empty-color: r-color('battleship-grey'),
   ),
   blogpost-glimpse-mini: (
@@ -388,8 +372,8 @@ $r-theme: (
     content-color: inherit,
     title-color: inherit,
     excerpt-color: r-color('battleship-grey'),
-    cta: $pumpkin-orange-scheme,
-    cta-hover: $pumpkin-orange-scheme,
+    cta: $burnt-orange-scheme,
+    cta-hover: $burnt-orange-scheme,
   ),
   button-caesura: (
     base: $tealish-scheme,
@@ -403,18 +387,18 @@ $r-theme: (
   ),
   card-glimpse: (
     base-background: r-color('white'),
-    divider-color: r-color('pumpkin-orange'),
+    divider-color: r-color('burnt-orange'),
     title-color: r-color('black') !important,
     content-color: r-color('battleship-grey') !important,
   ),
   category-glimpse-badges: (
     base-border: r-color('silver'),
-    tag: $pumpkin-orange-scheme,
+    tag: $burnt-orange-scheme,
   ),
   category-glimpse: (
     base-border: rgba(r-color('black'), 0.125),
-    base-hover-border: r-color('pumpkin-orange'),
-    base-hover-color: r-color('pumpkin-orange'),
+    base-hover-border: r-color('burnt-orange'),
+    base-hover-color: r-color('burnt-orange'),
     base-background: r-color('white'),
     body-color: r-color('black'),
     title-color: inherit,
@@ -443,12 +427,12 @@ $r-theme: (
     footer: $dark-aquamarine-scheme,
   ),
   category-badges: (
-    primary-item: $pumpkin-orange-scheme,
+    primary-item: $burnt-orange-scheme,
     secondary-item: $topaz-scheme,
     tertiary-item: $peppermint-scheme,
   ),
   category-tags: (
-    primary-item: $pumpkin-orange-scheme,
+    primary-item: $burnt-orange-scheme,
     secondary-item: $topaz-scheme,
     tertiary-item: $peppermint-scheme,
   ),
@@ -465,13 +449,13 @@ $r-theme: (
     base-background: transparent,
     base-border: transparent,
     logo-empty-background: r-color('white-three'),
-    link-border: r-color('pumpkin-orange'),
+    link-border: r-color('burnt-orange'),
   ),
   organization-glimpse-row: (
     base-background: r-color('white'),
     divider: r-color('silver'),
     hover-background: darken(r-color('white'), 2%),
-    hover-title-color: r-color('pumpkin-orange'),
+    hover-title-color: r-color('burnt-orange'),
   ),
   pagination: (
     item-color: r-color('dark'),
@@ -494,7 +478,7 @@ $r-theme: (
     card-border: null,
     card-hover-border: null,
     content-color: r-color('battleship-grey'),
-    title-color: r-color('pumpkin-orange'),
+    title-color: r-color('burnt-orange'),
     media-decoration: url('../../richie/images/components/arc-white.svg'),
     empty-background: r-color('white-three'),
     footer: $dark-aquamarine-scheme,
@@ -514,13 +498,13 @@ $r-theme: (
    ),
   row_half-glimpse: (
     base-background: r-color('white'),
-    divider-color: r-color('pumpkin-orange'),
+    divider-color: r-color('burnt-orange'),
     title-color: r-color('black') !important,
     content-color: r-color('battleship-grey') !important,
   ),
   row_full-glimpse: (
     base-background: r-color('white'),
-    divider-color: r-color('pumpkin-orange'),
+    divider-color: r-color('burnt-orange'),
     title-color: r-color('black') !important,
     content-color: r-color('battleship-grey') !important,
   ),
@@ -530,7 +514,7 @@ $r-theme: (
     input-border: r-color('silver'),
   ),
   social-network-badges: (
-    base: $pumpkin-orange-scheme,
+    base: $burnt-orange-scheme,
   ),
   homepage: (
     divider: r-color('battleship-grey'),
@@ -539,7 +523,7 @@ $r-theme: (
     aside-glimpse-title-color: r-color('tealish'),
     aside-glimpse-title-background: r-color('white'),
     aside-glimpse-title-border: r-color('tealish'),
-    categories: $pumpkin-orange-scheme,
+    categories: $burnt-orange-scheme,
     categories-tag-background: transparent,
     top-border: r-color('silver'),
     theme-border: r-color('tealish'),
@@ -570,7 +554,7 @@ $r-theme: (
     primary-group-arc: null,
     run-cta: $tealish-scheme,
     run-descriptions-divider: r-color('silver'),
-    plan-title-color: r-color('pumpkin-orange'),
+    plan-title-color: r-color('burnt-orange'),
     license-label-color: r-color('topaz'),
     checkmark-list-decoration:
       url('../../richie/images/components/checkmark.svg'),
@@ -582,7 +566,7 @@ $r-theme: (
     logo-border: r-color('silver'),
     logo-shadow: 0 0.25rem 1.5625rem r-color('battleship-grey'),
     intro-title: r-color('burnt-orange'),
-    categories: $pumpkin-orange-scheme,
+    categories: $burnt-orange-scheme,
     description-color: r-color('battleship-grey'),
   ),
   program-detail: (
@@ -636,7 +620,7 @@ $r-theme: (
     grid-line-color: lighten(r-color('pale-grey-two'), 5%),
     grid-border-color: r-color('pale-grey-two'),
     cta-sample: $tealish-scheme,
-    spot-sample: $pumpkin-orange-scheme,
+    spot-sample: $burnt-orange-scheme,
   ),
   selector: (
     base-background: r-color('white'),

@@ -12,12 +12,18 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Configure Marsha video as LTI provider instead of "jisc.ac.uk" test platform
 - Rename `LTI_TEST_*` settings to `LTI_*` as "TEST" does not make sense here
+- Use 'burnt-orange' color instead of 'pumpkin-orange'
+- Change 'Help' button to 'Contact us'
+- Adjust font size on search filters in course list
+- Replace TTF fonts with Woff and Woff2 formats
+- Replace 'Contact' button by course run in course detail
+- Adjust large banner hero for homepage with new background
+- Make english language non public
 
 ### Fixed
 
 - Fix staging and preprod domains for CloudFront proxying
-- Changed dummy "Contact Us" button to a "Help" button pointing to Fun help
-  center
+- Fix font-family on all buttons to use 'Gotham'
 
 ## [0.1.0] - 2021-08-16
 
