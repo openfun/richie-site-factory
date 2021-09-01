@@ -13,6 +13,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Configure Marsha video as LTI provider instead of "jisc.ac.uk" test platform
 - Rename `LTI_TEST_*` settings to `LTI_*` as "TEST" does not make sense here
 
+### Fixed
+
+- Fix staging and preprod domains for CloudFront proxying
+
 ## [0.1.0] - 2021-08-16
 
 ### Added
