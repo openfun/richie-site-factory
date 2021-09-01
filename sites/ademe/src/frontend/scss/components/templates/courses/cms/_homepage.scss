@@ -6,24 +6,40 @@
 // NOTE: Adjust background size, spacing and position with hero content
 .homepage {
   .hero-intro {
+    padding: 0;
+
+    @include media-breakpoint-up(sm) {
+      padding: 3vh 0;
+    }
+    @include media-breakpoint-up($r-topbar-breakpoint) {
+      padding: $r-topbar-height 3rem 0;
+    }
     @include media-breakpoint-up(md) {
       display: flex;
-      max-width: rem-calc(1400px);
+      //max-width: rem-calc(1400px);
       margin: 0 auto;
-      padding: $r-topbar-height 3rem 0;
       flex-direction: row;
       justify-content: flex-start;
       align-content: flex-start;
       align-items: center;
-      background-size: 100% auto;
+      background-size: auto 100%;
       background-position: bottom center;
 
       &__inner {
         @include sv-flex(0, 0, auto);
-        width: 60%;
+        width: rem-calc(1400px);
+        max-width: 100%;
         min-height: auto;
         padding: 0;
-        border-radius: 2rem;
+        background: none;
+      }
+
+      &__body {
+        width: 55%;
+        @if r-theme-val(hero-intro, inner-background) {
+          border-radius: 2rem;
+          background: r-theme-val(hero-intro, inner-background);
+        }
       }
 
       &__title {
@@ -31,7 +47,7 @@
       }
     }
     @include media-breakpoint-up(lg) {
-      height: 85vh;
+      height: 75vh;
       background-size: auto 100%;
       background-position: bottom center;
     }

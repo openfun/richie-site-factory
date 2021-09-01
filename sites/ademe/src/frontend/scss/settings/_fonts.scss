@@ -1,62 +1,71 @@
 $font-path: "../../richie/fonts/" !default;
 
-// WARNING: Customer failed to supply real WEB font sets, only the TrueType (which is
-//          more of a desktop format).
-
-// Definitions for DIN font.
+// Font definition for DIN2014
 @font-face {
-    font-family: DIN;
-    src: local(DIN-Medium),
-        //url($font-path + "DIN-Medium.woff2") format("woff2"),
-        //url($font-path + "DIN-Medium.woff") format("woff"),
-        url($font-path + "DIN-Medium.ttf") format("truetype");
-    font-weight: 500;
+    font-family: "DIN2014";
+    src:
+        url($font-path + "DIN-2014_Light.woff2") format("woff2"),
+        url($font-path + "DIN-2014_Light.woff") format("woff");
+    font-weight: 300;
     font-style: normal;
-    font-stretch: normal;
 }
 
 @font-face {
-    font-family: DIN;
-    src: local(DIN-Bold),
-        //url($font-path + "DIN-Bold.woff2") format("woff2"),
-        //url($font-path + "DIN-Bold.woff") format("woff"),
-        url($font-path + "DIN-Bold.ttf") format("truetype");
+    font-family: "DIN2014";
+    src:
+        url($font-path + "DIN-2014_Demi.woff2") format("woff2"),
+        url($font-path + "DIN-2014_Demi.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DIN2014";
+    src:
+        url($font-path + "DIN-2014_Bold.woff2") format("woff2"),
+        url($font-path + "DIN-2014_Bold.woff") format("woff");
     font-weight: bold;
     font-style: normal;
-    font-stretch: normal;
 }
 
-// Definitions for Gotham font.
+// Font definition for Gotham web
 @font-face {
-    font-family: Gotham;
-    src: local(GothamMedium),
-        //url($font-path + "GothamMedium.woff2") format("woff2"),
-        //url($font-path + "GothamMedium.woff") format("woff"),
-        url($font-path + "GothamMedium.ttf") format("truetype");
+    font-family: "HCo Gotham";
+    src:
+        url($font-path + "Gotham-Light_Web.woff2") format("woff2"),
+        url($font-path + "Gotham-Light_Web.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "HCo Gotham";
+    src:
+        url($font-path + "Gotham-Medium_Web.woff2") format("woff2"),
+        url($font-path + "Gotham-Medium_Web.woff") format("woff");
     font-weight: 500;
     font-style: normal;
-    font-stretch: normal;
 }
 
 @font-face {
-    font-family: Gotham;
-    src: local(GothamBold),
-        //url($font-path + "GothamBold.woff2") format("woff2"),
-        //url($font-path + "GothamBold.woff") format("woff"),
-        url($font-path + "GothamBold.ttf") format("truetype");
-    font-weight: bold;
+    font-family: "HCo Gotham";
+    src:
+        url($font-path + "Gotham-Bold_Web.woff2") format("woff2"),
+        url($font-path + "Gotham-Bold_Web.woff") format("woff");
+    font-weight: 700;
     font-style: normal;
-    font-stretch: normal;
 }
 
 
 // Aliases
-// NOTE: We do not want to use another variable name since there are used directly
-//       in some components/objects and would lead to override too many things
-$r-font-family-montserrat: 'Gotham', sans-serif;
-$r-font-family-hind: 'DIN', sans-serif;
+$r-font-family-din2014: "DIN2014", sans-serif;
+$r-font-family-gotham: "HCo Gotham", sans-serif;
+// NOTE: We keep the original names as used from Richie Sass sources
+$r-font-family-montserrat: $r-font-family-gotham;
+$r-font-family-hind: $r-font-family-din2014;
 
 $r-fonts: (
+  din2014: $r-font-family-din2014,
+  gotham: $r-font-family-gotham,
   hind: $r-font-family-hind,
   montserrat: $r-font-family-montserrat,
 );

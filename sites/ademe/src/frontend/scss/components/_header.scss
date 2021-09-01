@@ -2,30 +2,50 @@
 
 .topbar {
   $topbar-selector: &;
-  padding: 0; // NOTE: Remove useless padding
+  // NOTE: Remove useless padding
+  padding: 0;
 
   @include media-breakpoint-up($r-topbar-breakpoint) {
 
     &--over {
-      padding: 0; // NOTE: Remove useless padding
+      // NOTE: Remove useless padding
+      padding: 0;
     }
   }
 
   &__menu {
-    margin-top: 0; // NOTE: Remove useless top margin
+    // NOTE: Remove useless top margin
+    margin-top: 0;
+
+    &--aside {
+      // NOTE: Use the right font family
+      font-family: $r-font-family-montserrat;
+    }
   }
 
   &__item {
     & > a {
       @include media-breakpoint-up($r-topbar-breakpoint) {
-        padding: 0.75rem 0.9rem; // NOTE: Adjust padding
+        // NOTE: Adjust padding
+        padding: 0.75rem 0.9rem;
       }
     }
   }
 
-  // NOTE: A trick to move language selector under the header CTAs and aside the main
-  // menu without changing DOM structure and override template
+  .user-login__btn {
+    // NOTE: Adjust size according to the font family
+    font-size: 0.8rem;
+  }
+
   .richie-react--language-selector {
+    // NOTE: Adjust size according to the font family
+    .selector__button,
+    .selector__list__link {
+      font-size: 0.8rem;
+    }
+
+    // NOTE: A trick to move language selector under the header CTAs and aside the main
+    // menu without changing DOM structure and override template
     @include media-breakpoint-up($r-topbar-breakpoint) {
       position: absolute;
       bottom: 0;
