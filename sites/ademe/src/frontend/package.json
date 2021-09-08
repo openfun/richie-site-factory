@@ -1,6 +1,6 @@
 {
   "name": "ademe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Richie-powered CMS for www.mooc-batiment-durable.fr",
   "scripts": {
     "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
