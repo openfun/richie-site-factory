@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-09-08
+
 ### Changed
 
 - Configure Marsha video as LTI provider instead of "jisc.ac.uk" test platform
@@ -31,5 +33,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `ademe` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/ademe-0.1.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/ademe-0.2.0...HEAD
+[0.2.0]: https://github.com/openfun/richie-site-factory/compare/ademe-0.1.0...ademe-0.2.0
 [0.1.0]: https://github.com/openfun/richie-site-factory/releases/tag/ademe-0.1.0
