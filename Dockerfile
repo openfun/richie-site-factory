@@ -45,7 +45,7 @@ RUN mkdir /install && \
     # djangocms-admin-style should be removed when 2.0.3 will be released
     pip install --prefix=/install \ 
     git+https://github.com/jbpenrath/djangocms-admin-style@fun#egg=djangocms-admin-style \
-    git+https://github.com/jbpenrath/django-cms@fun-3.8.xr1#egg=django-cms
+    git+https://github.com/jbpenrath/django-cms@fun-3.9.0#egg=django-cms
 
 # ---- Core application image ----
 FROM base as core
