@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Upgrade richie to 2.8.0
 - Rename `LTI_TEST_*` settings to `LTI_*` as "TEST" does not make sense here
 
 ## [1.12.1] - 2021-06-08
