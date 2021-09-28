@@ -529,7 +529,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-funcampus
                 site: funcampus
             - lint-changelog:
