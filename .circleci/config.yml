@@ -467,7 +467,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-demo
                 site: demo
             - lint-changelog:
@@ -717,7 +717,7 @@ workflows:
                     tags:
                         only: /.*/
             - check-configuration:
-                ci_update_options: --ignore-changelog
+                ci_update_options: ""
                 filters:
                     branches:
                         ignore: master
