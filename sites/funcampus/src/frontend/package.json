@@ -36,10 +36,10 @@
     "richie-education": "2.8.1"
   },
   "devDependencies": {
-    "@formatjs/cli": "2.13.5",
-    "eslint": "7.10.0",
-    "nodemon": "2.0.6",
-    "prettier": "2.0.5",
-    "sass": "1.28.0"
+    "@formatjs/cli": "4.3.1",
+    "eslint": "7.32.0",
+    "nodemon": "2.0.13",
+    "prettier": "2.4.1",
+    "sass": "1.42.1"
   }
 }
