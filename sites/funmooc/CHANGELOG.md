@@ -14,6 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Remove `MARKETING_CONTEXT` and use `WEB_ANALYTICS_*` context instead
 - Upgrade richie to 2.8.1
 - Rename `LTI_TEST_*` settings to `LTI_*` as "TEST" does not make sense here
 

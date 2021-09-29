@@ -1,0 +1,49 @@
+{% extends "richie/web_analytics.html" %}
+{% load static %}
+{% block web_analytics %}
+    <!-- Bind privacy contexts to window object -->
+    <script type="text/javascript">
+        window.__funmooc_context__ = { privacy: JSON.parse('{{ PRIVACY_CONTEXT|safe }}') };
+    </script>
+
+    <!-- Load cookie consent -->
+    <script type="text/javascript" src="{% static 'richie/js/tarteaucitronjs/tarteaucitron.js' %}"></script>
+    <script type="text/javascript" src="{% static 'funmooc/js/tarteaucitron.js' %}"></script>
+
+    <!-- Load analytic tool if page is not draft -->
+    {% if WEB_ANALYTICS_ID and current_page.publisher_is_draft is not True %}
+        <!-- Bind analytics contexts to window object -->
+        <script type="text/javascript">
+            window.__funmooc_context__['analytics'] = {
+                "id": "{{ WEB_ANALYTICS_ID|safe }}",
+                "provider": "{{ WEB_ANALYTICS_PROVIDER|safe }}",
+                "dimensions": {
+                    "root_page_id": "{{current_page.node.get_root.pk|safe}}",
+                    {% for dimension_key, dimension_value_list in WEB_ANALYTICS_DIMENSIONS.items %}
+                        "{{dimension_key}}": "{{dimension_value_list|join:" | "|safe}}",
+                    {% endfor %}
+                },
+            };
+        </script>
+
+        {% if WEB_ANALYTICS_PROVIDER == "google_analytics" %}
+            <!-- Setup GTM -->
+            <script>
+                tarteaucitron.user.gtagUa = window.__funmooc_context__.analytics.id;
+                tarteaucitron.user.gtagMore = function () {
+                    var obj = {};
+                    dimensions = window.__funmooc_context__.analytics.dimensions;
+                    Object.keys(dimensions).forEach(function (key, index) {
+                        gtag('set', { ['dimension' + index]: dimensions[key] });
+                    });
+                };
+                tarteaucitron.job.push('gtag');
+            </script>
+        {% endif %}
+        
+        {% if WEB_ANALYTICS_PROVIDER == "xiti" %}
+            <!-- Setup AT Internet -->
+            <script type="text/javascript" src="{% static 'funmooc/js/xiti.js' %}"></script>
+        {% endif %}
+    {% endif %}
+{% endblock web_analytics %}

@@ -7,6 +7,7 @@ from django.test.utils import override_settings
 
 from richie.apps.core.factories import PageFactory, UserFactory
 from richie.apps.courses.factories import CourseFactory, OrganizationFactory
+from richie.apps.courses.models import Organization
 
 
 class ContextProcessorsTestCase(TestCase):
@@ -14,10 +15,10 @@ class ContextProcessorsTestCase(TestCase):
     Test suite for the context processors
     """
 
-    @override_settings(MARKETING_SITE_ID="123456")
+    @override_settings(WEB_ANALYTICS_ID="123456", WEB_ANALYTICS_PROVIDER="xiti")
     def test_context_processors_add_xiti_settings_if_exists(self):
         """
-        Create a page and make sure it includes the marketing context as included
+        Create a page and make sure it includes web analytics context as included
         in `base.html`.
         """
         page = PageFactory(
@@ -27,17 +28,17 @@ class ContextProcessorsTestCase(TestCase):
 
         response = self.client.get(page.get_public_url(), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '"xiti":')
-        self.assertContains(response, f'"level2": "{page.node.get_root().pk}"')
-        self.assertContains(response, '"site_id": "123456"')
+        self.assertContains(response, '"provider": "xiti"')
+        self.assertContains(response, '"id": "123456"')
+        self.assertContains(response, f'"root_page_id": "{page.node.get_root().pk}"')
 
-    @override_settings(MARKETING_SITE_ID=None)
+    @override_settings(WEB_ANALYTICS_ID=None)
     def test_context_processors_do_not_add_xiti_settings_if_marketing_site_id_is_not_defined(
         self,
     ):
         """
-        If MARKETING_SIDE_ID setting is not defined,
-        frontend context should contains an empty xiti object
+        If WEB_ANALYTICS_ID setting is not defined,
+        frontend context should contains analytics data
         """
         page = PageFactory(
             should_publish=True,
@@ -46,9 +47,11 @@ class ContextProcessorsTestCase(TestCase):
 
         response = self.client.get(page.get_public_url(), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '"xiti": {}')
+        self.assertNotContains(response, '"provider": "')
+        self.assertNotContains(response, '"id": "')
+        self.assertNotContains(response, f'"root_page_id": "{page.node.get_root().pk}"')
 
-    @override_settings(MARKETING_SITE_ID="123456")
+    @override_settings(WEB_ANALYTICS_ID="123456", WEB_ANALYTICS_PROVIDER="xiti")
     def test_context_processors_do_not_add_xiti_settings_if_page_is_draft(
         self,
     ):
@@ -66,19 +69,24 @@ class ContextProcessorsTestCase(TestCase):
 
         response = self.client.get(page.get_absolute_url(), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '"xiti": {}')
+        self.assertNotContains(response, '"provider": "xiti"')
+        self.assertNotContains(response, '"id": "123456"')
+        self.assertNotContains(response, f'"root_page_id": "{page.node.get_root().pk}"')
 
-    @override_settings(MARKETING_SITE_ID="123456")
+    @override_settings(WEB_ANALYTICS_ID="123456", WEB_ANALYTICS_PROVIDER="xiti")
     def test_context_processors_get_organizations_code(self):
         """
         If an organization is linked to the page or there are organization plugins on the page,
         marketing context should contains the code of these organizations
         """
-        organization = OrganizationFactory(should_publish=True)
-        course = CourseFactory(should_publish=True, fill_organizations=[organization])
+        organizations = OrganizationFactory.create_batch(2, should_publish=True)
+        course = CourseFactory(should_publish=True, fill_organizations=organizations)
 
         response = self.client.get(course.extended_object.get_public_url(), follow=True)
-        pattern = r'"organizations": \["{code:s}"\]'.format(code=organization.code)
+        organizations_codes = Organization.get_organizations_codes(
+            course.extended_object, "fr"
+        )
+        pattern = fr'"organizations_codes": "{" | ".join(list(organizations_codes))}"'
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(re.search(pattern, str(response.content)))
