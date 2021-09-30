@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.9.0] - 2021-09-30
+
 ### Added
 
 - Set Django Check SEO up
@@ -469,7 +471,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.8.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.9.0...HEAD
+[1.9.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.8.1...funmooc-1.9.0
 [1.8.1]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.8.0...funmooc-1.8.1
 [1.8.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.7.0...funmooc-1.8.0
 [1.7.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.6.1...funmooc-1.7.0
