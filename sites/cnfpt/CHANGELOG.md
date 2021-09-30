@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.8.0] - 2021-09-30
+
 ### Added
 
 - Set Django Check SEO up
@@ -231,7 +233,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.7.1...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.8.0...HEAD
+[1.8.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.7.1...cnfpt-1.8.0
 [1.7.1]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.7.0...cnfpt-1.7.1
 [1.7.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.6.0...cnfpt-1.7.0
 [1.6.0]: https://github.com/openfun/richie-site-factory/compare/cnfpt-1.5.0...cnfpt-1.6.0
