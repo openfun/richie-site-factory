@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-22 10:20+0200\n"
+"POT-Creation-Date: 2021-09-30 16:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr ""
 
-#: funcorporate/settings.py:310 funcorporate/settings.py:325
+#: funcorporate/settings.py:311 funcorporate/settings.py:326
 msgid "English"
 msgstr ""
 
-#: funcorporate/settings.py:310 funcorporate/settings.py:333
+#: funcorporate/settings.py:311 funcorporate/settings.py:334
 msgid "French"
 msgstr ""
 
-#: funcorporate/settings.py:343
+#: funcorporate/settings.py:344
 msgid "Teaser"
 msgstr ""
 
-#: funcorporate/settings.py:357
+#: funcorporate/settings.py:358
 msgid "Training domains"
 msgstr ""
 
-#: funcorporate/settings.py:370
+#: funcorporate/settings.py:371
 msgid "Organizations"
 msgstr ""
 
-#: funcorporate/settings.py:382
+#: funcorporate/settings.py:383
 msgid "Persons"
 msgstr "Teachers"
 
