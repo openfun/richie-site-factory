@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.12.0] - 2021-09-30
+
 ### Added
 
 - Set Django Check SEO up
@@ -202,7 +204,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.11.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.12.0...HEAD
+[1.12.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.11.0...funcampus-1.12.0
 [1.11.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.10.0...funcampus-1.11.0
 [1.10.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.9.0...funcampus-1.10.0
 [1.9.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.8.0...funcampus-1.9.0
