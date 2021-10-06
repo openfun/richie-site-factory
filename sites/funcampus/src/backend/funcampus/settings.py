@@ -316,7 +316,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Search
     RICHIE_FILTERS_CONFIGURATION = [
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Diplomas"),
                 "is_autocompletable": True,
@@ -329,7 +329,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Domains and mentions"),
                 "is_autocompletable": True,
@@ -342,7 +342,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Levels"),
                 "is_autocompletable": True,
@@ -355,7 +355,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Skills"),
                 "is_autocompletable": True,
