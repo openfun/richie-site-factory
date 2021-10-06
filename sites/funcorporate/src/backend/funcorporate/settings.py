@@ -353,7 +353,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Search
     RICHIE_FILTERS_CONFIGURATION = [
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Training domains"),
                 "is_autocompletable": True,
@@ -366,7 +366,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Organizations"),
                 "is_autocompletable": True,
