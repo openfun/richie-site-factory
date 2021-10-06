@@ -565,7 +565,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Subjects"),
                 "min_doc_count": 0,
