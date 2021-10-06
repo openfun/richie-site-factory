@@ -423,7 +423,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Types"),
                 "is_autocompletable": True,
@@ -436,7 +436,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Subjects"),
                 "is_autocompletable": True,
@@ -449,7 +449,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Collections"),
                 "is_autocompletable": True,
@@ -462,7 +462,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             },
         ),
         (
-            "richie.apps.search.filter_definitions.IndexableMPTTFilterDefinition",
+            "richie.apps.search.filter_definitions.IndexableHierarchicalFilterDefinition",
             {
                 "human_name": _("Organizations"),
                 "is_autocompletable": True,
