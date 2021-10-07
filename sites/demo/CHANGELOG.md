@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.14.0] - 2021-10-07
+
 ### Changed
 
 - Upgrade richie to 2.8.2
@@ -243,7 +245,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 First demo image for richie to 2.0.0-beta.7
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.13.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/demo-1.14.0...HEAD
+[1.14.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.13.0...demo-1.14.0
 [1.13.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.12.1...demo-1.13.0
 [1.12.1]: https://github.com/openfun/richie-site-factory/compare/demo-1.12.0...demo-1.12.1
 [1.12.0]: https://github.com/openfun/richie-site-factory/compare/demo-1.11.1...demo-1.12.0
