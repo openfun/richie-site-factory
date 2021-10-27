@@ -35,27 +35,15 @@ $neutral-gradient: linear-gradient(
   r-color('white') 14rem,
   r-color('white')
 );
-$light-gradient: linear-gradient(
-  to top,
-  r-color('duck-egg-blue') 4%,
-  r-color('white') 100%
-);
-$middle-gradient: linear-gradient(
-  272deg,
-  r-color('twilight') 0%,
-  r-color('berry') 99%
-);
-$dark-gradient: linear-gradient(
-  273deg,
-  r-color('twilight-two') 1%,
-  r-color('berry-two') 99%
-);
+$light-gradient: linear-gradient(to top, r-color('duck-egg-blue') 4%, r-color('white') 100%);
+$middle-gradient: linear-gradient(272deg, r-color('twilight') 0%, r-color('berry') 99%);
+$dark-gradient: linear-gradient(273deg, r-color('twilight-two') 1%, r-color('berry-two') 99%);
 $twilight-gradient: linear-gradient(
   to bottom,
-  rgba(r-color('berry'),0) 0%,
-  rgba(r-color('berry'),0) 24%,
-  rgba(r-color('twilight'),0.68) 76%,
-  rgba(r-color('twilight'),1) 100%
+  rgba(r-color('berry'), 0) 0%,
+  rgba(r-color('berry'), 0) 24%,
+  rgba(r-color('twilight'), 0.68) 76%,
+  rgba(r-color('twilight'), 1) 100%
 );
 $white-mask-gradient: (
   linear-gradient(
@@ -220,13 +208,12 @@ $white-mask-gradient-scheme: (
 
 // Theme schemes
 $r-theme: (
-  banner:
-    (
-      error: $berry-color-scheme,
-      warning: $twilight-color-scheme,
-      success: $azure-two-color-scheme,
-      info: $duck-egg-blue-color-scheme,
-    ),
+  banner: (
+    error: $berry-color-scheme,
+    warning: $twilight-color-scheme,
+    success: $azure-two-color-scheme,
+    info: $duck-egg-blue-color-scheme,
+  ),
   base-schemes: (
     primary: $berry-color-scheme,
     secondary: $azure-color-scheme,
@@ -428,6 +415,8 @@ $r-theme: (
     title-color: r-color('dark'),
     organization-color: r-color('berry'),
     organization-media-empty-background: r-color('white-three'),
+    organization-shadow: 0 0 6px r-color('light-grey'),
+    code-color: r-color('battleship-grey'),
     svg-icon-fill: r-color('white'),
     footer: $azure-two-color-scheme,
   ),
@@ -500,7 +489,7 @@ $r-theme: (
     title-color: r-color('black'),
     content-color: r-color('battleship-grey'),
     icon-color: r-color('dark'),
-   ),
+  ),
   row_half-glimpse: (
     base-background: r-color('white'),
     divider-color: r-color('berry'),
@@ -543,8 +532,7 @@ $r-theme: (
   ),
   category-detail: (
     empty-background: r-color('white-three'),
-    insert-background-image:
-      url('../../richie/images/components/wave-white.svg'),
+    insert-background-image: url('../../richie/images/components/wave-white.svg'),
     logo-background: r-color('white'),
     logo-border: r-color('light-grey'),
     logo-shadow: 0 0.25rem 1.5625rem r-color('battleship-grey'),
@@ -561,13 +549,11 @@ $r-theme: (
     run-descriptions-divider: r-color('light-grey'),
     plan-title-color: r-color('berry'),
     license-label-color: r-color('ocean-blue'),
-    checkmark-list-decoration:
-      url('../../richie/images/components/checkmark.svg'),
+    checkmark-list-decoration: url('../../richie/images/components/checkmark.svg'),
   ),
   organization-detail: (
     banner-empty-background: r-color('white-three'),
-    insert-background-image:
-      url('../../richie/images/components/wave-white.svg'),
+    insert-background-image: url('../../richie/images/components/wave-white.svg'),
     logo-border: r-color('light-grey'),
     logo-shadow: 0 0.25rem 1.5625rem r-color('battleship-grey'),
     intro-title: r-color('berry'),
@@ -636,5 +622,5 @@ $r-theme: (
   ),
   spinner: (
     base-color: r-color('azure'),
-  )
+  ),
 );
