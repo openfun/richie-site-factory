@@ -39,19 +39,15 @@ $light-gradient: linear-gradient(
   79deg,
   r-color('robin-egg-blue') 0%,
   r-color('robin-egg-blue') 10%,
-  r-color('turquoise-blue') 56%,
+  r-color('turquoise-blue') 56%
 );
 $middle-gradient: linear-gradient(
   271deg,
   r-color('turquoise-blue') 0%,
   r-color('ocean-blue') 59%,
-  r-color('darkish-blue') 99%,
+  r-color('darkish-blue') 99%
 );
-$dark-gradient: linear-gradient(
-  295deg,
-  r-color('darkish-blue') 1%,
-  r-color('ocean-blue') 96%,
-);
+$dark-gradient: linear-gradient(295deg, r-color('darkish-blue') 1%, r-color('ocean-blue') 96%);
 $white-mask-gradient: (
   linear-gradient(
     to right,
@@ -202,13 +198,12 @@ $clear-red-scheme: (
 
 // Theme schemes
 $r-theme: (
-  banner:
-    (
-      error: $lipstick-scheme,
-      warning: $indianred3-scheme,
-      success: $lightest-scheme,
-      info: $light-scheme,
-    ),
+  banner: (
+    error: $lipstick-scheme,
+    warning: $indianred3-scheme,
+    success: $lightest-scheme,
+    info: $light-scheme,
+  ),
   base-schemes: (
     primary: $lipstick-scheme,
     secondary: $ocean-blue-scheme,
@@ -234,8 +229,7 @@ $r-theme: (
     dark-gradient: $dark-gradient,
     white-mask-gradient: $white-mask-gradient,
   ),
-  cookie-consent:
-  (
+  cookie-consent: (
     base-background: r-color('darkish-blue'),
     cta-allow: r-color('ocean-blue'),
     cta-deny: r-color('indianred3'),
@@ -414,8 +408,10 @@ $r-theme: (
     content-color: r-color('brownish-grey'),
     title-color: r-color('black'),
     organization-color: r-color('lipstick'),
+    code-color: r-color('brownish-grey'),
     organization-media-empty-background: r-color('white-three'),
-    svg-icon-fill: r-color('white'),
+    organization-shadow: 0 0 6px r-color('light-grey'),
+    svg-icon-fill: r-color('red'),
     footer: $lipstick-scheme,
   ),
   category-badges: (
@@ -527,8 +523,7 @@ $r-theme: (
   ),
   category-detail: (
     empty-background: r-color('white-three'),
-    insert-background-image:
-      url('../../richie/images/components/wave-white.svg'),
+    insert-background-image: url('../../richie/images/components/wave-white.svg'),
     logo-background: r-color('white'),
     logo-border: r-color('light-grey'),
     logo-shadow: 0 0.25rem 1.5625rem r-color('brownish-grey'),
@@ -545,13 +540,11 @@ $r-theme: (
     run-descriptions-divider: r-color('light-grey'),
     plan-title-color: r-color('lipstick'),
     license-label-color: r-color('ocean-blue'),
-    checkmark-list-decoration:
-      url('../../richie/images/components/checkmark.svg'),
+    checkmark-list-decoration: url('../../richie/images/components/checkmark.svg'),
   ),
   organization-detail: (
     banner-empty-background: r-color('white-three'),
-    insert-background-image:
-      url('../../richie/images/components/wave-white.svg'),
+    insert-background-image: url('../../richie/images/components/wave-white.svg'),
     logo-border: r-color('light-grey'),
     logo-shadow: 0 0.25rem 1.5625rem r-color('brownish-grey'),
     intro-title: r-color('lipstick'),
@@ -620,5 +613,5 @@ $r-theme: (
   ),
   spinner: (
     base-color: r-color('ocean-blue'),
-  )
+  ),
 );
