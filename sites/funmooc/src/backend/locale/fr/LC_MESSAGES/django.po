@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-30 16:28+0200\n"
+"POT-Creation-Date: 2021-11-03 18:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,47 +45,47 @@ msgstr "Compte"
 msgid "{base_url:s}/account/settings"
 msgstr ""
 
-#: funmooc/settings.py:308
+#: funmooc/settings.py:316
 msgid "Teaser"
 msgstr "Accroche"
 
-#: funmooc/settings.py:388 funmooc/settings.py:392
+#: funmooc/settings.py:397 funmooc/settings.py:401
 msgid "New courses"
 msgstr "Nouveaux cours"
 
-#: funmooc/settings.py:403
+#: funmooc/settings.py:412
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: funmooc/settings.py:413
+#: funmooc/settings.py:422
 msgid "Languages"
 msgstr "Langues"
 
-#: funmooc/settings.py:428
+#: funmooc/settings.py:437
 msgid "Types"
 msgstr ""
 
-#: funmooc/settings.py:441
+#: funmooc/settings.py:450
 msgid "Subjects"
 msgstr "Thématiques"
 
-#: funmooc/settings.py:454
+#: funmooc/settings.py:463
 msgid "Collections"
 msgstr "Collections"
 
-#: funmooc/settings.py:467
+#: funmooc/settings.py:476
 msgid "Organizations"
 msgstr "Établissements"
 
-#: funmooc/settings.py:480
+#: funmooc/settings.py:489
 msgid "Contributors"
 msgstr "Contributeurs"
 
-#: funmooc/settings.py:500 funmooc/settings.py:515
+#: funmooc/settings.py:509 funmooc/settings.py:524
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:500 funmooc/settings.py:523
+#: funmooc/settings.py:509 funmooc/settings.py:532
 msgid "French"
 msgstr "Français"
 
