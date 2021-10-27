@@ -298,6 +298,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "django.contrib.sitemaps",
         "django.contrib.staticfiles",
         "django.contrib.messages",
+        "django.contrib.humanize",
     )
 
     # Languages
@@ -309,6 +310,13 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     # Use "en" as default as it is the language that is most likely to be spoken by any visitor
     # when their preferred language, whatever it is, is unavailable
     LANGUAGES = (("en", _("English")), ("fr", _("French")))
+
+    # CMS
+    # Minimum enrollment count value that would be shown on course detail page
+    RICHIE_MINIMUM_COURSE_RUNS_ENROLLMENT_COUNT = values.Value(
+        environ_name="RICHIE_MINIMUM_COURSE_RUNS_ENROLLMENT_COUNT",
+        environ_prefix=None,
+    )
 
     # - Django CMS
     CMS_LANGUAGES = {
