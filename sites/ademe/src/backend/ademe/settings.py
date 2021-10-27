@@ -266,6 +266,14 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
     ]
     RICHIE_COURSE_RUN_SYNC_SECRETS = values.ListValue([])
 
+    # CMS
+    # Minimum enrollment count value that would be shown on course detail page
+    RICHIE_MINIMUM_COURSE_RUNS_ENROLLMENT_COUNT = values.Value(
+        0,
+        environ_name="RICHIE_MINIMUM_COURSE_RUNS_ENROLLMENT_COUNT",
+        environ_prefix=None,
+    )
+
     # Internationalization
     TIME_ZONE = "Europe/Paris"
     USE_I18N = True
@@ -379,6 +387,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "django.contrib.sitemaps",
         "django.contrib.staticfiles",
         "django.contrib.messages",
+        "django.contrib.humanize",
     )
 
     # Languages
