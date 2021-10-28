@@ -18,7 +18,6 @@ hub:
         site: << parameters.site >>
     # Activate docker-in-docker (with layers caching enabled)
     - setup_remote_docker:
-        docker_layer_caching: true
         version: 19.03.13
     - run:
         name: Build docker images
@@ -26,9 +25,9 @@ hub:
     - run:
         name: Check built image availability
         command: |
-            docker images "<< parameters.image_name >>:development"
-            docker images "<< parameters.image_name >>:production"
-            docker images "<< parameters.image_name >>-nginx:production"
+          docker images "<< parameters.image_name >>:development"
+          docker images "<< parameters.image_name >>:production"
+          docker images "<< parameters.image_name >>-nginx:production"
     - run:
         name: Check version.json file
         command: make ci-version
@@ -50,9 +49,9 @@ hub:
     # DockerHub repository already exists.
     - when:
         condition:
-            or:
-              - << pipeline.git.tag >>
-              - equal:
+          or:
+            - << pipeline.git.tag >>
+            - equal:
                 - << pipeline.git.branch >>
                 - master
         steps:
