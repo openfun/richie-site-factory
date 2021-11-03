@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Increase max length of `course_description` placeholder to 2000 characters
 - Upgrade richie to 2.9.1
 
 ## [0.4.0] - 2021-10-07
