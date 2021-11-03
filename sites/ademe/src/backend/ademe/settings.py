@@ -321,6 +321,15 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         },
     }
 
+    RICHIE_SIMPLETEXT_CONFIGURATION = [
+        {
+            "placeholders": ["course_description"],
+            "ckeditor": "CKEDITOR_LIMITED_CONFIGURATION",
+            "max_length": 2000,
+        },
+        *RichieCoursesConfigurationMixin.RICHIE_SIMPLETEXT_CONFIGURATION,
+    ]
+
     MIDDLEWARE = (
         "richie.apps.core.cache.LimitBrowserCacheTTLHeaders",
         "cms.middleware.utils.ApphookReloadMiddleware",
