@@ -12,5 +12,5 @@ pytest-django==4.1.0
 raincoat==1.0.1
 
 # Testing html
-lxml==4.6.3
+lxml==4.6.5
 cssselect==1.1.0
