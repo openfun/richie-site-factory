@@ -17,12 +17,12 @@ ORGANIZATION_KEY_PATTERN = r"(?P<organization>[^\/]*)"
 
 urlpatterns = [
     re_path(
-        r"courses/{}/about/?$".format(COURSE_KEY_PATTERN),
+        r".*courses/{}/about/?$".format(COURSE_KEY_PATTERN),
         redirect_edx_resources,
         name="redirect_edx_courses",
     ),
     re_path(
-        r"universities/{}/?$".format(ORGANIZATION_KEY_PATTERN),
+        r".*universities/{}/?$".format(ORGANIZATION_KEY_PATTERN),
         redirect_edx_resources,
         name="redirect_edx_courses",
     ),
