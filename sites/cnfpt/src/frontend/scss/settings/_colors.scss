@@ -435,6 +435,22 @@ $r-theme: (
     secondary-item: $ocean-blue-scheme,
     tertiary-item: $duck-egg-blue-color-scheme,
   ),
+  form: (
+    input-placeholder: r-color('grey32'),
+    input-color: r-color('charcoal'),
+    input-color-error: r-color('firebrick6'),
+    input-border: r-color('grey32'),
+    input-border-error: r-color('firebrick6'),
+    input-border-focus: r-color('azure'),
+    input-outline: rgba(r-color('azure'), 0.5),
+    input-checked-background: r-color('firebrick6'),
+    input-unchecked-background: transparent,
+    input-unchecked-border: r-color('grey32'),
+    input-checked-border: transparent,
+    input-checked-color: r-color('white'),
+    input-unchecked-color: transparent,
+    message-color: r-color('grey32'),
+  ),
   organization-glimpse-list: (
     empty-color: r-color('battleship-grey'),
     empty-background: transparent,
@@ -622,5 +638,6 @@ $r-theme: (
   ),
   spinner: (
     base-color: r-color('azure'),
+    base-color-light: r-color('white'),
   ),
 );
