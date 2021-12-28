@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Upgrade stylesheets to handle new modal styles.
+
 ## [1.11.0] - 2021-12-27
 
 ### Changed
