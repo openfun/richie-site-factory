@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.16.0] - 2022-01-04
+
 ### Changed
 
 - Link footer logo to our new institutional site
@@ -231,7 +233,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - First `funcampus` image
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.15.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.16.0...HEAD
+[1.16.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.15.0...funcampus-1.16.0
 [1.15.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.14.0...funcampus-1.15.0
 [1.14.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.13.0...funcampus-1.14.0
 [1.13.0]: https://github.com/openfun/richie-site-factory/compare/funcampus-1.12.0...funcampus-1.13.0
