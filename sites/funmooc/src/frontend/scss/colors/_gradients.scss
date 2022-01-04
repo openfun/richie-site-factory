@@ -1,0 +1,38 @@
+// Named gradients
+// ---------
+$neutral-gradient: linear-gradient(
+  to top,
+  r-color('silver') 0,
+  r-color('white-three') 13rem,
+  r-color('white') 14rem,
+  r-color('white')
+);
+$light-gradient: linear-gradient(
+  79deg,
+  r-color('robin-egg-blue') 0%,
+  r-color('robin-egg-blue') 10%,
+  r-color('turquoise-blue') 56%
+);
+$middle-gradient: linear-gradient(
+  271deg,
+  r-color('turquoise-blue') 0%,
+  r-color('ocean-blue') 59%,
+  r-color('darkish-blue') 99%
+);
+$dark-gradient: linear-gradient(295deg, r-color('darkish-blue') 1%, r-color('ocean-blue') 96%);
+$white-mask-gradient: (
+  linear-gradient(
+    to right,
+    r-color('white') 0%,
+    rgba(r-color('white'), 0.85) 15%,
+    rgba(r-color('white'), 0.15) 60%,
+    rgba(r-color('white'), 0) 70%
+  ),
+  linear-gradient(
+    to left,
+    r-color('white') 0%,
+    rgba(r-color('white'), 0.85) 15%,
+    rgba(r-color('white'), 0.15) 60%,
+    rgba(r-color('white'), 0) 70%
+  )
+);
