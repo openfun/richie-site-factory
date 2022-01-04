@@ -22,3 +22,10 @@
 {% block body_footer_title %}{% endblock body_footer_title %}
 
 {% block body_js %}{% endblock body_js %}
+
+{% block body_footer_brand %}
+{# Change the link to point to our institutional site #}
+<a href="{% trans "https://www.france-universite-numerique.fr/en/" %}">
+    <img src="{% static "richie/images/logo-alt.png" %}" alt="">
+</a>
+{% endblock body_footer_brand %}
