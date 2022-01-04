@@ -10,6 +10,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Link footer logo to our new institutional site
 - Upgrade richie to 2.11.0
 
 ### Fixed
