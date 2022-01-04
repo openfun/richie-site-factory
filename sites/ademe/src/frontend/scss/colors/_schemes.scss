@@ -1,0 +1,138 @@
+// Basic color schemes
+$dark-aquamarine-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('dark-aquamarine'),
+  hover-font-color: r-color('white'),
+);
+$burnt-orange-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('burnt-orange'),
+  border-color: r-color('burnt-orange'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('burnt-orange'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('burnt-orange'), $lightness: -10%),
+);
+$pumpkin-orange-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('pumpkin-orange'),
+  border-color: r-color('pumpkin-orange'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('pumpkin-orange'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('pumpkin-orange'), $lightness: -10%),
+);
+$white-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('dark'),
+  h2-color: r-color('dark'),
+  svg-color: r-color('dark'),
+  background: r-color('white'),
+  hover-font-color: r-color('burnt-orange'),
+  hover-background: darken(r-color('white'), 8%),
+);
+$topaz-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('topaz'),
+  border-color: r-color('topaz'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('topaz'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('topaz'), $lightness: -10%),
+);
+$light-teal-scheme: (
+  font-color: r-color('dark-aquamarine'),
+  link-color: r-color('dark-aquamarine'),
+  svg-color: r-color('dark-aquamarine'),
+  background: r-color('light-teal'),
+  border-color: r-color('light-teal'),
+  hover-font-color: r-color('dark-aquamarine'),
+  hover-svg-color: r-color('dark-aquamarine'),
+  hover-background: scale-color(r-color('light-teal'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('light-teal'), $lightness: -10%),
+);
+$tealish-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('tealish'),
+  border-color: r-color('tealish'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-border-color: r-color('white'),
+);
+$peppermint-scheme: (
+  font-color: r-color('dark-aquamarine'),
+  h1-color: r-color('dark-aquamarine'),
+  h2-color: r-color('dark-aquamarine'),
+  svg-color: r-color('dark-aquamarine'),
+  background: r-color('white'),
+  hover-font-color: r-color('tealish'),
+  hover-background: darken(r-color('white'), 8%),
+);
+$transparent-clear-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: transparent,
+  border-color: r-color('white'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: rgba(r-color('white'), 0.3),
+);
+$light-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('black-two'),
+  h2-color: r-color('black-two'),
+  svg-color: r-color('dark'),
+  background: r-color('silver'),
+  hover-font-color: r-color('dark-aquamarine'),
+  hover-background: r-color('battleship-grey'),
+);
+$lightest-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('black-two'),
+  h2-color: r-color('black-two'),
+  svg-color: r-color('dark'),
+  background: r-color('pale-grey'),
+  hover-font-color: r-color('topaz'),
+  hover-background: r-color('battleship-grey'),
+);
+$clouds-scheme: (
+  background: bottom center / 100% 100% no-repeat r-color('white')
+    url('../../richie/images/components/clouds.png'),
+);
+$neutral-gradient-scheme: (
+  font-color: r-color('black-two'),
+  svg-color: r-color('black-two'),
+  background: $neutral-gradient,
+);
+$light-gradient-scheme: (
+  font-color: r-color('dark'),
+  svg-color: r-color('dark'),
+  background: $light-gradient,
+  hover-font-color: r-color('dark'),
+);
+$middle-gradient-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $middle-gradient,
+  hover-font-color: r-color('white'),
+);
+$tealish-gradient-scheme: (
+  h1-color: r-color('white'),
+  h2-color: r-color('white'),
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $tealish-gradient,
+  hover-font-color: r-color('white'),
+);
+$dark-gradient-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $dark-gradient,
+  hover-font-color: r-color('white'),
+);

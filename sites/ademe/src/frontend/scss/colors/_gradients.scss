@@ -1,0 +1,22 @@
+// Named gradients
+// ---------
+$neutral-gradient: linear-gradient(
+  to top,
+  r-color('silver') 0,
+  r-color('white-three') 13rem,
+  r-color('white') 14rem,
+  r-color('white')
+);
+$light-gradient: linear-gradient(
+  to top,
+  r-color('light-teal'),
+  r-color('white') 14rem,
+  r-color('white')
+);
+$middle-gradient: linear-gradient(
+  272deg,
+  r-color('dark-aquamarine') 0%,
+  r-color('dark-aquamarine') 99%
+); // seems unused, so fake it
+$dark-gradient: linear-gradient(273deg, r-color('topaz') 1%, r-color('dark-aquamarine') 99%);
+$tealish-gradient: linear-gradient(to left, r-color('tealish'), r-color('light-teal'));
