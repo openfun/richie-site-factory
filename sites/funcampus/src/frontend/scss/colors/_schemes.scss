@@ -1,0 +1,152 @@
+// Basic color schemes
+// ---------
+$orange-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('light-grey'),
+  svg-color: r-color('white'),
+  background: r-color('orange'),
+  hover-font-color: r-color('white'),
+  hover-background: adjust-color(r-color('orange'), $lightness: -10%),
+);
+$firebrick6-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('light-grey'),
+  svg-color: r-color('white'),
+  background: r-color('firebrick6'),
+  hover-font-color: r-color('white'),
+  hover-background: adjust-color(r-color('firebrick6'), $lightness: -10%),
+);
+$dodgerblue4-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('mediumturquoise'),
+  svg-color: r-color('white'),
+  background: r-color('dodgerblue4'),
+  hover-font-color: r-color('denim'),
+  hover-background: adjust-color(r-color('mediumturquoise'), $lightness: 8%),
+);
+$cerulean-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('light-grey'),
+  svg-color: r-color('white'),
+  background: r-color('cerulean'),
+  hover-font-color: r-color('white'),
+  hover-background: r-color('mediumturquoise'),
+);
+$navy-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('mediumturquoise'),
+  svg-color: r-color('white'),
+  background: r-color('navy'),
+  hover-font-color: r-color('denim'),
+  hover-background: adjust-color(r-color('mediumturquoise'), $lightness: 8%),
+);
+$blue-green-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('light-grey'),
+  svg-color: r-color('white'),
+  background: r-color('blue-green'),
+  hover-font-color: r-color('white'),
+  hover-background: r-color('mediumturquoise'),
+);
+$denim-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('mediumturquoise'),
+  svg-color: r-color('white'),
+  background: r-color('denim'),
+  hover-font-color: r-color('white'),
+  hover-background: lighten(r-color('denim'), 8%),
+);
+$mediumturquoise-scheme: (
+  font-color: r-color('denim'),
+  svg-color: r-color('denim'),
+  background: r-color('mediumturquoise'),
+  hover-font-color: r-color('denim'),
+  hover-background: lighten(r-color('mediumturquoise'), 8%),
+);
+$white-scheme: (
+  font-color: r-color('black'),
+  h1-color: r-color('dark-grey'),
+  h2-color: r-color('dark-grey'),
+  svg-color: r-color('black'),
+  background: r-color('white'),
+  hover-font-color: r-color('orange'),
+  hover-background: darken(r-color('white'), 8%),
+);
+$light-grey-scheme: (
+  font-color: r-color('black'),
+  h1-color: r-color('dark-grey'),
+  h2-color: r-color('dark-grey'),
+  svg-color: r-color('black'),
+  background: r-color('light-grey'),
+  hover-font-color: r-color('blue-green'),
+  hover-background: r-color('battleship-grey'),
+);
+$azure2: (
+  font-color: r-color('black'),
+  h1-color: r-color('dark-grey'),
+  h2-color: r-color('dark-grey'),
+  svg-color: r-color('black'),
+  background: r-color('azure2'),
+  hover-font-color: r-color('blue-green'),
+  hover-background: r-color('battleship-grey'),
+);
+$clouds-scheme: (
+  background: bottom left / 100% 70% no-repeat r-color('smoke')
+    url('../../richie/images/components/clouds.jpg'),
+);
+$transparent-white-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: transparent,
+  border-color: r-color('white'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: rgba(r-color('white'), 0.3),
+);
+$transparent-dark-scheme: (
+  font-color: r-color('black'),
+  h1-color: r-color('dark-grey'),
+  h2-color: r-color('dark-grey'),
+  link-color: r-color('orange'),
+  svg-color: r-color('black'),
+  background: transparent,
+  border-color: r-color('black'),
+  hover-font-color: r-color('orange'),
+  hover-svg-color: r-color('orange'),
+  hover-border-color: r-color('orange'),
+);
+$neutral-gradient-scheme: (
+  font-color: r-color('dark-grey'),
+  link-color: r-color('orange'),
+  svg-color: r-color('dark-grey'),
+  background: $neutral-gradient,
+);
+$greeny-gradient-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $greeny-gradient,
+  hover-font-color: r-color('white'),
+);
+$middle-gradient-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $middle-gradient,
+  hover-font-color: r-color('white'),
+);
+$dark-gradient-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $dark-gradient,
+  hover-font-color: r-color('white'),
+);
+$white-mask-gradient-scheme: (
+  font-color: r-color('black'),
+  h1-color: r-color('dark-grey'),
+  h2-color: r-color('dark-grey'),
+  svg-color: r-color('black'),
+  background: $white-mask-gradient,
+  hover-font-color: r-color('orange'),
+);
