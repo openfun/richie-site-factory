@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.16.0] - 2022-01-04
+
 ### Changed
 
 - Link footer logo to our new institutional site
@@ -295,7 +297,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Update project urls to add styleguide and account views.
 - Update layout color theme and logo to fit fun-corporate mockups.
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.15.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.16.0...HEAD
+[1.16.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.15.0...funcorporate-1.16.0
 [1.15.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.14.0...funcorporate-1.15.0
 [1.14.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.13.0...funcorporate-1.14.0
 [1.13.0]: https://github.com/openfun/richie-site-factory/compare/funcorporate-1.12.0...funcorporate-1.13.0
