@@ -1,6 +1,6 @@
 {
   "name": "funcorporate",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "description": "The future www.fun-corporate.fr website based on https://github.com/openfun/richie",
   "scripts": {
     "build-ts": "webpack --config node_modules/richie-education/webpack.config.js --output-path ../backend/base/static/richie/js/build --env richie-dependent-build --env richie-settings=overrides.json",
