@@ -1,0 +1,143 @@
+// Basic color schemes
+$cerulean-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('cerulean'),
+  border-color: r-color('cerulean'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('cerulean'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('cerulean'), $lightness: -10%),
+);
+$duck-egg-blue-color-scheme: (
+  font-color: r-color('twilight'),
+  link-color: r-color('twilight'),
+  svg-color: r-color('twilight'),
+  background: r-color('duck-egg-blue'),
+  border-color: r-color('duck-egg-blue'),
+  hover-font-color: r-color('twilight'),
+  hover-svg-color: r-color('twilight'),
+  hover-background: scale-color(r-color('duck-egg-blue'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('duck-egg-blue'), $lightness: -10%),
+);
+$berry-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('berry'),
+  border-color: r-color('berry'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('berry'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('berry'), $lightness: -10%),
+);
+$azure-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('azure'),
+  border-color: r-color('azure'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('azure'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('azure'), $lightness: -10%),
+);
+$azure-two-color-scheme: (
+  font-color: r-color('dark-blue-grey'),
+  link-color: r-color('dark-blue-grey'),
+  svg-color: r-color('dark-blue-grey'),
+  background: r-color('azure-two'),
+  border-color: r-color('azure-two'),
+  hover-font-color: r-color('dark-blue-grey'),
+  hover-svg-color: r-color('dark-blue-grey'),
+  hover-background: scale-color(r-color('azure-two'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('azure-two'), $lightness: -10%),
+);
+$transparent-berry-scheme: (
+  font-color: r-color('berry'),
+  svg-color: r-color('berry'),
+  background: transparent,
+  border-color: r-color('berry'),
+  hover-font-color: r-color('twilight'),
+  hover-svg-color: r-color('twilight'),
+  hover-border-color: r-color('twilight'),
+);
+$ocean-blue-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('berry'),
+  svg-color: r-color('white'),
+  background: r-color('ocean-blue'),
+  hover-font-color: r-color('white'),
+  hover-background: scale-color(r-color('ocean-blue'), $lightness: -10%),
+);
+$white-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('dark'),
+  h2-color: r-color('dark'),
+  svg-color: r-color('dark'),
+  background: r-color('white'),
+  hover-font-color: r-color('berry'),
+  hover-background: darken(r-color('white'), 8%),
+);
+$light-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('black-two'),
+  h2-color: r-color('black-two'),
+  svg-color: r-color('dark'),
+  background: r-color('light-grey'),
+  hover-font-color: r-color('cerulean'),
+  hover-background: r-color('battleship-grey'),
+);
+$lightest-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('black-two'),
+  h2-color: r-color('black-two'),
+  svg-color: r-color('dark'),
+  background: r-color('pale-grey'),
+  hover-font-color: r-color('cerulean'),
+  hover-background: r-color('battleship-grey'),
+);
+$neutral-gradient-scheme: (
+  font-color: r-color('black-two'),
+  svg-color: r-color('black-two'),
+  background: $neutral-gradient,
+);
+$light-gradient-scheme: (
+  font-color: r-color('twilight'),
+  link-color: r-color('twilight'),
+  svg-color: r-color('twilight'),
+  background: $light-gradient,
+  hover-font-color: r-color('twilight'),
+);
+$middle-gradient-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $middle-gradient,
+  hover-font-color: r-color('white'),
+);
+$dark-gradient-scheme: (
+  font-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: $dark-gradient,
+  hover-font-color: r-color('white'),
+);
+$twilight-color-scheme: (
+  font-color: r-color('white'),
+  link-color: r-color('white'),
+  svg-color: r-color('white'),
+  background: r-color('twilight'),
+  border-color: r-color('twilight'),
+  hover-font-color: r-color('white'),
+  hover-svg-color: r-color('white'),
+  hover-background: scale-color(r-color('twilight'), $lightness: -10%),
+  hover-border-color: scale-color(r-color('twilight'), $lightness: -10%),
+);
+$white-mask-gradient-scheme: (
+  font-color: r-color('dark'),
+  h1-color: r-color('dark'),
+  h2-color: r-color('dark'),
+  svg-color: r-color('dark'),
+  background: $white-mask-gradient,
+  hover-font-color: r-color('berry'),
+);
