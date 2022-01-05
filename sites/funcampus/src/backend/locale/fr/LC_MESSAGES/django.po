@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-30 16:21+0200\n"
+"POT-Creation-Date: 2022-01-05 09:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,27 +25,27 @@ msgstr "Les téléchargements non classés sont interdits"
 msgid "Teaser"
 msgstr "Accroche"
 
-#: funcampus/settings.py:321
+#: funcampus/settings.py:322
 msgid "Diplomas"
 msgstr "Diplômes"
 
-#: funcampus/settings.py:334
+#: funcampus/settings.py:335
 msgid "Domains and mentions"
 msgstr "Domaines et mentions"
 
-#: funcampus/settings.py:347
+#: funcampus/settings.py:348
 msgid "Levels"
 msgstr "Niveaux"
 
-#: funcampus/settings.py:360
+#: funcampus/settings.py:361
 msgid "Skills"
 msgstr "Compétences"
 
-#: funcampus/settings.py:380 funcampus/settings.py:395
+#: funcampus/settings.py:381 funcampus/settings.py:403
 msgid "English"
 msgstr "Anglais"
 
-#: funcampus/settings.py:380 funcampus/settings.py:403
+#: funcampus/settings.py:381 funcampus/settings.py:411
 msgid "French"
 msgstr "Français"
 
@@ -65,6 +65,10 @@ msgstr "Mon compte"
 #: templates/richie/base.html:28
 msgid "Courses that enrich academic education"
 msgstr "Des formations pour enrichir les cursus"
+
+#: templates/richie/base.html:33
+msgid "https://www.france-universite-numerique.fr/en/"
+msgstr "https://www.france-universite-numerique.fr/fr/"
 
 #: templates/social-networks/blogpost-badges.html:3
 #, python-format
