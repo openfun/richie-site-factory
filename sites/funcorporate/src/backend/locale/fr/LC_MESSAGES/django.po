@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-30 16:25+0200\n"
+"POT-Creation-Date: 2022-01-05 09:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funcorporate/settings.py:311 funcorporate/settings.py:326
+#: funcorporate/settings.py:312 funcorporate/settings.py:334
 msgid "English"
 msgstr "Anglais"
 
-#: funcorporate/settings.py:311 funcorporate/settings.py:334
+#: funcorporate/settings.py:312 funcorporate/settings.py:342
 msgid "French"
 msgstr "Français"
 
-#: funcorporate/settings.py:344
+#: funcorporate/settings.py:352
 msgid "Teaser"
 msgstr "Accroche"
 
-#: funcorporate/settings.py:358
+#: funcorporate/settings.py:366
 msgid "Training domains"
 msgstr "Domaines de formation"
 
-#: funcorporate/settings.py:371
+#: funcorporate/settings.py:379
 msgid "Organizations"
 msgstr "Établissements"
 
-#: funcorporate/settings.py:383
+#: funcorporate/settings.py:391
 msgid "Persons"
 msgstr "Professeurs"
 
@@ -60,6 +60,10 @@ msgstr "Mon compte"
 #: templates/richie/base.html:30
 msgid "Learning to develop skills!"
 msgstr "Des formations pour développer des compétences !"
+
+#: templates/richie/base.html:35
+msgid "https://www.france-universite-numerique.fr/en/"
+msgstr "https://www.france-universite-numerique.fr/fr/"
 
 #: templates/social-networks/blogpost-badges.html:3
 #, python-format
