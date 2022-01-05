@@ -29,3 +29,10 @@
 {% block body_footer_title %}
     <p class="body-footer__title">{% trans "Learning to develop skills!" %}</p>
 {% endblock body_footer_title %}
+
+{% block body_footer_brand %}
+{# Change the link to point to our institutional site #}
+<a href="{% trans "https://www.france-universite-numerique.fr/en/" %}">
+    <img src="{% static "richie/images/logo-alt.png" %}" alt="">
+</a>
+{% endblock body_footer_brand %}
