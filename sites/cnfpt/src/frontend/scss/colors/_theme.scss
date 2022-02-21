@@ -358,6 +358,10 @@ $r-theme: (
     plan-title-color: r-color('berry'),
     license-label-color: r-color('ocean-blue'),
     checkmark-list-decoration: url('../../richie/images/components/checkmark.svg'),
+    view-more-runs-color: r-color('berry'),
+    run-catalog-visibility-hidden-logo: url('../../richie/images/catalog_visibility/hidden.svg'),
+    run-catalog-visibility-course-only-logo: url('../../richie/images/catalog_visibility/course_only.svg'),
+    run-catalog-visibility-logo-color: r-color('ocean-blue'),
   ),
   organization-detail: (
     banner-empty-background: r-color('white-three'),
