@@ -86,7 +86,7 @@ class ContextProcessorsTestCase(TestCase):
         organizations_codes = Organization.get_organizations_codes(
             course.extended_object, "fr"
         )
-        pattern = fr'"organizations_codes": "{" | ".join(list(organizations_codes))}"'
+        pattern = rf'"organizations_codes": "{" | ".join(list(organizations_codes))}"'
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(re.search(pattern, str(response.content)))
