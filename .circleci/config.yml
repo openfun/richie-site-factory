@@ -652,7 +652,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-funmooc
                 site: funmooc
             - lint-changelog:
@@ -716,7 +716,7 @@ workflows:
                     tags:
                         only: /.*/
             - check-configuration:
-                ci_update_options: --ignore-changelog
+                ci_update_options: ""
                 filters:
                     branches:
                         ignore: master

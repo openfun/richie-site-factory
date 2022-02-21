@@ -62,9 +62,11 @@ class TemplatesTestCase(TestCase):
         html = lxml.html.fromstring(response.content)
 
         # Check syllabus intro
-        header = str(etree.tostring(html.cssselect(".subheader__intro")[0]))
-        self.assertEqual(header.count("course-detail__run-descriptions"), 1)
-        self.assertIn("S&#226;&#128;&#153;inscrire maintenant", header)
+        header = html.cssselect(".subheader__intro")[0]
+        self.assertEqual(len(header.cssselect(".course-detail__run-descriptions")), 1)
+        self.assertIn(
+            "S&#226;&#128;&#153;inscrire maintenant", str(etree.tostring(header))
+        )
 
         # Check syllabus aside column
         aside = str(etree.tostring(html.cssselect(".course-detail__aside")[0]))
