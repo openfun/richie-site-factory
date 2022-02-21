@@ -590,7 +590,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-funcorporate
                 site: funcorporate
             - lint-changelog:
