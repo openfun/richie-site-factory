@@ -466,7 +466,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-demo
                 site: demo
             - lint-changelog:

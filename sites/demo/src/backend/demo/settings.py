@@ -183,6 +183,7 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             "PORT": values.Value(5432, environ_name="DB_PORT", environ_prefix=None),
         }
     }
+    DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
     MIGRATION_MODULES = {}
 
     # Static files (CSS, JavaScript, Images)
@@ -371,6 +372,9 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
         "parler",
         "rest_framework",
         "storages",
+        # django-autocomplete-light
+        "dal",
+        "dal_select2",
         # Django-cms
         "djangocms_admin_style",
         "djangocms_googlemap",
@@ -476,6 +480,17 @@ class Base(StyleguideMixin, DRFMixin, RichieCoursesConfigurationMixin, Configura
             }
         },
     }
+
+    # Web Analytics
+    WEB_ANALYTICS_PROVIDER = values.Value(
+        None, environ_name="WEB_ANALYTICS_PROVIDER", environ_prefix=None
+    )
+    WEB_ANALYTICS_LOCATION = values.Value(
+        "head", environ_name="WEB_ANALYTICS_LOCATION", environ_prefix=None
+    )
+    WEB_ANALYTICS_ID = values.Value(
+        None, environ_name="WEB_ANALYTICS_ID", environ_prefix=None
+    )
 
     # Demo
     RICHIE_DEMO_SITE_DOMAIN = values.Value(
