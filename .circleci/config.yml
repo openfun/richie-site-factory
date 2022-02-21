@@ -404,7 +404,7 @@ workflows:
             - check-changelog:
                 filters:
                     branches:
-                        ignore: /.*/
+                        ignore: master
                 name: check-changelog-cnfpt
                 site: cnfpt
             - lint-changelog:
