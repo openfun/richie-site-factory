@@ -8,7 +8,14 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Enable Xiti course enrollment analytics 
+
+### Changed
+
 - Upgrade richie to 2.13.0
+
 
 ## [1.13.0] - 2022-01-04
 

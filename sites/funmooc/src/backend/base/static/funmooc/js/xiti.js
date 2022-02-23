@@ -160,6 +160,7 @@
   }
 
   var context = window.__funmooc_context__.analytics;
+
   tarteaucitron.services.xitiFun = {
     key: 'xiti',
     type: 'analytic',
@@ -172,6 +173,8 @@
       function onLoad() {
         var smartTag = new SmartTag(context);
         smartTag.init();
+        // expose smartTag globally
+        window.smartTag = smartTag;
       }
       tarteaucitron.addScript(smarttag_url, '', onLoad);
     },

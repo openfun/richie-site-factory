@@ -1,3 +1,5 @@
 {
-  "overrides": {}
+  "overrides": {
+    "^.*|(utils/api/web-analytics/index.ts)": "../../../../../../js/utils/api/web-analytics/index.ts"
+  }
 }
