@@ -19,7 +19,7 @@ commands:
 jobs:
     build-back:
         docker:
-            - image: circleci/python:3.7-stretch
+            - image: cimg/python:3.10
         parameters:
             site:
                 type: string
@@ -188,7 +188,7 @@ jobs:
         working_directory: ~/fun
     lint-back:
         docker:
-            - image: circleci/python:3.7-stretch
+            - image: cimg/python:3.10
         parameters:
             site:
                 type: string
@@ -259,7 +259,7 @@ jobs:
         working_directory: ~/fun/sites/<< parameters.site >>/src/frontend/
     lint-git:
         docker:
-            - image: circleci/python:3.7-stretch
+            - image: cimg/python:3.10
         steps:
             - checkout
             - run:
@@ -297,7 +297,7 @@ jobs:
                 DJANGO_SECRET_KEY: ThisIsAnExampleKeyForTestPurposeOnly
                 DJANGO_SETTINGS_MODULE: << parameters.site >>.settings
                 PYTHONPATH: /home/circleci/fun/src/backend
-              image: circleci/python:3.7-stretch
+              image: cimg/python:3.10
             - environment:
                 POSTGRES_DB: richie
                 POSTGRES_PASSWORD: pass
@@ -322,7 +322,9 @@ jobs:
                 keys:
                     - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
             - run:
-                command: sudo apt-get install -y gettext
+                command: |
+                    sudo apt-get update
+                    sudo apt-get install -y gettext
                 name: Install gettext (required to compile messages)
             - run:
                 command: python manage.py compilemessages || true

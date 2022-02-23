@@ -7,7 +7,7 @@ ARG SITE=funmooc
 ARG DOCKER_USER=10000
 
 # ---- base image to inherit from ----
-FROM python:3.7-stretch as base
+FROM python:3.10-buster as base
 
 # ---- front-end builder image ----
 FROM node:14 as front-builder
