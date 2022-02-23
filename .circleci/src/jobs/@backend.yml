@@ -5,7 +5,7 @@ build-back:
     site:
       type: string
   docker:
-    - image: circleci/python:3.7-stretch
+    - image: cimg/python:3.10
   working_directory: ~/fun/sites/<< parameters.site >>
   steps:
     - checkout:
@@ -30,7 +30,7 @@ lint-back:
     site:
       type: string
   docker:
-    - image: circleci/python:3.7-stretch
+    - image: cimg/python:3.10
   working_directory: ~/fun/sites/<< parameters.site >>/src/backend/
   steps:
     - checkout:
@@ -62,7 +62,7 @@ test-back:
     site:
       type: string
   docker:
-    - image: circleci/python:3.7-stretch
+    - image: cimg/python:3.10
       environment:
         DJANGO_SETTINGS_MODULE: << parameters.site >>.settings
         PYTHONPATH: /home/circleci/fun/src/backend
@@ -96,7 +96,9 @@ test-back:
           - v1-back-dependencies-<< parameters.site >>-{{ .Revision }}
     - run:
         name: Install gettext (required to compile messages)
-        command: sudo apt-get install -y gettext
+        command: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
     - run:
         name: Compile translations
         command: python manage.py compilemessages || true
