@@ -42,7 +42,7 @@ RUN mkdir /install && \
     # The django-cms fork includes drillable search feature,
     # it should be removed when this feature will be officially released.
     pip install --prefix=/install \
-    git+https://github.com/jbpenrath/django-cms@fun-3.9.0#egg=django-cms
+    git+https://github.com/jbpenrath/django-cms@fun-3.10.0#egg=django-cms
 
 # ---- Core application image ----
 FROM base as core
