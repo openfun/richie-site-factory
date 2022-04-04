@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 17:51+0100\n"
+"POT-Creation-Date: 2022-04-04 15:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,86 +21,73 @@ msgstr ""
 msgid "Unsorted uploads are not allowed."
 msgstr "Les téléchargements non classés sont interdits"
 
-#: funmooc/settings.py:222
+#: funmooc/settings.py:223
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: funmooc/settings.py:223
+#: funmooc/settings.py:224
 msgid "{base_url:s}/dashboard"
 msgstr ""
 
-#: funmooc/settings.py:226
+#: funmooc/settings.py:227
 msgid "Profile"
 msgstr "Profil"
 
-#: funmooc/settings.py:227
+#: funmooc/settings.py:228
 msgid "{base_url:s}/u/(username)"
 msgstr ""
 
-#: funmooc/settings.py:230
+#: funmooc/settings.py:231
 msgid "Account"
 msgstr "Compte"
 
-#: funmooc/settings.py:231
+#: funmooc/settings.py:232
 msgid "{base_url:s}/account/settings"
 msgstr ""
 
-#: funmooc/settings.py:316
+#: funmooc/settings.py:317
 msgid "Teaser"
 msgstr "Accroche"
 
-#: funmooc/settings.py:397 funmooc/settings.py:401
+#: funmooc/settings.py:401 funmooc/settings.py:405
 msgid "New courses"
 msgstr "Nouveaux cours"
 
-#: funmooc/settings.py:412
+#: funmooc/settings.py:416
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: funmooc/settings.py:422
+#: funmooc/settings.py:426
 msgid "Languages"
 msgstr "Langues"
 
-#: funmooc/settings.py:437
+#: funmooc/settings.py:441
 msgid "Types"
 msgstr ""
 
-#: funmooc/settings.py:450
+#: funmooc/settings.py:454
 msgid "Subjects"
 msgstr "Thématiques"
 
-#: funmooc/settings.py:463
+#: funmooc/settings.py:467
 msgid "Collections"
 msgstr "Collections"
 
-#: funmooc/settings.py:476
+#: funmooc/settings.py:480
 msgid "Organizations"
 msgstr "Établissements"
 
-#: funmooc/settings.py:489
+#: funmooc/settings.py:493
 msgid "Contributors"
 msgstr "Contributeurs"
 
-#: funmooc/settings.py:509 funmooc/settings.py:524
+#: funmooc/settings.py:513 funmooc/settings.py:528
 msgid "English"
 msgstr "Anglais"
 
-#: funmooc/settings.py:509 funmooc/settings.py:532
+#: funmooc/settings.py:513 funmooc/settings.py:536
 msgid "French"
 msgstr "Français"
-
-#: templates/courses/cms/course_detail.html:17
-msgctxt "course_detail__title"
-msgid "Other course runs"
-msgstr "Autres sessions"
-
-#: templates/courses/cms/course_detail.html:26
-msgid "No other open course runs"
-msgstr "Aucune autre session ouverte"
-
-#: templates/courses/cms/course_detail.html:30
-msgid "No open course runs"
-msgstr "Aucune session ouverte"
 
 #: templates/richie/base.html:18
 msgid "Help"
@@ -165,3 +152,13 @@ msgstr "Twitter"
 #: templates/social-networks/footer-badges.html:30
 msgid "Linkedin"
 msgstr "Linkedin"
+
+msgctxt "course_detail__title"
+msgid "Other course runs"
+msgstr "Autres sessions"
+
+msgid "No other open course runs"
+msgstr "Aucune autre session ouverte"
+
+msgid "No open course runs"
+msgstr "Aucune session ouverte"
