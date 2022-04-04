@@ -12,7 +12,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Enable Xiti course enrollment analytics 
+- Enable Xiti course enrollment analytics
 
 ### Changed
 
