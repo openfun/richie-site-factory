@@ -8,13 +8,19 @@ $lipstick-scheme: (
   hover-font-color: r-color('white'),
   hover-background: scale-color(r-color('lipstick'), $lightness: -10%),
 );
+$active-scheme: (
+  font-color: r-color('lipstick'),
+  svg-color: r-color('lipstick'),
+  background: transparent,
+  hover-font-color: r-color('indianred3'),
+);
 $indianred3-scheme: (
   font-color: r-color('white'),
   link-color: r-color('light-grey'),
   svg-color: r-color('white'),
   background: r-color('indianred3'),
   hover-font-color: r-color('white'),
-  hover-background: r-color('firebrick6'),
+  hover-background: r-color('lipstick'),
 );
 $darkish-blue-scheme: (
   font-color: r-color('white'),
