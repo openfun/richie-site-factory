@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Prevent course glimpse title color to be overriden by the section font color
+
 ## [1.15.1] - 2022-04-05
 
 ### Fixed
