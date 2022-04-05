@@ -8,6 +8,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix layout issue on course detail
+
 ## [1.15.0] - 2022-04-04
 
 ### Changed
