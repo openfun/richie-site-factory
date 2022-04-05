@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.15.1] - 2022-04-05
+
 ### Fixed
 
 - Fix layout issue on course detail
@@ -521,7 +523,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 - Static and media files are stored in AWS S3 buckets and distributed _via_
   Amazon CloudFront
 
-[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.15.0...HEAD
+[unreleased]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.15.1...HEAD
+[1.15.1]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.15.0...funmooc-1.15.1
 [1.15.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.14.0...funmooc-1.15.0
 [1.14.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.13.0...funmooc-1.14.0
 [1.13.0]: https://github.com/openfun/richie-site-factory/compare/funmooc-1.12.0...funmooc-1.13.0
